@@ -1,7 +1,7 @@
 language: java
 
 jdk:
-	- oraclejdk8
+  - oraclejdk8
 
 notifications:
   slack: theladsanderica:RW3hNGRPI8q4NZJOYK4gDxAZ
