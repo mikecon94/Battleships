@@ -1,0 +1,9 @@
+language: java
+
+notifications:
+  slack: theladsanderica:RW3hNGRPI8q4NZJOYK4gDxAZ
+ 
+#We may want to restrict the CI to certain branches:
+#branches:
+#  only:
+#    dev
