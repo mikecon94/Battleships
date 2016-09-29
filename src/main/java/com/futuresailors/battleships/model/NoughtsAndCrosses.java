@@ -1,4 +1,4 @@
-package com.futuresailors.noughtsandcrosses.model;
+package com.futuresailors.battleships.model;
 
 public class NoughtsAndCrosses {
 

@@ -6,7 +6,7 @@ jdk:
 notifications:
   slack: theladsanderica:RW3hNGRPI8q4NZJOYK4gDxAZ
   email: false
-
+  
 #We may want to restrict the CI to certain branches:
 #branches:
 #  only:

@@ -1,4 +1,4 @@
-package com.futuresailors.noughtsandcrosses.test;
+package com.futuresailors.battleships.test;
 
 import org.junit.Test;
 
@@ -6,7 +6,7 @@ public class BattleshipsTest {
 
 	@Test
 	public void test() {
-		assert(1==1);
+		assert(true);
 	}
 
 }

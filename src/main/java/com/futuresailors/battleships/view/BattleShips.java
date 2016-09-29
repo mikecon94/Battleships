@@ -1,4 +1,4 @@
-package com.futuresailors.view;
+package com.futuresailors.battleships.view;
 
 import java.awt.Color;
 import java.awt.Image;

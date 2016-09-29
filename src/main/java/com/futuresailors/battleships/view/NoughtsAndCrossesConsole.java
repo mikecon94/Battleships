@@ -1,8 +1,8 @@
-package com.futuresailors.view;
+package com.futuresailors.battleships.view;
 
 import java.util.Scanner;
 
-import com.futuresailors.noughtsandcrosses.model.NoughtsAndCrosses;
+import com.futuresailors.battleships.model.NoughtsAndCrosses;
 
 public class NoughtsAndCrossesConsole{
 
