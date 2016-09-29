@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class BattleShips {
+public class MainMenu {
 	
 	//Window constants set to allow quick changes.
 	private static final int WIDTH = 853;
@@ -20,8 +20,7 @@ public class BattleShips {
 	
 	private static JFrame window = new JFrame(TITLE);
 
-
-	public static void main(String[] args){
+	public MainMenu(){
 		setUpWindow();
 		createMenu();
 	}
