@@ -14,18 +14,18 @@ import javax.swing.JPanel;
 public class MainMenu {
 	
 	//Window constants set to allow quick changes.
-	private static final int WIDTH = 853;
-	private static final int HEIGHT = 480;
-	private static final String TITLE = "Noughts & Crosses";
+	private final int WIDTH = 853;
+	private final int HEIGHT = 480;
+	private final String TITLE = "Noughts & Crosses";
 	
-	private static JFrame window = new JFrame(TITLE);
+	private JFrame window = new JFrame(TITLE);
 
 	public MainMenu(){
 		setUpWindow();
 		createMenu();
 	}
 	
-	private static void startGame(){
+	private void startGame(){
 		System.out.println("clicked");
 		//Start a new game.
 		//Replace the current panel with a new one.
@@ -40,7 +40,7 @@ public class MainMenu {
 		window.repaint();		
 	};
 	
-	private static void createMenu(){
+	private void createMenu(){
 
 		JButton startGameBut = createCustomButton("src/main/resources/icon.png", 100, 50);
 		startGameBut.setSize(100, 50);
@@ -58,7 +58,7 @@ public class MainMenu {
 	}
 	
 	//This method can be called from the other panels when they have finished.
-	private static JButton createCustomButton(String imagePath, int width, int height){
+	private JButton createCustomButton(String imagePath, int width, int height){
 		ImageIcon img = new ImageIcon("src/main/resources/icon.png");
 	    window.setIconImage(img.getImage());    
 	    window.setContentPane(new JLabel(resizeImage("src/main/resources/background.jpg", WIDTH, HEIGHT)));
@@ -77,7 +77,7 @@ public class MainMenu {
 		return button;
 	}
 
-	private static void setUpWindow(){
+	private void setUpWindow(){
 		window.setSize(WIDTH, HEIGHT);
 		
 		//Centres the window
@@ -94,7 +94,7 @@ public class MainMenu {
 	}
 
 	//Helper method for resizing a given Image. Used on the background and for buttons.
-	private static ImageIcon resizeImage(String imagePath, int width, int height){
+	private ImageIcon resizeImage(String imagePath, int width, int height){
 		ImageIcon bg = new ImageIcon(imagePath);
 		return new ImageIcon(bg.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}	
