@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
 
+@SuppressWarnings("serial")
 public class PlaceShipsPanel extends JPanel {
 	
 	public PlaceShipsPanel(){

@@ -1,9 +1,5 @@
 package com.futuresailors.battleships.view;
 
-import java.awt.Color;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +22,7 @@ public class MainMenu {
 		createMenu();
 	}
 	
+	@SuppressWarnings("unused")
 	private void startGame(){
 		System.out.println("clicked");
 		//Start a new game.
@@ -50,13 +47,7 @@ public class MainMenu {
 		JButton startGameBut = new JButton("Start Game");
 	    startGameBut.setSize(100, 50);
 		startGameBut.setLocation((WIDTH / 2) - 50, (HEIGHT / 2) - 50);
-	
-		startGameBut.addActionListener(new ActionListener() { 
-			  public void actionPerformed(ActionEvent e) { 
-				    startGame();
-				  } 
-		} );
-		
+			
 		startGameBut.setVisible(true);
 		window.add(startGameBut);
 		window.revalidate();
@@ -71,9 +62,7 @@ public class MainMenu {
 		//If the above line doesn't work on all platforms we can use the following lines.
 		//Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		//window.setLocation(dim.width/2-window.getSize().width/2, dim.height/2-window.getSize().height/2);
-	    
 		window.setResizable(false);
-		
 		//End the program on close.
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		window.setVisible(true);
