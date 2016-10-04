@@ -39,7 +39,7 @@ public class MainMenu {
 	
 	private void createMenu(){
 
-		ImageIcon img = new ImageIcon("src/main/resources/icon.png");
+		ImageIcon img = new ImageIcon("src/main/resources/background.jpg");
 	    window.setIconImage(img.getImage());    
 	    window.setContentPane(new JLabel(UIHelper.resizeImage("src/main/resources/background.jpg", WIDTH, HEIGHT)));
 	    
