@@ -24,7 +24,6 @@ public class MainMenu {
 	
 	@SuppressWarnings("unused")
 	private void startGame(){
-		System.out.println("clicked");
 		//Start a new game.
 		//Replace the current panel with a new one.
 

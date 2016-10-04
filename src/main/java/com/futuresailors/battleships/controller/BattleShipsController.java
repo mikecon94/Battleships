@@ -31,8 +31,6 @@ public class BattleShipsController {
 			
 			@Override
 			public void mouseClicked(MouseEvent e) {
-				// TODO Auto-generated method stub
-				System.out.println("Starting game.");
 				window.getContentPane().removeAll();
 				window.add(new PlaceShipsPanel());
 				window.repaint();
