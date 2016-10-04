@@ -10,7 +10,6 @@ import com.futuresailors.battleships.view.PlaceShipsPanel;
 
 public class BattleShipsController {
 	
-	@SuppressWarnings("unused")
 	public void start(){
 		//Creates the window and adds the menu screen to it.
 		MainMenu menu = new MainMenu();
