@@ -24,24 +24,23 @@ public class MainMenuListener {
 	 * appropriate action.
 	 */
 	private void addListeners(){
-		
-		
+		//1 is the Start Game Button.
 		panel.getComponent(1).addMouseListener(new MouseListener(){
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent arg0) {
 				//Check which button was clicked:
 				//0 = Start Game
 				System.out.println("Start Game Clicked.");
 				controller.startSinglePlayer();
 			}
 			@Override
+			public void mouseClicked(MouseEvent arg0) {}
+			@Override
 			public void mouseEntered(MouseEvent arg0) {}
 			@Override
 			public void mouseExited(MouseEvent arg0) {}
 			@Override
 			public void mousePressed(MouseEvent arg0) {}
-			@Override
-			public void mouseReleased(MouseEvent arg0) {}
 		});
 	}
 	
