@@ -10,14 +10,30 @@ import com.futuresailors.battleships.UIHelper;
 @SuppressWarnings("serial")
 public class PlaceShipsPanel extends JPanel {
 	
+	private final int WIDTH;
+	private final int HEIGHT;
+	
+	public PlaceShipsPanel(int width, int height){
+		this.WIDTH = width;
+		this.HEIGHT = height;
+		createPanel();
+	}
+	
 	public PlaceShipsPanel(){
-		this.setSize(853, 480);
+		this.WIDTH = 1280;
+		this.HEIGHT = 720;
+		createPanel();
+	}
+	
+	private void createPanel(){
+		setSize(WIDTH, HEIGHT);
+		System.out.println("PlaceShipsPanel Created");
 	}
 	
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
-	    ImageIcon gridImage = UIHelper.resizeImage("src/main/resources/grid.png", 400, 480);
+	    ImageIcon gridImage = UIHelper.resizeImage("src/main/resources/grid.png", 500, 720);
         g.drawImage(gridImage.getImage(), 0, 0, this);
 	}
 }
