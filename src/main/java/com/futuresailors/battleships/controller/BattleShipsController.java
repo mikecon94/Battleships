@@ -2,6 +2,7 @@ package com.futuresailors.battleships.controller;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 import com.futuresailors.battleships.view.MainMenuListener;
 import com.futuresailors.battleships.view.MainMenuPanel;
@@ -18,7 +19,7 @@ public class BattleShipsController {
 		
 		//Create the JFrame
 		setUpWindow();
-		MainMenuPanel menuPanel = new MainMenuPanel(WIDTH, HEIGHT);
+		JPanel menuPanel = new MainMenuPanel(WIDTH, HEIGHT);
 		@SuppressWarnings("unused")
 		MainMenuListener menuListener = new MainMenuListener(menuPanel, this);
 		window.add(menuPanel);
