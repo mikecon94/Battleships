@@ -3,6 +3,7 @@ package com.futuresailors.battleships.view;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
@@ -20,13 +21,16 @@ public class PlaceShipsPanel extends JPanel {
 	}
 	
 	public PlaceShipsPanel(){
-		this.WIDTH = 1280;
-		this.HEIGHT = 720;
+		this.WIDTH = UIHelper.getWidth();
+		this.HEIGHT = UIHelper.getHeight();
 		createPanel();
 	}
 	
 	private void createPanel(){
 		setSize(WIDTH, HEIGHT);
+		JButton backBut = new JButton("Back");
+		backBut.setSize(100,100);
+		add(backBut);
 		System.out.println("PlaceShipsPanel Created");
 	}
 	

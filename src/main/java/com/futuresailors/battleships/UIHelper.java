@@ -7,6 +7,17 @@ import javax.swing.JButton;
 
 public class UIHelper {
 	
+	private static final int WIDTH = 1280;
+	private static final int HEIGHT = 720;
+	
+	public static int getWidth(){
+		return WIDTH;
+	}
+	
+	public static int getHeight(){
+		return HEIGHT;
+	}
+	
 	//Returns a JButton that only displays the given image.
 	public static JButton createCustomButton(String imagePath, int width, int height){	    
 		ImageIcon image = resizeImage(imagePath, width, height);

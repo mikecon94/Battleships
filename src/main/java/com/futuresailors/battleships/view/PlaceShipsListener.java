@@ -6,13 +6,14 @@ import java.awt.event.MouseListener;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.BattleShipsController;
+import com.futuresailors.battleships.controller.PlaceShipsController;
 
-public class MainMenuListener {
+public class PlaceShipsListener {
 
-	private BattleShipsController controller;
+	private PlaceShipsController controller;
 	private JPanel panel;
 	
-	public MainMenuListener(JPanel panel, BattleShipsController controller){
+	public PlaceShipsListener(JPanel panel, PlaceShipsController controller){
 		this.controller = controller;
 		this.panel = panel;
 		addListeners();
@@ -25,13 +26,13 @@ public class MainMenuListener {
 	 */
 	private void addListeners(){
 		//1 is the Start Game Button.
-		panel.getComponent(1).addMouseListener(new MouseListener(){
+		panel.getComponent(0).addMouseListener(new MouseListener(){
 			@Override
 			public void mouseReleased(MouseEvent arg0) {
 				//Check which button was clicked:
-				//1 = Start Game
-				System.out.println("Start Game Clicked.");
-				controller.startSinglePlayer();
+				//0 = Start Game
+				System.out.println("Back Clicked");
+				controller.returnToMenu();
 			}
 			@Override
 			public void mouseClicked(MouseEvent arg0) {}

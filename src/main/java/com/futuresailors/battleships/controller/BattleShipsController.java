@@ -4,42 +4,48 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.MainMenuListener;
 import com.futuresailors.battleships.view.MainMenuPanel;
-import com.futuresailors.battleships.view.PlaceShipsPanel;
 
 public class BattleShipsController {
 	
-	private final int WIDTH = 1280;
-	private final int HEIGHT = 720;
 	private final String TITLE = "Battleships";
-	private JFrame window = new JFrame(TITLE);
+	private JFrame window;
+	
+	public BattleShipsController(){
+		window = new JFrame(TITLE);
+	}
+	
+	public BattleShipsController(JFrame window){
+		this.window = window;
+	}
 	
 	public void start(){
-		
 		//Create the JFrame
 		setUpWindow();
-		JPanel menuPanel = new MainMenuPanel(WIDTH, HEIGHT);
+		showMenu();
+	}
+	
+	public void showMenu(){
+		window.getContentPane().removeAll();
+		JPanel menuPanel = new MainMenuPanel(UIHelper.getWidth(), UIHelper.getHeight());
+		menuPanel.setVisible(true);
 		@SuppressWarnings("unused")
 		MainMenuListener menuListener = new MainMenuListener(menuPanel, this);
 		window.add(menuPanel);
 		window.repaint();
-		
-		//0 is start game
-		//window.getContentPane().getComponent(0).addMouseListener(new MainMenuListener(this));
 	}
 	
 	//This gets called by the Menu Listener and starts the Single Player Game type.
 	//ie. It replaces the window panel & instantiates the appropriate controller for that game type.
 	public void startSinglePlayer(){
 		System.out.println("BattleShipsController is starting a single player game.");
-		window.getContentPane().removeAll();
-		window.add(new PlaceShipsPanel(WIDTH, HEIGHT));
-		window.repaint();
+		PlaceShipsController controller = new PlaceShipsController(window);
 	}
 	
 	private void setUpWindow(){
-		window.setSize(WIDTH, HEIGHT);
+		window.setSize(UIHelper.getWidth(), UIHelper.getHeight());
 		//Centres the window
 		window.setLocationRelativeTo(null);
 		//If the above line doesn't work on all platforms we can use the following lines.
@@ -51,6 +57,5 @@ public class BattleShipsController {
 		ImageIcon img = new ImageIcon("src/main/resources/background.jpg");
 	    window.setIconImage(img.getImage());   
 		window.setVisible(true);
-	}
-	
+	}	
 }

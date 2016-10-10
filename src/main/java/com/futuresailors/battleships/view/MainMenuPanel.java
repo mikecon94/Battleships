@@ -22,8 +22,8 @@ public class MainMenuPanel extends JPanel {
 	}
 	
 	public MainMenuPanel(){
-		this.WIDTH = 1280;
-		this.HEIGHT = 720;
+		this.WIDTH = UIHelper.getWidth();
+		this.HEIGHT = UIHelper.getHeight();
 		createPanel();
 	}
 	
