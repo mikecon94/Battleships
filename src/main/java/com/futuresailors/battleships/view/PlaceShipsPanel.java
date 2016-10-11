@@ -15,6 +15,13 @@ public class PlaceShipsPanel extends JPanel {
 	
 	private final int WIDTH;
 	private final int HEIGHT;
+	private final int GRID_WIDTH = 550;
+	private final int GRID_HEIGHT = 550;
+	private final int GRID_X = 100;
+	private final int GRID_Y = 80;
+	
+	//Placeholder variable for POC on tile hovering
+	private Color gridColor = new Color(255, 255, 255);
 	
 	public PlaceShipsPanel(int width, int height){
 		this.WIDTH = width;
@@ -38,6 +45,25 @@ public class PlaceShipsPanel extends JPanel {
 		System.out.println("PlaceShipsPanel Created.");
 	}
 	
+	public void hoverTile(int x, int y){
+		//Check if the mouse was moved in the grid area.
+		//We can probably do some clever maths with the X & Y to detect
+		//which tile is being hovered over.
+		//eg. tile 1 may go from pixel 0 to 5 (x)
+		//Dividing the mouses values by 5 will tell us the tile location.
+		//To check tile 1 the truncated value would be 0 when dividing the mouses pixel values by 5.
+		//The right hand border will be counted as the next tile (though this is not necessarily a problem).
+		//The same logic can be used for calculating where bombs were dropped etc.
+		if(x > GRID_X && x < GRID_X + GRID_WIDTH
+			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
+			System.out.println("Mouse Moved: " + x + ", " + y);
+			gridColor = new Color(255, 255, 255);
+		} else {
+			gridColor = new Color(0, 0, 0);
+		}
+		repaint();
+	}
+	
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
@@ -46,8 +72,9 @@ public class PlaceShipsPanel extends JPanel {
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
-        g.fillRect(100, 80, 550, 550);
+	    g.setColor(gridColor);
+        g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         g.setColor(new Color(255));
-        g.drawRect(100, 80, 550, 550);
+        g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
 	}
 }

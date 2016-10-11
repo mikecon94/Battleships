@@ -2,10 +2,10 @@ package com.futuresailors.battleships.view;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 
 import javax.swing.JPanel;
 
-import com.futuresailors.battleships.controller.BattleShipsController;
 import com.futuresailors.battleships.controller.PlaceShipsController;
 
 public class PlaceShipsListener {
@@ -28,20 +28,30 @@ public class PlaceShipsListener {
 		//1 is the Start Game Button.
 		panel.getComponent(0).addMouseListener(new MouseListener(){
 			@Override
-			public void mouseReleased(MouseEvent arg0) {
+			public void mouseReleased(MouseEvent e) {
 				//Check which button was clicked:
 				//0 = Start Game
 				System.out.println("Back Button Clicked.");
 				controller.returnToMenu();
 			}
 			@Override
-			public void mouseClicked(MouseEvent arg0) {}
+			public void mouseClicked(MouseEvent e) {}
 			@Override
-			public void mouseEntered(MouseEvent arg0) {}
+			public void mouseEntered(MouseEvent e) {}
 			@Override
-			public void mouseExited(MouseEvent arg0) {}
+			public void mouseExited(MouseEvent e) {}
 			@Override
-			public void mousePressed(MouseEvent arg0) {}
+			public void mousePressed(MouseEvent e) {}
+		});
+		
+		panel.addMouseMotionListener(new MouseMotionListener(){
+			@Override
+			public void mouseDragged(MouseEvent e) {
+			}
+			@Override
+			public void mouseMoved(MouseEvent e) {
+				controller.mouseMoved(e.getX(), e.getY());
+			}
 		});
 	}
 }
