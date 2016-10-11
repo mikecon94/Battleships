@@ -11,6 +11,14 @@ import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.MainMenuListener;
 import com.futuresailors.battleships.view.MainMenuPanel;
 
+/**
+ * The Main/First Game Controller which creates & sets up the JFrame Window.
+ * It then creates the MainMenuPanel object and adds it to the window.
+ * A MainMenuListener is then added to this panel which alerts this controller
+ * when a button is clicked via appropriate methods.
+ * @author Michael Conroy
+ * 
+ */
 public class BattleShipsController {
 	
 	private final String TITLE = "Battleships";
@@ -24,16 +32,28 @@ public class BattleShipsController {
 		this.window = window;
 	}
 	
+	/**
+	 * This method should be ran after the object has been instantiated and tells the controller
+	 * to set up the window and display the main menu.
+	 */
 	public void start(){
 		//Create the JFrame
 		setUpWindow();
 		showMenu();
 	}
 	
+	/**
+	 * Closes the window and exits the application.
+	 */
 	public void exit(){
 		window.dispose();
 	}
 	
+	/**
+	 * Instantiates the menu panel and adds it to the window after
+	 * removing all other components. This will be called by other controllers
+	 * when they are finished and the menu needs to be displayed again.
+	 */
 	public void showMenu(){
 		window.getContentPane().removeAll();
 		JPanel menuPanel = new MainMenuPanel(UIHelper.getWidth(), UIHelper.getHeight());
@@ -44,13 +64,18 @@ public class BattleShipsController {
 		window.repaint();
 	}
 	
-	//This gets called by the Menu Listener and starts the Single Player Game type.
-	//ie. It replaces the window panel & instantiates the appropriate controller for that game type.
+	/**
+	 * Starts the Single Player Game type. It replaces the window panel 
+	 * & instantiates the appropriate controller for that game type.
+	 */
 	public void startSinglePlayer(){
 		System.out.println("BattleShipsController is starting a single player game.");
 		PlaceShipsController controller = new PlaceShipsController(window);
 	}
 	
+	/**
+	 * Sets the JFrame up.
+	 */
 	private void setUpWindow(){
 		window.setSize(UIHelper.getWidth(), UIHelper.getHeight());
 		//Centres the window
