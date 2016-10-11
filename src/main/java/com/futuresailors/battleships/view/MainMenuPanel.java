@@ -28,23 +28,28 @@ public class MainMenuPanel extends JPanel {
 	}
 	
 	private void createPanel(){
+		setLayout(null);
 		setSize(WIDTH, HEIGHT);
-		add(new JLabel(UIHelper.resizeImage("src/main/resources/background.jpg", WIDTH, HEIGHT)));
 		//JButton startGameBut = UIHelper.createCustomButton("src/main/resources/icon.png", 100, 50);
 		JButton startGameBut = new JButton("Start Game");
 		startGameBut.setName("StartGameButton");
-	    startGameBut.setSize(100, 50);
-		startGameBut.setLocation((WIDTH / 2) - 50, (HEIGHT / 2) - 50);
+	    startGameBut.setSize(150, 75);
+		startGameBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.75)));
 		add(startGameBut);
+		JButton exitBut = new JButton("Exit Game");
+		exitBut.setName("ExitGameButton");
+		exitBut.setSize(150, 75);
+		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
+		add(exitBut);
 		setName("MainMenuPanel");
 		System.out.println("MainMenuPanel Created.");
 	}
 	
 	@Override
-	  protected void paintComponent(Graphics g) {
-	    super.paintComponent(g);
-	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/background.jpg", WIDTH, HEIGHT);
-        g.drawImage(bg.getImage(), 0, 0, null);
+	protected void paintComponent(Graphics g) {
+		super.paintComponent(g);
+	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/background2.jpg", WIDTH, HEIGHT);
+	    g.drawImage(bg.getImage(), 0, 0, null);
 	}
 	
 }

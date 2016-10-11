@@ -30,6 +30,10 @@ public class BattleShipsController {
 		showMenu();
 	}
 	
+	public void exit(){
+		window.dispose();
+	}
+	
 	public void showMenu(){
 		window.getContentPane().removeAll();
 		JPanel menuPanel = new MainMenuPanel(UIHelper.getWidth(), UIHelper.getHeight());

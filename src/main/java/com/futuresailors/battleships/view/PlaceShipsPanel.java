@@ -1,5 +1,7 @@
 package com.futuresailors.battleships.view;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
@@ -28,8 +30,10 @@ public class PlaceShipsPanel extends JPanel {
 	
 	private void createPanel(){
 		setSize(WIDTH, HEIGHT);
-		JButton backBut = new JButton("Back");
-		backBut.setSize(100,100);
+		JButton backBut = new JButton("Return");
+		backBut.setSize(100, 50);
+		backBut.setLocation(10, 10);
+		backBut.setLayout(null);
 		add(backBut);
 		System.out.println("PlaceShipsPanel Created.");
 	}
@@ -37,7 +41,13 @@ public class PlaceShipsPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
-	    ImageIcon gridImage = UIHelper.resizeImage("src/main/resources/grid.png", 500, 720);
+	    ImageIcon gridImage = UIHelper.resizeImage("src/main/resources/background2.jpg", WIDTH, HEIGHT);
         g.drawImage(gridImage.getImage(), 0, 0, this);
+	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
+	    g.setColor(new Color(255, 255, 255));
+	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
+        g.fillRect(100, 80, 550, 550);
+        g.setColor(new Color(255));
+        g.drawRect(100, 80, 550, 550);
 	}
 }
