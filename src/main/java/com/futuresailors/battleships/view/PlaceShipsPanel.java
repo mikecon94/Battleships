@@ -22,6 +22,13 @@ public class PlaceShipsPanel extends JPanel {
 	
 	//Placeholder variable for POC on tile hovering
 	private Color gridColor = new Color(255, 255, 255);
+	//We probably want an array here to represent the tiles in the grid.
+	//The paintComponent method can then loop round it and draw the
+	//appropriate image for each tile.
+	//We can also define a variable named tile size which is
+	//essentially GRID_X / Number of columns.
+	//Duplicated for Y.
+	
 	
 	public PlaceShipsPanel(int width, int height){
 		this.WIDTH = width;
