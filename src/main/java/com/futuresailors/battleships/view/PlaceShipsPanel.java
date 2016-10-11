@@ -31,7 +31,7 @@ public class PlaceShipsPanel extends JPanel {
 		JButton backBut = new JButton("Back");
 		backBut.setSize(100,100);
 		add(backBut);
-		System.out.println("PlaceShipsPanel Created");
+		System.out.println("PlaceShipsPanel Created.");
 	}
 	
 	@Override

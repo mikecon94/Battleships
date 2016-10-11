@@ -37,7 +37,7 @@ public class MainMenuPanel extends JPanel {
 		startGameBut.setLocation((WIDTH / 2) - 50, (HEIGHT / 2) - 50);
 		add(startGameBut);
 		setName("MainMenuPanel");
-		System.out.println("MainMenuPanel Created");
+		System.out.println("MainMenuPanel Created.");
 	}
 	
 	@Override

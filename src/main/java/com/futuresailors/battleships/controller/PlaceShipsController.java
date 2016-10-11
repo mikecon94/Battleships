@@ -18,7 +18,6 @@ public class PlaceShipsController {
 		window.repaint();
 		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
 		this.window = window;
-		System.out.println("PlaceShipsPanel Created");
 	}
 	
 	public void returnToMenu(){

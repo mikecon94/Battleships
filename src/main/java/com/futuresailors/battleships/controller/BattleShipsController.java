@@ -1,5 +1,8 @@
 package com.futuresailors.battleships.controller;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -57,5 +60,14 @@ public class BattleShipsController {
 		ImageIcon img = new ImageIcon("src/main/resources/background.jpg");
 	    window.setIconImage(img.getImage());   
 		window.setVisible(true);
-	}	
+		
+//		window.addKeyListener(new KeyAdapter() {
+//			public void keyPressed(KeyEvent ke) {  // handler
+//				if(ke.getKeyCode() == ke.VK_ESCAPE) {
+//					System.out.println("Escape Key Detected - Closing the window.");
+//					window.dispose();
+//				}
+//			} 
+//		});
+	}
 }

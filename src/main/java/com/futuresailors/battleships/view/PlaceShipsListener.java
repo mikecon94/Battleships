@@ -31,7 +31,7 @@ public class PlaceShipsListener {
 			public void mouseReleased(MouseEvent arg0) {
 				//Check which button was clicked:
 				//0 = Start Game
-				System.out.println("Back Clicked");
+				System.out.println("Back Button Clicked.");
 				controller.returnToMenu();
 			}
 			@Override
@@ -44,5 +44,4 @@ public class PlaceShipsListener {
 			public void mousePressed(MouseEvent arg0) {}
 		});
 	}
-	
 }
