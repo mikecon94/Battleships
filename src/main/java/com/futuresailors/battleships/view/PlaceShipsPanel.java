@@ -19,11 +19,13 @@ public class PlaceShipsPanel extends JPanel {
 	private final int GRID_HEIGHT = 550;
 	private final int GRID_X = 100;
 	private final int GRID_Y = 80;
+	private int tileWidth;
+	private int tileHeight;
 	
 	private char[][] grid;
 	
 	//Placeholder variable for POC on tile hovering
-	private Color gridColor = new Color(255, 255, 255);
+
 	//We probably want an array here to represent the tiles in the grid.
 	//The paintComponent method can then loop round it and draw the
 	//appropriate image for each tile.
@@ -62,6 +64,14 @@ public class PlaceShipsPanel extends JPanel {
 		}
 	}
 	
+	private int getTileXUnderMouse(int x){
+		return (x - GRID_X) / tileWidth;
+	}
+	
+	private int getTileYUnderMouse(int y){
+		return (y - GRID_Y) / tileHeight;
+	}
+	
 	private void createPanel(){
 		setSize(WIDTH, HEIGHT);
 		JButton backBut = new JButton("Return");
@@ -69,6 +79,9 @@ public class PlaceShipsPanel extends JPanel {
 		backBut.setLocation(10, 10);
 		backBut.setLayout(null);
 		add(backBut);
+		//Will be configurable at a later date.
+		tileWidth = 55;
+		tileHeight = 55;
 		System.out.println("PlaceShipsPanel Created.");
 	}
 	
@@ -84,11 +97,8 @@ public class PlaceShipsPanel extends JPanel {
 		if(x > GRID_X && x < GRID_X + GRID_WIDTH
 			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
 			clearHover();			
-			gridColor = new Color(255, 255, 255);
-			int tileX = (x - GRID_X) / 55;
-			int tileY = (y - GRID_Y) / 55;
-			System.out.println("Tile Hovered: " + tileX + ", " + tileY);
-			grid[tileY][tileX] = 'H';
+			System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
+			grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = 'H';
 		} else {
 			clearHover();
 		}
@@ -112,8 +122,6 @@ public class PlaceShipsPanel extends JPanel {
 	    g.setColor(new Color(255, 255, 255));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
 	    
-	    g.setColor(gridColor);
-        g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawTiles(g);
         g.setColor(new Color(255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
@@ -124,15 +132,15 @@ public class PlaceShipsPanel extends JPanel {
 			for(int column = 0; column < grid[0].length; column++){
 				if(grid[row][column] == ' '){
 			        g.setColor(new Color(255, 255, 255));
-					g.fillRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);
+					g.fillRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileWidth);
 			        g.setColor(new Color(0, 0, 0));
-					g.drawRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);
+					g.drawRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileHeight);
 				} else if(grid[row][column] == 'H'){
 					//H is hover.
 			        g.setColor(new Color(123, 123, 123));
-					g.fillRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);
+					g.fillRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileHeight);
 			        g.setColor(new Color(0, 0, 0));
-					g.drawRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);				
+					g.drawRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileHeight);				
 				}
 			}	
 		}
