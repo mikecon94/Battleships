@@ -20,6 +20,8 @@ public class PlaceShipsPanel extends JPanel {
 	private final int GRID_X = 100;
 	private final int GRID_Y = 80;
 	
+	private char[][] grid;
+	
 	//Placeholder variable for POC on tile hovering
 	private Color gridColor = new Color(255, 255, 255);
 	//We probably want an array here to represent the tiles in the grid.
@@ -33,13 +35,31 @@ public class PlaceShipsPanel extends JPanel {
 	public PlaceShipsPanel(int width, int height){
 		this.WIDTH = width;
 		this.HEIGHT = height;
+		initialiseGrid(10, 10);
 		createPanel();
 	}
 	
 	public PlaceShipsPanel(){
 		this.WIDTH = UIHelper.getWidth();
 		this.HEIGHT = UIHelper.getHeight();
+		initialiseGrid(10, 10);
 		createPanel();
+	}
+	
+	/**
+	 * Fills in the grid array with spaces.
+	 * @param rows - The number of rows the grid should have.
+	 * @param cols - The number of columns the grid should have.
+	 */
+	private void initialiseGrid(int rows, int cols){
+		//X,Y
+		//0,0 = top left.
+		grid = new char[rows][cols];
+		for(int row = 0; row < rows; row++){
+			for(int column = 0; column < cols; column++){
+				grid[row][column] = ' ';
+			}	
+		}
 	}
 	
 	private void createPanel(){
@@ -65,8 +85,11 @@ public class PlaceShipsPanel extends JPanel {
 			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
 			System.out.println("Mouse Moved: " + x + ", " + y);
 			gridColor = new Color(255, 255, 255);
-		} else {
-			gridColor = new Color(0, 0, 0);
+			
+			int tileX = (x - GRID_X) / 55;
+			int tileY = (y - GRID_Y) / 55;
+			System.out.println("Tile: " + tileX + ", " + tileY);
+			grid[tileY][tileX] = 'H';
 		}
 		repaint();
 	}
@@ -79,9 +102,30 @@ public class PlaceShipsPanel extends JPanel {
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
+	    
 	    g.setColor(gridColor);
         g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
+        drawTiles(g);
         g.setColor(new Color(255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
 	}
+        
+    private void drawTiles(Graphics g){
+        for(int row = 0; row < grid.length; row++){
+			for(int column = 0; column < grid[0].length; column++){
+				if(grid[row][column] == ' '){
+			        g.setColor(new Color(255, 255, 255));
+					g.fillRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);
+			        g.setColor(new Color(0, 0, 0));
+					g.drawRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);
+				} else if(grid[row][column] == 'H'){
+					//H is hover.
+			        g.setColor(new Color(123, 123, 123));
+					g.fillRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);
+			        g.setColor(new Color(0, 0, 0));
+					g.drawRect(GRID_X + (column * 55), GRID_Y + (row * 55), 55, 55);				
+				}
+			}	
+		}
+    }
 }
