@@ -89,6 +89,8 @@ public class PlaceShipsPanel extends JPanel {
 			int tileY = (y - GRID_Y) / 55;
 			System.out.println("Tile Hovered: " + tileX + ", " + tileY);
 			grid[tileY][tileX] = 'H';
+		} else {
+			clearHover();
 		}
 		repaint();
 	}
