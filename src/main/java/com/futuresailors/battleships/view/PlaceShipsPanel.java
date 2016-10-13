@@ -83,15 +83,22 @@ public class PlaceShipsPanel extends JPanel {
 		//The same logic can be used for calculating where bombs were dropped etc.
 		if(x > GRID_X && x < GRID_X + GRID_WIDTH
 			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
-			System.out.println("Mouse Moved: " + x + ", " + y);
+			clearHover();			
 			gridColor = new Color(255, 255, 255);
-			
 			int tileX = (x - GRID_X) / 55;
 			int tileY = (y - GRID_Y) / 55;
-			System.out.println("Tile: " + tileX + ", " + tileY);
+			System.out.println("Tile Hovered: " + tileX + ", " + tileY);
 			grid[tileY][tileX] = 'H';
 		}
 		repaint();
+	}
+	
+	private void clearHover(){
+        for(int row = 0; row < grid.length; row++){
+			for(int column = 0; column < grid[0].length; column++){
+				grid[column][row] = ' ';
+			}
+        }
 	}
 	
 	@Override
