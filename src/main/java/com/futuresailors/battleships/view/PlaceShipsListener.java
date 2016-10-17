@@ -19,11 +19,6 @@ public class PlaceShipsListener {
 		addListeners();
 	}
 	
-	/*
-	 * Adds the appropriate mouse listeners to the buttons on the Menu Screen.
-	 * When clicked it will alert the controller to then perform the
-	 * appropriate action.
-	 */
 	private void addListeners(){
 		//1 is the Start Game Button.
 		panel.getComponent(0).addMouseListener(new MouseListener(){

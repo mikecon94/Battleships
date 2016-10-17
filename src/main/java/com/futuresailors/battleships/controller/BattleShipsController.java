@@ -43,13 +43,6 @@ public class BattleShipsController {
 	}
 	
 	/**
-	 * Closes the window and exits the application.
-	 */
-	public void exit(){
-		window.dispose();
-	}
-	
-	/**
 	 * Instantiates the menu panel and adds it to the window after
 	 * removing all other components. This will be called by other controllers
 	 * when they are finished and the menu needs to be displayed again.
@@ -74,6 +67,13 @@ public class BattleShipsController {
 	}
 	
 	/**
+	 * Closes the window and exits the application.
+	 */
+	public void exit(){
+		window.dispose();
+	}
+	
+	/**
 	 * Sets the JFrame up.
 	 */
 	private void setUpWindow(){
@@ -89,14 +89,5 @@ public class BattleShipsController {
 		ImageIcon img = new ImageIcon("src/main/resources/background.jpg");
 	    window.setIconImage(img.getImage());   
 		window.setVisible(true);
-		
-//		window.addKeyListener(new KeyAdapter() {
-//			public void keyPressed(KeyEvent ke) {  // handler
-//				if(ke.getKeyCode() == ke.VK_ESCAPE) {
-//					System.out.println("Escape Key Detected - Closing the window.");
-//					window.dispose();
-//				}
-//			} 
-//		});
 	}
 }

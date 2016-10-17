@@ -19,21 +19,11 @@ public class PlaceShipsPanel extends JPanel {
 	private final int GRID_HEIGHT = 550;
 	private final int GRID_X = 100;
 	private final int GRID_Y = 80;
-	private int tileWidth;
-	private int tileHeight;
+	//All tiles are square.
+	private int tileSize;
 	
 	private char[][] grid;
-	
-	//Placeholder variable for POC on tile hovering
-
-	//We probably want an array here to represent the tiles in the grid.
-	//The paintComponent method can then loop round it and draw the
-	//appropriate image for each tile.
-	//We can also define a variable named tile size which is
-	//essentially GRID_X / Number of columns.
-	//Duplicated for Y.
-	
-	
+		
 	public PlaceShipsPanel(int width, int height){
 		this.WIDTH = width;
 		this.HEIGHT = height;
@@ -65,11 +55,11 @@ public class PlaceShipsPanel extends JPanel {
 	}
 	
 	private int getTileXUnderMouse(int x){
-		return (x - GRID_X) / tileWidth;
+		return (x - GRID_X) / tileSize;
 	}
 	
 	private int getTileYUnderMouse(int y){
-		return (y - GRID_Y) / tileHeight;
+		return (y - GRID_Y) / tileSize;
 	}
 	
 	private void createPanel(){
@@ -80,8 +70,7 @@ public class PlaceShipsPanel extends JPanel {
 		backBut.setLayout(null);
 		add(backBut);
 		//Will be configurable at a later date.
-		tileWidth = 55;
-		tileHeight = 55;
+		tileSize = 55;
 		System.out.println("PlaceShipsPanel Created.");
 	}
 	
@@ -132,15 +121,15 @@ public class PlaceShipsPanel extends JPanel {
 			for(int column = 0; column < grid[0].length; column++){
 				if(grid[row][column] == ' '){
 			        g.setColor(new Color(255, 255, 255));
-					g.fillRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileWidth);
+					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 			        g.setColor(new Color(0, 0, 0));
-					g.drawRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileHeight);
+					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if(grid[row][column] == 'H'){
 					//H is hover.
 			        g.setColor(new Color(123, 123, 123));
-					g.fillRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileHeight);
+					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 			        g.setColor(new Color(0, 0, 0));
-					g.drawRect(GRID_X + (column * tileWidth), GRID_Y + (row * tileHeight), tileWidth, tileHeight);				
+					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);				
 				}
 			}	
 		}
