@@ -2,6 +2,9 @@ package com.futuresailors.battleships.model;
 
 public class Ship {
 	
+	//Could we make this so the ship class is instantiated for each tile individually?
+	//Or could the Ship object hold the XY of each tile comprising the ship in an array or tile object?
+	
 	//Hits taken
 	private int hits = 0;
 	//Length is more like how many hits until sunk, was hoping this could be set auto by an Enum or something
@@ -23,8 +26,10 @@ public class Ship {
 	//Returns the number of times the ship has been hit, should be used to update the UI accordingly
 	public int getHits() {
 		return hits;
+		//Should check how many tiles have been hit
 	}
 	//Used to register a hit
+	//This needs to register a hit on the correct tile
 	public void hit() {
 		if(hits >= length){
 			System.out.println("Ship Sunk");
@@ -40,7 +45,7 @@ public class Ship {
 		hits = length;
 	}
 
-	public int getGridX() {
+/*	public int getGridX() {
 		return gridX;
 	}
 
@@ -54,7 +59,7 @@ public class Ship {
 
 	public void setGridY(int gridY) {
 		this.gridY = gridY;
-	}
+	}*/
 
 	public int getLength() {
 		return length;
