@@ -39,6 +39,27 @@ public class PlaceShipsListener {
 			public void mousePressed(MouseEvent e) {}
 		});
 		
+		panel.addMouseListener(new MouseListener(){
+
+			@Override
+			public void mouseReleased(MouseEvent e) {
+				System.out.println("Mouse Clicked");
+				controller.mouseClicked(e.getX(), e.getY());
+			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+		});
+		
 		panel.addMouseMotionListener(new MouseMotionListener(){
 			@Override
 			public void mouseDragged(MouseEvent e) {

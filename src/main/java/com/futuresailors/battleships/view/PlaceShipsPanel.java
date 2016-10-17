@@ -22,7 +22,9 @@ public class PlaceShipsPanel extends JPanel {
 	//All tiles are square.
 	private int tileSize;
 	
-	private char[][] grid;
+	//This array holds the image path for each of the tiles.
+	//Some Strings also represent states of the tile.
+	private String[][] grid;
 		
 	public PlaceShipsPanel(int width, int height){
 		this.WIDTH = width;
@@ -46,10 +48,10 @@ public class PlaceShipsPanel extends JPanel {
 	private void initialiseGrid(int rows, int cols){
 		//X,Y
 		//0,0 = top left.
-		grid = new char[rows][cols];
+		grid = new String[rows][cols];
 		for(int row = 0; row < rows; row++){
 			for(int column = 0; column < cols; column++){
-				grid[row][column] = ' ';
+				grid[row][column] = " ";
 			}	
 		}
 	}
@@ -87,7 +89,7 @@ public class PlaceShipsPanel extends JPanel {
 			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
 			clearHover();			
 			System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
-			grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = 'H';
+			grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = "src/main/resources/background.jpg";
 		} else {
 			clearHover();
 		}
@@ -97,10 +99,12 @@ public class PlaceShipsPanel extends JPanel {
 	private void clearHover(){
         for(int row = 0; row < grid.length; row++){
 			for(int column = 0; column < grid[0].length; column++){
-				grid[column][row] = ' ';
+				grid[column][row] = " ";
 			}
         }
 	}
+	
+	int testPaint = 0;
 	
 	@Override
 	protected void paintComponent(Graphics g) {
@@ -110,28 +114,35 @@ public class PlaceShipsPanel extends JPanel {
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
-	    
+    
+	    g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawTiles(g);
         g.setColor(new Color(255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
-	}
         
+	    g.setColor(new Color(255, 255, 255));
+        g.fillRect(775, 80, 350, 550);
+        g.setColor(new Color(255));
+        g.drawRect(775, 80, 350, 550);
+    }
+	        
     private void drawTiles(Graphics g){
         for(int row = 0; row < grid.length; row++){
 			for(int column = 0; column < grid[0].length; column++){
-				if(grid[row][column] == ' '){
-			        g.setColor(new Color(255, 255, 255));
-					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
+				if(" ".equals(grid[row][column])){
 			        g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if(grid[row][column] == 'H'){
+				} else if("H".equals(grid[row][column])){
 					//H is hover.
-			        g.setColor(new Color(123, 123, 123));
-					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-			        g.setColor(new Color(0, 0, 0));
-					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);				
+			
+				} else {
+					ImageIcon tileImage = UIHelper.resizeImage(grid[row][column], tileSize, tileSize);
+					g.drawImage(tileImage.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), this);
+					System.out.println("Drawing image: " + grid[row][column]);
 				}
-			}	
+		        g.setColor(new Color(0, 0, 0));
+				g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);	
+			}
 		}
     }
 }

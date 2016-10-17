@@ -8,7 +8,7 @@ import com.futuresailors.battleships.view.PlaceShipsPanel;
 
 /**
  * This controller adds a PlaceShipsPanel to the window and is used
- * to allow users to chooose the tiles they wish to place their
+ * to allow users to choose the tiles they wish to place their
  * ships in.
  * @author Michael Conroy
  *
@@ -31,14 +31,27 @@ public class PlaceShipsController {
 		this.window = window;
 	}
 	
+	public void mouseClicked(int x, int y){
+		//This method will check whether a ship has been clicked
+		//If so then it call getTile(x, y) on the panel to determine what
+		//tile it should be placed on then place it there if possible.
+		//If not then it call getShip(x, y) which will return the ship that has
+		//been clicked, the controller then knows to select it.
+		
+		//Both of these methods will return -1 or some other relevant value
+		//if the mouse click wasn't on a tile / ship.
+	}
+	
+	
+	
 	/**
 	 * Called by the panel listener when the mouse is moved. Will be used
 	 * for tile hovering.
-	 * @param newX - X Coordinate the mouse is now in.
-	 * @param newY - Y Coordinate the mouse is now in.
+	 * @param x - X Coordinate the mouse is now in.
+	 * @param y - Y Coordinate the mouse is now in.
 	 */
-	public void mouseMoved(int newX, int newY){
-		panel.hoverTile(newX, newY);
+	public void mouseMoved(int x, int y){
+		panel.hoverTile(x, y);
 	}
 	
 	/**
