@@ -34,6 +34,11 @@ public class MainMenuPanel extends JPanel {
 	    startGameBut.setSize(150, 75);
 		startGameBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.75)));
 		add(startGameBut);
+		JButton showRulesBut = new JButton("Rules");
+		showRulesBut.setName("StartGameButton");
+		showRulesBut.setSize(150, 75);
+		showRulesBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
+		add(showRulesBut);
 		JButton exitBut = new JButton("Exit Game");
 		exitBut.setSize(150, 75);
 		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));

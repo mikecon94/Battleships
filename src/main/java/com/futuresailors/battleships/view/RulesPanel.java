@@ -42,14 +42,10 @@ public class RulesPanel extends JPanel {
 		rulesLabel.setName("RuleLabel");
 		rulesLabel.setSize(300,75);
 		rulesLabel.setLocation((WIDTH)/2 - 75, (int) (HEIGHT - (HEIGHT * 0.70)));
-		rulesLabel.setText("willyt");
+		rulesLabel.setText("placeholder");
 		rulesLabel.setBorder(border);
 		add(rulesLabel);
-		JButton showRulesBut = new JButton("Rules");
-		showRulesBut.setName("StartGameButton");
-		showRulesBut.setSize(150, 75);
-		showRulesBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
-		add(showRulesBut);
+		
 		JButton exitBut = new JButton("Exit Game");
 		exitBut.setName("ExitGameButton");
 		exitBut.setSize(150, 75);

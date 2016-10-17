@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.MainMenuListener;
 import com.futuresailors.battleships.view.MainMenuPanel;
+import com.futuresailors.battleships.view.RulesPanel;
 
 /**
  * The Main/First Game Controller which creates & sets up the JFrame Window.
@@ -64,6 +65,19 @@ public class BattleShipsController {
 	public void startSinglePlayer(){
 		System.out.println("BattleShipsController is starting a single player game.");
 		PlaceShipsController controller = new PlaceShipsController(window);
+	}
+	/**
+	 * Opens the rules panel. It replaces the window and instantiates the
+	 * correct controller.
+	 */
+	public void showRules(){
+		window.getContentPane().removeAll();
+		JPanel rulesPanel = new RulesPanel(UIHelper.getWidth(), UIHelper.getHeight());
+		rulesPanel.setVisible(true);
+		@SuppressWarnings("unused")
+		MainMenuListener menuListener = new MainMenuListener(rulesPanel, this);
+		window.add(rulesPanel);
+		window.repaint();
 	}
 	
 	/**
