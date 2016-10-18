@@ -3,9 +3,6 @@ package com.futuresailors.battleships.model;
 import java.awt.Point;
 
 public class Ship {
-	
-	//Hits taken
-	private int hits = 0;
 	//Width of the ship in number of tiles
 	private final int width;
 	//Height of the ship in number of tiles
