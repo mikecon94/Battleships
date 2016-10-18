@@ -65,8 +65,10 @@ public class PlaceShipsPanel extends JPanel {
 	}
 	
 	private void createPanel(){
+		setLayout(null);
 		setSize(WIDTH, HEIGHT);
 		JButton backBut = new JButton("Return");
+		backBut.setName("Return");
 		backBut.setSize(100, 50);
 		backBut.setLocation(10, 10);
 		backBut.setLayout(null);
