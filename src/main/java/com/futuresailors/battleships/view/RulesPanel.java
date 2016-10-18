@@ -37,7 +37,6 @@ public class RulesPanel extends JPanel {
 	private void createPanel(){
 		setLayout(null);
 		setSize(WIDTH, HEIGHT);
-		//JButton startGameBut = UIHelper.createCustomButton("src/main/resources/icon.png", 100, 50);
 		JLabel rulesLabel = new JLabel("Rules", JLabel.CENTER);
 		rulesLabel.setName("RuleLabel");
 		rulesLabel.setSize(300,75);
@@ -46,8 +45,8 @@ public class RulesPanel extends JPanel {
 		rulesLabel.setBorder(border);
 		add(rulesLabel);
 		
-		JButton exitBut = new JButton("Exit Game");
-		exitBut.setName("ExitGameButton");
+		JButton exitBut = new JButton("Return");
+		exitBut.setName("Return");
 		exitBut.setSize(150, 75);
 		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
 		add(exitBut);

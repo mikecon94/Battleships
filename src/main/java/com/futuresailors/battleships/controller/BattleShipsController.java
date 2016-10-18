@@ -1,8 +1,5 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -10,7 +7,6 @@ import javax.swing.JPanel;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.MainMenuListener;
 import com.futuresailors.battleships.view.MainMenuPanel;
-import com.futuresailors.battleships.view.RulesPanel;
 
 /**
  * The Main/First Game Controller which creates & sets up the JFrame Window.
@@ -71,13 +67,8 @@ public class BattleShipsController {
 	 * correct controller.
 	 */
 	public void showRules(){
-		window.getContentPane().removeAll();
-		JPanel rulesPanel = new RulesPanel(UIHelper.getWidth(), UIHelper.getHeight());
-		rulesPanel.setVisible(true);
-		@SuppressWarnings("unused")
-		MainMenuListener menuListener = new MainMenuListener(rulesPanel, this);
-		window.add(rulesPanel);
-		window.repaint();
+		System.out.println("BattleShipsController is displaying the rules.");
+		RulesController controller = new RulesController(window);
 	}
 	
 	/**

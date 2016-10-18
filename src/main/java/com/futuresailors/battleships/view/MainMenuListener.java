@@ -44,7 +44,7 @@ public class MainMenuListener implements ActionListener{
 			System.out.println("Start Game Clicked.");
 			controller.startSinglePlayer();
 		} else if("Rules".equals(e.getActionCommand())){
-			System.out.println("Rules Button Clicked");
+			System.out.println("Rules Clicked.");
 			controller.showRules();
 		} else if("Exit Game".equals(e.getActionCommand())){
 			System.out.println("Exit Game Clicked.");

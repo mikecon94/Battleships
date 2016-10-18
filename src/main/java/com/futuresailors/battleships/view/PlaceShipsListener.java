@@ -40,7 +40,6 @@ public class PlaceShipsListener {
 		});
 		
 		panel.addMouseListener(new MouseListener(){
-
 			@Override
 			public void mouseReleased(MouseEvent e) {
 				System.out.println("Mouse Clicked");
@@ -62,11 +61,11 @@ public class PlaceShipsListener {
 		
 		panel.addMouseMotionListener(new MouseMotionListener(){
 			@Override
-			public void mouseDragged(MouseEvent e) {
-			}
-			@Override
 			public void mouseMoved(MouseEvent e) {
 				controller.mouseMoved(e.getX(), e.getY());
+			}
+			@Override
+			public void mouseDragged(MouseEvent e) {
 			}
 		});
 	}
