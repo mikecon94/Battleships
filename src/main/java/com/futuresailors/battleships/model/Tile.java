@@ -10,8 +10,8 @@ public class Tile {
 	private boolean hit = false;
 	
 	//Constructor
-	public Tile(Point xy){
-		this.position = xy;
+	public Tile(Point position){
+		this.position = position;
 	}
 	//Returns the XY position of the Tile as a Point Object
 	public Point getPosition(){

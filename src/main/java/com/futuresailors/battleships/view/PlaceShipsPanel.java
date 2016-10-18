@@ -56,11 +56,11 @@ public class PlaceShipsPanel extends JPanel {
 		}
 	}
 	
-	private int getTileXUnderMouse(int x){
+	public int getTileXUnderMouse(int x){
 		return (x - GRID_X) / tileSize;
 	}
 	
-	private int getTileYUnderMouse(int y){
+	public int getTileYUnderMouse(int y){
 		return (y - GRID_Y) / tileSize;
 	}
 	

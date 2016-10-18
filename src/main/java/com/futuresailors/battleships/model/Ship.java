@@ -21,7 +21,8 @@ public class Ship {
 		this.imageLoc = imageLoc;
 		//Init tile array with the amount of tiles the ship occupys
 		tiles = new Tile[height*width];
-		System.out.println("New Ship Created");
+		System.out.println("New Ship Created, Height: " + height + " Width: " + width + " Tiles: " + tiles.length);
+		
 	};
 	//Used to register a hit
 	public boolean hit(Point location) {
@@ -56,9 +57,14 @@ public class Ship {
 	}
 	//Initialises the tiles array based on the top left hand tile
 	public void createTiles(Point pos){
-		for( int i=0; i < height; i++){
-			for(int j =0; j < width;j++) {
-				tiles[i+j].setPostion(new Point((int)pos.getX() + j,(int)pos.getY()+i));
+		System.out.println("Tiles Length: " + tiles.length);
+		for(int i=0; i < height; i++){
+			System.out.println("Height Loop " + i);
+			for(int j=0; j < width;j++) {
+				System.out.println("Entering Width Loop");
+				Point point = new Point(pos.x+ j,pos.y +i);
+				tiles[i+j] = new Tile(point);
+				System.out.println("Width Loop " + j);
 			}
 		}
 	}
