@@ -8,11 +8,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-<<<<<<< HEAD
-=======
-import javax.swing.JScrollPane;
-import javax.swing.border.Border;
->>>>>>> 9e66fee9ec3acf9cd18ad0a48672362a37028aa4
 import javax.swing.border.LineBorder;
 
 import com.futuresailors.battleships.UIHelper;
