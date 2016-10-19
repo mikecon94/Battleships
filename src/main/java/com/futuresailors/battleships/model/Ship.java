@@ -13,9 +13,9 @@ import java.awt.Point;
 
 public class Ship {
 	//Width of the ship in number of tiles
-	private final int width;
+	private final int WIDTH;
 	//Height of the ship in number of tiles
-	private final int height;
+	private final int HEIGHT;
 	//Whether the ship has been sunk
 	private boolean sunk = false;
 	//Tiles the ship occupys
@@ -25,8 +25,8 @@ public class Ship {
 	
 	//Constructor
 	public Ship(int width, int height, String imagePath){
-		this.width = width;
-		this.height = height;
+		this.WIDTH = width;
+		this.HEIGHT = height;
 		this.imagePath = imagePath;
 		//Init tile array with the amount of tiles the ship occupys
 		tiles = new Tile[height*width];
@@ -85,9 +85,9 @@ public class Ship {
 		System.out.println("Number of Tiles: " + tiles.length);	
 
 		int index = 0;
-		for(int i=0; i < height; i++){
+		for(int i=0; i < HEIGHT; i++){
 			System.out.println("Height Loop " + i);
-			for(int j=0; j < width;j++) {
+			for(int j=0; j < WIDTH;j++) {
 				Point point = new Point(pos.x+ j,pos.y +i);
 				tiles[index] = new Tile(point);
 				System.out.println("Width Loop " + j);
@@ -99,13 +99,13 @@ public class Ship {
 	 * Returns width for use in the view
 	 */
 	public int getWidth(){
-		return width;
+		return WIDTH;
 	}
 	/**
 	 * Returns width for use in the view
 	 */
 	public int getHeight(){
-		return height;
+		return HEIGHT;
 	}
 	/**
 	 * Returns Image Location
