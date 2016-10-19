@@ -3,6 +3,9 @@ package com.futuresailors.battleships.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -49,49 +52,23 @@ public class RulesPanel extends JPanel {
 		rulesLabel.setName("RulesLabel");
 		rulesLabel.setSize(1000, 550);
 		rulesLabel.setBorder(LineBorder.createGrayLineBorder());	
-		String labelContent = 
-				"<html>"
-				+"<centre style=\"color:rgb(0, 0, 255)\"><b>Rules</b><centre><BR>"
-				+ "<BR>"
-				+ "<b>Before the Game Begins</b><BR>"
-				+ "<ul>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "<li>At the start of the game every player chooses a selection of five ships.</li><BR>"
-				+ "<li>Both players can choose the map they want and then a random number generator decides which player gets their chosen map.</li><BR>"
-				+ "<li>Both players place their five ships on their respective playing fields, ships can be oriented either vertically or horizontally.</li><BR>"
-				+ "<li>Players choose one power up to employ in the game.</li><BR>"
-				+ "</ul>"
-				+ "<BR>"
-				+ "<BR>"
-				+ "<b>During Gameplay</b>"
-				+ "</html>";       
+		String labelContent;
+		//Create string builder for html file read
+		StringBuilder html = new StringBuilder();
+		//Read file in
+		try {
+		    BufferedReader in = new BufferedReader(new FileReader("src/main/resources/rules.html"));
+		    String str;
+		    while ((str = in.readLine()) != null) {
+		        html.append(str);
+		    }
+		    in.close();
+		} catch (IOException e) {
+			labelContent = "Unable to load rules";
+		}
+		//Set html file to label
+		labelContent = html.toString();
+		       
 		rulesLabel.setContentType("text/html");
 		rulesLabel.setText(labelContent);
 		rulesLabel.setCaretPosition(0);
