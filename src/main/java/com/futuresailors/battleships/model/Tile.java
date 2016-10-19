@@ -2,6 +2,14 @@ package com.futuresailors.battleships.model;
 
 import java.awt.Point;
 
+/**
+ * This object represents a single tile on the grid
+ * and is used by the ship class to represent its location
+ * spread across multiple tiles.
+ * @author Joe Baldwin
+ *
+ */
+
 public class Tile {
 	
 	//Point object representing x&y
