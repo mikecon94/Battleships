@@ -69,7 +69,6 @@ public class Ship {
 			for(int j=0; j < width;j++) {
 				Point point = new Point(pos.x+ j,pos.y +i);
 				tiles[index] = new Tile(point);
-				System.out.println("Width Loop " + j);
 				index++;
 			}
 		}

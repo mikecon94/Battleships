@@ -91,7 +91,7 @@ public class BattleShipsController {
 		window.setResizable(false);
 		//End the program on close.
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ImageIcon img = new ImageIcon("src/main/resources/background.jpg");
+		ImageIcon img = new ImageIcon("src/main/resources/images/background.jpg");
 	    window.setIconImage(img.getImage());   
 		window.setVisible(true);
 	}
