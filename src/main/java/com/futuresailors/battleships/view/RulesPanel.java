@@ -35,7 +35,6 @@ public class RulesPanel extends JPanel {
 		createPanel();
 	}
 	
-	
 	private void createPanel(){
 		setLayout(null);
 		setSize(WIDTH, HEIGHT);
@@ -84,7 +83,7 @@ public class RulesPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/background2.jpg", WIDTH, HEIGHT);
+	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/images/background2.jpg", WIDTH, HEIGHT);
 	    g.drawImage(bg.getImage(), 0, 0, null);
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));

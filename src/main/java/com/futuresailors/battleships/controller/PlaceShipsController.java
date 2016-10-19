@@ -21,21 +21,36 @@ public class PlaceShipsController {
 	
 	private JFrame window;
 	private PlaceShipsPanel panel;
-	
-	//Creates All Possible Ships - Array
-	Ship destroyer = new Ship(3,1,"src/main/resources/background2.jpg");
+	//Maybe make this configurable going forwards
+	//Pass the number of possible ships in constructor.
+	//Maybe it should be in a model called ShipsHandler (?)
+	//That handles placing of the ships amongst other things.
+	private Ship[] placeableShips = new Ship[3];
+	private Ship[] chosenShips = new Ship[3];
 	
 	/**
 	 * Creates the panel, adds it to the window and adds the listener.
 	 * @param window - The JFrame to add the panel to.
 	 */
 	public PlaceShipsController(JFrame window){
+		this.window = window;
+		addPanel();
+		createPlaceableShips();
+	}
+	
+	private void createPlaceableShips(){
+		placeableShips[0] = new Ship(4, 1, "src/main/resources/images/ships/1.png");
+		placeableShips[1] = new Ship(2, 1, "src/main/resources/images/ships/2.png");
+		placeableShips[2] = new Ship(3, 1, "src/main/resources/images/ships/3.png");
+		panel.updatePlaceableShips(placeableShips);
+	}
+	
+	private void addPanel(){
 		window.getContentPane().removeAll();
 		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight());
 		window.add(panel);
 		window.repaint();
 		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
-		this.window = window;
 	}
 	
 	public void mouseClicked(int x, int y){
@@ -51,11 +66,11 @@ public class PlaceShipsController {
 		//Check if ship being placed for first time
 		//Check what type of ship is being placed if destroyer do the below
 		
-		destroyer.createTiles(new Point(panel.getTileXUnderMouse(x),panel.getTileYUnderMouse(y)));
-		Tile tiles[] = destroyer.getTiles();
+		Ship test = new Ship(1, 1, "src/main/resources/grid.png");
+		test.createTiles(new Point(panel.getTileXUnderMouse(x),panel.getTileYUnderMouse(y)));
+		Tile tiles[] = test.getTiles();
 		for(Tile tile : tiles){
-			System.out.println("X: " + tile.getPosition().x);
-			System.out.println("Y: " + tile.getPosition().y);
+			System.out.println("X: " + tile.getPosition().x + " Y: " + tile.getPosition().y);
 		}
 	}
 	
@@ -66,7 +81,11 @@ public class PlaceShipsController {
 	 * @param y - Y Coordinate the mouse is now in.
 	 */
 	public void mouseMoved(int x, int y){
+		
 		panel.hoverTile(x, y);
+		
+		//If there is a ship selected then draw that ship
+		//at x. (Drag and Drop).
 	}
 	
 	/**

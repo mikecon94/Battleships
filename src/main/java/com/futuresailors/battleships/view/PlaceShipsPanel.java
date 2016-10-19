@@ -9,6 +9,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.model.Ship;
 
 @SuppressWarnings("serial")
 public class PlaceShipsPanel extends JPanel {
@@ -25,6 +26,7 @@ public class PlaceShipsPanel extends JPanel {
 	//This array holds the image path for each of the tiles.
 	//Some Strings also represent states of the tile.
 	private String[][] grid;
+	private Ship[] placeableShips;
 		
 	public PlaceShipsPanel(int width, int height){
 		this.WIDTH = width;
@@ -38,6 +40,11 @@ public class PlaceShipsPanel extends JPanel {
 		this.HEIGHT = UIHelper.getHeight();
 		initialiseGrid(10, 10);
 		createPanel();
+	}
+	
+	public void updatePlaceableShips(Ship[] ships){
+		placeableShips = ships;
+		repaint();
 	}
 	
 	/**
@@ -89,11 +96,11 @@ public class PlaceShipsPanel extends JPanel {
 		//The same logic can be used for calculating where bombs were dropped etc.
 		if(x > GRID_X && x < GRID_X + GRID_WIDTH
 			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
-			clearHover();			
-			System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
-			grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = "src/main/resources/background.jpg";
+			//clearHover();			
+			//System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
+			//grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = "src/main/resources/background.jpg";
 		} else {
-			clearHover();
+			//clearHover();
 		}
 		repaint();
 	}
@@ -111,7 +118,7 @@ public class PlaceShipsPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
-	    ImageIcon gridImage = UIHelper.resizeImage("src/main/resources/background2.jpg", WIDTH, HEIGHT);
+	    ImageIcon gridImage = UIHelper.resizeImage("src/main/resources/images/background2.jpg", WIDTH, HEIGHT);
         g.drawImage(gridImage.getImage(), 0, 0, this);
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));
@@ -124,10 +131,25 @@ public class PlaceShipsPanel extends JPanel {
         
 	    g.setColor(new Color(255, 255, 255));
         g.fillRect(775, 80, 350, 550);
+        drawPlaceableShips(g);
         g.setColor(new Color(255));
         g.drawRect(775, 80, 350, 550);
     }
-	        
+	
+	private void drawPlaceableShips(Graphics g){
+		//Think about separating the vertical ships with the horizontal ones...
+		int posY = 80;
+		for(int i = 0; i < placeableShips.length; i++){
+			String imagePath = placeableShips[i].getImagePath();
+			int width = placeableShips[i].getWidth() * tileSize;
+			int height = placeableShips[i].getHeight() * tileSize;
+			//System.out.println(imagePath + " Width: " + width + " Height: " + height + " posY: " + posY);
+			ImageIcon shipImage = UIHelper.resizeImage(imagePath, width, height);
+			g.drawImage(shipImage.getImage(), 790, posY, this);
+			posY += height + 10;
+		}
+	}
+	
     private void drawTiles(Graphics g){
         for(int row = 0; row < grid.length; row++){
 			for(int column = 0; column < grid[0].length; column++){
