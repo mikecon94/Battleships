@@ -144,7 +144,7 @@ public class PlaceShipsPanel extends JPanel {
 			int width = placeableShips[i].getWidth() * tileSize;
 			int height = placeableShips[i].getHeight() * tileSize;
 			//System.out.println(imagePath + " Width: " + width + " Height: " + height + " posY: " + posY);
-			ImageIcon shipImage = UIHelper.resizeImage(imagePath, width, height);
+			ImageIcon shipImage = UIHelper.resizeImage(imagePath, width - 5, height - 5);
 			g.drawImage(shipImage.getImage(), 790, posY, this);
 			posY += height + 10;
 		}

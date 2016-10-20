@@ -25,7 +25,7 @@ public class PlaceShipsController {
 	//Pass the number of possible ships in constructor.
 	//Maybe it should be in a model called ShipsHandler (?)
 	//That handles placing of the ships amongst other things.
-	private Ship[] placeableShips = new Ship[3];
+	private Ship[] placeableShips = new Ship[4];
 	private Ship[] chosenShips = new Ship[3];
 	
 	/**
@@ -40,8 +40,9 @@ public class PlaceShipsController {
 	
 	private void createPlaceableShips(){
 		placeableShips[0] = new Ship(4, 1, "src/main/resources/images/ships/1.png");
-		placeableShips[1] = new Ship(2, 1, "src/main/resources/images/ships/2.png");
-		placeableShips[2] = new Ship(3, 1, "src/main/resources/images/ships/3.png");
+		placeableShips[1] = new Ship(3, 1, "src/main/resources/images/ships/2.png");
+		placeableShips[2] = new Ship(1, 1, "src/main/resources/images/ships/3.png");
+		placeableShips[3] = new Ship(1, 5, "src/main/resources/images/ships/5.png");
 		panel.updatePlaceableShips(placeableShips);
 	}
 	
@@ -63,15 +64,19 @@ public class PlaceShipsController {
 		//Both of these methods will return -1 or some other relevant value
 		//if the mouse click wasn't on a tile / ship.
 		
+		
+		
+		
+		
+		
 		//Check if ship being placed for first time
 		//Check what type of ship is being placed if destroyer do the below
-		
-		Ship test = new Ship(1, 1, "src/main/resources/grid.png");
-		test.createTiles(new Point(panel.getTileXUnderMouse(x),panel.getTileYUnderMouse(y)));
-		Tile tiles[] = test.getTiles();
-		for(Tile tile : tiles){
-			System.out.println("X: " + tile.getPosition().x + " Y: " + tile.getPosition().y);
-		}
+//		Ship test = new Ship(1, 1, "src/main/resources/grid.png");
+//		test.createTiles(new Point(panel.getTileXUnderMouse(x),panel.getTileYUnderMouse(y)));
+//		Tile tiles[] = test.getTiles();
+//		for(Tile tile : tiles){
+//			System.out.println("X: " + tile.getPosition().x + " Y: " + tile.getPosition().y);
+//		}
 	}
 	
 	/**

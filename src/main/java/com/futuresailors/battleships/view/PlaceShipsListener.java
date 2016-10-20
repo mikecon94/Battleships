@@ -42,7 +42,6 @@ public class PlaceShipsListener {
 		panel.addMouseListener(new MouseListener(){
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				System.out.println("Mouse Clicked");
 				controller.mouseClicked(e.getX(), e.getY());
 			}
 			
