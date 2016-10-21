@@ -25,7 +25,6 @@ public class PlaceShipsController {
 	//That handles placing of the ships amongst other things.
 	private Ship[] placeableShips = new Ship[4];
 	private int currentShip = 0;
-	private Ship[] chosenShips = new Ship[3];
 	private Grid grid;
 	
 	/**
@@ -37,7 +36,7 @@ public class PlaceShipsController {
 		grid = new Grid(10);
 		addPanel();
 		createPlaceableShips();
-		panel.updateCurrentShip(placeableShips[0]);
+		panel.updateCurrentShip(placeableShips[currentShip]);
 	}
 	
 	private void createPlaceableShips(){

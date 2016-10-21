@@ -151,8 +151,11 @@ public class PlaceShipsPanel extends JPanel {
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if(grid.getTile(column, row) == 'H'){
 					//H is hover.
-			        g.setColor(new Color(0, 255, 255));
+			        g.setColor(new Color(128, 128, 128));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
+				} else if(grid.getTile(column,  row) == 'S'){
+					g.setColor(new Color(255, 0, 0));
+					g.fillRect(GRID_X + (column * tileSize),  GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else {
 					//ImageIcon tileImage = UIHelper.resizeImage(grid.getTile(column, row), tileSize, tileSize);
 					//g.drawImage(tileImage.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), this);
