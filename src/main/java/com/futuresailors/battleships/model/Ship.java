@@ -22,8 +22,12 @@ public class Ship {
 	private Tile tiles[];
 	//Image path
 	private String imagePath;
-	//Used to detect whether it has been placed yet by the controller/view
+	
 	private boolean placed = false;
+	
+	//Tile column this ship has been placed.
+	private int x;
+	private int y;
 	
 	//Constructor
 	public Ship(int width, int height, String imagePath){
@@ -79,11 +83,15 @@ public class Ship {
 		return sunk;
 	}
 	
+	public boolean getPlaced(){
+		return placed;
+	}
+	
 	/**
 	 * Initialises the tiles array based on the top left hand tile
 	 * @param pos - A Point representing the top left hand tile of the ship
 	 */
-	public void createTiles(Point pos){
+	public void placeShip(Point pos){
 		System.out.println("Number of Tiles: " + tiles.length);	
 
 		int index = 0;
@@ -95,12 +103,19 @@ public class Ship {
 				index++;
 			}
 		}
+		placed = true;
+		x = (int) pos.getX();
+		y = (int) pos.getY();
 	}
 	
-	public boolean getPlaced(){
-		return placed;
+	public int getX(){
+		return x;
 	}
 	
+	public int getY(){
+		return y;
+	}
+
 	/**
 	 * Returns width for use in the view
 	 */
@@ -118,11 +133,5 @@ public class Ship {
 	 */
 	public String getImagePath() {
 		return imagePath;
-	}
-	/**
-	 * Returns the tiles array
-	 */
-	public Tile[] getTiles(){
-		return tiles;	
 	}
 }

@@ -26,13 +26,13 @@ public class PlaceShipsPanel extends JPanel {
 	
 	private Grid grid;
 	private Ship currentShip;
-	//private Ship[] shipsPlaced;
+	private Ship[] ships;
 		
-	public PlaceShipsPanel(int width, int height, Grid grid){
+	public PlaceShipsPanel(int width, int height, Grid grid, Ship[] ships){
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.grid = grid;
-		
+		this.ships = ships;
 		grid.getRows();
 		createPanel();
 	}
@@ -100,13 +100,28 @@ public class PlaceShipsPanel extends JPanel {
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
-    
+	    
+	    
+	    
 	    g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawTiles(g);
         g.setColor(new Color(255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
-
+        drawShips(g);
+        
+        
+        //Displays what ship is currently being placed.
         drawCurrentShipSpace(g);
+	}
+	
+	private void drawShips(Graphics g){
+		for(Ship ship : ships){
+			if(ship.getPlaced()){
+				ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(), ship.getWidth() * tileSize - 2, ship.getHeight() * tileSize - 2);
+				g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize), GRID_Y + (ship.getY() * tileSize), this);
+		
+			}
+		}
 	}
 	
 	private void drawCurrentShipSpace(Graphics g){
@@ -156,10 +171,6 @@ public class PlaceShipsPanel extends JPanel {
 				} else if(grid.getTile(column,  row) == 'S'){
 					g.setColor(new Color(255, 0, 0));
 					g.fillRect(GRID_X + (column * tileSize),  GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else {
-					//ImageIcon tileImage = UIHelper.resizeImage(grid.getTile(column, row), tileSize, tileSize);
-					//g.drawImage(tileImage.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), this);
-					System.out.println("Drawing image: " + grid.getTile(column, row));
 				}
 		        g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);	

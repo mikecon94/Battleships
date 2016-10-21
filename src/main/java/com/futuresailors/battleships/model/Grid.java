@@ -1,5 +1,7 @@
 package com.futuresailors.battleships.model;
 
+import java.awt.Point;
+
 public class Grid {
 	
 	//Shall we use chars or an ENUM to represent the cells??
@@ -99,6 +101,7 @@ public class Grid {
 				grid[y + yIndex][x + xIndex] = 'S';
 			}
 		}
+		ship.placeShip(new Point(x, y));
 	}
 	
 	public void bomb(int x, int y){
