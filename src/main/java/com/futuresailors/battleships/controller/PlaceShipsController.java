@@ -49,7 +49,7 @@ public class PlaceShipsController {
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid);
+		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, placeableShips);
 		window.add(panel);
 		window.repaint();
 		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
