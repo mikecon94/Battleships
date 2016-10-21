@@ -83,7 +83,7 @@ public class PlaceShipsPanel extends JPanel {
 		if(x > GRID_X && x < GRID_X + GRID_WIDTH
 			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
 			//clearHover();			
-			System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
+			//System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
 			//grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = "src/main/resources/background.jpg";
 			
 		} else {

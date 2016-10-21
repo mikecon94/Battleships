@@ -84,7 +84,7 @@ public class Grid {
 			return false;
 		}
 		
-		System.out.println("X: " + x + " Y: " + y);
+		//System.out.println("X: " + x + " Y: " + y);
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
 				if(grid[y + yIndex][x + xIndex] == 'S'){
