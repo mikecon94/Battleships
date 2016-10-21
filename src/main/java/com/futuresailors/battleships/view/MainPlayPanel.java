@@ -15,7 +15,7 @@ import com.futuresailors.battleships.model.Grid;
  * This is the panel where the main game will be played.
  * The controllers for each game mode will create an instance
  * of this panel and control the logic as needed.
- * @author Joe Baldwin & Mike Conroy
+ * @author Joe Baldwin & Michael Conroy
  */
 
 @SuppressWarnings("serial")

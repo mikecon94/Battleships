@@ -92,11 +92,8 @@ public class Ship {
 	 * @param pos - A Point representing the top left hand tile of the ship
 	 */
 	public void placeShip(Point pos){
-		System.out.println("Number of Tiles: " + tiles.length);	
-
 		int index = 0;
 		for(int i=0; i < HEIGHT; i++){
-			System.out.println("Height Loop " + i);
 			for(int j=0; j < WIDTH;j++) {
 				Point point = new Point(pos.x+ j,pos.y +i);
 				tiles[index] = new Tile(point);
