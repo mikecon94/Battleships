@@ -96,7 +96,6 @@ public class Ship {
 
 		int index = 0;
 		for(int i=0; i < HEIGHT; i++){
-			System.out.println("Height Loop " + i);
 			for(int j=0; j < WIDTH;j++) {
 				Point point = new Point(pos.x+ j,pos.y +i);
 				tiles[index] = new Tile(point);
