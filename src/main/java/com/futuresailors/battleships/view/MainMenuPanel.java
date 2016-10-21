@@ -4,7 +4,6 @@ import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
@@ -32,14 +31,19 @@ public class MainMenuPanel extends JPanel {
 		setSize(WIDTH, HEIGHT);
 		//JButton startGameBut = UIHelper.createCustomButton("src/main/resources/icon.png", 100, 50);
 		JButton startGameBut = new JButton("Start Game");
-		startGameBut.setName("StartGameButton");
 	    startGameBut.setSize(150, 75);
-		startGameBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.75)));
+		startGameBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.65)));
 		add(startGameBut);
+		
+		JButton showRulesBut = new JButton("Rules");
+		showRulesBut.setName("StartGameButton");
+		showRulesBut.setSize(150, 75);
+		showRulesBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
+		add(showRulesBut);
+		
 		JButton exitBut = new JButton("Exit Game");
-		exitBut.setName("ExitGameButton");
 		exitBut.setSize(150, 75);
-		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
+		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
 		add(exitBut);
 		setName("MainMenuPanel");
 		System.out.println("MainMenuPanel Created.");
@@ -48,7 +52,7 @@ public class MainMenuPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/background2.jpg", WIDTH, HEIGHT);
+	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/images/background2.jpg", WIDTH, HEIGHT);
 	    g.drawImage(bg.getImage(), 0, 0, null);
 	}
 	

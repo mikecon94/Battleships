@@ -19,11 +19,6 @@ public class PlaceShipsListener {
 		addListeners();
 	}
 	
-	/*
-	 * Adds the appropriate mouse listeners to the buttons on the Menu Screen.
-	 * When clicked it will alert the controller to then perform the
-	 * appropriate action.
-	 */
 	private void addListeners(){
 		//1 is the Start Game Button.
 		panel.getComponent(0).addMouseListener(new MouseListener(){
@@ -44,13 +39,32 @@ public class PlaceShipsListener {
 			public void mousePressed(MouseEvent e) {}
 		});
 		
-		panel.addMouseMotionListener(new MouseMotionListener(){
+		panel.addMouseListener(new MouseListener(){
 			@Override
-			public void mouseDragged(MouseEvent e) {
+			public void mouseReleased(MouseEvent e) {
+				controller.mouseClicked(e.getX(), e.getY());
 			}
+			
+			@Override
+			public void mouseClicked(MouseEvent e) {}
+
+			@Override
+			public void mouseEntered(MouseEvent e) {}
+
+			@Override
+			public void mouseExited(MouseEvent e) {}
+			@Override
+			public void mousePressed(MouseEvent e) {}
+
+		});
+		
+		panel.addMouseMotionListener(new MouseMotionListener(){
 			@Override
 			public void mouseMoved(MouseEvent e) {
 				controller.mouseMoved(e.getX(), e.getY());
+			}
+			@Override
+			public void mouseDragged(MouseEvent e) {
 			}
 		});
 	}

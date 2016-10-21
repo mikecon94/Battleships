@@ -1,13 +1,15 @@
 package com.futuresailors.battleships.view;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.BattleShipsController;
 
-public class MainMenuListener {
+public class MainMenuListener implements ActionListener{
 
 	private BattleShipsController controller;
 	private JPanel panel;
@@ -18,49 +20,35 @@ public class MainMenuListener {
 		addListeners();
 	}
 	
-	/*
-	 * Adds the appropriate mouse listeners to the buttons on the Menu Screen.
-	 * When clicked it will alert the controller to then perform the
-	 * appropriate action.
+	/**
+	 * Loops round all the components on the main menu panel
+	 * and adds this listener to all of the buttons.
 	 */
 	private void addListeners(){
-		//0 is the Start Game Button.
-		panel.getComponent(0).addMouseListener(new MouseListener(){
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				//Check which button was clicked:
-				//1 = Start Game
-				System.out.println("Start Game Clicked.");
-				controller.startSinglePlayer();
+		Component[] comps = panel.getComponents();
+		for(Component comp : comps){
+			if(comp instanceof JButton){
+				JButton button = (JButton) comp;
+				button.addActionListener(this);
 			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) {}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-		});
-		
-		//1 is the Start Game Button.
-		panel.getComponent(1).addMouseListener(new MouseListener(){
-			@Override
-			public void mouseReleased(MouseEvent arg0) {
-				//Check which button was clicked:
-				//1 = Start Game
-				System.out.println("Exit Game Clicked.");
-				controller.exit();
-			}
-			@Override
-			public void mouseClicked(MouseEvent arg0) {}
-			@Override
-			public void mouseEntered(MouseEvent arg0) {}
-			@Override
-			public void mouseExited(MouseEvent arg0) {}
-			@Override
-			public void mousePressed(MouseEvent arg0) {}
-		});
+		}
 	}
-	
+
+	/**
+	 * Detects which button has been clicked and performs the appropriate
+	 * action.
+	 */
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		if("Start Game".equals(e.getActionCommand())){
+			System.out.println("Start Game Clicked.");
+			controller.startSinglePlayer();
+		} else if("Rules".equals(e.getActionCommand())){
+			System.out.println("Rules Clicked.");
+			controller.showRules();
+		} else if("Exit Game".equals(e.getActionCommand())){
+			System.out.println("Exit Game Clicked.");
+			controller.exit();
+		}
+	}
 }

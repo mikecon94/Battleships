@@ -1,8 +1,5 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -43,13 +40,6 @@ public class BattleShipsController {
 	}
 	
 	/**
-	 * Closes the window and exits the application.
-	 */
-	public void exit(){
-		window.dispose();
-	}
-	
-	/**
 	 * Instantiates the menu panel and adds it to the window after
 	 * removing all other components. This will be called by other controllers
 	 * when they are finished and the menu needs to be displayed again.
@@ -72,6 +62,21 @@ public class BattleShipsController {
 		System.out.println("BattleShipsController is starting a single player game.");
 		PlaceShipsController controller = new PlaceShipsController(window);
 	}
+	/**
+	 * Opens the rules panel. It replaces the window and instantiates the
+	 * correct controller.
+	 */
+	public void showRules(){
+		System.out.println("BattleShipsController is displaying the rules.");
+		RulesController controller = new RulesController(window);
+	}
+	
+	/**
+	 * Closes the window and exits the application.
+	 */
+	public void exit(){
+		window.dispose();
+	}
 	
 	/**
 	 * Sets the JFrame up.
@@ -86,17 +91,8 @@ public class BattleShipsController {
 		window.setResizable(false);
 		//End the program on close.
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ImageIcon img = new ImageIcon("src/main/resources/background.jpg");
+		ImageIcon img = new ImageIcon("src/main/resources/images/background.jpg");
 	    window.setIconImage(img.getImage());   
 		window.setVisible(true);
-		
-//		window.addKeyListener(new KeyAdapter() {
-//			public void keyPressed(KeyEvent ke) {  // handler
-//				if(ke.getKeyCode() == ke.VK_ESCAPE) {
-//					System.out.println("Escape Key Detected - Closing the window.");
-//					window.dispose();
-//				}
-//			} 
-//		});
 	}
 }
