@@ -72,9 +72,6 @@ public class Grid {
 
 	public boolean checkValidPlace(int x, int y, Ship ship){
 		
-		grid[1][1] = 'S';
-		grid[9][9] = 'S';
-		
 		//Loop round the width and height of the ship 
 		//and check whether the tiles exist (ie. not off the side of grid)
 		//and that there is nothing else there.
@@ -96,9 +93,12 @@ public class Grid {
 		return true;
 	}
 	
-	public void placeShip(int x, int y){
-		//Translate the given x & y into actual coordinates of the grid
-		//ie. x = 0 & y = 0 should be bottom left and working up from there.
+	public void placeShip(int x, int y, Ship ship){
+		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
+			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
+				grid[y + yIndex][x + xIndex] = 'S';
+			}
+		}
 	}
 	
 	public void bomb(int x, int y){
