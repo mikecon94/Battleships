@@ -25,8 +25,8 @@ public class PlaceShipsController {
 	//That handles placing of the ships amongst other things.
 	private Ship[] placeableShips = new Ship[4];
 	private int currentShip = 0;
-	private Ship[] chosenShips = new Ship[3];
 	private Grid grid;
+	private boolean allShipsPlaced = false;
 	
 	/**
 	 * Creates the panel, adds it to the window and adds the listener.
@@ -37,7 +37,7 @@ public class PlaceShipsController {
 		grid = new Grid(10);
 		addPanel();
 		createPlaceableShips();
-		panel.updateCurrentShip(placeableShips[0]);
+		panel.updateCurrentShip(placeableShips[currentShip]);
 	}
 	
 	private void createPlaceableShips(){
@@ -56,20 +56,19 @@ public class PlaceShipsController {
 	}
 	
 	public void mouseClicked(int x, int y){
-		//This method will check whether a ship has been clicked
-		//If so then it call getTile(x, y) on the panel to determine what
-		//tile it should be placed on then place it there if possible.
-		//If not then it call getShip(x, y) which will return the ship that has
-		//been clicked, the controller then knows to select it.
-		
-		//Both of these methods will return -1 or some other relevant value
-		//if the mouse click wasn't on a tile / ship.
-		
-		
-		
-		
-		
-		
+		if(!allShipsPlaced){
+			//Both of these methods will return -1 or some other relevant value
+			//if the mouse click wasn't on a tile / ship.
+			if(grid.checkValidPlace(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip])){
+				grid.placeShip(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip]);
+				currentShip++;
+				if(currentShip == placeableShips.length){
+					allShipsPlaced = true;
+				}
+				panel.repaint();
+			}
+		}
+				
 		//Check if ship being placed for first time
 		//Check what type of ship is being placed if destroyer do the below
 //		Ship test = new Ship(1, 1, "src/main/resources/grid.png");
@@ -87,8 +86,12 @@ public class PlaceShipsController {
 	 * @param y - Y Coordinate the mouse is now in.
 	 */
 	public void mouseMoved(int x, int y){
-		if(panel.overGridSpace(x, y)){
-			grid.hover(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip]);
+		if(!allShipsPlaced){
+			if(panel.overGridSpace(x, y)){
+				grid.hover(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip]);
+			} else {
+				grid.clearHoverTiles();
+			}
 		} else {
 			grid.clearHoverTiles();
 		}

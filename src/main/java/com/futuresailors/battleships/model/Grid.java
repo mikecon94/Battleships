@@ -4,11 +4,11 @@ public class Grid {
 	
 	//Shall we use chars or an ENUM to represent the cells??
 	private char[][] grid;
-	private int defSize = 10;
+	private int gridSize = 10;
 	
 	public Grid(){
 		//Create new 2D array for the grid using standard sizes.
-		grid = new char[defSize][defSize];
+		grid = new char[gridSize][gridSize];
 		createNewGrid();
 	}
 	
@@ -17,9 +17,9 @@ public class Grid {
 		//Create grid with given sizes.
 		//Use default if size is less than 5 or greater than 30.
 		if(size < 5 || size > 30){
-			grid = new char[defSize][defSize];
+			grid = new char[gridSize][gridSize];
 		} else {
-			defSize = size;
+			gridSize = size;
 			grid = new char[size][size];
 		}
 		createNewGrid();
@@ -71,20 +71,34 @@ public class Grid {
 	}
 
 	public boolean checkValidPlace(int x, int y, Ship ship){
+		
 		//Loop round the width and height of the ship 
 		//and check whether the tiles exist (ie. not off the side of grid)
 		//and that there is nothing else there.
 		//Check nothing is off the side of the grid.
-		if(x < 0 || x > defSize || y < 0 || y > defSize
-				|| (x + ship.getWidth()) > defSize || (y + ship.getHeight()) > defSize){
+		if(x < 0 || x > gridSize || y < 0 || y > gridSize
+				|| (x + ship.getWidth()) > gridSize || (y + ship.getHeight()) > gridSize){
 			return false;
+		}
+		
+		//System.out.println("X: " + x + " Y: " + y);
+		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
+			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
+				if(grid[y + yIndex][x + xIndex] == 'S'){
+					System.out.println("X: " + x + " Y: " + y);
+					return false;
+				}
+			}
 		}
 		return true;
 	}
 	
-	public void placeShip(int x, int y){
-		//Translate the given x & y into actual coordinates of the grid
-		//ie. x = 0 & y = 0 should be bottom left and working up from there.
+	public void placeShip(int x, int y, Ship ship){
+		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
+			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
+				grid[y + yIndex][x + xIndex] = 'S';
+			}
+		}
 	}
 	
 	public void bomb(int x, int y){
