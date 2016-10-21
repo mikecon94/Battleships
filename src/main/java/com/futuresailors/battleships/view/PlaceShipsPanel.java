@@ -130,11 +130,12 @@ public class PlaceShipsPanel extends JPanel {
         g.setColor(new Color(255));
         g.drawRect(775, 80, 350, 550);
         g.setColor(new Color(0));
+
         g.drawChars("Current Ship:".toCharArray(), 0, 13, 850, 120);
 		ImageIcon shipImage = UIHelper.resizeImage(currentShip.getImagePath(), (int) (currentShip.getWidth() * tileSize * 1.3), (int) (currentShip.getHeight() * tileSize * 1.3));
 		//Place the ship in the centre of the current ship space
 		g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)), 80 + (235 - (shipImage.getIconHeight() / 2)), this);
-	}
+    }   
 	
 //	private void drawPlaceableShips(Graphics g){
 //		//Think about separating the vertical ships with the horizontal ones...
