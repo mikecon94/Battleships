@@ -23,7 +23,7 @@ public class PlaceShipsController {
 	//Pass the number of possible ships in constructor.
 	//Maybe it should be in a model called ShipsHandler (?)
 	//That handles placing of the ships amongst other things.
-	private Ship[] placeableShips = new Ship[4];
+	private Ship[] ships = new Ship[4];
 	private int currentShip = 0;
 	private Grid grid;
 	private boolean allShipsPlaced = false;
@@ -36,20 +36,20 @@ public class PlaceShipsController {
 		this.window = window;
 		grid = new Grid(10);
 		addPanel();
-		createPlaceableShips();
-		panel.updateCurrentShip(placeableShips[currentShip]);
+		createships();
+		panel.updateCurrentShip(ships[currentShip]);
 	}
 	
-	private void createPlaceableShips(){
-		placeableShips[0] = new Ship(4, 1, "src/main/resources/images/ships/1.png");
-		placeableShips[1] = new Ship(3, 1, "src/main/resources/images/ships/2.png");
-		placeableShips[2] = new Ship(1, 1, "src/main/resources/images/ships/3.png");
-		placeableShips[3] = new Ship(1, 5, "src/main/resources/images/ships/5.png");
+	private void createships(){
+		ships[0] = new Ship(4, 1, "src/main/resources/images/ships/1.png");
+		ships[1] = new Ship(3, 1, "src/main/resources/images/ships/2.png");
+		ships[2] = new Ship(1, 1, "src/main/resources/images/ships/3.png");
+		ships[3] = new Ship(1, 5, "src/main/resources/images/ships/5.png");
 	}
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, placeableShips);
+		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, ships);
 		window.add(panel);
 		window.repaint();
 		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
@@ -59,11 +59,13 @@ public class PlaceShipsController {
 		if(!allShipsPlaced){
 			//Both of these methods will return -1 or some other relevant value
 			//if the mouse click wasn't on a tile / ship.
-			if(grid.checkValidPlace(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip])){
-				grid.placeShip(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip]);
+			if(grid.checkValidPlace(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), ships[currentShip])){
+				grid.placeShip(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), ships[currentShip]);
 				currentShip++;
-				if(currentShip == placeableShips.length){
+				if(currentShip == ships.length){
 					allShipsPlaced = true;
+				} else {
+					panel.updateCurrentShip(ships[currentShip]);
 				}
 				panel.repaint();
 			}
@@ -88,7 +90,7 @@ public class PlaceShipsController {
 	public void mouseMoved(int x, int y){
 		if(!allShipsPlaced){
 			if(panel.overGridSpace(x, y)){
-				grid.hover(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip]);
+				grid.hover(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), ships[currentShip]);
 			} else {
 				grid.clearHoverTiles();
 			}
