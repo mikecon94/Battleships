@@ -7,7 +7,7 @@ import java.awt.Point;
  * and its respective tiles. It also contains the ships
  * icons filepath and methods that change the state of the
  * ship in the game.
- * @author Joe Baldwin - Mike Conroy
+ * @author Joe Baldwin, Michael Conroy
  *
  */
 
@@ -22,6 +22,8 @@ public class Ship {
 	private Tile tiles[];
 	//Image path
 	private String imagePath;
+	//Used to detect whether it has been placed yet by the controller/view
+	private boolean placed = false;
 	
 	//Constructor
 	public Ship(int width, int height, String imagePath){
@@ -94,6 +96,11 @@ public class Ship {
 			}
 		}
 	}
+	
+	public boolean getPlaced(){
+		return placed;
+	}
+	
 	/**
 	 * Returns width for use in the view
 	 */

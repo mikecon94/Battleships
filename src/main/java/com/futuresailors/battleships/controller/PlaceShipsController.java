@@ -1,12 +1,10 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.Point;
-
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.model.Tile;
 import com.futuresailors.battleships.view.PlaceShipsListener;
 import com.futuresailors.battleships.view.PlaceShipsPanel;
 
@@ -26,7 +24,9 @@ public class PlaceShipsController {
 	//Maybe it should be in a model called ShipsHandler (?)
 	//That handles placing of the ships amongst other things.
 	private Ship[] placeableShips = new Ship[4];
+	private int currentShip = 0;
 	private Ship[] chosenShips = new Ship[3];
+	private Grid grid;
 	
 	/**
 	 * Creates the panel, adds it to the window and adds the listener.
@@ -34,8 +34,10 @@ public class PlaceShipsController {
 	 */
 	public PlaceShipsController(JFrame window){
 		this.window = window;
+		grid = new Grid(10);
 		addPanel();
 		createPlaceableShips();
+		panel.updateCurrentShip(placeableShips[0]);
 	}
 	
 	private void createPlaceableShips(){
@@ -43,12 +45,11 @@ public class PlaceShipsController {
 		placeableShips[1] = new Ship(3, 1, "src/main/resources/images/ships/2.png");
 		placeableShips[2] = new Ship(1, 1, "src/main/resources/images/ships/3.png");
 		placeableShips[3] = new Ship(1, 5, "src/main/resources/images/ships/5.png");
-		panel.updatePlaceableShips(placeableShips);
 	}
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight());
+		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid);
 		window.add(panel);
 		window.repaint();
 		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
@@ -86,11 +87,12 @@ public class PlaceShipsController {
 	 * @param y - Y Coordinate the mouse is now in.
 	 */
 	public void mouseMoved(int x, int y){
-		
-		panel.hoverTile(x, y);
-		
-		//If there is a ship selected then draw that ship
-		//at x. (Drag and Drop).
+		if(panel.overGridSpace(x, y)){
+			grid.hover(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), placeableShips[currentShip]);
+		} else {
+			grid.clearHoverTiles();
+		}
+		panel.repaint();
 	}
 	
 	/**
