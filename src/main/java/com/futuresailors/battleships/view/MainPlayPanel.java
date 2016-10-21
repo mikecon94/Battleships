@@ -25,16 +25,18 @@ public class MainPlayPanel extends JPanel {
 	private final int HEIGHT;
 	private final int GRID_WIDTH = 550;
 	private final int GRID_HEIGHT = 550;
+	//Left Side Grid
 	private final int GRID_X = 70;
 	private final int GRID_Y = 80;
+	//Right Side Grid
 	private final int GRID_2_X = 650;
 	private final int GRID_2_Y = 80;
 	//All tiles are square.
 	private int tileSize;
 	
-	//Client grid
+	//Client grid - Left
 	private Grid grid;
-	//Opponent Grid
+	//Opponent Grid - Right
 	private Grid oppGrid;
 	
 	public MainPlayPanel(int width, int height, Grid grid1, Grid grid2){
@@ -80,7 +82,7 @@ public class MainPlayPanel extends JPanel {
     
 	    g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawTiles(g);
-        g.setColor(new Color(255));
+        g.setColor(new Color(255, 255, 255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         
         g.fillRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
