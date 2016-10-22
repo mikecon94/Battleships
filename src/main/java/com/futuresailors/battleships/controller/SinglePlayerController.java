@@ -36,5 +36,4 @@ public class SinglePlayerController {
 	public void returnToMenu() {
 		//We should do some sort of check here to where a popup window prompts the player to ask if they are sure they want to leave the game
 	}
-
 }
