@@ -5,6 +5,7 @@ import javax.swing.JFrame;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
+import com.futuresailors.battleships.view.MainPlayListener;
 import com.futuresailors.battleships.view.MainPlayPanel;
 
 public class SinglePlayerController {
@@ -12,27 +13,24 @@ public class SinglePlayerController {
 	private JFrame window;
 	private MainPlayPanel panel;
 	private Ship ships[];
-	private Grid aiGrid;
-	private Grid grid = new Grid(10);
+	private Grid oppGrid;
+	private Grid myGrid;
 	
-	public SinglePlayerController(Ship ships[], JFrame window){
+	public SinglePlayerController(Grid grid, Ship ships[], JFrame window){
 		//Something wrong with the listener
 		//MainPlayListener listener = new MainPlayListener(panel, this);
 		this.ships = ships;
 		this.window = window;
+		myGrid = grid;
 		addPanel();
-		placeAIShips();
 	}
 	
 	private void addPanel(){
-		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, grid);
-		panel.setVisible(true);
+		window.getContentPane().removeAll();
+		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myGrid);
 		window.add(panel);
 		window.repaint();
-	}
-	
-	private void placeAIShips(){
-		//This method should generate the AI's ships and randomly place them on the grid
+		MainPlayListener playListener = new MainPlayListener(panel, this);
 	}
 
 	public void returnToMenu() {

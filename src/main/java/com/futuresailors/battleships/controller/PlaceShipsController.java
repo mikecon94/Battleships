@@ -72,7 +72,7 @@ public class PlaceShipsController {
 			}
 		} else {
 			//Move onto the Main Game
-			SinglePlayerController game = new SinglePlayerController(ships, window);
+			SinglePlayerController game = new SinglePlayerController(grid, ships, window);
 		}
 				
 		//Check if ship being placed for first time
