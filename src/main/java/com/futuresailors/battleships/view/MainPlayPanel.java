@@ -105,7 +105,7 @@ public class MainPlayPanel extends JPanel {
 				} else {
 					//ImageIcon tileImage = UIHelper.resizeImage(grid.getTile(column, row), tileSize, tileSize);
 					//g.drawImage(tileImage.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), this);
-//					System.out.println("Drawing image: " + grid.getTile(column, row));
+					//System.out.println("Drawing image: " + grid.getTile(column, row));
 				}
 		        g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);	
@@ -123,7 +123,7 @@ public class MainPlayPanel extends JPanel {
 				} else {
 					//ImageIcon tileImage = UIHelper.resizeImage(grid.getTile(column, row), tileSize, tileSize);
 					//g.drawImage(tileImage.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), this);
-//					System.out.println("Drawing image: " + oppGrid.getTile(column, row));
+					//System.out.println("Drawing image: " + oppGrid.getTile(column, row));
 				}
 		        g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);	
