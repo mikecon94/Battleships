@@ -22,7 +22,7 @@ public class Ship {
 	private Tile tiles[];
 	//Image path
 	private String imagePath;
-	
+	//If the ship has been placed on the board already
 	private boolean placed = false;
 	
 	//Tile column this ship has been placed.

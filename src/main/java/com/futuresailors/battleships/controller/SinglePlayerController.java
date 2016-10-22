@@ -17,8 +17,6 @@ public class SinglePlayerController {
 	private Grid myGrid;
 	
 	public SinglePlayerController(Grid grid, Ship ships[], JFrame window){
-		//Something wrong with the listener
-		//MainPlayListener listener = new MainPlayListener(panel, this);
 		this.ships = ships;
 		this.window = window;
 		myGrid = grid;
@@ -27,13 +25,15 @@ public class SinglePlayerController {
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myGrid);
+		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myGrid,ships);
 		window.add(panel);
 		window.repaint();
 		MainPlayListener playListener = new MainPlayListener(panel, this);
 	}
 
 	public void returnToMenu() {
+		MainMenuController main = new MainMenuController(window);
+		main.showMenu();
 		//We should do some sort of check here to where a popup window prompts the player to ask if they are sure they want to leave the game
 	}
 }

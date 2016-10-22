@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.Ship;
 
 /**
  * This is the panel where the main game will be played.
@@ -33,17 +34,19 @@ public class MainPlayPanel extends JPanel {
 	private final int GRID_2_Y = 80;
 	//All tiles are square.
 	private int tileSize;
-	
 	//Client grid - Left
 	private Grid grid;
 	//Opponent Grid - Right
 	private Grid oppGrid;
+	//Client Ships - Left
+	private Ship ships[];
 	
-	public MainPlayPanel(int width, int height, Grid grid1, Grid grid2){
+	public MainPlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]){
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.grid = grid1;
 		this.oppGrid = grid2;
+		this.ships = ships;
 		grid.getRows();
 		createPanel();
 	}
@@ -84,10 +87,21 @@ public class MainPlayPanel extends JPanel {
         drawTiles(g);
         g.setColor(new Color(255, 255, 255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
+        drawShips(g);
         
         g.fillRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
         drawTiles(g);
         g.drawRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
+	}
+	
+	private void drawShips(Graphics g){
+		for(Ship ship : ships){
+			if(ship.getPlaced()){
+				ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(), ship.getWidth() * tileSize - 2, ship.getHeight() * tileSize - 2);
+				g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize), GRID_Y + (ship.getY() * tileSize), this);
+		
+			}
+		}
 	}
 	
 	
