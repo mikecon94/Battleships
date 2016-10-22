@@ -2,9 +2,13 @@ package com.futuresailors.battleships.model;
 
 import java.awt.Point;
 
+/**
+ * Represents a grid that ships can be placed on.
+ * @author Michael Conroy
+ * 
+ */
 public class Grid {
 	
-	//Shall we use chars or an ENUM to represent the cells??
 	private char[][] grid;
 	private int gridSize = 10;
 	
@@ -74,16 +78,14 @@ public class Grid {
 
 	public boolean checkValidPlace(int x, int y, Ship ship){
 		
-		//Loop round the width and height of the ship 
-		//and check whether the tiles exist (ie. not off the side of grid)
-		//and that there is nothing else there.
-		//Check nothing is off the side of the grid.
+	//Check the ship isn't off the side of the grid.
 		if(x < 0 || x > gridSize || y < 0 || y > gridSize
 				|| (x + ship.getWidth()) > gridSize || (y + ship.getHeight()) > gridSize){
 			return false;
 		}
 		
-		//System.out.println("X: " + x + " Y: " + y);
+		//Loop round the width and height of the ship 
+		//and check that there is nothing blocking a placement.
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
 				if(grid[y + yIndex][x + xIndex] == 'S'){
