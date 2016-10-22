@@ -1,12 +1,10 @@
 package com.futuresailors.battleships.controller;
 
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.view.MainPlayListener;
 import com.futuresailors.battleships.view.MainPlayPanel;
 
 public class SinglePlayerController {

@@ -109,7 +109,7 @@ public class PlaceShipsController {
 	 * to display the menu again.
 	 */
 	public void returnToMenu(){
-		BattleShipsController main = new BattleShipsController(window);
+		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 	}
 }

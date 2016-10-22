@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.futuresailors.battleships.controller.BattleShipsController;
+import com.futuresailors.battleships.controller.MainMenuController;
 
 public class MainMenuListener implements ActionListener{
 
-	private BattleShipsController controller;
+	private MainMenuController controller;
 	private JPanel panel;
 	
-	public MainMenuListener(JPanel panel, BattleShipsController controller){
+	public MainMenuListener(JPanel panel, MainMenuController controller){
 		this.controller = controller;
 		this.panel = panel;
 		addListeners();

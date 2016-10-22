@@ -21,7 +21,7 @@ public class RulesController {
 	}
 	
 	public void returnToMenu(){
-		BattleShipsController main = new BattleShipsController(window);
+		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 	}
 }

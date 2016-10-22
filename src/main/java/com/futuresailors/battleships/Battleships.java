@@ -1,6 +1,6 @@
 package com.futuresailors.battleships;
 
-import com.futuresailors.battleships.controller.BattleShipsController;
+import com.futuresailors.battleships.controller.MainMenuController;
 
 /**
  * The entry point to the program which creates a new instance
@@ -10,7 +10,7 @@ import com.futuresailors.battleships.controller.BattleShipsController;
  */
 public class Battleships {
 	public static void main(String[] args){
-		BattleShipsController game = new BattleShipsController();
+		MainMenuController game = new MainMenuController();
 		game.start();
 	}
 }
