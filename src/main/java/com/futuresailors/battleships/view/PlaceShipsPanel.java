@@ -25,7 +25,7 @@ public class PlaceShipsPanel extends JPanel {
 	private int tileSize;
 	
 	private Grid grid;
-	private Ship currentShip;
+	private int currentShip = 0;
 	private Ship[] ships;
 		
 	public PlaceShipsPanel(int width, int height, Grid grid, Ship[] ships){
@@ -37,9 +37,13 @@ public class PlaceShipsPanel extends JPanel {
 		createPanel();
 	}
 	
-	public void updateCurrentShip(Ship newShip){
+	public void updateCurrentShip(int newShip){
 		currentShip = newShip;
-		System.out.println("Current Ship: " + currentShip.getImagePath());
+		if(currentShip == ships.length){
+			System.out.println("All Ships Placed");
+		} else {
+			System.out.println("Current Ship: " + ships[currentShip].getImagePath());
+		}
 		repaint();
 	}
 	
@@ -132,10 +136,14 @@ public class PlaceShipsPanel extends JPanel {
         g.setColor(new Color(0));
 
         g.drawChars("Current Ship:".toCharArray(), 0, 13, 850, 120);
-		ImageIcon shipImage = UIHelper.resizeImage(currentShip.getImagePath(), (int) (currentShip.getWidth() * tileSize * 1.3), (int) (currentShip.getHeight() * tileSize * 1.3));
-		//Place the ship in the centre of the current ship space
-		g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)), 80 + (235 - (shipImage.getIconHeight() / 2)), this);
-    }   
+        
+        if(currentShip != ships.length){
+			ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(), (int) (ships[currentShip].getWidth() * tileSize * 1.2), (int) (ships[currentShip].getHeight() * tileSize * 1.2));
+			//Place the ship in the centre of the current ship space
+			g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)), 80 + (235 - (shipImage.getIconHeight() / 2)), this);
+
+        }
+	}
 	
 //	private void drawPlaceableShips(Graphics g){
 //		//Think about separating the vertical ships with the horizontal ones...

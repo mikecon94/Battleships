@@ -37,7 +37,7 @@ public class PlaceShipsController {
 		grid = new Grid(10);
 		addPanel();
 		createships();
-		panel.updateCurrentShip(ships[currentShip]);
+		panel.updateCurrentShip(currentShip);
 	}
 	
 	private void createships(){
@@ -65,9 +65,9 @@ public class PlaceShipsController {
 				currentShip++;
 				if(currentShip == ships.length){
 					allShipsPlaced = true;
-				} else {
-					panel.updateCurrentShip(ships[currentShip]);
 				}
+				//We still update the panel so it knows all the ships have been now been drawn.
+				panel.updateCurrentShip(currentShip);
 				panel.repaint();
 			}
 		}
