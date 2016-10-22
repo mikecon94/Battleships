@@ -21,7 +21,6 @@ public class PlaceShipsPanel extends JPanel {
 	private final int GRID_HEIGHT = 550;
 	private final int GRID_X = 100;
 	private final int GRID_Y = 80;
-	//All tiles are square.
 	private int tileSize;
 	
 	private Grid grid;
@@ -74,28 +73,7 @@ public class PlaceShipsPanel extends JPanel {
 		tileSize = 550 / grid.getColumns();
 		System.out.println("PlaceShipsPanel Created.");
 	}
-	
-	public void hoverTile(int x, int y){
-		//Check if the mouse was moved in the grid area.
-		//We can probably do some clever maths with the X & Y to detect
-		//which tile is being hovered over.
-		//eg. tile 1 may go from pixel 0 to 5 (x)
-		//Dividing the mouses values by 5 will tell us the tile location.
-		//To check tile 1 the truncated value would be 0 when dividing the mouses pixel values by 5.
-		//The right hand border will be counted as the next tile (though this is not necessarily a problem).
-		//The same logic can be used for calculating where bombs were dropped etc.
-		if(x > GRID_X && x < GRID_X + GRID_WIDTH
-			&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){
-			//clearHover();			
-			//System.out.println("Tile Hovered: " + getTileYUnderMouse(y) + ", " + getTileXUnderMouse(x));
-			//grid[getTileYUnderMouse(y)][getTileXUnderMouse(x)] = "src/main/resources/background.jpg";
-			
-		} else {
-			//clearHover();
-		}
-		repaint();
-	}
-	
+		
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
@@ -134,31 +112,18 @@ public class PlaceShipsPanel extends JPanel {
         g.setColor(new Color(255));
         g.drawRect(775, 80, 350, 550);
         g.setColor(new Color(0));
-
-        g.drawChars("Current Ship:".toCharArray(), 0, 13, 850, 120);
-        
         if(currentShip != ships.length){
-			ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(), (int) (ships[currentShip].getWidth() * tileSize * 1.2), (int) (ships[currentShip].getHeight() * tileSize * 1.2));
+        	g.drawChars("Current Ship:".toCharArray(), 0, 13, 850, 120);
+        	ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(), (int) (ships[currentShip].getWidth() * tileSize * 1.2), (int) (ships[currentShip].getHeight() * tileSize * 1.2));
 			//Place the ship in the centre of the current ship space
 			g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)), 80 + (235 - (shipImage.getIconHeight() / 2)), this);
-
+        } else {
+        	g.drawChars("All Ships Placed".toCharArray(), 0, 16, 810, 120);repaint();
+    	    g.setFont(new Font("Garamond", Font.PLAIN , 20));
+        	g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 825, 250);
         }
 	}
-	
-//	private void drawPlaceableShips(Graphics g){
-//		//Think about separating the vertical ships with the horizontal ones...
-//		int posY = 80;
-//		for(int i = 0; i < placeableShips.length; i++){
-//			String imagePath = placeableShips[i].getImagePath();
-//			int width = placeableShips[i].getWidth() * tileSize;
-//			int height = placeableShips[i].getHeight() * tileSize;
-//			//System.out.println(imagePath + " Width: " + width + " Height: " + height + " posY: " + posY);
-//			ImageIcon shipImage = UIHelper.resizeImage(imagePath, width - 5, height - 5);
-//			g.drawImage(shipImage.getImage(), 790, posY, this);
-//			posY += height + 10;
-//		}
-//	}
-	
+		
 	public boolean overGridSpace(int x, int y){
 		if(x > GRID_X && x < GRID_X + GRID_WIDTH
 				&& y < GRID_Y + GRID_HEIGHT && y > GRID_Y){

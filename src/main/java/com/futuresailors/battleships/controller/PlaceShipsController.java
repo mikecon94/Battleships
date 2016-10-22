@@ -70,6 +70,9 @@ public class PlaceShipsController {
 				panel.updateCurrentShip(currentShip);
 				panel.repaint();
 			}
+		} else {
+			//Move onto the Main Game
+			SinglePlayerController game = new SinglePlayerController(ships, window);
 		}
 				
 		//Check if ship being placed for first time
