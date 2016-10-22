@@ -73,7 +73,6 @@ public class MainPlayPanel extends JPanel {
 		System.out.println("MainPlayPanel Created.");
 	}
 	
-	
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
@@ -103,8 +102,6 @@ public class MainPlayPanel extends JPanel {
 			}
 		}
 	}
-	
-	
 	
 	private void drawTiles(Graphics g){
         for(int row = 0; row < grid.getRows(); row++){
