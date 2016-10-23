@@ -12,22 +12,18 @@ import java.awt.Point;
  */
 
 public class Ship {
-	//Width of the ship in number of tiles
+	
 	private final int WIDTH;
-	//Height of the ship in number of tiles
 	private final int HEIGHT;
 	//Whether the ship has been sunk
 	private boolean sunk = false;
-	//Tiles the ship occupys
+	//Tiles the ship occupies
 	private Tile tiles[];
-	//Image path
 	private String imagePath;
 	//If the ship has been placed on the board already
 	private boolean placed = false;
 	
-	//Tile column this ship has been placed.
-	private int x;
-	private int y;
+	Point pos;
 	
 	//Constructor
 	public Ship(int width, int height, String imagePath){
@@ -101,16 +97,19 @@ public class Ship {
 			}
 		}
 		placed = true;
-		x = (int) pos.getX();
-		y = (int) pos.getY();
+		this.pos = pos;
+	}
+	
+	public Point getPos(){
+		return pos;
 	}
 	
 	public int getX(){
-		return x;
+		return (int) pos.getX();
 	}
 	
 	public int getY(){
-		return y;
+		return (int) pos.getY();
 	}
 
 	/**

@@ -100,7 +100,6 @@ public class PlaceShipsPanel extends JPanel {
 			if(ship.getPlaced()){
 				ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(), ship.getWidth() * tileSize - 8, ship.getHeight() * tileSize - 8);
 				g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize) + 4, GRID_Y + (ship.getY() * tileSize) + 4, this);
-		
 			}
 		}
 	}
