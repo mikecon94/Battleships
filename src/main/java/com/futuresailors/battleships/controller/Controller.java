@@ -1,4 +1,4 @@
-package com.futuresailors.battleships.view;
+package com.futuresailors.battleships.controller;
 
 import java.awt.Point;
 

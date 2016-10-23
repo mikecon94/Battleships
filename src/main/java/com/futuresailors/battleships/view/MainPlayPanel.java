@@ -91,7 +91,6 @@ public class MainPlayPanel extends JPanel {
 		drawOppGrid(g);
 		g.drawRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
 		drawShips(g);
-
 	}
 
 	private void drawShips(Graphics g) {

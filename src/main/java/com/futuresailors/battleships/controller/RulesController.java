@@ -5,7 +5,6 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.view.Controller;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.RulesPanel;
 

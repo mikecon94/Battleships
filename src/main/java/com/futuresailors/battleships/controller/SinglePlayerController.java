@@ -9,7 +9,6 @@ import com.futuresailors.battleships.ai.AI;
 import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.view.Controller;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.MainPlayPanel;
 

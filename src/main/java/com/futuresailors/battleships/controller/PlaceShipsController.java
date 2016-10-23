@@ -7,7 +7,6 @@ import javax.swing.JFrame;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.view.Controller;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlaceShipsPanel;
 
