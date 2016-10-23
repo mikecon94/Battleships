@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.Ship;
 
 public class SimpleAI implements AI {
 
@@ -25,6 +26,10 @@ public class SimpleAI implements AI {
 		Point hit = new Point(x,y);
 		return hit;
 	}
+	
+	//The moderate AI should probably randomly guess also until it hits then it should
+	//follow some sort of strategy like trying the top,left,right and bottom tiles around the hit
+	//and proceeding in that direction should it score another hit until it no longer scores a hit
 
 	@Override
 	public void placeShips() {
