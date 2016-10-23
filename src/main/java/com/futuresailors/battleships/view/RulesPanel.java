@@ -18,6 +18,8 @@ import com.futuresailors.battleships.UIHelper;
 
 public class RulesPanel extends JPanel {
 
+	private static final long serialVersionUID = -6181012691286200640L;
+
 	private final int WIDTH;
 	private final int HEIGHT;
 	

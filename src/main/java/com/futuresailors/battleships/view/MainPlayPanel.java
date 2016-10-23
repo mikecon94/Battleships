@@ -22,6 +22,8 @@ import com.futuresailors.battleships.model.Ship;
  */
 public class MainPlayPanel extends JPanel {
 
+	private static final long serialVersionUID = 5959433312203394355L;
+	
 	private final int WIDTH;
 	private final int HEIGHT;
 	private final int GRID_WIDTH = 550;
@@ -90,6 +92,7 @@ public class MainPlayPanel extends JPanel {
 		g.fillRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
 		drawOppGrid(g);
 		g.drawRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
+		//This must be called last as the ships need to be on top of the grid.
 		drawShips(g);
 	}
 

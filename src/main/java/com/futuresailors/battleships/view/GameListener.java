@@ -8,7 +8,6 @@ import java.awt.event.MouseMotionListener;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.Controller;
-import com.futuresailors.battleships.controller.PlaceShipsController;
 
 public class GameListener {
 

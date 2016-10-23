@@ -17,6 +17,7 @@ public class RulesController implements Controller {
 		panel = new RulesPanel(UIHelper.getWidth(), UIHelper.getHeight());
 		window.add(panel);
 		window.repaint();
+		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
 		this.window = window;
 	}

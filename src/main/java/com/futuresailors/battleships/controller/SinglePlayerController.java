@@ -48,6 +48,7 @@ public class SinglePlayerController implements Controller{
 		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid, myShips);
 		window.add(panel);
 		window.repaint();
+		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
 	}
 

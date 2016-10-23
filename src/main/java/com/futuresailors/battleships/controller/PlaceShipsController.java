@@ -55,6 +55,7 @@ public class PlaceShipsController implements Controller{
 		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, ships);
 		window.add(panel);
 		window.repaint();
+		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
 	}
 	
@@ -75,6 +76,7 @@ public class PlaceShipsController implements Controller{
 			}
 		} else {
 			//Move onto the Main Game
+			@SuppressWarnings("unused")
 			SinglePlayerController game = new SinglePlayerController(grid, ships, window);
 		}
 				

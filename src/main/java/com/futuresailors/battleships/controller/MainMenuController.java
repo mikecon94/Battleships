@@ -60,6 +60,7 @@ public class MainMenuController {
 	 */
 	public void startSinglePlayer(){
 		System.out.println("BattleShipsController is starting a single player game.");
+		@SuppressWarnings("unused")
 		PlaceShipsController controller = new PlaceShipsController(window);
 	}
 	/**
@@ -68,6 +69,7 @@ public class MainMenuController {
 	 */
 	public void showRules(){
 		System.out.println("BattleShipsController is displaying the rules.");
+		@SuppressWarnings("unused")
 		RulesController controller = new RulesController(window);
 	}
 	
