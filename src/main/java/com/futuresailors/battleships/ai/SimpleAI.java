@@ -9,9 +9,18 @@ import com.futuresailors.battleships.model.Ship;
 public class SimpleAI implements AI {
 
 	private Grid grid;
+	private Ship[] ships;
 	
-	public SimpleAI(Grid grid){
+	public SimpleAI(Grid grid, Ship[] ships){
 		this.grid = grid;
+		this.ships = ships;
+	}
+	
+	@Override
+	public void placeShips() {
+		for(Ship ship : ships){
+			
+		}
 	}
 	
 	//This should have a variable one it with the grid.
@@ -22,19 +31,12 @@ public class SimpleAI implements AI {
 		//array out of bounds exception.
 		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows() + 1);
 		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns() + 1);
-		//Calculate the appropriate move.
-		Point hit = new Point(x,y);
-		return hit;
+		return new Point(x,y);
 	}
+}
+
 	
 	//The moderate AI should probably randomly guess also until it hits then it should
 	//follow some sort of strategy like trying the top,left,right and bottom tiles around the hit
 	//and proceeding in that direction should it score another hit until it no longer scores a hit
 
-	@Override
-	public void placeShips() {
-		
-		
-	}
-
-}

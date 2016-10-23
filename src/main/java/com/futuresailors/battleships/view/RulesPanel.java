@@ -13,10 +13,8 @@ import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
-import javax.swing.text.Document;
 
 import com.futuresailors.battleships.UIHelper;
-
 
 public class RulesPanel extends JPanel {
 
