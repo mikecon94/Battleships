@@ -8,10 +8,18 @@ import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.RulesPanel;
 
+/**
+ * Displays the rules to the user from the rules.html resource.
+ * @author Ryan Lowers, Michael Conroy
+ */
 public class RulesController implements Controller {
 	private JFrame window;
 	private RulesPanel panel;
 	
+	/**
+	 * Creates the RulesView and adds it to the panel.
+	 * @param window - The JFrame to add the window to.
+	 */
 	public RulesController(JFrame window){
 		window.getContentPane().removeAll();
 		panel = new RulesPanel(UIHelper.getWidth(), UIHelper.getHeight());
@@ -22,14 +30,24 @@ public class RulesController implements Controller {
 		this.window = window;
 	}
 	
+	/**
+	 * Returns the user to the Main Menu by passing creating a new MainMenuController and calling the showMenu
+	 * method.
+	 */
 	public void returnToMenu(){
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 	}
 
+	/** 
+	 * Not used by this controller.
+	 */
 	@Override
 	public void mouseClicked(Point pos) {}
 
+	/** 
+	 * Not used by this controller.
+	 */
 	@Override
 	public void mouseMoved(Point pos) {}
 }

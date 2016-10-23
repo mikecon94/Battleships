@@ -15,7 +15,6 @@ import com.futuresailors.battleships.view.PlaceShipsPanel;
  * to allow users to choose the tiles they wish to place their
  * ships in.
  * @author Michael Conroy
- *
  */
 public class PlaceShipsController implements Controller{
 	
@@ -42,6 +41,10 @@ public class PlaceShipsController implements Controller{
 		panel.updateCurrentShip(currentShip);
 	}
 	
+	/**
+	 * Defines the ships that will be used in this game.
+	 */
+	//TODO Move this into the game type controller.
 	private void createships(){
 		ships[0] = new Ship(5, 1, "src/main/resources/images/ships/1.png");
 		ships[1] = new Ship(4, 1, "src/main/resources/images/ships/2.png");
@@ -50,6 +53,10 @@ public class PlaceShipsController implements Controller{
 		ships[4] = new Ship(1, 2, "src/main/resources/images/ships/5.png");
 	}
 	
+	/**
+	 * Adds the view to the window to allow the user to interact with
+	 * this controller.
+	 */
 	private void addPanel(){
 		window.getContentPane().removeAll();
 		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, ships);
@@ -59,42 +66,33 @@ public class PlaceShipsController implements Controller{
 		GameListener listener = new GameListener(panel, this);
 	}
 	
+	/**
+	 * Called by the listener to tell the mouse has been clicked.
+	 * If all the ships have been placed then the user can click anywhere and move onto the actual gameplay itself.
+	 * If the ships haven't been placed it will check whether the position clicked in is a valid tile to place
+	 * a ship and if so it will place it, move onto the next ship, and update the view.
+	 */
 	public void mouseClicked(Point pos){
 		if(!allShipsPlaced){
 			Point newPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
-			//Both of these methods will return -1 or some other relevant value
-			//if the mouse click wasn't on a tile / ship.
 			if(grid.checkValidPlace(newPos, ships[currentShip])){
 				grid.placeShip(newPos, ships[currentShip]);
 				currentShip++;
 				if(currentShip == ships.length){
 					allShipsPlaced = true;
 				}
-				//We still update the panel so it knows all the ships have been now been drawn.
 				panel.updateCurrentShip(currentShip);
-				panel.repaint();
 			}
 		} else {
 			//Move onto the Main Game
 			@SuppressWarnings("unused")
 			SinglePlayerController game = new SinglePlayerController(grid, ships, window);
 		}
-				
-		//Check if ship being placed for first time
-		//Check what type of ship is being placed if destroyer do the below
-//		Ship test = new Ship(1, 1, "src/main/resources/grid.png");
-//		test.createTiles(new Point(panel.getTileXUnderMouse(x),panel.getTileYUnderMouse(y)));
-//		Tile tiles[] = test.getTiles();
-//		for(Tile tile : tiles){
-//			System.out.println("X: " + tile.getPosition().x + " Y: " + tile.getPosition().y);
-//		}
 	}
 	
 	/**
-	 * Called by the panel listener when the mouse is moved. Will be used
-	 * for tile hovering.
-	 * @param x - X Coordinate the mouse is now in.
-	 * @param y - Y Coordinate the mouse is now in.
+	 * Called by the listener when the mouse is moved. Detects the state of the board and if all the ships haven't
+	 * been placed it will display what tiles the ship will take up if the user clicks to place it.
 	 */
 	public void mouseMoved(Point pos){
 		if(!allShipsPlaced){
@@ -104,15 +102,14 @@ public class PlaceShipsController implements Controller{
 			} else {
 				grid.clearHoverTiles();
 			}
-		} else {
-			grid.clearHoverTiles();
+			//Repaint the panel since the model has been updated.
+			panel.repaint();
 		}
-		panel.repaint();
 	}
 	
 	/**
-	 * Creates a new controller passing it the window and then tells it
-	 * to display the menu again.
+	 * Returns the user to the Main Menu by passing creating a new MainMenuController and calling the showMenu
+	 * method.
 	 */
 	public void returnToMenu(){
 		MainMenuController main = new MainMenuController(window);

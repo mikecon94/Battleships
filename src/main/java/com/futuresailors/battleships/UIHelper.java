@@ -11,7 +11,6 @@ import javax.swing.JButton;
  * width the window should be here to allow the JFrame & Panels to grab
  * instead of passing each time.
  * @author Michael Conroy
- * 
  */
 public class UIHelper {
 	

@@ -14,7 +14,6 @@ import com.futuresailors.battleships.view.MainMenuPanel;
  * A MainMenuListener is then added to this panel which alerts this controller
  * when a button is clicked via appropriate methods.
  * @author Michael Conroy
- * 
  */
 public class MainMenuController {
 	

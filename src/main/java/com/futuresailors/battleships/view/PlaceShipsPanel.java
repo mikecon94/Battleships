@@ -13,9 +13,10 @@ import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
 
-@SuppressWarnings("serial")
 public class PlaceShipsPanel extends JPanel {
-	
+
+	private static final long serialVersionUID = 7157206880287883320L;
+
 	private final int WIDTH;
 	private final int HEIGHT;
 	private final int GRID_WIDTH = 550;
