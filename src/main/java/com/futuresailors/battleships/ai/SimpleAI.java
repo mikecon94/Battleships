@@ -18,16 +18,15 @@ public class SimpleAI implements AI {
 	
 	@Override
 	public void placeShips() {
-		int x;
-		int y;
+		Point pos = new Point(0,0);
 		for(Ship ship : ships){
 			do {
-				x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
-				y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
-				System.out.println(x + ","+ y);
-			} while (grid.checkValidPlace(x, y, ship) == false);
-			ship.placeShip(new Point(x, y));
-			grid.placeShip(x, y, ship);
+				pos.x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
+				pos.y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
+				System.out.println(pos.x + ","+ pos.y);
+			} while (grid.checkValidPlace(pos, ship) == false);
+			ship.placeShip(pos);
+			grid.placeShip(pos.x, pos.y, ship);
 		}
 	}
 	

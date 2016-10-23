@@ -1,5 +1,7 @@
 package com.futuresailors.battleships.controller;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
@@ -56,12 +58,13 @@ public class PlaceShipsController {
 		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
 	}
 	
-	public void mouseClicked(int x, int y){
+	public void mouseClicked(Point pos){
 		if(!allShipsPlaced){
+			Point newPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
 			//Both of these methods will return -1 or some other relevant value
 			//if the mouse click wasn't on a tile / ship.
-			if(grid.checkValidPlace(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), ships[currentShip])){
-				grid.placeShip(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), ships[currentShip]);
+			if(grid.checkValidPlace(newPos, ships[currentShip])){
+				grid.placeShip(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y), ships[currentShip]);
 				currentShip++;
 				if(currentShip == ships.length){
 					allShipsPlaced = true;
@@ -91,10 +94,11 @@ public class PlaceShipsController {
 	 * @param x - X Coordinate the mouse is now in.
 	 * @param y - Y Coordinate the mouse is now in.
 	 */
-	public void mouseMoved(int x, int y){
+	public void mouseMoved(Point pos){
 		if(!allShipsPlaced){
-			if(panel.overGridSpace(x, y)){
-				grid.hover(panel.getTileXUnderMouse(x), panel.getTileYUnderMouse(y), ships[currentShip]);
+			if(panel.overGridSpace(pos.x, pos.y)){
+				Point newPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
+				grid.hover(newPos, ships[currentShip]);
 			} else {
 				grid.clearHoverTiles();
 			}

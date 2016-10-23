@@ -35,12 +35,12 @@ public class Grid {
 		return grid[pos.x][pos.y];
 	}
 	
-	public void hover(int x, int y, Ship ship){
+	public void hover(Point pos, Ship ship){
 		clearHoverTiles();
-		if(checkValidPlace(x, y, ship)){
+		if(checkValidPlace(pos, ship)){
 			for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 				for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
-					grid[y + yIndex][x + xIndex] = 'H';
+					grid[pos.y + yIndex][pos.x + xIndex] = 'H';
 				}
 			}
 		}
@@ -76,11 +76,11 @@ public class Grid {
 		return grid;
 	}
 
-	public boolean checkValidPlace(int x, int y, Ship ship){
+	public boolean checkValidPlace(Point pos, Ship ship){
 		
 	//Check the ship isn't off the side of the grid.
-		if(x < 0 || x > gridSize || y < 0 || y > gridSize
-				|| (x + ship.getWidth()) > gridSize || (y + ship.getHeight()) > gridSize){
+		if(pos.x < 0 || pos.x > gridSize || pos.y < 0 || pos.y > gridSize
+				|| (pos.x + ship.getWidth()) > gridSize || (pos.y + ship.getHeight()) > gridSize){
 			return false;
 		}
 		
@@ -88,8 +88,8 @@ public class Grid {
 		//and check that there is nothing blocking a placement.
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
-				if(grid[y + yIndex][x + xIndex] == 'S'){
-					System.out.println("X: " + x + " Y: " + y);
+				if(grid[pos.y + yIndex][pos.x + xIndex] == 'S'){
+					System.out.println("X: " + pos.x + " Y: " + pos.y);
 					return false;
 				}
 			}

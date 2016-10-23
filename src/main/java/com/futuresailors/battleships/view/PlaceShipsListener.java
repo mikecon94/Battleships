@@ -1,5 +1,6 @@
 package com.futuresailors.battleships.view;
 
+import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -42,7 +43,7 @@ public class PlaceShipsListener {
 		panel.addMouseListener(new MouseListener(){
 			@Override
 			public void mouseReleased(MouseEvent e) {
-				controller.mouseClicked(e.getX(), e.getY());
+				controller.mouseClicked(new Point(e.getX(), e.getY()));
 			}
 			
 			@Override
@@ -61,7 +62,7 @@ public class PlaceShipsListener {
 		panel.addMouseMotionListener(new MouseMotionListener(){
 			@Override
 			public void mouseMoved(MouseEvent e) {
-				controller.mouseMoved(e.getX(), e.getY());
+				controller.mouseMoved(new Point(e.getX(), e.getY()));
 			}
 			@Override
 			public void mouseDragged(MouseEvent e) {
