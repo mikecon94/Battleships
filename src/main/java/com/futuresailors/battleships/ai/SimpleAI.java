@@ -34,9 +34,6 @@ public class SimpleAI implements AI {
 		return new Point(x,y);
 	}
 }
-
-	
 	//The moderate AI should probably randomly guess also until it hits then it should
 	//follow some sort of strategy like trying the top,left,right and bottom tiles around the hit
 	//and proceeding in that direction should it score another hit until it no longer scores a hit
-

@@ -1,8 +1,11 @@
 package com.futuresailors.battleships.controller;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.ai.AI;
 import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
@@ -25,7 +28,7 @@ public class SinglePlayerController {
 		myGrid = grid;
 		oppGrid = new Grid(grid.getRows());
 		createOppShips();
-		SimpleAI opp = new SimpleAI(oppGrid, oppShips);
+		AI opp = new SimpleAI(oppGrid, oppShips);
 		opp.placeShips();
 		addPanel();
 	}
@@ -42,7 +45,7 @@ public class SinglePlayerController {
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myGrid, myShips);
+		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid, myShips);
 		window.add(panel);
 		window.repaint();
 		MainPlayListener listener = new MainPlayListener(panel, this);

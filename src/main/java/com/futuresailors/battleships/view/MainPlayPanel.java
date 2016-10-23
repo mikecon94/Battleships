@@ -116,6 +116,9 @@ public class MainPlayPanel extends JPanel {
 					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
+				}  else if (oppGrid.getTile(column, row) == 'S') {
+					g.setColor(new Color(66, 134, 244));
+					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
