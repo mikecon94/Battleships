@@ -3,6 +3,7 @@ package com.futuresailors.battleships.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -79,7 +80,7 @@ public class MainPlayPanel extends JPanel {
 		g.drawImage(gridImage.getImage(), 0, 0, this);
 		g.setFont(new Font("Garamond", Font.PLAIN, 40));
 		g.setColor(new Color(255, 255, 255));
-		g.drawChars("Lets Play Battleships".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
+		g.drawChars("Lets Play Battleships".toCharArray(), 0, 21, (WIDTH / 2) - 120, 50);
 
 		g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
 		drawMyGrid(g);
@@ -109,14 +110,15 @@ public class MainPlayPanel extends JPanel {
 	private void drawOppGrid(Graphics g) {
 		for (int row = 0; row < oppGrid.getRows(); row++) {
 			for (int column = 0; column < oppGrid.getColumns(); column++) {
-				if (oppGrid.getTile(column, row) == ' ') {
+				Point pos = new Point(row, column);
+				if (oppGrid.getTile(pos) == ' ') {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-				} else if (oppGrid.getTile(column, row) == 'H') {
+				} else if (oppGrid.getTile(pos) == 'H') {
 					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-				}  else if (oppGrid.getTile(column, row) == 'S') {
+				}  else if (oppGrid.getTile(pos) == 'S') {
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				}
@@ -129,14 +131,15 @@ public class MainPlayPanel extends JPanel {
 	private void drawMyGrid(Graphics g) {
 		for (int row = 0; row < grid.getRows(); row++) {
 			for (int column = 0; column < grid.getColumns(); column++) {
-				if (grid.getTile(column, row) == ' ') {
+				Point pos = new Point(row, column);
+				if (grid.getTile(pos) == ' ') {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if (grid.getTile(column, row) == 'H') {
+				} else if (grid.getTile(pos) == 'H') {
 					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if (grid.getTile(column, row) == 'S') {
+				} else if (grid.getTile(pos) == 'S') {
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				}

@@ -31,8 +31,8 @@ public class Grid {
 		createNewGrid();
 	}
 
-	public char getTile(int x, int y){
-		return grid[y][x];
+	public char getTile(Point pos){
+		return grid[pos.x][pos.y];
 	}
 	
 	public void hover(int x, int y, Ship ship){

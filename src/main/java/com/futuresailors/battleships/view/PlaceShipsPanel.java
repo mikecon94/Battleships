@@ -3,6 +3,7 @@ package com.futuresailors.battleships.view;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -133,14 +134,15 @@ public class PlaceShipsPanel extends JPanel {
     private void drawGrid(Graphics g){
         for(int row = 0; row < grid.getRows(); row++){
 			for(int column = 0; column < grid.getColumns(); column++){
-				if(grid.getTile(column, row) == ' '){
+				Point pos = new Point(row, column);
+				if(grid.getTile(pos) == ' '){
 			        g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if(grid.getTile(column, row) == 'H'){
+				} else if(grid.getTile(pos) == 'H'){
 					//H is hover.
 			        g.setColor(new Color(128, 128, 128));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if(grid.getTile(column,  row) == 'S'){
+				} else if(grid.getTile(pos) == 'S'){
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_X + (column * tileSize),  GRID_Y + (row * tileSize), tileSize, tileSize);
 				}
