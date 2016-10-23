@@ -97,13 +97,13 @@ public class Grid {
 		return true;
 	}
 	
-	public void placeShip(int x, int y, Ship ship){
+	public void placeShip(Point pos, Ship ship){
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
-				grid[y + yIndex][x + xIndex] = 'S';
+				grid[pos.y + yIndex][pos.x + xIndex] = 'S';
 			}
 		}
-		ship.placeShip(new Point(x, y));
+		ship.placeShip(pos);
 	}
 	
 	public void bomb(int x, int y){

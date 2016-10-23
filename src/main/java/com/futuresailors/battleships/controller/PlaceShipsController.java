@@ -64,7 +64,7 @@ public class PlaceShipsController {
 			//Both of these methods will return -1 or some other relevant value
 			//if the mouse click wasn't on a tile / ship.
 			if(grid.checkValidPlace(newPos, ships[currentShip])){
-				grid.placeShip(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y), ships[currentShip]);
+				grid.placeShip(newPos, ships[currentShip]);
 				currentShip++;
 				if(currentShip == ships.length){
 					allShipsPlaced = true;

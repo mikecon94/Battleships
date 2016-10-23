@@ -26,7 +26,7 @@ public class SimpleAI implements AI {
 				System.out.println(pos.x + ","+ pos.y);
 			} while (grid.checkValidPlace(pos, ship) == false);
 			ship.placeShip(pos);
-			grid.placeShip(pos.x, pos.y, ship);
+			grid.placeShip(pos, ship);
 		}
 	}
 	
