@@ -106,7 +106,7 @@ public class Grid {
 		ship.placeShip(pos);
 	}
 	
-	public void bomb(int x, int y){
+	public void bomb(Point pos){
 		//Update the grid to represent that this cell has been bombed and return true if there was a ship there.
 	}
 }
