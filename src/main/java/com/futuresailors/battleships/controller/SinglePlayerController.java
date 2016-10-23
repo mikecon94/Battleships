@@ -1,7 +1,5 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.Point;
-
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
@@ -21,7 +19,6 @@ public class SinglePlayerController {
 	private Ship[] oppShips; 
 	private Grid oppGrid;
 
-	
 	public SinglePlayerController(Grid grid, Ship ships[], JFrame window){
 		myShips = ships;
 		this.window = window;
@@ -38,8 +35,9 @@ public class SinglePlayerController {
 		//Ensure both players have the same ship types.
 		//This should probably be changed eventually so the ship types are defined before place ships
 		//by the controller.
-		for(int i = 0; i < myShips.length - 1; i++){
+		for(int i = 0; i < myShips.length; i++){
 			oppShips[i] = new Ship(myShips[i].getWidth(), myShips[i].getHeight(), myShips[i].getImagePath());
+			System.out.println(i);
 		}
 	}
 	
