@@ -5,7 +5,12 @@ import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-
+/**
+ * This implementation of the AI Interface is the most
+ * basic level, it randomly guesses where to hit and randomly
+ * assigns ships.
+ * @author Joe Baldwin, Michael Conroy
+ */
 public class SimpleAI implements AI {
 
 	private Grid grid;
