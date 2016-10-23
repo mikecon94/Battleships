@@ -16,6 +16,10 @@ import javax.swing.border.LineBorder;
 
 import com.futuresailors.battleships.UIHelper;
 
+/**
+ * A JPanel that displays the rules to the users.
+ * @author Ryan Lowers, Michael Conroy
+ */
 public class RulesPanel extends JPanel {
 
 	private static final long serialVersionUID = -6181012691286200640L;

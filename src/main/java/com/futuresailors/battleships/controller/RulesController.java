@@ -10,7 +10,7 @@ import com.futuresailors.battleships.view.RulesPanel;
 
 /**
  * Displays the rules to the user from the rules.html resource.
- * @author Ryan Lowers, Michael Conroy
+ * @author Ryan Lowers
  */
 public class RulesController implements Controller {
 	private JFrame window;
