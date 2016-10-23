@@ -1,12 +1,15 @@
 package com.futuresailors.battleships.controller;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.view.RulesListener;
+import com.futuresailors.battleships.view.Controller;
+import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.RulesPanel;
 
-public class RulesController {
+public class RulesController implements Controller {
 	private JFrame window;
 	private RulesPanel panel;
 	
@@ -15,7 +18,7 @@ public class RulesController {
 		panel = new RulesPanel(UIHelper.getWidth(), UIHelper.getHeight());
 		window.add(panel);
 		window.repaint();
-		RulesListener listener = new RulesListener(panel, this);
+		GameListener listener = new GameListener(panel, this);
 		this.window = window;
 	}
 	
@@ -23,4 +26,10 @@ public class RulesController {
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 	}
+
+	@Override
+	public void mouseClicked(Point pos) {}
+
+	@Override
+	public void mouseMoved(Point pos) {}
 }

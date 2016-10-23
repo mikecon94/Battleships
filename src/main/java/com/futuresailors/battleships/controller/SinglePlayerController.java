@@ -1,5 +1,7 @@
 package com.futuresailors.battleships.controller;
 
+import java.awt.Point;
+
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
@@ -7,10 +9,11 @@ import com.futuresailors.battleships.ai.AI;
 import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.view.MainPlayListener;
+import com.futuresailors.battleships.view.Controller;
+import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.MainPlayPanel;
 
-public class SinglePlayerController {
+public class SinglePlayerController implements Controller{
 	
 	private JFrame window;
 	private MainPlayPanel panel;
@@ -46,12 +49,24 @@ public class SinglePlayerController {
 		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid, myShips);
 		window.add(panel);
 		window.repaint();
-		MainPlayListener listener = new MainPlayListener(panel, this);
+		GameListener listener = new GameListener(panel, this);
 	}
 
 	public void returnToMenu() {
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 		//We should do some sort of check here to where a popup window prompts the player to ask if they are sure they want to leave the game
+	}
+
+	@Override
+	public void mouseClicked(Point pos) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void mouseMoved(Point pos) {
+		// TODO Auto-generated method stub
+		
 	}
 }

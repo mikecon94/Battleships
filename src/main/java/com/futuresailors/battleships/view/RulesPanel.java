@@ -37,8 +37,7 @@ public class RulesPanel extends JPanel {
 		setLayout(null);
 		setSize(WIDTH, HEIGHT);
 		
-		JButton backBut = new JButton("Return");
-		backBut.setName("Return");
+		JButton backBut = new JButton("Main Menu");
 		backBut.setSize(100, 50);
 		backBut.setLocation(10, 10);
 		backBut.setLayout(null);

@@ -7,7 +7,8 @@ import javax.swing.JFrame;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.view.PlaceShipsListener;
+import com.futuresailors.battleships.view.Controller;
+import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlaceShipsPanel;
 
 /**
@@ -17,7 +18,7 @@ import com.futuresailors.battleships.view.PlaceShipsPanel;
  * @author Michael Conroy
  *
  */
-public class PlaceShipsController {
+public class PlaceShipsController implements Controller{
 	
 	private JFrame window;
 	private PlaceShipsPanel panel;
@@ -55,7 +56,7 @@ public class PlaceShipsController {
 		panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), grid, ships);
 		window.add(panel);
 		window.repaint();
-		PlaceShipsListener listener = new PlaceShipsListener(panel, this);
+		GameListener listener = new GameListener(panel, this);
 	}
 	
 	public void mouseClicked(Point pos){

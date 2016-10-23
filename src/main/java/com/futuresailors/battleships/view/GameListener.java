@@ -9,19 +9,19 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.PlaceShipsController;
 
-public class PlaceShipsListener {
+public class GameListener {
 
-	private PlaceShipsController controller;
+	private Controller controller;
 	private JPanel panel;
 	
-	public PlaceShipsListener(JPanel panel, PlaceShipsController controller){
+	public GameListener(JPanel panel, Controller controller){
 		this.controller = controller;
 		this.panel = panel;
 		addListeners();
 	}
 	
 	private void addListeners(){
-		//1 is the Start Game Button.
+		//0 is the Start Game Button.
 		panel.getComponent(0).addMouseListener(new MouseListener(){
 			@Override
 			public void mouseReleased(MouseEvent e) {
