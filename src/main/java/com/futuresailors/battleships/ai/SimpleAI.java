@@ -4,13 +4,23 @@ import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.Ship;
 
 public class SimpleAI implements AI {
 
 	private Grid grid;
+	private Ship[] ships;
 	
-	public SimpleAI(Grid grid){
+	public SimpleAI(Grid grid, Ship[] ships){
 		this.grid = grid;
+		this.ships = ships;
+	}
+	
+	@Override
+	public void placeShips() {
+		for(Ship ship : ships){
+			
+		}
 	}
 	
 	//This should have a variable one it with the grid.
@@ -23,11 +33,4 @@ public class SimpleAI implements AI {
 		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns() + 1);
 		return new Point(x,y);
 	}
-
-	@Override
-	public void placeShips() {
-		
-		
-	}
-
 }
