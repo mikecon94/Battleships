@@ -3,7 +3,6 @@ package com.futuresailors.battleships.controller;
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.RulesListener;
 import com.futuresailors.battleships.view.RulesPanel;
 

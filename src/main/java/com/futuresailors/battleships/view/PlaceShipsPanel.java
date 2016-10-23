@@ -83,10 +83,8 @@ public class PlaceShipsPanel extends JPanel {
 	    g.setColor(new Color(255, 255, 255));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
 	    
-	    
-	    
 	    g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
-        drawTiles(g);
+        drawGrid(g);
         g.setColor(new Color(255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawShips(g);
@@ -99,8 +97,8 @@ public class PlaceShipsPanel extends JPanel {
 	private void drawShips(Graphics g){
 		for(Ship ship : ships){
 			if(ship.getPlaced()){
-				ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(), ship.getWidth() * tileSize - 2, ship.getHeight() * tileSize - 2);
-				g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize), GRID_Y + (ship.getY() * tileSize), this);
+				ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(), ship.getWidth() * tileSize - 8, ship.getHeight() * tileSize - 8);
+				g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize) + 4, GRID_Y + (ship.getY() * tileSize) + 4, this);
 		
 			}
 		}
@@ -132,7 +130,7 @@ public class PlaceShipsPanel extends JPanel {
 		return false;
 	}
 	
-    private void drawTiles(Graphics g){
+    private void drawGrid(Graphics g){
         for(int row = 0; row < grid.getRows(); row++){
 			for(int column = 0; column < grid.getColumns(); column++){
 				if(grid.getTile(column, row) == ' '){
@@ -143,7 +141,7 @@ public class PlaceShipsPanel extends JPanel {
 			        g.setColor(new Color(128, 128, 128));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if(grid.getTile(column,  row) == 'S'){
-					g.setColor(new Color(255, 0, 0));
+					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_X + (column * tileSize),  GRID_Y + (row * tileSize), tileSize, tileSize);
 				}
 		        g.setColor(new Color(0, 0, 0));

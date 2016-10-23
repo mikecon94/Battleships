@@ -21,9 +21,7 @@ public class SimpleAI implements AI {
 		//array out of bounds exception.
 		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows() + 1);
 		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns() + 1);
-		//Calculate the appropriate move.
-		Point hit = new Point(x,y);
-		return hit;
+		return new Point(x,y);
 	}
 
 	@Override
