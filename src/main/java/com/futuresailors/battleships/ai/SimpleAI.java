@@ -29,7 +29,6 @@ public class SimpleAI implements AI {
 			do {
 				pos.x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
 				pos.y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
-				System.out.println(pos.x + ","+ pos.y);
 			} while (grid.checkValidPlace(pos, ship) == false);
 			ship.placeShip(pos);
 			grid.placeShip(pos, ship);

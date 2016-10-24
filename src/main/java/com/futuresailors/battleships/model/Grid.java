@@ -18,14 +18,11 @@ public class Grid {
 	}
 	
 	public boolean dropBomb(Point target){
-		System.out.println("Check if: " + target.x + ", " + target.y + " has hit a ship. " + grid[target.y][target.x]);
 		if(grid[target.y][target.x] == GridTile.SHIP || grid[target.y][target.x] == GridTile.HOVERSHIP){
 			grid[target.y][target.x] = GridTile.HIT;
-			System.out.println("HIT");
 			return true;
 		} else {
 			grid[target.y][target.x] = GridTile.MISS;
-			System.out.println("MISS");
 			return false;
 		}
 	}
@@ -164,7 +161,6 @@ public class Grid {
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
 				if(grid[pos.y + yIndex][pos.x + xIndex] == GridTile.SHIP){
-					System.out.println("X: " + pos.x + " Y: " + pos.y);
 					return false;
 				}
 			}

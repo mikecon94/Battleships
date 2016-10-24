@@ -113,7 +113,6 @@ public class SinglePlayerController implements GameTypeController{
 			
 			if(myTurn && panel.overGridSpace(pos.x, pos.y) 
 					&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
-				System.out.println("User: " + aiGrid.getTile(gridPos));
 				if(aiGrid.dropBomb(gridPos)){
 					checkGameOver();
 				} else {
@@ -122,22 +121,20 @@ public class SinglePlayerController implements GameTypeController{
 				}
 			}
 			panel.repaint();
-		} else {
-			System.out.println("Game Over.");
 		}
 	}
 	
 	private void checkGameOver(){
 		if(myTurn){
 			if(aiGrid.checkGameOver()){
-				System.out.println("GAME OVER: YOU WIN.");
+				System.out.println("Game Over: Player Wins.");
 				gameOver = true;
 				panel.showWinner(myTurn);
 				returnToMenu();
 			}
 		} else {
 			if(myGrid.checkGameOver()){
-				System.out.println("GAME OVER: YOU LOSE.");
+				System.out.println("Game Over: AI Wins.");
 				panel.showWinner(myTurn);
 				returnToMenu();
 			}			
@@ -150,11 +147,9 @@ public class SinglePlayerController implements GameTypeController{
 			do{
 				target = opp.takeMove();
 			} while(myGrid.getTile(target) == GridTile.MISS || myGrid.getTile(target) == GridTile.HIT);
-			System.out.println("AI Move: " + target.x + ", " + target.y);
 			if(myGrid.dropBomb(target)){
 				checkGameOver();
 			} else {
-				System.out.println("AI Missed.");
 				myTurn = true;
 			}
 		}	

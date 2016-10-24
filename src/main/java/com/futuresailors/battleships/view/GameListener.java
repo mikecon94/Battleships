@@ -27,7 +27,6 @@ public class GameListener {
 			public void mouseReleased(MouseEvent e) {
 				//Check which button was clicked:
 				//0 = Start Game
-				System.out.println("Back Button Clicked.");
 				controller.returnToMenu();
 			}
 			@Override
