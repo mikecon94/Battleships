@@ -41,11 +41,6 @@ public class PlaceShipsPanel extends JPanel {
 	
 	public void updateCurrentShip(int newShip){
 		currentShip = newShip;
-		if(currentShip == ships.length){
-			System.out.println("All Ships Placed");
-		} else {
-			System.out.println("Current Ship: " + ships[currentShip].getImagePath());
-		}
 		repaint();
 	}
 	
