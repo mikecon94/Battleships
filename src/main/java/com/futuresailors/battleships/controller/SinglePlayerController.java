@@ -32,11 +32,15 @@ public class SinglePlayerController implements Controller{
 		myGrid = grid;
 		oppGrid = new Grid(grid.getRows());
 		createOppShips();
+		//Creates AI and tells it to place the ships
+		//These needs changing later to accomodate each level AI
 		AI opp = new SimpleAI(oppGrid, oppShips);
 		opp.placeShips();
 		addPanel();
 	}
-	
+	/**
+	 * Creates the initial array of the opponents ships without placing them
+	 */
 	private void createOppShips(){
 		oppShips = new Ship[myShips.length];
 		//Ensure both players have the same ship types.
@@ -47,7 +51,9 @@ public class SinglePlayerController implements Controller{
 			System.out.println(i);
 		}
 	}
-	
+	/**
+	 * Creates the single player panel
+	 */
 	private void addPanel(){
 		window.getContentPane().removeAll();
 		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid, myShips);
@@ -56,7 +62,9 @@ public class SinglePlayerController implements Controller{
 		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
 	}
-
+	/**
+	 * Allows user to return to main menu on button click
+	 */
 	public void returnToMenu() {
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
