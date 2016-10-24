@@ -10,7 +10,7 @@ import com.futuresailors.battleships.model.Ship;
 import junit.framework.TestCase;
 
 public class ShipFunctionalityTest extends TestCase {
-	//Init ship
+	//Init member variables
 	private Ship ship;
 	private Point pos;
 	private int x = 1;
