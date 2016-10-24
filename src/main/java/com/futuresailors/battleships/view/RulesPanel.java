@@ -81,6 +81,7 @@ public class RulesPanel extends JPanel {
 
 		setName("RulesPanel");
 		System.out.println("RulesPanel Created.");
+		
 	}
 	
 	@Override
