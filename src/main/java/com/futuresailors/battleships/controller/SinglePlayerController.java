@@ -9,6 +9,7 @@ import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
 import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlayPanel;
@@ -28,6 +29,7 @@ public class SinglePlayerController implements GameTypeController{
 	
 	private Ship[] aiShips;
 	private Grid aiGrid;
+	AI opp;
 	
 	private boolean myTurn = false;
 	
@@ -65,10 +67,13 @@ public class SinglePlayerController implements GameTypeController{
 	public void startGame(){
 		//Creates AI and tells it to place the ships
 		//These needs changing later to accomodate each level AI
-		AI opp = new SimpleAI(aiGrid, aiShips);
+		opp = new SimpleAI(aiGrid, aiShips);
 		opp.placeShips();
 		chooseFirstPlayer();
 		addGamePanel();	
+		if(myTurn == false){
+			opponentMove();
+		}
 	}
 	
 	/**
@@ -76,7 +81,6 @@ public class SinglePlayerController implements GameTypeController{
 	 */
 	private void chooseFirstPlayer(){
 		myTurn = ThreadLocalRandom.current().nextBoolean();
-		myTurn = true;
 	}
 	
 	/**
@@ -84,7 +88,7 @@ public class SinglePlayerController implements GameTypeController{
 	 */
 	private void addGamePanel(){
 		window.getContentPane().removeAll();
-		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, aiGrid, myShips, myTurn);
+		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, aiGrid, myShips);
 		window.add(panel);
 		window.repaint();
 		@SuppressWarnings("unused")
@@ -100,7 +104,37 @@ public class SinglePlayerController implements GameTypeController{
 
 	@Override
 	public void mouseClicked(Point pos) {
+		//Hover the tile if it is the users turn and the mouse is over the AIs grid.
+		Point gridPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
 		
+		if(myTurn && panel.overGridSpace(pos.x, pos.y) 
+				&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
+			System.out.println("User: " + aiGrid.getTile(gridPos));
+			if(aiGrid.dropBomb(gridPos)){
+				System.out.println("User Hit A Ship.");
+			} else {
+				myTurn = false;
+				opponentMove();
+			}
+		}
+		panel.repaint();
+	}
+	
+	private void opponentMove(){
+		while(myTurn == false){
+			Point target;
+			do{
+				target = opp.takeMove();
+			} while(myGrid.getTile(target) == GridTile.MISS || myGrid.getTile(target) == GridTile.HIT);
+			System.out.println("AI Move: " + target.x + ", " + target.y);
+			if(myGrid.dropBomb(target)){
+				
+			} else {
+				System.out.println("AI Missed.");
+				myTurn = true;
+			}
+		}	
+		panel.repaint();
 	}
 
 	@Override

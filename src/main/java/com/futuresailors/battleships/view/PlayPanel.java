@@ -43,15 +43,13 @@ public class PlayPanel extends JPanel {
 	private Grid oppGrid;
 	// Client Ships - Left
 	private Ship ships[];
-	private boolean myTurn;
 	
-	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[], boolean myTurn) {
+	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.grid = grid1;
 		this.oppGrid = grid2;
 		this.ships = ships;
-		this.myTurn = myTurn;
 		grid.getRows();
 		createPanel();
 	}
@@ -122,7 +120,7 @@ public class PlayPanel extends JPanel {
 	private void drawOppGrid(Graphics g) {
 		for (int row = 0; row < oppGrid.getRows(); row++) {
 			for (int column = 0; column < oppGrid.getColumns(); column++) {
-				Point pos = new Point(row, column);
+				Point pos = new Point(column, row);
 				if (oppGrid.getTile(pos) == GridTile.EMPTY) {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
@@ -134,11 +132,11 @@ public class PlayPanel extends JPanel {
 					//TODO Remove before final game.
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-				} else if (grid.getTile(pos) == GridTile.HIT){
+				} else if (oppGrid.getTile(pos) == GridTile.HIT){
 					//TODO Draw the Bomb image.
 					g.setColor(new Color(222, 21, 21));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
-				} else if (grid.getTile(pos) == GridTile.MISS){
+				} else if (oppGrid.getTile(pos) == GridTile.MISS){
 					//TODO Draw the Miss image.
 					g.setColor(new Color(144, 212, 144));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
@@ -152,7 +150,7 @@ public class PlayPanel extends JPanel {
 	private void drawMyGrid(Graphics g) {
 		for (int row = 0; row < grid.getRows(); row++) {
 			for (int column = 0; column < grid.getColumns(); column++) {
-				Point pos = new Point(row, column);
+				Point pos = new Point(column, row);
 				if (grid.getTile(pos) == GridTile.EMPTY) {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);

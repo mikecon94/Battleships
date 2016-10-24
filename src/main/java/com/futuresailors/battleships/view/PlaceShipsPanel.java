@@ -133,7 +133,7 @@ public class PlaceShipsPanel extends JPanel {
     private void drawGrid(Graphics g){
         for(int row = 0; row < grid.getRows(); row++){
 			for(int column = 0; column < grid.getColumns(); column++){
-				Point pos = new Point(row, column);
+				Point pos = new Point(column, row);
 				if(grid.getTile(pos) == GridTile.EMPTY){
 			        g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);

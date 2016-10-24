@@ -17,6 +17,19 @@ public class Grid {
 		createNewGrid();
 	}
 	
+	public boolean dropBomb(Point target){
+		System.out.println("Check if: " + target.x + ", " + target.y + " has hit a ship. " + grid[target.y][target.x]);
+		if(grid[target.y][target.x] == GridTile.SHIP || grid[target.y][target.x] == GridTile.HOVERSHIP){
+			grid[target.y][target.x] = GridTile.HIT;
+			System.out.println("HIT");
+			return true;
+		} else {
+			grid[target.y][target.x] = GridTile.MISS;
+			System.out.println("MISS");
+			return false;
+		}
+	}
+	
 	public Grid(int size){
 		//Create grid with given sizes.
 		//Use default if size is less than 5 or greater than 30.
@@ -35,7 +48,7 @@ public class Grid {
 	 * @return A char that is the value in the requested tile.
 	 */
 	public GridTile getTile(Point pos){
-		return grid[pos.x][pos.y];
+		return grid[pos.y][pos.x];
 	}
 	
 	/**
