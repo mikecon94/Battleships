@@ -60,7 +60,7 @@ public class MainMenuController {
 	public void startSinglePlayer(){
 		System.out.println("BattleShipsController is starting a single player game.");
 		@SuppressWarnings("unused")
-		PlaceShipsController controller = new PlaceShipsController(window);
+		GameTypeController controller = new SinglePlayerController(window);
 	}
 	/**
 	 * Opens the rules panel. It replaces the window and instantiates the

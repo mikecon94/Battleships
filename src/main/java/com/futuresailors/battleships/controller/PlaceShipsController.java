@@ -19,10 +19,11 @@ import com.futuresailors.battleships.view.PlaceShipsPanel;
 public class PlaceShipsController implements Controller{
 	
 	private JFrame window;
+	private GameTypeController parentController;
 	private PlaceShipsPanel panel;
 	//Maybe make this configurable going forwards
 	//Pass the number of possible ships in constructor.
-	private Ship[] ships = new Ship[5];
+	private Ship[] ships;
 	private int currentShip = 0;
 	private Grid grid;
 	private boolean allShipsPlaced = false;
@@ -31,24 +32,13 @@ public class PlaceShipsController implements Controller{
 	 * Creates the panel, adds it to the window and adds the listener.
 	 * @param window - The JFrame to add the panel to.
 	 */
-	public PlaceShipsController(JFrame window){
+	public PlaceShipsController(Grid grid, Ship[] ships, GameTypeController controller, JFrame window){
 		this.window = window;
-		grid = new Grid(10);
+		this.parentController = controller;
+		this.grid = grid;
+		this.ships = ships;
 		addPanel();
-		createships();
 		panel.updateCurrentShip(currentShip);
-	}
-	
-	/**
-	 * Defines the ships that will be used in this game.
-	 */
-	//TODO Move this into the game type controller.
-	private void createships(){
-		ships[0] = new Ship(5, 1, "src/main/resources/images/ships/1.png");
-		ships[1] = new Ship(4, 1, "src/main/resources/images/ships/2.png");
-		ships[2] = new Ship(3, 1, "src/main/resources/images/ships/3.png");
-		ships[3] = new Ship(1, 3, "src/main/resources/images/ships/5.png");
-		ships[4] = new Ship(1, 2, "src/main/resources/images/ships/5.png");
 	}
 	
 	/**
@@ -82,9 +72,7 @@ public class PlaceShipsController implements Controller{
 				panel.updateCurrentShip(currentShip);
 			}
 		} else {
-			//Move onto the actual game
-			@SuppressWarnings("unused")
-			SinglePlayerController game = new SinglePlayerController(grid, ships, window);
+			parentController.startGame();
 		}
 	}
 	
