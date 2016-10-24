@@ -19,19 +19,28 @@ public class Tile {
 	public Tile(Point position){
 		this.position = position;
 	}
-	
+	/**
+	 * @return Returns Tiles position as a Point
+	 */
 	public Point getPosition(){
 		return position;
 	}
-	
+	/**
+	 * Allows the position of the tile on the grid to be set
+	 * @param position - Tiles position as a point
+	 */
 	public void setPostion(Point position){
 		this.position = position;
 	}
-	
+	/**
+	 * @return If Tile has been hit as a boolean
+	 */
 	public boolean isHit(){
 		return hit;
 	}
-	
+	/**
+	 * Sets the tile as hit
+	 */
 	public void setHit(){
 		this.hit = true;
 	}
