@@ -8,12 +8,12 @@ import java.awt.Point;
  */
 public class Grid {
 	
-	private char[][] grid;
+	private GridTile[][] grid;
 	private int gridSize = 10;
 	
 	public Grid(){
 		//Create new 2D array for the grid using standard sizes.
-		grid = new char[gridSize][gridSize];
+		grid = new GridTile[gridSize][gridSize];
 		createNewGrid();
 	}
 	
@@ -21,10 +21,10 @@ public class Grid {
 		//Create grid with given sizes.
 		//Use default if size is less than 5 or greater than 30.
 		if(size < 5 || size > 30){
-			grid = new char[gridSize][gridSize];
+			grid = new GridTile[gridSize][gridSize];
 		} else {
 			gridSize = size;
-			grid = new char[size][size];
+			grid = new GridTile[size][size];
 		}
 		createNewGrid();
 	}
@@ -35,7 +35,7 @@ public class Grid {
 	 * @param pos - The tile that should be returned.
 	 * @return A char that is the value in the requested tile.
 	 */
-	public char getTile(Point pos){
+	public GridTile getTile(Point pos){
 		return grid[pos.x][pos.y];
 	}
 	
@@ -51,7 +51,7 @@ public class Grid {
 		if(checkValidPlace(pos, ship)){
 			for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 				for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
-					grid[pos.y + yIndex][pos.x + xIndex] = 'H';
+					grid[pos.y + yIndex][pos.x + xIndex] = GridTile.HOVER;
 				}
 			}
 		}
@@ -63,8 +63,8 @@ public class Grid {
 	public void clearHoverTiles(){
 		for(int y = 0; y < grid.length; y++){
 			for(int x = 0; x < grid[y].length; x++){
-				if(grid[y][x] == 'H'){
-					grid[y][x] = ' ';
+				if(grid[y][x] == GridTile.HOVER){
+					grid[y][x] = GridTile.EMPTY;
 				}
 			}
 		}
@@ -76,7 +76,7 @@ public class Grid {
 	private void createNewGrid(){
 		for(int y = 0; y < grid.length; y++){
 			for(int x = 0; x < grid[y].length; x++){
-				grid[y][x] = ' ';
+				grid[y][x] = GridTile.EMPTY;
 			}
 		}
 	}
@@ -98,7 +98,7 @@ public class Grid {
 	/**
 	 * @return The grid - 2D Array of chars.
 	 */
-	public char[][] getGrid(){
+	public GridTile[][] getGrid(){
 		return grid;
 	}
 
@@ -120,7 +120,7 @@ public class Grid {
 		//and check that there is nothing blocking a placement.
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
-				if(grid[pos.y + yIndex][pos.x + xIndex] == 'S'){
+				if(grid[pos.y + yIndex][pos.x + xIndex] == GridTile.SHIP){
 					System.out.println("X: " + pos.x + " Y: " + pos.y);
 					return false;
 				}
@@ -138,7 +138,7 @@ public class Grid {
 	public void placeShip(Point pos, Ship ship){
 		for(int yIndex = 0; yIndex < ship.getHeight(); yIndex++){
 			for(int xIndex = 0; xIndex < ship.getWidth(); xIndex++){
-				grid[pos.y + yIndex][pos.x + xIndex] = 'S';
+				grid[pos.y + yIndex][pos.x + xIndex] = GridTile.SHIP;
 			}
 		}
 		ship.placeShip(pos);

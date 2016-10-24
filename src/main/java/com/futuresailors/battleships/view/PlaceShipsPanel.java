@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 
 public class PlaceShipsPanel extends JPanel {
@@ -134,14 +135,14 @@ public class PlaceShipsPanel extends JPanel {
         for(int row = 0; row < grid.getRows(); row++){
 			for(int column = 0; column < grid.getColumns(); column++){
 				Point pos = new Point(row, column);
-				if(grid.getTile(pos) == ' '){
+				if(grid.getTile(pos) == GridTile.EMPTY){
 			        g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if(grid.getTile(pos) == 'H'){
+				} else if(grid.getTile(pos) == GridTile.HOVER){
 					//H is hover.
 			        g.setColor(new Color(128, 128, 128));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if(grid.getTile(pos) == 'S'){
+				} else if(grid.getTile(pos) == GridTile.SHIP){
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_X + (column * tileSize),  GRID_Y + (row * tileSize), tileSize, tileSize);
 				}

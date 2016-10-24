@@ -11,12 +11,12 @@ import java.awt.Point;
  * @author Joe Baldwin
  *
  */
-public class Tile {
+public class ShipTile {
 	
 	private Point position;
 	private boolean hit = false;
 	
-	public Tile(Point position){
+	public ShipTile(Point position){
 		this.position = position;
 	}
 	/**

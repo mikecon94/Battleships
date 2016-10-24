@@ -41,6 +41,7 @@ public class SinglePlayerController implements Controller{
 		opp.placeShips();
 		addPanel();
 	}
+	
 	/**
 	 * Creates the initial array of the opponents ships without placing them
 	 */
@@ -54,6 +55,7 @@ public class SinglePlayerController implements Controller{
 			System.out.println(i);
 		}
 	}
+	
 	/**
 	 * Creates the single player panel
 	 */
@@ -66,10 +68,11 @@ public class SinglePlayerController implements Controller{
 		GameListener listener = new GameListener(panel, this);
 	}
 	
+	@Override
 	public void returnToMenu() {
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
-		//We should do some sort of check here to where a popup window prompts the player to ask if they are sure they want to leave the game
+		//TODO We should do some sort of check here to where a popup window prompts the player to ask if they are sure they want to leave the game
 	}
 
 	@Override

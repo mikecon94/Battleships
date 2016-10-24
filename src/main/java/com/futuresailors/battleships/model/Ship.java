@@ -18,7 +18,7 @@ public class Ship {
 	//Whether the ship has been sunk
 	private boolean sunk = false;
 	//Tiles the ship occupies
-	private Tile tiles[];
+	private ShipTile tiles[];
 	private String imagePath;
 	//If the ship has been placed on the board already
 	private boolean placed = false;
@@ -31,7 +31,7 @@ public class Ship {
 		this.HEIGHT = height;
 		this.imagePath = imagePath;
 		//Init tile array with the amount of tiles the ship occupys
-		tiles = new Tile[height*width];
+		tiles = new ShipTile[height*width];
 		System.out.println("New Ship Created, Height: " + height + " Width: " + width + " Tiles: " + tiles.length);
 	}
 	
@@ -41,7 +41,7 @@ public class Ship {
 	 * @return Whether the player has scored a hit as a boolean
 	 */
 	public boolean hit(Point location) {
-		for(Tile tile : tiles){
+		for(ShipTile tile : tiles){
 			if(tile.getPosition() == location){
 				tile.setHit();
 				return true;
@@ -57,7 +57,7 @@ public class Ship {
 	 */
 	public boolean checkIfSunk(){
 		//Loops through each tile
-		for(Tile tile : tiles){
+		for(ShipTile tile : tiles){
 			//If a tile is not hit
 			if(tile.isHit() != true){
 				return false;
@@ -96,7 +96,7 @@ public class Ship {
 		for(int i=0; i < HEIGHT; i++){
 			for(int j=0; j < WIDTH;j++) {
 				Point point = new Point(pos.x+ j,pos.y +i);
-				tiles[index] = new Tile(point);
+				tiles[index] = new ShipTile(point);
 				index++;
 			}
 		}

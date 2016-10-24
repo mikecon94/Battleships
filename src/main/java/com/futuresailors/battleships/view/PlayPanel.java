@@ -11,6 +11,7 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 
 /**
@@ -112,16 +113,25 @@ public class PlayPanel extends JPanel {
 		for (int row = 0; row < oppGrid.getRows(); row++) {
 			for (int column = 0; column < oppGrid.getColumns(); column++) {
 				Point pos = new Point(row, column);
-				if (oppGrid.getTile(pos) == ' ') {
+				if (oppGrid.getTile(pos) == GridTile.EMPTY) {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-				} else if (oppGrid.getTile(pos) == 'H') {
+				} else if (oppGrid.getTile(pos) == GridTile.HOVER) {
 					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-				}  else if (oppGrid.getTile(pos) == 'S') {
+				}  else if (oppGrid.getTile(pos) == GridTile.SHIP) {
+					//TODO Remove before final game.
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
+				} else if (grid.getTile(pos) == GridTile.HIT){
+					//TODO Draw the Bomb image.
+					g.setColor(new Color(222, 21, 21));
+					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
+				} else if (grid.getTile(pos) == GridTile.MISS){
+					//TODO Draw the Miss image.
+					g.setColor(new Color(144, 212, 144));
+					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
@@ -133,16 +143,24 @@ public class PlayPanel extends JPanel {
 		for (int row = 0; row < grid.getRows(); row++) {
 			for (int column = 0; column < grid.getColumns(); column++) {
 				Point pos = new Point(row, column);
-				if (grid.getTile(pos) == ' ') {
+				if (grid.getTile(pos) == GridTile.EMPTY) {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if (grid.getTile(pos) == 'H') {
+				} else if (grid.getTile(pos) == GridTile.HOVER) {
 					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-				} else if (grid.getTile(pos) == 'S') {
+				} else if (grid.getTile(pos) == GridTile.SHIP) {
 					g.setColor(new Color(66, 134, 244));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
+				} else if (grid.getTile(pos) == GridTile.HIT){
+					//TODO Draw the Bomb image.
+					g.setColor(new Color(222, 21, 21));
+					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
+				} else if (grid.getTile(pos) == GridTile.MISS){
+					//TODO Draw the Miss image.
+					g.setColor(new Color(144, 212, 144));
+					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
