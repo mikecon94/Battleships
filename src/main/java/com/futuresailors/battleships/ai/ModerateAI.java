@@ -2,6 +2,9 @@ package com.futuresailors.battleships.ai;
 
 import java.awt.Point;
 
+import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.Ship;
+
 /**
  *
  * This implementation of the AI Interface is the medium difficulty.
@@ -10,6 +13,14 @@ import java.awt.Point;
  * @author Michael Conroy
  */
 public class ModerateAI implements AI {
+	
+	private Grid grid;
+	private Ship[] ships;
+	
+	public ModerateAI(Grid grid, Ship[] ships){
+		this.grid = grid;
+		this.ships = ships;
+	}
 
 	@Override
 	public void placeShips() {
