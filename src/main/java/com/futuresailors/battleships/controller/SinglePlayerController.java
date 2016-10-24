@@ -10,12 +10,12 @@ import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.GameListener;
-import com.futuresailors.battleships.view.MainPlayPanel;
+import com.futuresailors.battleships.view.PlayPanel;
 
 public class SinglePlayerController implements Controller{
 	
 	private JFrame window;
-	private MainPlayPanel panel;
+	private PlayPanel panel;
 	private Ship[] myShips;
 	private Grid myGrid;
 	private Ship[] oppShips; 
@@ -45,7 +45,7 @@ public class SinglePlayerController implements Controller{
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new MainPlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid, myShips);
+		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid, myShips);
 		window.add(panel);
 		window.repaint();
 		@SuppressWarnings("unused")

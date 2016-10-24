@@ -20,7 +20,7 @@ import com.futuresailors.battleships.model.Ship;
  * 
  * @author Joe Baldwin, Michael Conroy
  */
-public class MainPlayPanel extends JPanel {
+public class PlayPanel extends JPanel {
 
 	private static final long serialVersionUID = 5959433312203394355L;
 	
@@ -43,7 +43,7 @@ public class MainPlayPanel extends JPanel {
 	// Client Ships - Left
 	private Ship ships[];
 
-	public MainPlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
+	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.grid = grid1;
