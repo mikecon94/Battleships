@@ -7,9 +7,11 @@ import java.awt.Point;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.controller.MainMenuController;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
@@ -43,6 +45,9 @@ public class PlayPanel extends JPanel {
 	private Grid oppGrid;
 	// Client Ships - Left
 	private Ship ships[];
+	private boolean gameOver = false;
+	private boolean iWon;
+	private JButton menuBut;
 	
 	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
 		this.WIDTH = width;
@@ -73,11 +78,11 @@ public class PlayPanel extends JPanel {
 	private void createPanel() {
 		setLayout(null);
 		setSize(WIDTH, HEIGHT);
-		JButton backBut = new JButton("Main Menu");
-		backBut.setSize(100, 50);
-		backBut.setLocation(10, 10);
-		backBut.setLayout(null);
-		add(backBut);
+		menuBut = new JButton("Main Menu");
+		menuBut.setSize(100, 50);
+		menuBut.setLocation(10, 10);
+		menuBut.setLayout(null);
+		add(menuBut);
 		// Will be configurable at a later date.
 		tileSize = 550 / grid.getColumns();
 		System.out.println("MainPlayPanel Created.");
@@ -116,6 +121,17 @@ public class PlayPanel extends JPanel {
 			}
 		}
 	}
+	
+	public void showWinner(boolean won){
+		repaint();
+		if(won){
+			JOptionPane.showMessageDialog(null, "You Win! Click OK to return to the main menu.", "Winner.",
+					JOptionPane.INFORMATION_MESSAGE);
+		} else {
+			JOptionPane.showMessageDialog(null, "You Lose. Better luck next time. Click OK to return to the main menu.", 
+					 "Loser", JOptionPane.INFORMATION_MESSAGE);
+		}
+	}
 
 	private void drawOppGrid(Graphics g) {
 		for (int row = 0; row < oppGrid.getRows(); row++) {
@@ -130,8 +146,8 @@ public class PlayPanel extends JPanel {
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				}  else if (oppGrid.getTile(pos) == GridTile.SHIP) {
 					//TODO Remove before final game.
-					g.setColor(new Color(66, 134, 244));
-					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
+					//g.setColor(new Color(66, 134, 244));
+					//g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.HIT){
 					//TODO Draw the Bomb image.
 					g.setColor(new Color(222, 21, 21));

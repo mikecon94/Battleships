@@ -116,6 +116,7 @@ public class PlaceShipsPanel extends JPanel {
 			//Place the ship in the centre of the current ship space
 			g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)), 80 + (235 - (shipImage.getIconHeight() / 2)), this);
         } else {
+        	grid.clearHoverTiles();
         	g.drawChars("All Ships Placed".toCharArray(), 0, 16, 810, 120);repaint();
     	    g.setFont(new Font("Garamond", Font.PLAIN , 20));
         	g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 825, 250);

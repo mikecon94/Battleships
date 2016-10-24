@@ -51,6 +51,17 @@ public class Grid {
 		return grid[pos.y][pos.x];
 	}
 	
+	public boolean checkGameOver(){
+		for(int y = 0; y < grid.length; y++){
+			for(int x = 0; x < grid[y].length; x++){
+				if(grid[y][x] == GridTile.SHIP || grid[y][x] == GridTile.HOVERSHIP){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 	/**
 	 * Sets a collection of tiles to 'H' which the view then knows to render as a tile being hovered over.
 	 * @param pos - The top left position to represent the ship.

@@ -31,6 +31,7 @@ public class SinglePlayerController implements GameTypeController{
 	private Grid aiGrid;
 	AI opp;
 	
+	private boolean gameOver = false;
 	private boolean myTurn = false;
 	
 	public SinglePlayerController(JFrame window){
@@ -48,7 +49,7 @@ public class SinglePlayerController implements GameTypeController{
 	 * Defines the ships that will be used in this game.
 	 */
 	private void createShips(){
-		//TODO make number of ships a configurable.
+		//TODO make the ships a configurable.
 		myShips = new Ship[5];
 		myShips[0] = new Ship(5, 1, "src/main/resources/images/ships/1.png");
 		myShips[1] = new Ship(4, 1, "src/main/resources/images/ships/2.png");
@@ -65,6 +66,8 @@ public class SinglePlayerController implements GameTypeController{
 	}
 	
 	public void startGame(){
+		myGrid.clearHoverTiles();
+		aiGrid.clearHoverTiles();
 		//Creates AI and tells it to place the ships
 		//These needs changing later to accomodate each level AI
 		opp = new SimpleAI(aiGrid, aiShips);
@@ -104,20 +107,41 @@ public class SinglePlayerController implements GameTypeController{
 
 	@Override
 	public void mouseClicked(Point pos) {
-		//Hover the tile if it is the users turn and the mouse is over the AIs grid.
-		Point gridPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
-		
-		if(myTurn && panel.overGridSpace(pos.x, pos.y) 
-				&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
-			System.out.println("User: " + aiGrid.getTile(gridPos));
-			if(aiGrid.dropBomb(gridPos)){
-				System.out.println("User Hit A Ship.");
-			} else {
-				myTurn = false;
-				opponentMove();
+		if(!gameOver){
+			//Hover the tile if it is the users turn and the mouse is over the AIs grid.
+			Point gridPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
+			
+			if(myTurn && panel.overGridSpace(pos.x, pos.y) 
+					&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
+				System.out.println("User: " + aiGrid.getTile(gridPos));
+				if(aiGrid.dropBomb(gridPos)){
+					checkGameOver();
+				} else {
+					myTurn = false;
+					opponentMove();
+				}
 			}
+			panel.repaint();
+		} else {
+			System.out.println("Game Over.");
 		}
-		panel.repaint();
+	}
+	
+	private void checkGameOver(){
+		if(myTurn){
+			if(aiGrid.checkGameOver()){
+				System.out.println("GAME OVER: YOU WIN.");
+				gameOver = true;
+				panel.showWinner(myTurn);
+				returnToMenu();
+			}
+		} else {
+			if(myGrid.checkGameOver()){
+				System.out.println("GAME OVER: YOU LOSE.");
+				panel.showWinner(myTurn);
+				returnToMenu();
+			}			
+		}
 	}
 	
 	private void opponentMove(){
@@ -128,7 +152,7 @@ public class SinglePlayerController implements GameTypeController{
 			} while(myGrid.getTile(target) == GridTile.MISS || myGrid.getTile(target) == GridTile.HIT);
 			System.out.println("AI Move: " + target.x + ", " + target.y);
 			if(myGrid.dropBomb(target)){
-				
+				checkGameOver();
 			} else {
 				System.out.println("AI Missed.");
 				myTurn = true;
@@ -140,7 +164,7 @@ public class SinglePlayerController implements GameTypeController{
 	@Override
 	public void mouseMoved(Point pos) {
 		//Hover the tile if it is the users turn and the mouse is over the AIs grid.
-		if(myTurn && panel.overGridSpace(pos.x, pos.y)){
+		if(!gameOver && myTurn && panel.overGridSpace(pos.x, pos.y)){
 			aiGrid.hoverBomb(new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y)));
 		} else {
 			aiGrid.clearHoverTiles();
