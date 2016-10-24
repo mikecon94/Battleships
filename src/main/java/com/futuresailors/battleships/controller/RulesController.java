@@ -39,14 +39,14 @@ public class RulesController implements Controller {
 		main.showMenu();
 	}
 
-	/** 
-	 * Not used by this controller.
+	/**
+	 * Not used on the RulesController.
 	 */
 	@Override
 	public void mouseClicked(Point pos) {}
 
-	/** 
-	 * Not used by this controller.
+	/**
+	 * Not used on the RulesController.
 	 */
 	@Override
 	public void mouseMoved(Point pos) {}

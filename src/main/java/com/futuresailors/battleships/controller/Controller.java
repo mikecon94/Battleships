@@ -11,12 +11,6 @@ import java.awt.Point;
 public interface Controller {
 	
 	/**
-	 * Will return the window to the menu.
-	 */
-	//TODO Make this an abstract class and give a concrete implementation of this method.
-	public void returnToMenu();
-	
-	/**
 	 * Tells the controller the mouse was clicked. This
 	 * method will then need to calculate what is appropriate
 	 * and update the view accordingly.
@@ -30,5 +24,11 @@ public interface Controller {
 	 * @param pos - Position the mouse has moved to.
 	 */
 	public void mouseMoved(Point pos);
+	
+	/**
+	 * Will return the window to the menu.
+	 */
+	//TODO Make this an abstract class and give a concrete implementation of this method.
+	public void returnToMenu();
 	
 }

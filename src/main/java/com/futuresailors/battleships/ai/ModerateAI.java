@@ -25,7 +25,7 @@ public class ModerateAI implements AI {
 
 	@Override
 	public void placeShips() {
-		// TODO Calculate where to place ships.
+
 	}
 
 	@Override

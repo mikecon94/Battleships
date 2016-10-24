@@ -35,6 +35,7 @@ public class SinglePlayerController implements GameTypeController{
 		aiGrid = new Grid(10);
 		//Initialises the ships and defines what ships will be used in this game.
 		createShips();
+		@SuppressWarnings("unused")
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);	
 	}
 	
@@ -57,7 +58,6 @@ public class SinglePlayerController implements GameTypeController{
 		aiShips[3] = new Ship(1, 3, "src/main/resources/images/ships/5.png");
 		aiShips[4] = new Ship(1, 2, "src/main/resources/images/ships/5.png");
 	}
-	
 	
 	public void startGame(){
 		//Creates AI and tells it to place the ships
