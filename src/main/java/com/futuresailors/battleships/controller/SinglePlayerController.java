@@ -12,6 +12,11 @@ import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlayPanel;
 
+/**
+ * Controller for the main game in singleplayer mode. This creates the ships for the opponent
+ * ,creates the opponents grid and initialises the AI chosen by the player.
+ * @author Joe Baldwin, Michael Conroy
+ */
 public class SinglePlayerController implements Controller{
 	
 	private JFrame window;
