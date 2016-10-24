@@ -4,8 +4,8 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -59,7 +59,7 @@ public class RulesPanel extends JPanel {
 		StringBuilder html = new StringBuilder();
 		//Read file in
 		try {
-		    BufferedReader in = new BufferedReader(new FileReader("src/main/resources/rules.html"));
+		    BufferedReader in = new BufferedReader(new InputStreamReader(RulesPanel.class.getResourceAsStream("/rules.html")));
 		    String str;
 		    while ((str = in.readLine()) != null) {
 		        html.append(str);
@@ -86,7 +86,7 @@ public class RulesPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	    ImageIcon bg = UIHelper.resizeImage("src/main/resources/images/background2.jpg", WIDTH, HEIGHT);
+	    ImageIcon bg = UIHelper.resizeImage("/images/background2.jpg", WIDTH, HEIGHT);
 	    g.drawImage(bg.getImage(), 0, 0, null);
 	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
 	    g.setColor(new Color(255, 255, 255));

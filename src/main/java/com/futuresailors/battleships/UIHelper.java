@@ -1,6 +1,7 @@
 package com.futuresailors.battleships;
 
 import java.awt.Image;
+import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -64,7 +65,7 @@ public class UIHelper {
 	 * @return ImageIcon - The resized image.
 	 */
 	public static ImageIcon resizeImage(String imagePath, int width, int height){
-		ImageIcon bg = new ImageIcon(imagePath);
+		ImageIcon bg = new ImageIcon(UIHelper.class.getResource(imagePath));
 		return new ImageIcon(bg.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
 	}	
 }

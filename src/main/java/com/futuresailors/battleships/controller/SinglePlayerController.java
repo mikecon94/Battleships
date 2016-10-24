@@ -12,6 +12,7 @@ import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.GameListener;
+import com.futuresailors.battleships.view.MainMenuPanel;
 import com.futuresailors.battleships.view.PlayPanel;
 
 /**
@@ -51,18 +52,19 @@ public class SinglePlayerController implements GameTypeController{
 	private void createShips(){
 		//TODO make the ships a configurable.
 		myShips = new Ship[5];
-		myShips[0] = new Ship(5, 1, "src/main/resources/images/ships/1.png");
-		myShips[1] = new Ship(4, 1, "src/main/resources/images/ships/2.png");
-		myShips[2] = new Ship(3, 1, "src/main/resources/images/ships/3.png");
-		myShips[3] = new Ship(1, 3, "src/main/resources/images/ships/5.png");
-		myShips[4] = new Ship(1, 2, "src/main/resources/images/ships/5.png");
+		
+		myShips[0] = new Ship(5, 1, "/images/ships/1.png");
+		myShips[1] = new Ship(4, 1, "/images/ships/2.png");
+		myShips[2] = new Ship(3, 1, "/images/ships/3.png");
+		myShips[3] = new Ship(1, 3, "/images/ships/5.png");
+		myShips[4] = new Ship(1, 2, "/images/ships/5.png");
 
 		aiShips = new Ship[5];
-		aiShips[0] = new Ship(5, 1, "src/main/resources/images/ships/1.png");
-		aiShips[1] = new Ship(4, 1, "src/main/resources/images/ships/2.png");
-		aiShips[2] = new Ship(3, 1, "src/main/resources/images/ships/3.png");
-		aiShips[3] = new Ship(1, 3, "src/main/resources/images/ships/5.png");
-		aiShips[4] = new Ship(1, 2, "src/main/resources/images/ships/5.png");
+		aiShips[0] = new Ship(5, 1, "/images/ships/1.png");
+		aiShips[1] = new Ship(4, 1, "/images/ships/2.png");
+		aiShips[2] = new Ship(3, 1, "/images/ships/3.png");
+		aiShips[3] = new Ship(1, 3, "/images/ships/5.png");
+		aiShips[4] = new Ship(1, 2, "/images/ships/5.png");
 	}
 	
 	public void startGame(){
