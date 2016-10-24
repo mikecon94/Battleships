@@ -38,8 +38,6 @@ public class SimpleAI implements AI {
 	
 	@Override
 	public Point takeMove(){
-		//Will need to look at the closer to check gridHeight + 1 can't cause an
-		//array out of bounds exception.
 		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
 		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
 		return new Point(x,y);
