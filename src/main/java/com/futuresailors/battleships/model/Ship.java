@@ -22,7 +22,7 @@ public class Ship {
 	private String imagePath;
 	//If the ship has been placed on the board already
 	private boolean placed = false;
-	
+	//Ship location represented as a Point
 	Point pos;
 	
 	//Constructor
@@ -38,6 +38,7 @@ public class Ship {
 	/**
 	 * Checks if the opponent scored a hit on a ships tile
 	 * @param location - A Point object for the tile location that was hit
+	 * @return Whether the player has scored a hit as a boolean
 	 */
 	public boolean hit(Point location) {
 		for(Tile tile : tiles){
@@ -52,6 +53,7 @@ public class Ship {
 	
 	/**
 	 * Checks if any of the tiles have been hit and if they have all been hit returns true
+	 * @return Whether ship is sunk as boolean
 	 */
 	public boolean checkIfSunk(){
 		//Loops through each tile
@@ -73,12 +75,14 @@ public class Ship {
 		sunk = true;
 	}
 	/**
-	 * Checks if the ship is sunk
+	 * @return If ship is sunk as boolean
 	 */
 	public boolean isSunk() {
 		return sunk;
 	}
-	
+	/**
+	 * @return If ship is placed as boolean
+	 */
 	public boolean getPlaced(){
 		return placed;
 	}
@@ -99,33 +103,39 @@ public class Ship {
 		placed = true;
 		this.pos = pos;
 	}
-	
+	/**
+	 * @return Location as Point
+	 */
 	public Point getPos(){
 		return pos;
 	}
-	
+	/**
+	 * @return X as int
+	 */
 	public int getX(){
 		return (int) pos.getX();
 	}
-	
+	/**
+	 * @return Y as int
+	 */
 	public int getY(){
 		return (int) pos.getY();
 	}
 
 	/**
-	 * Returns width for use in the view
+	 * @return Width as int
 	 */
 	public int getWidth(){
 		return WIDTH;
 	}
 	/**
-	 * Returns width for use in the view
+	 * @return Height as int
 	 */
 	public int getHeight(){
 		return HEIGHT;
 	}
 	/**
-	 * Returns Image Location
+	 * @return imagePath as String
 	 */
 	public String getImagePath() {
 		return imagePath;
