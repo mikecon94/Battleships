@@ -22,8 +22,6 @@ public class PlaceShipsController implements Controller{
 	private PlaceShipsPanel panel;
 	//Maybe make this configurable going forwards
 	//Pass the number of possible ships in constructor.
-	//Maybe it should be in a model called ShipsHandler (?)
-	//That handles placing of the ships amongst other things.
 	private Ship[] ships = new Ship[5];
 	private int currentShip = 0;
 	private Grid grid;
@@ -84,7 +82,7 @@ public class PlaceShipsController implements Controller{
 				panel.updateCurrentShip(currentShip);
 			}
 		} else {
-			//Move onto the Main Game
+			//Move onto the actual game
 			@SuppressWarnings("unused")
 			SinglePlayerController game = new SinglePlayerController(grid, ships, window);
 		}
