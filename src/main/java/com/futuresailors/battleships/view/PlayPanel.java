@@ -29,10 +29,10 @@ public class PlayPanel extends JPanel {
 	private final int HEIGHT;
 	private final int GRID_WIDTH = 550;
 	private final int GRID_HEIGHT = 550;
-	// Left Side Grid
+	//My Grid
 	private final int GRID_X = 100;
 	private final int GRID_Y = 80;
-	// Right Side Grid
+	// Opponents Grid
 	private final int GRID_2_X = 670;
 	private final int GRID_2_Y = 80;
 	// All tiles are square.
@@ -43,23 +43,33 @@ public class PlayPanel extends JPanel {
 	private Grid oppGrid;
 	// Client Ships - Left
 	private Ship ships[];
-
-	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
+	private boolean myTurn;
+	
+	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[], boolean myTurn) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.grid = grid1;
 		this.oppGrid = grid2;
 		this.ships = ships;
+		this.myTurn = myTurn;
 		grid.getRows();
 		createPanel();
 	}
 
 	public int getTileXUnderMouse(int x) {
-		return (x - GRID_X) / tileSize;
+		return (x - GRID_2_X) / tileSize;
 	}
 
+	public boolean overGridSpace(int x, int y){
+		if(x > GRID_2_X && x < GRID_2_X + GRID_WIDTH
+				&& y < GRID_2_Y + GRID_HEIGHT && y > GRID_2_Y){
+			return true;
+		}
+		return false;
+	}
+	
 	public int getTileYUnderMouse(int y) {
-		return (y - GRID_Y) / tileSize;
+		return (y - GRID_2_Y) / tileSize;
 	}
 
 	private void createPanel() {
@@ -116,7 +126,7 @@ public class PlayPanel extends JPanel {
 				if (oppGrid.getTile(pos) == GridTile.EMPTY) {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-				} else if (oppGrid.getTile(pos) == GridTile.HOVER) {
+				} else if (oppGrid.getTile(pos) == GridTile.HOVER || oppGrid.getTile(pos) == GridTile.HOVERSHIP) {
 					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
@@ -127,11 +137,11 @@ public class PlayPanel extends JPanel {
 				} else if (grid.getTile(pos) == GridTile.HIT){
 					//TODO Draw the Bomb image.
 					g.setColor(new Color(222, 21, 21));
-					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
+					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
 				} else if (grid.getTile(pos) == GridTile.MISS){
 					//TODO Draw the Miss image.
 					g.setColor(new Color(144, 212, 144));
-					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
+					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);

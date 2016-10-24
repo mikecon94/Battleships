@@ -90,8 +90,7 @@ public class PlaceShipsPanel extends JPanel {
         g.setColor(new Color(255));
         g.drawRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawShips(g);
-        
-        
+          
         //Displays what ship is currently being placed.
         drawCurrentShipSpace(g);
 	}

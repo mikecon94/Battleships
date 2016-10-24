@@ -1,6 +1,7 @@
 package com.futuresailors.battleships.controller;
 
 import java.awt.Point;
+import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
 
@@ -13,7 +14,7 @@ import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlayPanel;
 
 /**
- * Controller for the main game in singleplayer mode. This creates the ships for the opponent
+ * Controller for the main game in single player mode. This creates the ships for the opponent
  * ,creates the opponents grid and initialises the AI chosen by the player.
  * @author Michael Conroy, Joe Baldwin
  */
@@ -27,7 +28,9 @@ public class SinglePlayerController implements GameTypeController{
 	
 	private Ship[] aiShips;
 	private Grid aiGrid;
-
+	
+	private boolean myTurn = false;
+	
 	public SinglePlayerController(JFrame window){
 		this.window = window;
 		//TODO Make 10 a configurable for different Grid sizes
@@ -64,7 +67,16 @@ public class SinglePlayerController implements GameTypeController{
 		//These needs changing later to accomodate each level AI
 		AI opp = new SimpleAI(aiGrid, aiShips);
 		opp.placeShips();
-		addGamePanel();
+		chooseFirstPlayer();
+		addGamePanel();	
+	}
+	
+	/**
+	 * Randomly chooses which player will go first.
+	 */
+	private void chooseFirstPlayer(){
+		myTurn = ThreadLocalRandom.current().nextBoolean();
+		myTurn = true;
 	}
 	
 	/**
@@ -72,7 +84,7 @@ public class SinglePlayerController implements GameTypeController{
 	 */
 	private void addGamePanel(){
 		window.getContentPane().removeAll();
-		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, aiGrid, myShips);
+		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, aiGrid, myShips, myTurn);
 		window.add(panel);
 		window.repaint();
 		@SuppressWarnings("unused")
@@ -88,13 +100,17 @@ public class SinglePlayerController implements GameTypeController{
 
 	@Override
 	public void mouseClicked(Point pos) {
-		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
 	public void mouseMoved(Point pos) {
-		// TODO Auto-generated method stub
-		
+		//Hover the tile if it is the users turn and the mouse is over the AIs grid.
+		if(myTurn && panel.overGridSpace(pos.x, pos.y)){
+			aiGrid.hoverBomb(new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y)));
+		} else {
+			aiGrid.clearHoverTiles();
+		}
+		panel.repaint();
 	}
 }

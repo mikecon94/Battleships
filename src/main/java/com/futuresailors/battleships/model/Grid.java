@@ -28,7 +28,6 @@ public class Grid {
 		}
 		createNewGrid();
 	}
-
 	
 	/**
 	 * Returns the value of what is in the given tile.
@@ -44,7 +43,7 @@ public class Grid {
 	 * @param pos - The top left position to represent the ship.
 	 * @param ship - The ship currently being placed.
 	 */
-	public void hover(Point pos, Ship ship){
+	public void hoverShip(Point pos, Ship ship){
 		//Clears any tiles that are currently being hovered over.
 		clearHoverTiles();
 		//Checks if it is a valid place for the ship to be potentially placed.
@@ -58,6 +57,24 @@ public class Grid {
 	}
 	
 	/**
+	 * Sets a collection of tiles to 'H' which the view then knows to render as a tile being hovered over.
+	 * @param pos - The top left position to represent the ship.
+	 * @param ship - The ship currently being placed.
+	 */
+	public void hoverBomb(Point pos){
+		//Clears any tiles that are currently being hovered over.
+		clearHoverTiles();
+		//Check the tile is a valid tile to hover.
+		if(pos.x >= 0 && pos.x < gridSize && pos.y >= 0 && pos.y < gridSize){
+			if(grid[pos.y][pos.x] == GridTile.EMPTY){
+				grid[pos.y][pos.x] = GridTile.HOVER;
+			} else if(grid[pos.y][pos.x] == GridTile.SHIP){
+				grid[pos.y][pos.x] = GridTile.HOVERSHIP; 
+			}
+		}
+	}
+	
+	/**
 	 * Reset any hover tiles back to empty.
 	 */
 	public void clearHoverTiles(){
@@ -65,6 +82,8 @@ public class Grid {
 			for(int x = 0; x < grid[y].length; x++){
 				if(grid[y][x] == GridTile.HOVER){
 					grid[y][x] = GridTile.EMPTY;
+				} else if(grid[y][x] == GridTile.HOVERSHIP){
+					grid[y][x] = GridTile.SHIP;
 				}
 			}
 		}

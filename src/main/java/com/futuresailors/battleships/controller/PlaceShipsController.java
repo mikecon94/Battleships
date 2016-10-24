@@ -84,9 +84,7 @@ public class PlaceShipsController implements Controller{
 		if(!allShipsPlaced){
 			if(panel.overGridSpace(pos.x, pos.y)){
 				Point newPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
-				grid.hover(newPos, ships[currentShip]);
-			} else {
-				grid.clearHoverTiles();
+				grid.hoverShip(newPos, ships[currentShip]);
 			}
 			//Repaint the panel since the model has been updated.
 			panel.repaint();
