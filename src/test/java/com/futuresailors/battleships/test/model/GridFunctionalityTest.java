@@ -25,6 +25,6 @@ public class GridFunctionalityTest extends TestCase {
 	public void testGridsize() {
 		Grid g = new Grid(4);
 		assertEquals(10,g.getRows());
-		fail("Not yet implemented");
+		//fail("Not yet implemented");
 	}
 }
