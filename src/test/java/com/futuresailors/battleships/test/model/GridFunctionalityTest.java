@@ -70,6 +70,9 @@ public class GridFunctionalityTest extends TestCase {
 		assertEquals(30,g.getColumns());
 	}
 	
+	/**
+	 * Tests that when a new grid is created all of the grid tiles are set to empty automatically
+	 */
 	@Test
 	public void testNewGridTiles() {
 		g = new Grid (5);
