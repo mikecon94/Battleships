@@ -34,4 +34,8 @@ public class ModerateAI implements AI {
 		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
 		return new Point(x,y);
 	}
+	
+	//We should maybe have a method here called public Point calculateNextMove(Boolean wasHit, Point lastMove)
+	//This should, based on whether the last move was a hit decide whether to proceed with a strategy
+	//like hitting adjecent tiles or it should make another random guess.
 }
