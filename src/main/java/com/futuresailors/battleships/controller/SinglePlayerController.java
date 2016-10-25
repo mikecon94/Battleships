@@ -72,7 +72,7 @@ public class SinglePlayerController implements GameTypeController{
 		aiGrid.clearHoverTiles();
 		//Creates AI and tells it to place the ships
 		//These needs changing later to accomodate each level AI
-		opp = new SimpleAI(aiGrid, aiShips);
+		opp = new SimpleAI(aiGrid, myGrid, aiShips);
 		opp.placeShips();
 		chooseFirstPlayer();
 		addGamePanel();	
@@ -137,6 +137,7 @@ public class SinglePlayerController implements GameTypeController{
 		} else {
 			if(myGrid.checkGameOver()){
 				System.out.println("Game Over: AI Wins.");
+				gameOver = true;
 				panel.showWinner(myTurn);
 				returnToMenu();
 			}			
@@ -145,10 +146,7 @@ public class SinglePlayerController implements GameTypeController{
 	
 	private void opponentMove(){
 		while(myTurn == false){
-			Point target;
-			do{
-				target = opp.takeMove();
-			} while(myGrid.getTile(target) == GridTile.MISS || myGrid.getTile(target) == GridTile.HIT);
+			Point target = opp.takeMove();
 			if(myGrid.dropBomb(target)){
 				checkGameOver();
 			} else {

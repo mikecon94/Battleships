@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 
 /**
@@ -14,11 +15,13 @@ import com.futuresailors.battleships.model.Ship;
  */
 public class SimpleAI implements AI {
 
-	private Grid grid;
+	private Grid myGrid;
+	private Grid oppGrid;
 	private Ship[] ships;
 	
-	public SimpleAI(Grid grid, Ship[] ships){
-		this.grid = grid;
+	public SimpleAI(Grid myGrid, Grid oppGrid, Ship[] ships){
+		this.myGrid = myGrid;
+		this.oppGrid = oppGrid;
 		this.ships = ships;
 	}
 	
@@ -27,18 +30,22 @@ public class SimpleAI implements AI {
 		Point pos = new Point(0,0);
 		for(Ship ship : ships){
 			do {
-				pos.x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
-				pos.y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
-			} while (grid.checkValidPlace(pos, ship) == false);
+				pos.x = ThreadLocalRandom.current().nextInt(0, myGrid.getColumns());
+				pos.y = ThreadLocalRandom.current().nextInt(0, myGrid.getRows());
+			} while (myGrid.checkValidPlace(pos, ship) == false);
 			ship.placeShip(pos);
-			grid.placeShip(pos, ship);
+			myGrid.placeShip(pos, ship);
 		}
 	}
 	
 	@Override
 	public Point takeMove(){
-		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
-		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
-		return new Point(x,y);
+		Point target;
+		do {
+			int x = ThreadLocalRandom.current().nextInt(0, oppGrid.getColumns());
+			int y = ThreadLocalRandom.current().nextInt(0, oppGrid.getRows());
+			target = new Point(x, y);
+		} while(oppGrid.getTile(target) == GridTile.MISS || oppGrid.getTile(target) == GridTile.HIT);
+		return target;
 	}
 }
