@@ -22,9 +22,9 @@ public class GridFunctionalityTest extends TestCase {
 		//Init your objects here etc
 	}
 	@Test
-	public void testGridsize() {
+	public void testDefaultGridsize() {
 		Grid g = new Grid(4);
 		assertEquals(10,g.getRows());
-		//fail("Not yet implemented");
+		assertEquals(10,g.getColumns());
 	}
 }
