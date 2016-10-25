@@ -154,7 +154,7 @@ public class PlayPanel extends JPanel {
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
 				} else if (oppGrid.getTile(pos) == GridTile.MISS){
 					//TODO Draw the Miss image.
-					g.setColor(new Color(144, 212, 144));
+					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
 				}
 				g.setColor(new Color(0, 0, 0));
@@ -175,7 +175,7 @@ public class PlayPanel extends JPanel {
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (grid.getTile(pos) == GridTile.SHIP) {
-					g.setColor(new Color(66, 134, 244));
+					g.setColor(new Color(50, 205, 50));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (grid.getTile(pos) == GridTile.HIT){
 					//TODO Draw the Bomb image.
@@ -183,7 +183,7 @@ public class PlayPanel extends JPanel {
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
 				} else if (grid.getTile(pos) == GridTile.MISS){
 					//TODO Draw the Miss image.
-					g.setColor(new Color(144, 212, 144));
+					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
 				}
 				g.setColor(new Color(0, 0, 0));

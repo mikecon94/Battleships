@@ -139,7 +139,7 @@ public class PlaceShipsPanel extends JPanel {
 			        g.setColor(new Color(128, 128, 128));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if(grid.getTile(pos) == GridTile.SHIP){
-					g.setColor(new Color(66, 134, 244));
+					g.setColor(new Color(50, 205, 50));
 					g.fillRect(GRID_X + (column * tileSize),  GRID_Y + (row * tileSize), tileSize, tileSize);
 				}
 		        g.setColor(new Color(0, 0, 0));
