@@ -1,4 +1,4 @@
-package com.futuresailors.battleships.test.model;
+package com.futuresailors.battleships.model;
 
 import java.awt.Point;
 
