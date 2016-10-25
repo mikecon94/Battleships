@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 
 /**
@@ -17,6 +18,8 @@ public class ModerateAI implements AI {
 	
 	private Grid grid;
 	private Ship[] ships;
+	private Point lastGuess = new Point(-1,-1);
+	private boolean flag;
 	
 	public ModerateAI(Grid grid, Ship[] ships){
 		this.grid = grid;
@@ -30,8 +33,33 @@ public class ModerateAI implements AI {
 
 	@Override
 	public Point takeMove() {
+		//Generate Guess
 		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
 		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
-		return new Point(x,y);
+		//Check if this is the first guess
+		if(lastGuess.x == -1 && lastGuess.y == -1){
+			lastGuess.x = x;
+			lastGuess.y = y;
+			return new Point(x,y);
+		}else{//If not the first guess, check if the last guess was a hit
+			if(grid.getTile(lastGuess) == GridTile.HIT){
+				//Hit tile to the left after checking if that is a valid move
+				//Set flag to identify a guess by the strategy has already been made?
+				if(flag == true){
+					//try to hit next adjacent tile as long as it is valid
+					//Maybe have a switch here to set the behaviour based on a variable holding the directions that have tried already?
+				}
+			}else{
+				lastGuess.x = x;
+				lastGuess.y = y;
+				return new Point(x,y);
+			}
+		}
+		//Placeholder return to prevent errors
+		return new Point(1,1);
 	}
+	
+	//We should maybe have a method here called public Point calculateNextMove(Boolean wasHit, Point lastMove)
+	//This should, based on whether the last move was a hit decide whether to proceed with a strategy
+	//like hitting adjecent tiles or it should make another random guess.
 }
