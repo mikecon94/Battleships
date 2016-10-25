@@ -17,6 +17,7 @@ public class ModerateAI implements AI {
 	
 	private Grid grid;
 	private Ship[] ships;
+	private Point lastGuess;
 	
 	public ModerateAI(Grid grid, Ship[] ships){
 		this.grid = grid;
@@ -32,6 +33,7 @@ public class ModerateAI implements AI {
 	public Point takeMove() {
 		int x = ThreadLocalRandom.current().nextInt(0, grid.getColumns());
 		int y = ThreadLocalRandom.current().nextInt(0, grid.getRows());
+		lastGuess = new Point(x,y);
 		return new Point(x,y);
 	}
 	
