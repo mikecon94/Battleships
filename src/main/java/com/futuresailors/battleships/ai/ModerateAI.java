@@ -19,6 +19,7 @@ public class ModerateAI implements AI {
 	private Grid grid;
 	private Ship[] ships;
 	private Point lastGuess = new Point(-1,-1);
+	private boolean flag;
 	
 	public ModerateAI(Grid grid, Ship[] ships){
 		this.grid = grid;
@@ -42,13 +43,19 @@ public class ModerateAI implements AI {
 			return new Point(x,y);
 		}else{//If not the first guess, check if the last guess was a hit
 			if(grid.getTile(lastGuess) == GridTile.HIT){
-				//Work out strategy for selecting adjacent tiles
+				//Hit tile to the left after checking if that is a valid move
+				//Set flag to identify a guess by the strategy has already been made?
+				if(flag == true){
+					//try to hit next adjacent tile as long as it is valid
+					//Maybe have a switch here to set the behaviour based on a variable holding the directions that have tried already?
+				}
 			}else{
 				lastGuess.x = x;
 				lastGuess.y = y;
 				return new Point(x,y);
 			}
 		}
+		//Placeholder return to prevent errors
 		return new Point(1,1);
 	}
 	
