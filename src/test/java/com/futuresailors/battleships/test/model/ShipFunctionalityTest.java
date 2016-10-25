@@ -25,15 +25,11 @@ public class ShipFunctionalityTest extends TestCase {
 	public void testShipPlacement(){
 		ship.placeShip(pos);
 		assert(ship.getPlaced() == true);
+		assert(ship.getPos() == pos);
 	}
 	@Test
 	public void testShipSinking(){
 		ship.sink();
 		assert(ship.isSunk() == true);
-	}
-	@Test
-	public void testHitDetection(){
-		//Waiting for removal of tile class
-		assert(1 == 1);
 	}
 }
