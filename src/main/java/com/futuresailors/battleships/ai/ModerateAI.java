@@ -20,7 +20,6 @@ public class ModerateAI implements AI {
 	private Grid oppGrid;
 	private Ship[] ships;
 	private Point lastGuess = new Point(-1,-1);
-	private boolean flag;
 	
 	public ModerateAI(Grid myGrid, Grid oppGrid, Ship[] ships){
 		this.myGrid = myGrid;
@@ -43,41 +42,58 @@ public class ModerateAI implements AI {
 
 	@Override
 	public Point takeMove() {
-		Point target = checkForHits();
-		//Generate Guess
-		int x = ThreadLocalRandom.current().nextInt(0, myGrid.getColumns());
-		int y = ThreadLocalRandom.current().nextInt(0, myGrid.getRows());
-		//Check if this is the first guess
-		if(lastGuess.x == -1 && lastGuess.y == -1){
-			lastGuess.x = x;
-			lastGuess.y = y;
-			return new Point(x,y);
-		}else{//If not the first guess, check if the last guess was a hit
-			if(myGrid.getTile(lastGuess) == GridTile.HIT){
-				//Hit tile to the left after checking if that is a valid move
-				//Set flag to identify a guess by the strategy has already been made?
-				if(flag == true){
-					//try to hit next adjacent tile as long as it is valid
-					//Maybe have a switch here to set the behaviour based on a variable holding the directions that have tried already?
-				}
-			}else{
-				lastGuess.x = x;
-				lastGuess.y = y;
-				return new Point(x,y);
-			}
+		Point target = checkForTarget();
+		if(target.x == -1){
+			//Since there are no targets we choose randomly where to bomb
+			//Like the Simple AI.
+			do {
+				int x = ThreadLocalRandom.current().nextInt(0, oppGrid.getColumns());
+				int y = ThreadLocalRandom.current().nextInt(0, oppGrid.getRows());
+				target = new Point(x, y);
+			} while(oppGrid.getTile(target) == GridTile.MISS || oppGrid.getTile(target) == GridTile.HIT);
+			return target;
+		} else {
+			return target;
 		}
-		//Placeholder return to prevent errors
-		return new Point(1,1);
 	}
 	
-	private Point checkForHits(){
+	/**
+	 * Loops round all the tiles in the opponents grid and if it finds one that has been hit. It will then check the
+	 * surrounding tiles and if any are empty it will throw a bomb at them.
+	 * @return Point - The target to throw the bomb. If it is -1, -1 then there is no obvious target.
+	 */
+	private Point checkForTarget(){
 		for(int y = 0; y < oppGrid.getRows(); y++){
 			for(int x = 0; x < oppGrid.getColumns(); x++){
-				if(oppGrid.getTile(new Point(x, y)) == GridTile.HIT){
-					return new Point(x, y);
+				Point checkHit = new Point(x, y);
+				if(oppGrid.getTile(checkHit) == GridTile.HIT){
+					Point target = getTargetFromHit(checkHit);
+					if(target.x != -1){
+						System.out.println("Found Target");
+						return target;
+					}
 				}
 			}
 		}
+		return new Point(-1, -1);
+	}
+	
+	private Point getTargetFromHit(Point centreTile){
+		int count = 0;
+		
+		do{
+			int checkX = centreTile.x + 1;
+			int checkY = centreTile.y;
+			if(checkX > 0 && checkX < oppGrid.getColumns() && checkY > 0 && checkY < oppGrid.getRows()){
+				Point potentialTarget = new Point(checkX, checkY);
+				System.out.println("Checking Target: " + potentialTarget);
+				if(oppGrid.getTile(potentialTarget) != GridTile.HIT && oppGrid.getTile(potentialTarget) != GridTile.MISS){
+					return potentialTarget;
+				}
+			}
+			count++;
+		} while (count < 4);
+		
 		return new Point(-1, -1);
 	}
 }
