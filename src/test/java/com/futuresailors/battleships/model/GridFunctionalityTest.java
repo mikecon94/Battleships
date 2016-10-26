@@ -21,10 +21,13 @@ import junit.framework.TestCase;
 public class GridFunctionalityTest extends TestCase {
 	//Init member variables
 	private boolean x = true;
-	Grid g;
+	private Grid g;
+	private Ship s;
+	private Point p;
 	
 	@Before
 	public void setUp(){
+		
 		//Init your objects here etc
 	}
 	
@@ -81,6 +84,26 @@ public class GridFunctionalityTest extends TestCase {
 				assert (g.getGrid()[i][j] == GridTile.EMPTY);
 			}
 		}
+	}
+	/**
+	 * Test the method which is responsible for placing ships.
+	 */
+	@Test
+	public void testPlaceShip() {
+		g = new Grid(10);
+		s = new Ship(1,6, "1.png");
+		p = new Point(3,4);
+		g.placeShip(p, s);
+		
+		
+	}
+	
+	/**
+	 * Tests that when a bomb is dropped that the game registers that this space has attacked
+	 */
+	@Test
+	public void testDropBomb() {
+		
 	}
 	
 }
