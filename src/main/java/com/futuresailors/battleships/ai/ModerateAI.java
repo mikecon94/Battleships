@@ -79,20 +79,48 @@ public class ModerateAI implements AI {
 	}
 	
 	private Point getTargetFromHit(Point centreTile){
-		int count = 0;
+		
+		//0 - UP, 1 - RIGHT, 2 - DOWN, 3 - LEFT
+		int startDirection = ThreadLocalRandom.current().nextInt(0, 4);
+		int direction = startDirection;
 		do{
-			int checkX = centreTile.x + 1;
-			int checkY = centreTile.y;
-			if(checkX > 0 && checkX < oppGrid.getColumns() && checkY > 0 && checkY < oppGrid.getRows()){
-				Point potentialTarget = new Point(checkX, checkY);
+			Point potentialTarget = chooseDirection(direction, centreTile);
+			if(potentialTarget.x > 0 && potentialTarget.x < oppGrid.getColumns() 
+					&& potentialTarget.y > 0 && potentialTarget.y < oppGrid.getRows()){
 				System.out.println("Checking Target: " + potentialTarget);
 				if(oppGrid.getTile(potentialTarget) != GridTile.HIT && oppGrid.getTile(potentialTarget) != GridTile.MISS){
 					return potentialTarget;
 				}
 			}
-			count++;
-		} while (count < 4);
+			direction++;
+			if(direction == 4){
+				direction = 0;
+			}
+		} while (direction != startDirection);
 		
 		return new Point(-1, -1);
+	}
+	
+	private Point chooseDirection(int direction, Point centre){
+		Point target = new Point(-1, -1);
+		switch(direction){
+			//0 - UP
+			case 0:
+				target.setLocation(centre.x, centre.y - 1);
+				break;
+			//1 - RIGHT
+			case 1:
+				target.setLocation(centre.x + 1, centre.y);
+				break;
+			//2 - DOWN
+			case 2:
+				target.setLocation(centre.x, centre.y + 1);
+				break;
+			//3 - LEFT
+			case 3:
+				target.setLocation(centre.x - 1, centre.y);
+				break;
+		}
+		return target;
 	}
 }
