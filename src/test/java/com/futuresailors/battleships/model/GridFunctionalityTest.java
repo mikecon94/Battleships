@@ -23,7 +23,13 @@ public class GridFunctionalityTest extends TestCase {
 	private boolean x = true;
 	private Grid g;
 	private Ship s;
+	private Ship s2;
+	private Ship s3;
+	private Ship s4;
+	private Ship s5;
+	private Ship s6;
 	private Point p;
+	
 	
 	@Before
 	public void setUp(){
@@ -79,9 +85,9 @@ public class GridFunctionalityTest extends TestCase {
 	@Test
 	public void testNewGridTiles() {
 		g = new Grid (5);
-		for(int i=0; i<g.getColumns();i++){
-			for(int j=0;j<g.getRows();j++){
-				assert (g.getGrid()[i][j] == GridTile.EMPTY);
+		for(int xPoint=0; xPoint<g.getColumns();xPoint++){
+			for(int yPoint=0;yPoint<g.getRows();yPoint++){
+				assert (g.getGrid()[yPoint][xPoint] == GridTile.EMPTY);
 			}
 		}
 	}
@@ -90,12 +96,36 @@ public class GridFunctionalityTest extends TestCase {
 	 */
 	@Test
 	public void testPlaceShip() {
-		g = new Grid(10);
-		s = new Ship(1,6, "1.png");
 		p = new Point(3,4);
+		g = new Grid(10);
+		s = new Ship(1,6, "/images/ships/1.png");
 		g.placeShip(p, s);
 		
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.SHIP);
+			}
+		}
 		
+		p = new Point(0,4);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		g.placeShip(p, s);
+		
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.SHIP);
+			}
+		}
+		
+		p = new Point(9,3);
+		s = new Ship(1,2,"/images/ships/1.png" );
+		g.placeShip(p, s);
+		
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.SHIP);
+			}
+		}
 	}
 	
 	/**
@@ -103,7 +133,11 @@ public class GridFunctionalityTest extends TestCase {
 	 */
 	@Test
 	public void testDropBomb() {
+		p = new Point(0,4);
+		g = new Grid(10);
+		g.hoverBomb(p);
 		
+		assert(g.getGrid()[p.y][p.x] == GridTile.HOVER);
 	}
 	
 }
