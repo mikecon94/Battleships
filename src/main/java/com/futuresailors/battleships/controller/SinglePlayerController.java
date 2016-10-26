@@ -4,6 +4,7 @@ import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
@@ -111,17 +112,18 @@ public class SinglePlayerController implements GameTypeController{
 		if(!gameOver){
 			//Hover the tile if it is the users turn and the mouse is over the AIs grid.
 			Point gridPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
-			
 			if(myTurn && panel.overGridSpace(pos.x, pos.y) 
 					&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
 				if(aiGrid.dropBomb(gridPos)){
 					checkGameOver();
+					panel.repaint();
 				} else {
 					myTurn = false;
+					aiGrid.clearHoverTiles();
+					panel.repaint();
 					opponentMove();
 				}
 			}
-			panel.repaint();
 		}
 	}
 	
@@ -146,13 +148,17 @@ public class SinglePlayerController implements GameTypeController{
 	private void opponentMove(){
 		while(myTurn == false){
 			Point target = opp.takeMove();
+			System.out.println("Opp Move: " + target);	
 			if(myGrid.dropBomb(target)){
 				checkGameOver();
+				panel.paintImmediately(0, 0, 1280, 720);
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {}
 			} else {
 				myTurn = true;
 			}
-			panel.repaint();
-		}	
+		}
 	}
 
 	@Override
