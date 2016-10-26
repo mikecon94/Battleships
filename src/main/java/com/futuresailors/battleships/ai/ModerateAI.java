@@ -79,8 +79,8 @@ public class ModerateAI implements AI {
 	}
 	
 	private Point getTargetFromHit(Point centreTile){
-		int count = 0;
-		
+		int startDirection = 0;
+		chooseDirection(startDirection(centreTile));
 		do{
 			int checkX = centreTile.x + 1;
 			int checkY = centreTile.y;

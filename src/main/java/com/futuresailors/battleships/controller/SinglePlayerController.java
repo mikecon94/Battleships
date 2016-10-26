@@ -151,8 +151,8 @@ public class SinglePlayerController implements GameTypeController{
 			} else {
 				myTurn = true;
 			}
+			panel.repaint();
 		}	
-		panel.repaint();
 	}
 
 	@Override
