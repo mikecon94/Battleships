@@ -129,15 +129,17 @@ public class GridFunctionalityTest extends TestCase {
 	}
 	
 	/**
-	 * Tests that when a bomb is dropped that the game registers that this space has attacked
+	 * Tests that when a Tile is hovered over to drop a bomb, the tile state changes to hover.
 	 */
 	@Test
-	public void testDropBomb() {
+	public void testHoverDropBomb() {
 		p = new Point(0,4);
 		g = new Grid(10);
 		g.hoverBomb(p);
-		
 		assert(g.getGrid()[p.y][p.x] == GridTile.HOVER);
+		p = new Point(1,4);
+		g.hoverBomb(p);
+		assert(g.getGrid()[4][0] == GridTile.EMPTY);
 	}
 	
 }
