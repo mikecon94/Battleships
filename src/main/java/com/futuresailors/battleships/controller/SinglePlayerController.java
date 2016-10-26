@@ -7,12 +7,11 @@ import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
-import com.futuresailors.battleships.ai.SimpleAI;
+import com.futuresailors.battleships.ai.ModerateAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.GameListener;
-import com.futuresailors.battleships.view.MainMenuPanel;
 import com.futuresailors.battleships.view.PlayPanel;
 
 /**
@@ -72,7 +71,7 @@ public class SinglePlayerController implements GameTypeController{
 		aiGrid.clearHoverTiles();
 		//Creates AI and tells it to place the ships
 		//These needs changing later to accomodate each level AI
-		opp = new SimpleAI(aiGrid, myGrid, aiShips);
+		opp = new ModerateAI(aiGrid, myGrid, aiShips);
 		opp.placeShips();
 		chooseFirstPlayer();
 		addGamePanel();	
