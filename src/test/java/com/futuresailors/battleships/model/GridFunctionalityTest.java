@@ -142,4 +142,53 @@ public class GridFunctionalityTest extends TestCase {
 		assert(g.getGrid()[4][0] == GridTile.EMPTY);
 	}
 	
+	/**
+	 * Test the hover ship method to make sure that the correct tiles are set to hover
+	 */
+	@Test
+	public void testHoverShip(){
+		p = new Point(0,4);
+		g = new Grid(10);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		g.hoverShip(p, s);
+		System.out.println(8);
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.HOVER);
+			}
+		}
+	}
+	
+	/**
+	 * Tests that the checking method which determines if a ship has been placed in a valid spot
+	 */
+	@Test
+	public void testCheckInput(){
+		p = new Point(0,10);
+		g = new Grid(10);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		assert(g.checkValidPlace(p, s)==false);
+		
+		p = new Point(0,4);
+		g.placeShip(p, s);
+		s2 = new Ship(1,4,"/images/ships/1.png");
+		assert(g.checkValidPlace(p,s2)==false);
+	}
+	/**
+	 * Tests the drop bomb method to make sure tiles are set to the correct status upon a hit or a miss
+	 */
+	@Test
+	public void testDropBomb(){
+		p = new Point(0,4);
+		g = new Grid(10);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		g.placeShip(p, s);
+		Point t =new Point(7,7);
+		g.dropBomb(p);
+		g.dropBomb(t);
+		assert(g.getGrid()[p.y][p.x]==GridTile.HIT);
+		assert(g.getGrid()[t.y][t.x]==GridTile.MISS);
+	}
+	
 }
+

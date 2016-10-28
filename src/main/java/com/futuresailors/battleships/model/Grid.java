@@ -181,7 +181,6 @@ public class Grid {
 			}
 		}
 		ship.placeShip(pos);
-		System.out.println("Ship PLaced");
 	}
 	
 	//TODO Bomb.
