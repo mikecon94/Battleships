@@ -15,6 +15,11 @@ import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 
+/**
+ * The panel that displays the grid and loops through the ships for that game type. Allowing the player to place them
+ * on the grid before calling the controller that started it startGame method.
+ * @author Michael Conroy
+ */
 public class PlaceShipsPanel extends JPanel {
 
 	private static final long serialVersionUID = 7157206880287883320L;

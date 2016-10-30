@@ -18,7 +18,7 @@ import com.futuresailors.battleships.UIHelper;
 
 /**
  * A JPanel that displays the rules to the users.
- * @author Ryan Lowers, Michael Conroy
+ * @author Ryan Lowers
  */
 public class RulesPanel extends JPanel {
 

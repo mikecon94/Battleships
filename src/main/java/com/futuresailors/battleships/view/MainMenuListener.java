@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.MainMenuController;
 
+/**
+ * Acts as the listener for the Main Menu.
+ * @author Michael Conroy
+ */
 public class MainMenuListener implements ActionListener{
 
 	private MainMenuController controller;

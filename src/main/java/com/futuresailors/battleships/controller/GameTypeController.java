@@ -1,5 +1,10 @@
 package com.futuresailors.battleships.controller;
 
+/**
+ * An interface that will be used by the controllers that allow the game to
+ * be started.
+ * @author Michael Conroy
+ */
 public interface GameTypeController extends Controller{
 	
 	/**

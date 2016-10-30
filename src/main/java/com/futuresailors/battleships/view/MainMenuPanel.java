@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
 
+/**
+ * The JPanel that creates and displays the Main Menu.
+ * @author Michael Conroy
+ */
 @SuppressWarnings("serial")
 public class MainMenuPanel extends JPanel {
 

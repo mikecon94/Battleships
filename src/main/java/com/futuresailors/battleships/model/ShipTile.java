@@ -9,7 +9,6 @@ import java.awt.Point;
  * to track what Ships have sunk. The Grid model only stores
  * the ships itself that is on that tile but not which ship is there.
  * @author Joe Baldwin
- *
  */
 public class ShipTile {
 	

@@ -8,7 +8,6 @@ import java.awt.Point;
  * icons filepath and methods that change the state of the
  * ship in the game.
  * @author Joe Baldwin, Michael Conroy
- *
  */
 
 public class Ship {
