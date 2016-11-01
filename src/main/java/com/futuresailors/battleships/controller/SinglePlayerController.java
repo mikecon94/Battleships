@@ -130,11 +130,11 @@ public class SinglePlayerController implements GameTypeController{
 		while(myTurn == false){
 			Point target = opp.takeMove();
 			System.out.println("Opp Move: " + target);
-			try {
-				Thread.sleep(300);
-			} catch (InterruptedException e) {}
 			if(myGrid.dropBomb(target)){
 				checkGameOver();
+				try {
+					Thread.sleep(400);
+				} catch (InterruptedException e) {}
 				panel.paintImmediately(0, 0, 1280, 720);
 			} else {
 				myTurn = true;
