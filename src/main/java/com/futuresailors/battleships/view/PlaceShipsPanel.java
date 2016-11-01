@@ -103,6 +103,13 @@ public class PlaceShipsPanel extends JPanel {
 			}
 		}
 	}
+
+	public boolean rotateWasClicked(Point pos){
+		if(pos.x >= 915 && pos.x <= 985 && pos.y >= 550 && pos.y <= 620){
+			return true;
+		}
+		return false;
+	}
 	
 	private void drawCurrentShipSpace(Graphics g){
 	    g.setColor(new Color(255, 255, 255));
@@ -115,6 +122,10 @@ public class PlaceShipsPanel extends JPanel {
         	ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(), (int) (ships[currentShip].getWidth() * tileSize * 1.2), (int) (ships[currentShip].getHeight() * tileSize * 1.2));
 			//Place the ship in the centre of the current ship space
 			g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)), 80 + (235 - (shipImage.getIconHeight() / 2)), this);
+			
+			//Draw the rotate button.
+	        ImageIcon rotateImage  = UIHelper.resizeImage("/images/rotate.png", 70, 70);
+	        g.drawImage(rotateImage.getImage(), 915, 550, this);
         } else {
         	grid.clearHoverTiles();
         	g.drawChars("All Ships Placed".toCharArray(), 0, 16, 810, 120);repaint();

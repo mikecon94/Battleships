@@ -70,6 +70,9 @@ public class PlaceShipsController implements Controller{
 					allShipsPlaced = true;
 				}
 				panel.updateCurrentShip(currentShip);
+			} else if(panel.rotateWasClicked(pos)){
+				ships[currentShip].rotateShip();
+				panel.repaint();
 			}
 		} else {
 			parentController.startGame();
@@ -82,6 +85,7 @@ public class PlaceShipsController implements Controller{
 	 */
 	public void mouseMoved(Point pos){
 		if(!allShipsPlaced){
+			grid.clearHoverTiles();
 			if(panel.overGridSpace(pos.x, pos.y)){
 				Point newPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
 				grid.hoverShip(newPos, ships[currentShip]);

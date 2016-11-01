@@ -109,9 +109,9 @@ public class Ship {
 	 */
 	public void rotateShip(){
 		if(imagePath.contains("horizontal")){
-			imagePath.replace("horizontal", "vertical");
+			imagePath = imagePath.replace("horizontal", "vertical");
 		} else {
-			imagePath.replace("vertical", "horizontal");
+			imagePath = imagePath.replace("vertical", "horizontal");
 		}
 		int tempWidth = width;
 		width = height;
