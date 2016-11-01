@@ -5,15 +5,16 @@ import java.awt.Point;
 /**
  * This object represents a ship on the board
  * and its respective tiles. It also contains the ships
- * icons filepath and methods that change the state of the
+ * icons file path and methods that change the state of the
  * ship in the game.
  * @author Joe Baldwin, Michael Conroy
  */
 
 public class Ship {
 	
-	private final int WIDTH;
-	private final int HEIGHT;
+	//Not final as these will change on rotation.
+	private int width;
+	private int height;
 	//Whether the ship has been sunk
 	private boolean sunk = false;
 	//Tiles the ship occupies
@@ -26,8 +27,8 @@ public class Ship {
 	
 	//Constructor
 	public Ship(int width, int height, String imagePath){
-		this.WIDTH = width;
-		this.HEIGHT = height;
+		this.width = width;
+		this.height = height;
 		this.imagePath = imagePath;
 		//Init tile array with the amount of tiles the ship occupys
 		tiles = new ShipTile[height*width];
@@ -92,8 +93,8 @@ public class Ship {
 	 */
 	public void placeShip(Point pos){
 		int index = 0;
-		for(int i=0; i < HEIGHT; i++){
-			for(int j=0; j < WIDTH;j++) {
+		for(int i=0; i < height; i++){
+			for(int j=0; j < width;j++) {
 				Point point = new Point(pos.x+ j,pos.y +i);
 				tiles[index] = new ShipTile(point);
 				index++;
@@ -102,6 +103,21 @@ public class Ship {
 		placed = true;
 		this.pos = pos;
 	}
+	
+	/**
+	 * Allows ships to be rotated to either be horizontal or vertical.
+	 */
+	public void rotateShip(){
+		if(imagePath.contains("horizontal")){
+			imagePath.replace("horizontal", "vertical");
+		} else {
+			imagePath.replace("vertical", "horizontal");
+		}
+		int tempWidth = width;
+		width = height;
+		height = tempWidth;
+	}
+	
 	/**
 	 * @return Location as Point
 	 */
@@ -125,13 +141,13 @@ public class Ship {
 	 * @return Width as int
 	 */
 	public int getWidth(){
-		return WIDTH;
+		return width;
 	}
 	/**
 	 * @return Height as int
 	 */
 	public int getHeight(){
-		return HEIGHT;
+		return height;
 	}
 	/**
 	 * @return imagePath as String

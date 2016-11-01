@@ -1,41 +1,21 @@
 package com.futuresailors.battleships.model;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
-
 import java.awt.Point;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import com.futuresailors.battleships.model.Grid;
-import com.futuresailors.battleships.model.GridTile;
-import com.futuresailors.battleships.model.Ship;
-
 import junit.framework.TestCase;
+
 /**
  * The test class which will test the functionality for the grid class.
- * @author rlowers
- *
+ * @author Ryan Lowers
  */
 public class GridFunctionalityTest extends TestCase {
 	//Init member variables
-	private boolean x = true;
 	private Grid g;
 	private Ship s;
 	private Ship s2;
-	private Ship s3;
-	private Ship s4;
-	private Ship s5;
-	private Ship s6;
 	private Point p;
-	
-	
-	@Before
-	public void setUp(){
-		
-		//Init your objects here etc
-	}
 	
 	/**
 	 * Tests that the default grid size is used if the value entered is lower than 5
@@ -189,6 +169,5 @@ public class GridFunctionalityTest extends TestCase {
 		assert(g.getGrid()[p.y][p.x]==GridTile.HIT);
 		assert(g.getGrid()[t.y][t.x]==GridTile.MISS);
 	}
-	
 }
 
