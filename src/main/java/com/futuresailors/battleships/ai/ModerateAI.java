@@ -86,6 +86,7 @@ public class ModerateAI implements AI {
 	 * @return The Point to hit. -1, -1 if no valid tile.
 	 */
 	private Point getTargetFromHit(Point centreTile){
+		//TODO Investigate bug in this code that means sometimes a tile next to a hit tile that is not hit or miss won't get shot at.
 		//0 - UP, 1 - RIGHT, 2 - DOWN, 3 - LEFT
 		//Choose a random direction to first check.
 		int startDirection = ThreadLocalRandom.current().nextInt(0, 4);
