@@ -126,6 +126,22 @@ public class SinglePlayerController implements GameTypeController{
 		}
 	}
 	
+	private void opponentMove(){
+		while(myTurn == false){
+			Point target = opp.takeMove();
+			System.out.println("Opp Move: " + target);
+			try {
+				Thread.sleep(300);
+			} catch (InterruptedException e) {}
+			if(myGrid.dropBomb(target)){
+				checkGameOver();
+				panel.paintImmediately(0, 0, 1280, 720);
+			} else {
+				myTurn = true;
+			}
+		}
+	}
+	
 	private void checkGameOver(){
 		if(myTurn){
 			if(aiGrid.checkGameOver()){
@@ -141,22 +157,6 @@ public class SinglePlayerController implements GameTypeController{
 				panel.showWinner(myTurn);
 				returnToMenu();
 			}			
-		}
-	}
-	
-	private void opponentMove(){
-		while(myTurn == false){
-			Point target = opp.takeMove();
-			System.out.println("Opp Move: " + target);	
-			if(myGrid.dropBomb(target)){
-				checkGameOver();
-				panel.paintImmediately(0, 0, 1280, 720);
-				try {
-					Thread.sleep(500);
-				} catch (InterruptedException e) {}
-			} else {
-				myTurn = true;
-			}
 		}
 	}
 

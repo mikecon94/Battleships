@@ -95,8 +95,8 @@ public class ModerateAI implements AI {
 			//Get the tile in the chosen direction.
 			Point potentialTarget = chooseDirection(direction, centreTile);
 			//Check if it is a valid target (ie. on the grid).
-			if(potentialTarget.x > 0 && potentialTarget.x < oppGrid.getColumns() 
-					&& potentialTarget.y > 0 && potentialTarget.y < oppGrid.getRows()){
+			if(potentialTarget.x >= 0 && potentialTarget.x < oppGrid.getColumns() 
+					&& potentialTarget.y >= 0 && potentialTarget.y < oppGrid.getRows()){
 				System.out.println("Checking Target: " + potentialTarget);
 				//Check the tile hasn't already been bombed.
 				if(oppGrid.getTile(potentialTarget) != GridTile.HIT && oppGrid.getTile(potentialTarget) != GridTile.MISS){
