@@ -43,8 +43,6 @@ public class PlayPanel extends JPanel {
 	private Grid oppGrid;
 	// Client Ships - Left
 	private Ship ships[];
-	private boolean gameOver = false;
-	private boolean iWon;
 	private JButton menuBut;
 	
 	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {

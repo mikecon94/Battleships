@@ -1,7 +1,6 @@
 package com.futuresailors.battleships.view;
 
 import java.awt.Graphics;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;

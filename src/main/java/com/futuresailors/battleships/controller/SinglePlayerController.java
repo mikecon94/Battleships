@@ -4,7 +4,6 @@ import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
-import javax.swing.SwingUtilities;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;

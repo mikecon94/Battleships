@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.net.URL;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
