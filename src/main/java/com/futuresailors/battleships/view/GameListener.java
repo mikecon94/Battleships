@@ -9,6 +9,10 @@ import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.Controller;
 
+/**
+ * This adds the appropriate listeners to the panels.
+ * @author Michael Conroy
+ */
 public class GameListener {
 
 	private Controller controller;

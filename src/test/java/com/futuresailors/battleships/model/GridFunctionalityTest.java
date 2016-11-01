@@ -21,10 +21,19 @@ import junit.framework.TestCase;
 public class GridFunctionalityTest extends TestCase {
 	//Init member variables
 	private boolean x = true;
-	Grid g;
+	private Grid g;
+	private Ship s;
+	private Ship s2;
+	private Ship s3;
+	private Ship s4;
+	private Ship s5;
+	private Ship s6;
+	private Point p;
+	
 	
 	@Before
 	public void setUp(){
+		
 		//Init your objects here etc
 	}
 	
@@ -76,11 +85,110 @@ public class GridFunctionalityTest extends TestCase {
 	@Test
 	public void testNewGridTiles() {
 		g = new Grid (5);
-		for(int i=0; i<g.getColumns();i++){
-			for(int j=0;j<g.getRows();j++){
-				assert (g.getGrid()[i][j] == GridTile.EMPTY);
+		for(int xPoint=0; xPoint<g.getColumns();xPoint++){
+			for(int yPoint=0;yPoint<g.getRows();yPoint++){
+				assert (g.getGrid()[yPoint][xPoint] == GridTile.EMPTY);
+			}
+		}
+	}
+	/**
+	 * Test the method which is responsible for placing ships.
+	 */
+	@Test
+	public void testPlaceShip() {
+		p = new Point(3,4);
+		g = new Grid(10);
+		s = new Ship(1,6, "/images/ships/1.png");
+		g.placeShip(p, s);
+		
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.SHIP);
+			}
+		}
+		
+		p = new Point(0,4);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		g.placeShip(p, s);
+		
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.SHIP);
+			}
+		}
+		
+		p = new Point(9,3);
+		s = new Ship(1,2,"/images/ships/1.png" );
+		g.placeShip(p, s);
+		
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.SHIP);
 			}
 		}
 	}
 	
+	/**
+	 * Tests that when a Tile is hovered over to drop a bomb, the tile state changes to hover.
+	 */
+	@Test
+	public void testHoverDropBomb() {
+		p = new Point(0,4);
+		g = new Grid(10);
+		g.hoverBomb(p);
+		assert(g.getGrid()[p.y][p.x] == GridTile.HOVER);
+		p = new Point(1,4);
+		g.hoverBomb(p);
+		assert(g.getGrid()[4][0] == GridTile.EMPTY);
+	}
+	
+	/**
+	 * Test the hover ship method to make sure that the correct tiles are set to hover
+	 */
+	@Test
+	public void testHoverShip(){
+		p = new Point(0,4);
+		g = new Grid(10);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		g.hoverShip(p, s);
+		System.out.println(8);
+		for(int xPoint=p.x; xPoint<(s.getWidth()+ p.x);xPoint++){
+			for(int yPoint=p.y;yPoint<(s.getHeight() + p.y);yPoint++){
+				assert(g.getGrid()[yPoint][xPoint]== GridTile.HOVER);
+			}
+		}
+	}
+	
+	/**
+	 * Tests that the checking method which determines if a ship has been placed in a valid spot
+	 */
+	@Test
+	public void testCheckInput(){
+		p = new Point(0,10);
+		g = new Grid(10);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		assert(g.checkValidPlace(p, s)==false);
+		
+		p = new Point(0,4);
+		g.placeShip(p, s);
+		s2 = new Ship(1,4,"/images/ships/1.png");
+		assert(g.checkValidPlace(p,s2)==false);
+	}
+	/**
+	 * Tests the drop bomb method to make sure tiles are set to the correct status upon a hit or a miss
+	 */
+	@Test
+	public void testDropBomb(){
+		p = new Point(0,4);
+		g = new Grid(10);
+		s = new Ship(4,1,"/images/ships/1.png" );
+		g.placeShip(p, s);
+		Point t =new Point(7,7);
+		g.dropBomb(p);
+		g.dropBomb(t);
+		assert(g.getGrid()[p.y][p.x]==GridTile.HIT);
+		assert(g.getGrid()[t.y][t.x]==GridTile.MISS);
+	}
+	
 }
+
