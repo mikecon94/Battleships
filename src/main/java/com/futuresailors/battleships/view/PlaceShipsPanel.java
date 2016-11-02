@@ -80,11 +80,12 @@ public class PlaceShipsPanel extends JPanel {
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
 	    ImageIcon gridImage = UIHelper.resizeImage("/images/background1.jpg", WIDTH, HEIGHT);
-        g.drawImage(gridImage.getImage(), 0, 0, this);
-	    g.setFont(new Font("Garamond", Font.PLAIN , 40));
-	    g.setColor(new Color(255, 255, 255));
+        g.drawImage(gridImage.getImage(), 0, 0, this);;
+		g.setFont(new Font("Garamond", Font.BOLD, 50));
+		g.setColor(new Color(255, 17, 0));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
 	    
+	    g.setColor(new Color(255, 255, 255));
 	    g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawGrid(g);
         g.setColor(new Color(255));

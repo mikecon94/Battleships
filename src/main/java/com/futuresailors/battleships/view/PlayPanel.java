@@ -89,10 +89,11 @@ public class PlayPanel extends JPanel {
 		super.paintComponent(g);
 		ImageIcon gridImage = UIHelper.resizeImage("/images/background1.jpg", WIDTH, HEIGHT);
 		g.drawImage(gridImage.getImage(), 0, 0, this);
-		g.setFont(new Font("Garamond", Font.PLAIN, 40));
+		g.setFont(new Font("Garamond", Font.BOLD, 50));
+		g.setColor(new Color(255, 17, 0));
+		g.drawChars("Classic Game".toCharArray(), 0, 12, (WIDTH / 2) - 120, 50);
+		
 		g.setColor(new Color(255, 255, 255));
-		g.drawChars("Lets Play Battleships".toCharArray(), 0, 21, (WIDTH / 2) - 120, 50);
-
 		g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
 		drawMyGrid(g);
 		g.setColor(new Color(0, 0, 0));
