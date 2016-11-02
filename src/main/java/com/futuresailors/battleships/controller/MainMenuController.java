@@ -35,7 +35,10 @@ public class MainMenuController {
 	public void start(){
 		//Create the JFrame
 		setUpWindow();
-		showMenu();
+		//TODO Change this back to the Main Menu Screen
+		//This is set to skip the menu to the multiplayer for development use.
+		MultiPlayerController game = new MultiPlayerController(window);
+		//showMenu();
 	}
 	
 	/**
