@@ -59,9 +59,8 @@ public class MainMenuPanel extends JPanel {
 	    ImageIcon bg = UIHelper.resizeImage("/images/background1.jpg", WIDTH, HEIGHT);
 	    g.drawImage(bg.getImage(), 0, 0, null);
 	    
-	    ImageIcon title = UIHelper.resizeImage("/images/Title.png", 1200, 300);
-	    g.drawImage(title.getImage(), 40, -39, null);
+	    //Draw the title.
+	    ImageIcon title = UIHelper.resizeImage("/images/Title.png", 1100, 150);
+	    g.drawImage(title.getImage(), (WIDTH / 2) - 550, 10, null);
 	}
-	
-	
 }
