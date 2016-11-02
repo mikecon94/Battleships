@@ -56,7 +56,12 @@ public class MainMenuPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-	    ImageIcon bg = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
+	    ImageIcon bg = UIHelper.resizeImage("/images/background1.jpg", WIDTH, HEIGHT);
 	    g.drawImage(bg.getImage(), 0, 0, null);
+	    
+	    ImageIcon title = UIHelper.resizeImage("/images/Title.png", 1200, 300);
+	    g.drawImage(title.getImage(), 40, -39, null);
 	}
+	
+	
 }
