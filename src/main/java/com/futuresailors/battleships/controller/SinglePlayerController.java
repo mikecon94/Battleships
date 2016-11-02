@@ -1,9 +1,12 @@
 package com.futuresailors.battleships.controller;
 
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
+import javax.swing.Timer;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
@@ -15,43 +18,46 @@ import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlayPanel;
 
 /**
- * Controller for the main game in single player mode. This creates the ships for the opponent
- * ,creates the opponents grid and initialises the AI chosen by the player.
+ * Controller for the main game in single player mode. This creates the ships
+ * for the opponent ,creates the opponents grid and initialises the AI chosen by
+ * the player.
+ * 
  * @author Michael Conroy, Joe Baldwin
  */
-public class SinglePlayerController implements GameTypeController{
-	
+public class SinglePlayerController implements GameTypeController {
+
 	private JFrame window;
 	private PlayPanel panel;
-	
+
 	private Ship[] myShips;
 	private Grid myGrid;
-	
+
 	private Ship[] aiShips;
 	private Grid aiGrid;
 	AI opp;
-	
+
 	private boolean gameOver = false;
 	private boolean myTurn = false;
-	
-	public SinglePlayerController(JFrame window){
+
+	public SinglePlayerController(JFrame window) {
 		this.window = window;
-		//TODO Make 10 a configurable for different Grid sizes
+		// TODO Make 10 a configurable for different Grid sizes
 		myGrid = new Grid(10);
 		aiGrid = new Grid(10);
-		//Initialises the ships and defines what ships will be used in this game.
+		// Initialises the ships and defines what ships will be used in this
+		// game.
 		createShips();
 		@SuppressWarnings("unused")
-		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);	
+		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}
-	
+
 	/**
 	 * Defines the ships that will be used in this game.
 	 */
-	private void createShips(){
-		//TODO make the ships a configurable.
+	private void createShips() {
+		// TODO make the ships a configurable.
 		myShips = new Ship[5];
-		
+
 		myShips[0] = new Ship(5, 1, "/images/ships/horizontal/1.png");
 		myShips[1] = new Ship(4, 1, "/images/ships/horizontal/2.png");
 		myShips[2] = new Ship(3, 1, "/images/ships/horizontal/3.png");
@@ -65,32 +71,32 @@ public class SinglePlayerController implements GameTypeController{
 		aiShips[3] = new Ship(3, 1, "/images/ships/horizontal/5.png");
 		aiShips[4] = new Ship(2, 1, "/images/ships/horizontal/5.png");
 	}
-	
-	public void startGame(){
+
+	public void startGame() {
 		myGrid.clearHoverTiles();
 		aiGrid.clearHoverTiles();
-		//Creates AI and tells it to place the ships
-		//These needs changing later to accomodate each level AI
+		// Creates AI and tells it to place the ships
+		// These needs changing later to accomodate each level AI
 		opp = new ModerateAI(aiGrid, myGrid, aiShips);
 		opp.placeShips();
 		chooseFirstPlayer();
-		addGamePanel();	
-		if(myTurn == false){
-			opponentMove();
+		addGamePanel();
+		if (myTurn == false) {
+			opponentMove(0);
 		}
 	}
-	
+
 	/**
 	 * Randomly chooses which player will go first.
 	 */
-	private void chooseFirstPlayer(){
+	private void chooseFirstPlayer() {
 		myTurn = ThreadLocalRandom.current().nextBoolean();
 	}
-	
+
 	/**
 	 * Creates the single player panel
 	 */
-	private void addGamePanel(){
+	private void addGamePanel() {
 		window.getContentPane().removeAll();
 		panel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, aiGrid, myShips);
 		window.add(panel);
@@ -98,74 +104,95 @@ public class SinglePlayerController implements GameTypeController{
 		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
 	}
-	
+
 	@Override
 	public void returnToMenu() {
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
-		//TODO Display a JOptionPane asking if the user is sure they wish to return to the menu.
+		// TODO Display a JOptionPane asking if the user is sure they wish to
+		// return to the menu.
 	}
 
 	@Override
 	public void mouseClicked(Point pos) {
-		if(!gameOver){
-			//Hover the tile if it is the users turn and the mouse is over the AIs grid.
+		if (!gameOver) {
+			// Hover the tile if it is the users turn and the mouse is over the
+			// AIs grid.
 			Point gridPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
-			if(myTurn && panel.overGridSpace(pos.x, pos.y) 
-					&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
+			if (myTurn && panel.overGridSpace(pos.x, pos.y) && aiGrid.getTile(gridPos) != GridTile.MISS
+					&& aiGrid.getTile(gridPos) != GridTile.HIT) {
 				System.out.println("My Move: " + gridPos);
-				if(aiGrid.dropBomb(gridPos)){
+				if (aiGrid.dropBomb(gridPos)) {
 					checkGameOver();
 					panel.repaint();
 				} else {
 					myTurn = false;
 					aiGrid.clearHoverTiles();
-					panel.paintImmediately(0, 0, 1280, 720);
-					opponentMove();
+					panel.repaint();
+					opponentMove(0);
 				}
 			}
 		}
 	}
-	
-	private void opponentMove(){
-		while(myTurn == false){
-			Point target = opp.takeMove();
+
+	private void opponentMove(int moveNum){
+		//Don't delay the AIs move on their first go (ie. only after they hit something).
+		if(moveNum > 0){
+			//Add an artificial delay to prevent the AI appearing to drop a load of bombs at once if it hits a ship.
+			Timer timer = new Timer(500, new ActionListener() {
+			    @Override
+			    public void actionPerformed(ActionEvent arg0) {
+			    	Point target = opp.takeMove();
+					System.out.println("Opp Move: " + target);
+					if(myGrid.dropBomb(target)){
+						checkGameOver();
+						panel.repaint();
+						opponentMove(moveNum + 1);
+					} else {
+						panel.repaint();
+						myTurn = true;
+					}
+			    }
+			});
+			timer.setRepeats(false);
+			timer.start();
+		} else {
+	    	Point target = opp.takeMove();
 			System.out.println("Opp Move: " + target);
 			if(myGrid.dropBomb(target)){
 				checkGameOver();
-				try {
-					Thread.sleep(250);
-				} catch (InterruptedException e) {}
-				panel.paintImmediately(0, 0, 1280, 720);
+				panel.repaint();
+		    	opponentMove(moveNum + 1);
 			} else {
+				panel.repaint();
 				myTurn = true;
 			}
-			panel.repaint();
 		}
 	}
 	
-	private void checkGameOver(){
-		if(myTurn){
-			if(aiGrid.checkGameOver()){
+	private void checkGameOver() {
+		if (myTurn) {
+			if (aiGrid.checkGameOver()) {
 				System.out.println("Game Over: Player Wins.");
 				gameOver = true;
 				panel.showWinner(myTurn);
 				returnToMenu();
 			}
 		} else {
-			if(myGrid.checkGameOver()){
+			if (myGrid.checkGameOver()) {
 				System.out.println("Game Over: AI Wins.");
 				gameOver = true;
 				panel.showWinner(myTurn);
 				returnToMenu();
-			}			
+			}
 		}
 	}
 
 	@Override
 	public void mouseMoved(Point pos) {
-		//Hover the tile if it is the users turn and the mouse is over the AIs grid.
-		if(!gameOver && myTurn && panel.overGridSpace(pos.x, pos.y)){
+		// Hover the tile if it is the users turn and the mouse is over the AIs
+		// grid.
+		if (!gameOver && myTurn && panel.overGridSpace(pos.x, pos.y)) {
 			aiGrid.hoverBomb(new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y)));
 		} else {
 			aiGrid.clearHoverTiles();
