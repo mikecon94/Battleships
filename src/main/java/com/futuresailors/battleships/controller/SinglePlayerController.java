@@ -113,13 +113,14 @@ public class SinglePlayerController implements GameTypeController{
 			Point gridPos = new Point(panel.getTileXUnderMouse(pos.x), panel.getTileYUnderMouse(pos.y));
 			if(myTurn && panel.overGridSpace(pos.x, pos.y) 
 					&& aiGrid.getTile(gridPos) != GridTile.MISS && aiGrid.getTile(gridPos) != GridTile.HIT){
+				System.out.println("My Move: " + gridPos);
 				if(aiGrid.dropBomb(gridPos)){
 					checkGameOver();
 					panel.repaint();
 				} else {
 					myTurn = false;
 					aiGrid.clearHoverTiles();
-					panel.repaint();
+					panel.paintImmediately(0, 0, 1280, 720);
 					opponentMove();
 				}
 			}
@@ -133,12 +134,13 @@ public class SinglePlayerController implements GameTypeController{
 			if(myGrid.dropBomb(target)){
 				checkGameOver();
 				try {
-					Thread.sleep(400);
+					Thread.sleep(250);
 				} catch (InterruptedException e) {}
 				panel.paintImmediately(0, 0, 1280, 720);
 			} else {
 				myTurn = true;
 			}
+			panel.repaint();
 		}
 	}
 	

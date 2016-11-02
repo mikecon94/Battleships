@@ -71,7 +71,6 @@ public class ModerateAI implements AI {
 					Point target = getTargetFromHit(checkHit);
 					//If this isn't -1 then a valid tile has been found.
 					if(target.x != -1){
-						System.out.println("Found Target");
 						return target;
 					}
 				}
@@ -97,7 +96,6 @@ public class ModerateAI implements AI {
 			//Check if it is a valid target (ie. on the grid).
 			if(potentialTarget.x >= 0 && potentialTarget.x < oppGrid.getColumns() 
 					&& potentialTarget.y >= 0 && potentialTarget.y < oppGrid.getRows()){
-				System.out.println("Checking Target: " + potentialTarget);
 				//Check the tile hasn't already been bombed.
 				if(oppGrid.getTile(potentialTarget) != GridTile.HIT && oppGrid.getTile(potentialTarget) != GridTile.MISS){
 					//Return this tile as it is next to a tile that has been hit.
