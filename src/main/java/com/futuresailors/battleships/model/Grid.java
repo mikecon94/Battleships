@@ -17,16 +17,6 @@ public class Grid {
 		createNewGrid();
 	}
 	
-	public boolean dropBomb(Point target){
-		if(grid[target.y][target.x] == GridTile.SHIP || grid[target.y][target.x] == GridTile.HOVERSHIP){
-			grid[target.y][target.x] = GridTile.HIT;
-			return true;
-		} else {
-			grid[target.y][target.x] = GridTile.MISS;
-			return false;
-		}
-	}
-	
 	public Grid(int size){
 		//Create grid with given sizes.
 		//Use default if size is less than 5 or greater than 30.
@@ -37,6 +27,16 @@ public class Grid {
 			grid = new GridTile[size][size];
 		}
 		createNewGrid();
+	}
+	
+	public boolean dropBomb(Point target){
+		if(grid[target.y][target.x] == GridTile.SHIP || grid[target.y][target.x] == GridTile.HOVERSHIP){
+			grid[target.y][target.x] = GridTile.HIT;
+			return true;
+		} else {
+			grid[target.y][target.x] = GridTile.MISS;
+			return false;
+		}
 	}
 	
 	/**
@@ -181,10 +181,5 @@ public class Grid {
 			}
 		}
 		ship.placeShip(pos);
-	}
-	
-	//TODO Bomb.
-	public void bomb(Point pos){
-		//Update the grid to represent that this cell has been bombed and return true if there was a ship there.
 	}
 }

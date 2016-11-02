@@ -44,8 +44,7 @@ public class SinglePlayerController implements GameTypeController {
 		// TODO Make 10 a configurable for different Grid sizes
 		myGrid = new Grid(10);
 		aiGrid = new Grid(10);
-		// Initialises the ships and defines what ships will be used in this
-		// game.
+		// Initialises the ships and defines what ships will be used in this game.
 		createShips();
 		@SuppressWarnings("unused")
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
