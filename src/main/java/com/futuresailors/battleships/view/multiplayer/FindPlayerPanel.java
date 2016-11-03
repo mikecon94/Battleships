@@ -1,4 +1,4 @@
-package com.futuresailors.battleships.view;
+package com.futuresailors.battleships.view.multiplayer;
 
 import java.awt.Color;
 import java.awt.Font;
@@ -9,8 +9,6 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.model.Grid;
-import com.futuresailors.battleships.model.Ship;
 
 public class FindPlayerPanel extends JPanel{
 
@@ -44,5 +42,4 @@ public class FindPlayerPanel extends JPanel{
 		g.setColor(new Color(255, 17, 0));
 	    g.drawChars("Find Player".toCharArray(), 0, 11, (WIDTH / 2) - 120, 50);
 	}
-	
 }

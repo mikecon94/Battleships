@@ -1,4 +1,4 @@
-package com.futuresailors.battleships.view;
+package com.futuresailors.battleships.view.multiplayer;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;

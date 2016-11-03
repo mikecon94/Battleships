@@ -5,13 +5,14 @@ import java.awt.Point;
 import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.view.FindPlayerPanel;
 import com.futuresailors.battleships.view.GameListener;
+import com.futuresailors.battleships.view.multiplayer.FindPlayerPanel;
+import com.futuresailors.battleships.view.multiplayer.HostClientPanel;
 
 public class MultiPlayerController implements GameTypeController{
 
 	private JFrame window;
-	private FindPlayerPanel panel;
+	private HostClientPanel panel;
 	
 	public MultiPlayerController(JFrame window){
 		this.window = window;
@@ -20,7 +21,7 @@ public class MultiPlayerController implements GameTypeController{
 	
 	private void addPanel(){
 		window.getContentPane().removeAll();
-		panel = new FindPlayerPanel(UIHelper.getWidth(), UIHelper.getHeight());
+		panel = new HostClientPanel(UIHelper.getWidth(), UIHelper.getHeight());
 		window.add(panel);
 		window.repaint();
 		@SuppressWarnings("unused")
