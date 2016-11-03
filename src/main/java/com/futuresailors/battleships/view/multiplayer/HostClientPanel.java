@@ -58,6 +58,7 @@ public class HostClientPanel extends JPanel{
 	@Override
 	protected void paintComponent(Graphics g) {
 	    super.paintComponent(g);
+
 	    ImageIcon gridImage = UIHelper.resizeImage("/images/background1.jpg", WIDTH, HEIGHT);
         g.drawImage(gridImage.getImage(), 0, 0, this);;
 		g.setFont(new Font("Garamond", Font.BOLD, 50));
@@ -66,6 +67,5 @@ public class HostClientPanel extends JPanel{
 	    
 	    g.setFont(new Font("Garamond", Font.PLAIN, 30));
 	    g.drawChars("Or connect to a server:".toCharArray(), 0, 23, (WIDTH / 2) - 145, HEIGHT / 2);
-	    
 	}
 }
