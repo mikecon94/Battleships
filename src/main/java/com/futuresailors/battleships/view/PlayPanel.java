@@ -147,12 +147,18 @@ public class PlayPanel extends JPanel {
 					//g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.HIT){
 					//TODO Draw the Bomb image.
-					g.setColor(new Color(222, 21, 21));
-					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
+					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
+				    g.drawImage(hit.getImage(),GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+				    
+					//g.setColor(new Color(222, 21, 21));
+					//g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
 				} else if (oppGrid.getTile(pos) == GridTile.MISS){
 					//TODO Draw the Miss image.
-					g.setColor(new Color(0, 191, 255));
-					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
+					ImageIcon miss = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
+				    g.drawImage(miss.getImage(),GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+				    
+					//g.setColor(new Color(0, 191, 255));
+					//g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);					
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
@@ -176,10 +182,17 @@ public class PlayPanel extends JPanel {
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (grid.getTile(pos) == GridTile.HIT){
 					//TODO Draw the Bomb image.
+					//ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
+				    //g.drawImage(hit.getImage(),GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+					
 					g.setColor(new Color(222, 21, 21));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
 				} else if (grid.getTile(pos) == GridTile.MISS){
 					//TODO Draw the Miss image.
+					//ImageIcon miss = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
+				    //g.drawImage(miss.getImage(),GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+				    
+					
 					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);					
 				}
