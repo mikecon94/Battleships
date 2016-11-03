@@ -6,7 +6,6 @@ import javax.swing.JFrame;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.GameListener;
-import com.futuresailors.battleships.view.multiplayer.FindPlayerPanel;
 import com.futuresailors.battleships.view.multiplayer.HostClientPanel;
 
 public class MultiPlayerController implements GameTypeController{
