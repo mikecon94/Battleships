@@ -17,11 +17,16 @@ public class HostClientPanel extends JPanel{
 	
 	private final int WIDTH;
 	private final int HEIGHT;
+	JTextField ipField;
 	
 	public HostClientPanel(int width, int height){
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		createPanel();
+	}
+	
+	public String getConnectIP(){
+		return ipField.getText();
 	}
 	
 	private void createPanel(){
@@ -42,7 +47,7 @@ public class HostClientPanel extends JPanel{
 		connectBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.30)));
 		connectBut.setLayout(null);
 		
-		JTextField ipField = new JTextField("Enter");
+		ipField = new JTextField("Enter");
 		ipField.setSize(400, 30);
 		ipField.setLocation((WIDTH / 2) - 200, (int) (HEIGHT - (HEIGHT * 0.40)));
 		ipField.setHorizontalAlignment(JTextField.CENTER);
