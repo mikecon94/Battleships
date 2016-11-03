@@ -161,11 +161,10 @@ public class PlayPanel extends JPanel {
 					// (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.HIT) {
 					// TODO Draw the Bomb image.
-					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
-					g.drawImage(hit.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
-					// g.setColor(new Color(222, 21, 21));
-					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y +
-					// (row * tileSize), tileSize, tileSize);
+//					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
+//					g.drawImage(hit.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+					g.setColor(new Color(222, 21, 21));
+					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.MISS) {
 					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
