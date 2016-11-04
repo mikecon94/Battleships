@@ -21,11 +21,11 @@ public class MultiPlayerController implements GameTypeController {
 
 	private JFrame window;
 	private HostClientPanel panel;
-	
-    private Server server;
-    private Kryo kryo;
 
-    public MultiPlayerController(JFrame window) {
+	private Server server;
+	private Kryo kryo;
+
+	public MultiPlayerController(JFrame window) {
 		this.window = window;
 		addPanel();
 	}
@@ -47,7 +47,7 @@ public class MultiPlayerController implements GameTypeController {
 		// Begin the server.
 		// - Only allow one connection
 		initialiseServer();
-		
+
 		// Show the user they are waiting for a connection + the private ip
 		// their friend needs to enter
 		try {
@@ -62,44 +62,45 @@ public class MultiPlayerController implements GameTypeController {
 
 	}
 
-	private void initialiseServer(){
-	    server = new Server();
-	    kryo = server.getKryo();
-	    kryo.register(ConnectionComms.class);
-	    	    
-	    server.start();
-	    try {
+	private void initialiseServer() {
+		server = new Server();
+		kryo = server.getKryo();
+		kryo.register(ConnectionComms.class);
+
+		server.start();
+		try {
 			server.bind(54555, 54777);
 			System.out.println("Server started and listening on ports 54555 & 54777");
-			
-		    server.addListener(new Listener() {
-		    	
-		        public void received (Connection connection, Object object) {
-		        	System.out.println("Connection");
-		        	if (object instanceof Connection) {
-		        		
-		        		ConnectionComms request = (ConnectionComms) object;
-		        		System.out.println("Connection: " + request.text);
-						ConnectionComms response = new ConnectionComms();
-						response.text = "Connected.";
-						connection.sendTCP(response);
-		           }
-		        }
-		     });
+			server.addListener(new Listener() {
+				public void received(Connection connection, Object object) {
+					System.out.println("Server Connection: " + connection.getID());
+					if(connection.getID() == 1){
+						if (object instanceof ConnectionComms) {
+							ConnectionComms request = (ConnectionComms) object;
+							System.out.println("Connection: " + request.text);
+							ConnectionComms response = new ConnectionComms();
+							response.text = "Connected.";
+							connection.sendTCP(response);
+						}
+					} else {
+						connection.close();
+					}
+				}
+			});
 		} catch (IOException e) {
 			System.out.println("Unable to start server");
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void connect() {
 		final Client client = new Client();
 		Kryo kryo = client.getKryo();
 		kryo.register(ConnectionComms.class);
 		ConnectionComms request = new ConnectionComms();
-		
+
 		client.start();
-		
+
 		try {
 			client.connect(5000, panel.getConnectIP(), 54555, 54777);
 		} catch (IOException e) {
@@ -110,18 +111,35 @@ public class MultiPlayerController implements GameTypeController {
 			public void received(Connection connection, Object object) {
 				if (object instanceof ConnectionComms) {
 					ConnectionComms response = (ConnectionComms) object;
-					System.out.println(response.text);
+					System.out.println("Response: " + response.text);
 				}
 			}
 		});
 
-		request.text = "Hello, world!";
-		client.sendTCP(request);
+		new Thread(){
+			public void run(){
+				int count = 0;
+				while(true){
+					request.text = "Hello, world!" + count;
+					client.sendTCP(request);
+					try {
+						Thread.sleep(500);
+						Thread.yield();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					count++;
+				}
+			}
+		}.start();
 	}
 
 	@Override
 	public void returnToMenu() {
-		server.close();
+		if(server != null){
+			server.close();
+		}
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 	}

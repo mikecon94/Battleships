@@ -8,6 +8,7 @@ notifications:
   email: false
   
 #We may want to restrict the CI to certain branches:
-#branches:
-#  only:
-#    dev
+branches:
+  only:
+    - master
+    - dev
