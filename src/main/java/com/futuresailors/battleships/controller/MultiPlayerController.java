@@ -14,8 +14,10 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.multiplayer.ConnectionComms;
+import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.multiplayer.FindPlayerListener;
 import com.futuresailors.battleships.view.multiplayer.HostClientPanel;
+import com.futuresailors.battleships.view.multiplayer.WaitingNetworkPanel;
 
 public class MultiPlayerController implements GameTypeController {
 
@@ -45,13 +47,17 @@ public class MultiPlayerController implements GameTypeController {
 		// etc.
 
 		// Begin the server.
-		// - Only allow one connection
 		initialiseServer();
 
 		// Show the user they are waiting for a connection + the private ip
 		// their friend needs to enter
 		try {
 			InetAddress inet = InetAddress.getLocalHost();
+			WaitingNetworkPanel panel = new WaitingNetworkPanel(inet.getHostName(), UIHelper.getWidth(), UIHelper.getHeight());
+			window.getContentPane().removeAll();
+			GameListener listener = new GameListener(panel, this);
+			window.add(panel);
+			window.repaint();
 			System.out.println(inet.getHostName());
 		} catch (UnknownHostException e) {
 			System.out.println("Unable to get Local Address");
@@ -69,8 +75,9 @@ public class MultiPlayerController implements GameTypeController {
 
 		server.start();
 		try {
-			server.bind(54555, 54777);
-			System.out.println("Server started and listening on ports 54555 & 54777");
+			//These port numbers were chosen as the 16/09/2013 is when we joined Capgemini.
+			server.bind(16913, 16914);
+			System.out.println("Server started and listening on ports 16913 & 16914");
 			server.addListener(new Listener() {
 				public void received(Connection connection, Object object) {
 					System.out.println("Server Connection: " + connection.getID());
@@ -102,7 +109,7 @@ public class MultiPlayerController implements GameTypeController {
 		client.start();
 
 		try {
-			client.connect(5000, panel.getConnectIP(), 54555, 54777);
+			client.connect(5000, panel.getConnectIP(), 16913, 16914);
 		} catch (IOException e) {
 			System.out.println("Exception: " + e);
 		}
