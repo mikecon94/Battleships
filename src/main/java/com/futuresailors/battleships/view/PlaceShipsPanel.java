@@ -119,6 +119,7 @@ public class PlaceShipsPanel extends JPanel {
         g.drawRect(775, 80, 350, 550);
         g.setColor(new Color(0));
         if(currentShip != ships.length){
+    	    g.setFont(new Font("Garamond", Font.PLAIN , 30));
         	g.drawChars("Current Ship:".toCharArray(), 0, 13, 850, 120);
         	ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(), (int) (ships[currentShip].getWidth() * tileSize * 1.2), (int) (ships[currentShip].getHeight() * tileSize * 1.2));
 			//Place the ship in the centre of the current ship space
@@ -129,9 +130,9 @@ public class PlaceShipsPanel extends JPanel {
 	        g.drawImage(rotateImage.getImage(), 915, 550, this);
         } else {
         	grid.clearHoverTiles();
-        	g.drawChars("All Ships Placed".toCharArray(), 0, 16, 810, 120);repaint();
-    	    g.setFont(new Font("Garamond", Font.PLAIN , 20));
-        	g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 825, 250);
+    	    g.setFont(new Font("Garamond", Font.PLAIN , 30));
+        	g.drawChars("All Ships Placed".toCharArray(), 0, 16, 850, 120);repaint();
+        	g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 790, 250);
         }
 	}
 		
