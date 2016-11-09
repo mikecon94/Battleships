@@ -17,7 +17,7 @@ public class WaitingNetworkPanel extends JPanel{
 	
 	private final int WIDTH;
 	private final int HEIGHT;
-	private String hostname = "Your hostname is: ";
+	private String hostname = "Your IP is: ";
 	JTextField ipField;
 	
 	public WaitingNetworkPanel(String hostname, int width, int height){

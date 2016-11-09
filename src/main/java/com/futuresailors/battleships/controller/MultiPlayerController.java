@@ -62,7 +62,7 @@ public class MultiPlayerController implements GameTypeController {
 			initialiseServer();
 			//Grab the machines hostname to display it to the user.
 			InetAddress inet = InetAddress.getLocalHost();
-			WaitingNetworkPanel panel = new WaitingNetworkPanel(inet.getHostName(), UIHelper.getWidth(),
+			WaitingNetworkPanel panel = new WaitingNetworkPanel(inet.getHostAddress(), UIHelper.getWidth(),
 					UIHelper.getHeight());
 			
 			//We don't want this to run if the server can't start.

@@ -47,7 +47,7 @@ public class HostClientPanel extends JPanel{
 		connectBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.30)));
 		connectBut.setLayout(null);
 		
-		ipField = new JTextField("Hostname");
+		ipField = new JTextField("IP Address");
 		ipField.setSize(400, 30);
 		ipField.setLocation((WIDTH / 2) - 200, (int) (HEIGHT - (HEIGHT * 0.40)));
 		ipField.setHorizontalAlignment(JTextField.CENTER);
