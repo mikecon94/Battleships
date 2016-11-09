@@ -34,10 +34,8 @@ public class FindPlayerListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Start Server".equals(e.getActionCommand())){
-			System.out.println("Start Server Clicked.");
 			controller.startServer();
 		} else if("Connect".equals(e.getActionCommand())){
-			System.out.println("Connect Clicked");
 			controller.connect();
 		} else if("Main Menu".equals(e.getActionCommand())){
 			System.out.println("Returning to Main Menu");

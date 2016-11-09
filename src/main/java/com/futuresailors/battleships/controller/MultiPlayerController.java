@@ -12,6 +12,7 @@ import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import com.esotericsoftware.kryonet.Server;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
@@ -80,9 +81,8 @@ public class MultiPlayerController implements GameTypeController {
 		}
 
 		// When someone connects change the panel to the place ships screen.
-		server.addListener(new Listener() {
+		server.addListener(new ThreadedListener(new Listener() {
 			public void received(Connection connection, Object object) {
-				System.out.println("Server Connection: " + connection.getID());
 				if(connection.getID() == 1){
 					if (object instanceof ConnectionComms) {
 						ConnectionComms request = (ConnectionComms) object;
@@ -96,10 +96,17 @@ public class MultiPlayerController implements GameTypeController {
 					connection.close();
 				}
 			}
-		});
+		}));
 	}
 	
 	private void displayPlaceShipsPanel(){
+		if(server != null){
+			ConnectionComms response = new ConnectionComms();
+			System.out.println("Server is sending a message.");
+			response.text = "Server sent this message.";
+			server.sendToTCP(1, response);
+		}
+		
 		window.getContentPane().removeAll();
 		PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myShips);
 		window.add(panel);
@@ -133,20 +140,22 @@ public class MultiPlayerController implements GameTypeController {
 			client.connect(5000, panel.getConnectIP(), 16913, 16914);
 			//If successful take them to the placeships panel.
 		} catch (IOException e) {
-			System.out.println("Exception: " + e);
+			System.out.println("Unable to connect to host: " + e);
+			JOptionPane.showMessageDialog(null, "Are you sure the IP Address is correct?",
+					"Unable to connect to server", JOptionPane.INFORMATION_MESSAGE);
 		}
 
-		client.addListener(new Listener() {
+		client.addListener(new ThreadedListener(new Listener() {
 			public void received(Connection connection, Object object) {
-				System.out.println("Tada");
 				if (object instanceof ConnectionComms) {
 					ConnectionComms response = (ConnectionComms) object;
 					System.out.println("Response: " + response.text);
 					displayPlaceShipsPanel();
 				}
 			}
-		});
-//
+		}));
+		
+		
 //		new Thread() {
 //			public void run() {
 //				int count = 0;
@@ -193,7 +202,6 @@ public class MultiPlayerController implements GameTypeController {
 	}
 	
 	private void createShips() {
-		// TODO make the ships a configurable.
 		myShips = new Ship[5];
 		myShips[0] = new Ship(5, 1, "/images/ships/horizontal/1.png");
 		myShips[1] = new Ship(4, 1, "/images/ships/horizontal/2.png");
