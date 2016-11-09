@@ -101,7 +101,6 @@ public class PlaceShipsController implements Controller{
 	 */
 	public void returnToMenu(){
 		grid.clearHoverTiles();
-		MainMenuController main = new MainMenuController(window);
-		main.showMenu();
+		parentController.returnToMenu();
 	}
 }
