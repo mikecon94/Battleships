@@ -8,7 +8,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.controller.GameTypeMenuController;
-
+/**
+ * Listener for selection of your game type
+ * @author Joe Baldwin
+ */
 public class GameTypeMenuListener implements ActionListener{
 	
 	private GameTypeMenuController controller;

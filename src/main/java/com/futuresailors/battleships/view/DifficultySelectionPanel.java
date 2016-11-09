@@ -7,7 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
-
+/**
+ * Panel for selection of difficulty for the single player games
+ * @author Joe Baldwin
+ */
 public class DifficultySelectionPanel extends JPanel{
 
 	private final int WIDTH;

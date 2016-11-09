@@ -7,7 +7,10 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
-
+/**
+ * Panel for selection of your game type
+ * @author Joe Baldwin
+ */
 public class GameTypeMenuPanel extends JPanel{
 
 	private final int WIDTH;
