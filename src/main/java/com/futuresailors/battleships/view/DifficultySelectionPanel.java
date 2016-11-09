@@ -41,7 +41,7 @@ public class DifficultySelectionPanel extends JPanel{
 		
 		JButton hard = new JButton("Hard");
 		hard.setSize(150, 75);
-		hard.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
+		hard.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
 		add(hard);
 		
 		setName("DifficultySelectionPanel");
