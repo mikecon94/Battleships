@@ -60,10 +60,8 @@ public class MainMenuController {
 	 * Starts the Single Player Game type. It replaces the window panel 
 	 * & instantiates the appropriate controller for that game type.
 	 */
-	public void startSinglePlayer(){
-		System.out.println("BattleShipsController is starting a single player game.");
-		@SuppressWarnings("unused")
-		GameTypeController controller = new SinglePlayerController(window);
+	public void startGameSelection(){
+		GameTypeMenuController controller = new GameTypeMenuController(window);
 	}
 	/**
 	 * Opens the rules panel. It replaces the window and instantiates the

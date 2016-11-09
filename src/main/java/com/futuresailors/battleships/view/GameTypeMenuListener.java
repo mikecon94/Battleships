@@ -7,18 +7,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.futuresailors.battleships.controller.MainMenuController;
+import com.futuresailors.battleships.controller.GameTypeMenuController;
 
-/**
- * Acts as the listener for the Main Menu.
- * @author Michael Conroy
- */
-public class MainMenuListener implements ActionListener{
-
-	private MainMenuController controller;
+public class GameTypeMenuListener implements ActionListener{
+	
+	private GameTypeMenuController controller;
 	private JPanel panel;
 	
-	public MainMenuListener(JPanel panel, MainMenuController controller){
+	public GameTypeMenuListener(JPanel panel, GameTypeMenuController controller){
 		this.controller = controller;
 		this.panel = panel;
 		addListeners();
@@ -44,15 +40,16 @@ public class MainMenuListener implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if("Start Game".equals(e.getActionCommand())){
+		if("Classic".equals(e.getActionCommand())){
 			System.out.println("Start Game Clicked.");
-			controller.startGameSelection();
-		} else if("Rules".equals(e.getActionCommand())){
-			System.out.println("Rules Clicked.");
-			controller.showRules();
-		} else if("Exit Game".equals(e.getActionCommand())){
-			System.out.println("Exit Game Clicked.");
-			controller.exit();
+			controller.startClassicMode();
+		} else if("Reloaded".equals(e.getActionCommand())){
+			System.out.println("Reloaded Mode Clicked");
+			controller.startReloadedMode();
+		} else if("Multiplayer".equals(e.getActionCommand())){
+			System.out.println("Multiplayer Clicked");
+			controller.startMultiplayer();
 		}
 	}
+
 }
