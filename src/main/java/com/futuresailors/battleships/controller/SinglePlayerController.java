@@ -11,10 +11,14 @@ import javax.swing.Timer;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
 import com.futuresailors.battleships.ai.ModerateAI;
+import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
+import com.futuresailors.battleships.view.DifficultySelectionPanel;
+import com.futuresailors.battleships.view.DifficultySelectionPanelListener;
 import com.futuresailors.battleships.view.GameListener;
+import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.PlayPanel;
 
 /**
@@ -46,8 +50,12 @@ public class SinglePlayerController implements GameTypeController {
 		aiGrid = new Grid(10);
 		// Initialises the ships and defines what ships will be used in this game.
 		createShips();
+		window.getContentPane().removeAll();
+		DifficultySelectionPanel diffPanel = new DifficultySelectionPanel(UIHelper.getWidth(), UIHelper.getHeight());
+		window.add(diffPanel);
+		window.repaint();
 		@SuppressWarnings("unused")
-		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
+		DifficultySelectionPanelListener diffListener = new DifficultySelectionPanelListener(diffPanel, this);
 	}
 
 	/**
@@ -74,15 +82,28 @@ public class SinglePlayerController implements GameTypeController {
 	public void startGame() {
 		myGrid.clearHoverTiles();
 		aiGrid.clearHoverTiles();
-		// Creates AI and tells it to place the ships
-		// These needs changing later to accomodate each level AI
-		opp = new ModerateAI(aiGrid, myGrid, aiShips);
 		opp.placeShips();
 		chooseFirstPlayer();
 		addGamePanel();
 		if (myTurn == false) {
 			opponentMove(0);
 		}
+	}
+	
+	public void selectHardMode(){
+		//opp = new AdvancedAI(aiGrid, myGrid, aiShips);
+		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
+	}
+	
+	public void selectModerateMode(){
+		System.out.println("Moderate Mode Chosen");
+		opp = new ModerateAI(aiGrid, myGrid, aiShips);
+		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
+	}
+	
+	public void selectEasyMode(){
+		opp = new SimpleAI(aiGrid, myGrid, aiShips);
+		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}
 
 	/**
