@@ -108,10 +108,10 @@ public class Ship {
 	 * Allows ships to be rotated to either be horizontal or vertical.
 	 */
 	public void rotateShip(){
-		if(imagePath.contains("horizontal")){
-			imagePath = imagePath.replace("horizontal", "vertical");
+		if(imagePath.contains("Horizontal")){
+			imagePath = imagePath.replace("Horizontal", "Vertical");
 		} else {
-			imagePath = imagePath.replace("vertical", "horizontal");
+			imagePath = imagePath.replace("Vertical", "Horizontal");
 		}
 		int tempWidth = width;
 		width = height;
