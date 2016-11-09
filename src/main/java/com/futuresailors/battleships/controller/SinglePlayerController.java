@@ -10,6 +10,7 @@ import javax.swing.Timer;
 
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
+import com.futuresailors.battleships.ai.AdvancedAI;
 import com.futuresailors.battleships.ai.ModerateAI;
 import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
@@ -91,7 +92,7 @@ public class SinglePlayerController implements GameTypeController {
 	}
 	
 	public void selectHardMode(){
-		//opp = new AdvancedAI(aiGrid, myGrid, aiShips);
+		opp = new AdvancedAI(aiGrid, myGrid, aiShips);
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}
 	
