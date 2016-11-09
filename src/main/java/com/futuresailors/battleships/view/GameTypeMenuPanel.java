@@ -39,11 +39,6 @@ public class GameTypeMenuPanel extends JPanel{
 		reloaded.setSize(150, 75);
 		reloaded.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
 		add(reloaded);
-		
-		JButton multiplayer = new JButton("Multiplayer");
-		multiplayer.setSize(150, 75);
-		multiplayer.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
-		add(multiplayer);
 		setName("GameTypeMenuPanel");
 		System.out.println("GameTypeMenuPanel Created.");
 	}

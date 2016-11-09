@@ -34,10 +34,15 @@ public class MainMenuPanel extends JPanel {
 		setLayout(null);
 		setSize(WIDTH, HEIGHT);
 		//JButton startGameBut = UIHelper.createCustomButton("src/main/resources/icon.png", 100, 50);
-		JButton startGameBut = new JButton("Start Game");
-	    startGameBut.setSize(150, 75);
-		startGameBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.65)));
-		add(startGameBut);
+		JButton singleButton = new JButton("Singleplayer");
+	    singleButton.setSize(150, 75);
+		singleButton.setLocation((WIDTH / 2) - 175, (int) (HEIGHT - (HEIGHT * 0.65)));
+		add(singleButton);
+		
+		JButton multiButton = new JButton("Multiplayer");
+	    multiButton.setSize(150, 75);
+		multiButton.setLocation((WIDTH / 2) - 10, (int) (HEIGHT - (HEIGHT * 0.65)));
+		add(multiButton);
 		
 		JButton showRulesBut = new JButton("Rules");
 		showRulesBut.setName("StartGameButton");
