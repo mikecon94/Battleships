@@ -107,7 +107,7 @@ public class MultiPlayerController implements GameTypeController {
 		window.repaint();
 		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
-		System.out.println("Displaying place ships.");
+		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}
 
 	private void initialiseServer() throws IOException {
@@ -196,7 +196,6 @@ public class MultiPlayerController implements GameTypeController {
 	private void createShips() {
 		// TODO make the ships a configurable.
 		myShips = new Ship[5];
-
 		myShips[0] = new Ship(5, 1, "/images/ships/horizontal/1.png");
 		myShips[1] = new Ship(4, 1, "/images/ships/horizontal/2.png");
 		myShips[2] = new Ship(3, 1, "/images/ships/horizontal/3.png");
