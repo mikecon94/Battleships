@@ -13,9 +13,6 @@ public class GameTypeMenuController{
 	private JFrame window;
 	private final String TITLE = "Game Type Selection";
 	
-	public GameTypeMenuController(){
-		window = new JFrame(TITLE);
-	}
 
 	public GameTypeMenuController(JFrame window){
 		this.window = window;
@@ -24,7 +21,6 @@ public class GameTypeMenuController{
 	}
 	
 	public void start(){
-		setUpWindow();
 		showMenu();
 	}
 	
@@ -36,16 +32,7 @@ public class GameTypeMenuController{
 		window.add(GameTypePanel);
 		window.repaint();
 	}
-	
-	private void setUpWindow(){
-		window.setSize(UIHelper.getWidth(), UIHelper.getHeight());
-		window.setLocationRelativeTo(null);
-		window.setResizable(false);
-		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		ImageIcon img = new ImageIcon("src/main/resources/images/background.jpg");
-	    window.setIconImage(img.getImage());   
-		window.setVisible(true);
-	}
+
 
 	public void startReloadedMode() {
 		System.out.println("Reloaded");
@@ -54,11 +41,6 @@ public class GameTypeMenuController{
 
 	public void startClassicMode() {
 		GameTypeController controller = new SinglePlayerController(window);
-		
-	}
-
-	public void startMultiplayer() {
-		// TODO Auto-generated method stub
 		
 	}
 

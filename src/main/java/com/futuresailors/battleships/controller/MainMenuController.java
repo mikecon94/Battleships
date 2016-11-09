@@ -60,6 +60,9 @@ public class MainMenuController {
 	public void startGameSelection(){
 		GameTypeMenuController controller = new GameTypeMenuController(window);
 	}
+	public void startMultiplayer(){
+		//MultiPlayerController game = new MultiPlayerController(window)
+	}
 	/**
 	 * Opens the rules panel. It replaces the window and instantiates the
 	 * correct controller.

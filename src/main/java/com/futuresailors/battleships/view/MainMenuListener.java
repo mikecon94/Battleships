@@ -44,10 +44,13 @@ public class MainMenuListener implements ActionListener{
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		if("Start Game".equals(e.getActionCommand())){
+		if("Singleplayer".equals(e.getActionCommand())){
 			System.out.println("Start Game Clicked.");
 			controller.startGameSelection();
-		} else if("Rules".equals(e.getActionCommand())){
+		}else if("Multiplayer".equals(e.getActionCommand())){
+			System.out.println("Multiplayer Clicked.");
+			controller.startMultiplayer();
+		}else if("Rules".equals(e.getActionCommand())){
 			System.out.println("Rules Clicked.");
 			controller.showRules();
 		} else if("Exit Game".equals(e.getActionCommand())){
