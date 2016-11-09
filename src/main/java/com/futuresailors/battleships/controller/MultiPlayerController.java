@@ -39,7 +39,6 @@ public class MultiPlayerController implements GameTypeController {
 	public MultiPlayerController(JFrame window) {
 		this.window = window;
 		myGrid = new Grid(10);
-		createShips();
 		addPanel();
 	}
 
@@ -100,6 +99,7 @@ public class MultiPlayerController implements GameTypeController {
 	}
 	
 	private void displayPlaceShipsPanel(){
+		createShips();
 		if(server != null){
 			ConnectionComms response = new ConnectionComms();
 			System.out.println("Server is sending a message.");
@@ -203,10 +203,10 @@ public class MultiPlayerController implements GameTypeController {
 	
 	private void createShips() {
 		myShips = new Ship[5];
-		myShips[0] = new Ship(5, 1, "/images/ships/horizontal/1.png");
-		myShips[1] = new Ship(4, 1, "/images/ships/horizontal/2.png");
-		myShips[2] = new Ship(3, 1, "/images/ships/horizontal/3.png");
-		myShips[3] = new Ship(3, 1, "/images/ships/horizontal/5.png");
-		myShips[4] = new Ship(2, 1, "/images/ships/horizontal/5.png");
+		myShips[0] = new Ship(5, 1, "/images/ships/Horizontal/1.png");
+		myShips[1] = new Ship(4, 1, "/images/ships/Horizontal/2.png");
+		myShips[2] = new Ship(3, 1, "/images/ships/Horizontal/3.png");
+		myShips[3] = new Ship(3, 1, "/images/ships/Horizontal/5.png");
+		myShips[4] = new Ship(2, 1, "/images/ships/Horizontal/5.png");
 	}
 }

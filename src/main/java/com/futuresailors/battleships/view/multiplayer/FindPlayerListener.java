@@ -38,7 +38,6 @@ public class FindPlayerListener implements ActionListener{
 		} else if("Connect".equals(e.getActionCommand())){
 			controller.connect();
 		} else if("Main Menu".equals(e.getActionCommand())){
-			System.out.println("Returning to Main Menu");
 			controller.returnToMenu();
 		}
 	}
