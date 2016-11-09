@@ -87,7 +87,7 @@ public class PlayPanel extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		ImageIcon gridImage = UIHelper.resizeImage("/images/background1.jpg", WIDTH, HEIGHT);
+		ImageIcon gridImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
 		g.drawImage(gridImage.getImage(), 0, 0, this);
 		g.setFont(new Font("Garamond", Font.BOLD, 50));
 		g.setColor(new Color(255, 17, 0));
@@ -161,6 +161,11 @@ public class PlayPanel extends JPanel {
 				} else if (oppGrid.getTile(pos) == GridTile.HIT) {
 					g.setColor(new Color(222, 21, 21));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
+					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
+					g.drawImage(hit.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+					// g.setColor(new Color(222, 21, 21));
+					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y +
+					// (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.MISS) {
 					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
@@ -181,14 +186,12 @@ public class PlayPanel extends JPanel {
 					g.setColor(new Color(0, 0, 0));
 					g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (myGrid.getTile(pos) == GridTile.HOVER) {
-					// H is hover.
 					g.setColor(new Color(0, 255, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (myGrid.getTile(pos) == GridTile.SHIP) {
 					g.setColor(new Color(50, 205, 50));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (myGrid.getTile(pos) == GridTile.HIT) {
-					// TODO Draw the Bomb image.
 					g.setColor(new Color(222, 21, 21));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
 				} else if (myGrid.getTile(pos) == GridTile.MISS) {
