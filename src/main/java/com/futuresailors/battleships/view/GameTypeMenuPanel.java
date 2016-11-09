@@ -53,6 +53,4 @@ public class GameTypeMenuPanel extends JPanel{
 //	    ImageIcon title = UIHelper.resizeImage("/images/Title.png", 1100, 150);
 //	    g.drawImage(title.getImage(), (WIDTH / 2) - 550, 10, null);
 	}
-	
-	
 }

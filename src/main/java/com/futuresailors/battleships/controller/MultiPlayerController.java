@@ -32,6 +32,10 @@ public class MultiPlayerController implements GameTypeController {
 	private Server server;
 	private Client client;
 	private Kryo kryo;
+	
+	//This is used to determine whether the user purposefully dropped the connection or not.
+	//It gets set to true when they have and will therefore not alert the user the connection has been dropped.
+	private boolean connectionClosed = false;
 
 	private Ship[] myShips;
 	private Grid myGrid;
@@ -82,6 +86,7 @@ public class MultiPlayerController implements GameTypeController {
 		// When someone connects change the panel to the place ships screen.
 		server.addListener(new ThreadedListener(new Listener() {
 			public void received(Connection connection, Object object) {
+				//We only want one user connecting.
 				if(connection.getID() == 1){
 					if (object instanceof ConnectionComms) {
 						ConnectionComms request = (ConnectionComms) object;
@@ -93,6 +98,14 @@ public class MultiPlayerController implements GameTypeController {
 					}
 				} else {
 					connection.close();
+				}
+			}
+			
+			public void disconnected(Connection connection){
+				if(connection.getID() == 1 && connectionClosed == false){
+					JOptionPane.showMessageDialog(null, "The connection to the opposition has been lost.",
+							"Opponent Disconnected", JOptionPane.INFORMATION_MESSAGE);
+					returnToMenu();
 				}
 			}
 		}));
@@ -151,6 +164,16 @@ public class MultiPlayerController implements GameTypeController {
 					ConnectionComms response = (ConnectionComms) object;
 					System.out.println("Response: " + response.text);
 					displayPlaceShipsPanel();
+				} else {
+					System.out.println("Some packet received: " + object);
+				}
+			}
+			
+			public void disconnected(Connection connection){
+				if(connection.getID() == 1 && connectionClosed == false){
+					JOptionPane.showMessageDialog(null, "The connection to the opposition has been lost.",
+							"Opponent Disconnected", JOptionPane.INFORMATION_MESSAGE);
+					returnToMenu();
 				}
 			}
 		}));
@@ -177,6 +200,7 @@ public class MultiPlayerController implements GameTypeController {
 
 	@Override
 	public void returnToMenu() {
+		connectionClosed = true;
 		if (server != null) {
 			server.close();
 		}

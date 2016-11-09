@@ -1,6 +1,5 @@
 package com.futuresailors.battleships.controller;
 
-import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -10,9 +9,7 @@ import com.futuresailors.battleships.view.GameTypeMenuPanel;
 
 public class GameTypeMenuController{
 	
-	private JFrame window;
-	private final String TITLE = "Game Type Selection";
-	
+	private JFrame window;	
 
 	public GameTypeMenuController(JFrame window){
 		this.window = window;
@@ -33,7 +30,6 @@ public class GameTypeMenuController{
 		window.repaint();
 	}
 
-
 	public void startReloadedMode() {
 		System.out.println("Reloaded");
 		
@@ -43,5 +39,4 @@ public class GameTypeMenuController{
 		GameTypeController controller = new SinglePlayerController(window);
 		
 	}
-
 }
