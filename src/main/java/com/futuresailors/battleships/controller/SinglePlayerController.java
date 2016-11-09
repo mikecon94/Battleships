@@ -19,7 +19,6 @@ import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.DifficultySelectionPanel;
 import com.futuresailors.battleships.view.DifficultySelectionPanelListener;
 import com.futuresailors.battleships.view.GameListener;
-import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.PlayPanel;
 
 /**
@@ -97,7 +96,6 @@ public class SinglePlayerController implements GameTypeController {
 	}
 	
 	public void selectModerateMode(){
-		System.out.println("Moderate Mode Chosen");
 		opp = new ModerateAI(aiGrid, myGrid, aiShips);
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}

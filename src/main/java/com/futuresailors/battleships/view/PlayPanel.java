@@ -20,7 +20,7 @@ import com.futuresailors.battleships.model.Ship;
  * each game mode will create an instance of this panel and control the logic as
  * needed.
  * 
- * @author Joe Baldwin, Michael Conroy
+ * @author Michael Conroy, Joe Baldwin
  */
 public class PlayPanel extends JPanel {
 
@@ -157,10 +157,8 @@ public class PlayPanel extends JPanel {
 				} else if (oppGrid.getTile(pos) == GridTile.SHIP) {
 					// TODO Remove before final game.
 					// g.setColor(new Color(66, 134, 244));
-					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y +
-					// (row * tileSize), tileSize, tileSize);
+					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.HIT) {
-
 					g.setColor(new Color(222, 21, 21));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
 					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
@@ -171,7 +169,6 @@ public class PlayPanel extends JPanel {
 				} else if (oppGrid.getTile(pos) == GridTile.MISS) {
 					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-					
 					ImageIcon miss = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
 					g.drawImage(miss.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
 				}

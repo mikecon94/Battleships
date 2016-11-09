@@ -51,5 +51,4 @@ public class GameTypeMenuListener implements ActionListener{
 			controller.startReloadedMode();
 		}
 	}
-
 }
