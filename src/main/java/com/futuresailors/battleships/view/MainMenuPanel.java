@@ -36,23 +36,23 @@ public class MainMenuPanel extends JPanel {
 		//JButton startGameBut = UIHelper.createCustomButton("src/main/resources/icon.png", 100, 50);
 		JButton singleButton = new JButton("Singleplayer");
 	    singleButton.setSize(150, 75);
-		singleButton.setLocation((WIDTH / 2) - 175, (int) (HEIGHT - (HEIGHT * 0.65)));
+		singleButton.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.75)));
 		add(singleButton);
 		
 		JButton multiButton = new JButton("Multiplayer");
 	    multiButton.setSize(150, 75);
-		multiButton.setLocation((WIDTH / 2) - 10, (int) (HEIGHT - (HEIGHT * 0.65)));
+		multiButton.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.60)));
 		add(multiButton);
 		
 		JButton showRulesBut = new JButton("Rules");
 		showRulesBut.setName("StartGameButton");
 		showRulesBut.setSize(150, 75);
-		showRulesBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
+		showRulesBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.45)));
 		add(showRulesBut);
 		
 		JButton exitBut = new JButton("Exit Game");
 		exitBut.setSize(150, 75);
-		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
+		exitBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.30)));
 		add(exitBut);
 		setName("MainMenuPanel");
 		System.out.println("MainMenuPanel Created.");
