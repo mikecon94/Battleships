@@ -17,11 +17,13 @@ public class WaitingNetworkPanel extends JPanel{
 	
 	private final int WIDTH;
 	private final int HEIGHT;
+	private String hostname = "Your hostname is: ";
 	JTextField ipField;
 	
 	public WaitingNetworkPanel(String hostname, int width, int height){
 		this.WIDTH = width;
 		this.HEIGHT = height;
+		this.hostname += hostname;
 		createPanel();
 	}
 	
@@ -51,7 +53,6 @@ public class WaitingNetworkPanel extends JPanel{
 	    
 	    g.setFont(new Font("Garamond", Font.PLAIN, 30));
 	    g.drawChars("Waiting for a connection".toCharArray(), 0, 24, (WIDTH / 2) - 145, HEIGHT / 2 - 40);
-	    g.drawChars("Your hostname is: ".toCharArray(), 0, 18, (WIDTH / 2) - 145, HEIGHT / 2);
-
+	    g.drawChars(hostname.toCharArray(), 0, hostname.length(), (WIDTH / 2) - 145, HEIGHT / 2);
 	}
 }
