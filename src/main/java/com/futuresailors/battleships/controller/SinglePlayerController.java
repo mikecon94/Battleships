@@ -90,16 +90,19 @@ public class SinglePlayerController implements GameTypeController {
 		}
 	}
 	
+	@SuppressWarnings("unused")
 	public void selectHardMode(){
 		opp = new AdvancedAI(aiGrid, myGrid, aiShips);
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}
 	
+	@SuppressWarnings("unused")
 	public void selectModerateMode(){
 		opp = new ModerateAI(aiGrid, myGrid, aiShips);
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}
 	
+	@SuppressWarnings("unused")
 	public void selectEasyMode(){
 		opp = new SimpleAI(aiGrid, myGrid, aiShips);
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
