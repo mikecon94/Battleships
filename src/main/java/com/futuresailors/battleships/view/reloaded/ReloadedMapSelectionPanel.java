@@ -7,7 +7,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 
 import com.futuresailors.battleships.UIHelper;
-
+/**
+ * This JPanel displays available maps in reloaded mode
+ * @author Joe Baldwin
+ */
+@SuppressWarnings("serial")
 public class ReloadedMapSelectionPanel extends JPanel{
 
 	private final int WIDTH;
