@@ -17,7 +17,7 @@ import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.DifficultySelectionPanel;
-import com.futuresailors.battleships.view.DifficultySelectionPanelListener;
+import com.futuresailors.battleships.view.DifficultySelectionListener;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlayPanel;
 
@@ -55,7 +55,7 @@ public class SinglePlayerController implements GameTypeController {
 		window.add(diffPanel);
 		window.repaint();
 		@SuppressWarnings("unused")
-		DifficultySelectionPanelListener diffListener = new DifficultySelectionPanelListener(diffPanel, this);
+		DifficultySelectionListener diffListener = new DifficultySelectionListener(diffPanel, this);
 	}
 
 	/**

@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -78,7 +79,6 @@ public class PlaceShipsPanel extends JPanel {
 		
 	@Override
 	protected void paintComponent(Graphics g) {
-	    super.paintComponent(g);
 	    ImageIcon gridImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
         g.drawImage(gridImage.getImage(), 0, 0, this);;
 		g.setFont(new Font("Garamond", Font.BOLD, 50));
@@ -94,6 +94,8 @@ public class PlaceShipsPanel extends JPanel {
           
         //Displays what ship is currently being placed.
         drawCurrentShipSpace(g);
+        
+        Toolkit.getDefaultToolkit().sync();
 	}
 	
 	private void drawShips(Graphics g){

@@ -13,12 +13,12 @@ import com.futuresailors.battleships.controller.SinglePlayerController;
  * Listener for selection of difficulty for the single player games
  * @author Joe Baldwin
  */
-public class DifficultySelectionPanelListener implements ActionListener{
+public class DifficultySelectionListener implements ActionListener{
 	
 	private SinglePlayerController controller;
 	private JPanel panel;
 	
-	public DifficultySelectionPanelListener(JPanel panel, SinglePlayerController controller){
+	public DifficultySelectionListener(JPanel panel, SinglePlayerController controller){
 		this.controller = controller;
 		this.panel = panel;
 		addListeners();

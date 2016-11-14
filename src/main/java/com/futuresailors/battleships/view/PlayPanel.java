@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
+import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -86,7 +87,6 @@ public class PlayPanel extends JPanel {
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
 		ImageIcon gridImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
 		g.drawImage(gridImage.getImage(), 0, 0, this);
 		g.setFont(new Font("Garamond", Font.BOLD, 50));
@@ -108,6 +108,8 @@ public class PlayPanel extends JPanel {
 		//Draw bombs - Must be done after drawing ships so the images are on top.
 		drawBombs(myGrid, GRID_X, GRID_Y, g);
 		drawBombs(oppGrid, GRID_2_X, GRID_2_Y, g);
+		
+		Toolkit.getDefaultToolkit().sync();
 	}
 	
 	private void drawBombs(Grid grid, int startX, int startY, Graphics g){
