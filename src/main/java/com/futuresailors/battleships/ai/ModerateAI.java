@@ -1,6 +1,7 @@
 package com.futuresailors.battleships.ai;
 
 import java.awt.Point;
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;
@@ -34,7 +35,13 @@ public class ModerateAI implements AI {
 				pos.x = ThreadLocalRandom.current().nextInt(0, myGrid.getColumns());
 				pos.y = ThreadLocalRandom.current().nextInt(0, myGrid.getRows());
 			} while (myGrid.checkValidPlace(pos, ship) == false);
-			ship.placeShip(pos);
+			Random rand = new Random();
+			if(rand.nextInt(9)%2==0){
+				ship.placeShip(pos);
+			}else{
+				ship.rotateShip();
+				ship.placeShip(pos);
+			}
 			myGrid.placeShip(pos, ship);
 		}
 	}
