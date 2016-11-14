@@ -34,14 +34,11 @@ public class ModerateAI implements AI {
 			do {
 				pos.x = ThreadLocalRandom.current().nextInt(0, myGrid.getColumns());
 				pos.y = ThreadLocalRandom.current().nextInt(0, myGrid.getRows());
+				if(ThreadLocalRandom.current().nextInt(0, 2) == 1){
+					ship.rotateShip();
+				}
 			} while (myGrid.checkValidPlace(pos, ship) == false);
-			Random rand = new Random();
-			if(rand.nextInt(9)%2==0){
-				ship.placeShip(pos);
-			}else{
-				ship.rotateShip();
-				ship.placeShip(pos);
-			}
+			ship.placeShip(pos);
 			myGrid.placeShip(pos, ship);
 		}
 	}
