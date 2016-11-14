@@ -47,12 +47,22 @@ public class PlayPanel extends JPanel {
 	private Ship ships[];
 	private JButton menuBut;
 
+	private final ImageIcon backgroundImage;
+	private final ImageIcon hitImage;
+	private final ImageIcon missImage;
+
 	public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.myGrid = grid1;
 		this.oppGrid = grid2;
 		this.ships = ships;
+		
+		// Will be configurable at a later date.
+		tileSize = 550 / myGrid.getColumns();
+		backgroundImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+		hitImage = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
+		missImage = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
 		myGrid.getRows();
 		createPanel();
 	}
@@ -80,15 +90,12 @@ public class PlayPanel extends JPanel {
 		menuBut.setLocation(10, 10);
 		menuBut.setLayout(null);
 		add(menuBut);
-		// Will be configurable at a later date.
-		tileSize = 550 / myGrid.getColumns();
 		System.out.println("MainPlayPanel Created.");
 	}
 
 	@Override
 	protected void paintComponent(Graphics g) {
-		ImageIcon gridImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
-		g.drawImage(gridImage.getImage(), 0, 0, this);
+		g.drawImage(backgroundImage.getImage(), 0, 0, this);
 		g.setFont(new Font("Garamond", Font.BOLD, 50));
 		g.setColor(new Color(255, 17, 0));
 		g.drawChars("Classic Game".toCharArray(), 0, 12, (WIDTH / 2) - 120, 50);
@@ -105,19 +112,19 @@ public class PlayPanel extends JPanel {
 		g.drawRect(GRID_2_X, GRID_2_Y, GRID_WIDTH, GRID_HEIGHT);
 		// This must be called last as the ships need to be on top of the grid.
 		drawShips(g);
-		//Draw bombs - Must be done after drawing ships so the images are on top.
+		// Draw bombs - Must be done after drawing ships so the images are on
+		// top.
 		drawBombs(myGrid, GRID_X, GRID_Y, g);
 		drawBombs(oppGrid, GRID_2_X, GRID_2_Y, g);
-		
+
 		Toolkit.getDefaultToolkit().sync();
 	}
-	
-	private void drawBombs(Grid grid, int startX, int startY, Graphics g){
+
+	private void drawBombs(Grid grid, int startX, int startY, Graphics g) {
 		for (int row = 0; row < grid.getRows(); row++) {
 			for (int column = 0; column < grid.getColumns(); column++) {
-				if(grid.getTile(new Point(column, row)) == GridTile.HIT){
-					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
-					g.drawImage(hit.getImage(), startX + (column * tileSize), startY + (row * tileSize), null);
+				if (grid.getTile(new Point(column, row)) == GridTile.HIT) {
+					g.drawImage(hitImage.getImage(), startX + (column * tileSize), startY + (row * tileSize), null);
 				}
 			}
 		}
@@ -159,20 +166,20 @@ public class PlayPanel extends JPanel {
 				} else if (oppGrid.getTile(pos) == GridTile.SHIP) {
 					// TODO Remove before final game.
 					// g.setColor(new Color(66, 134, 244));
-					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
+					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y +
+					// (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.HIT) {
 					g.setColor(new Color(222, 21, 21));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-					ImageIcon hit = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
-					g.drawImage(hit.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+					g.drawImage(hitImage.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
 					// g.setColor(new Color(222, 21, 21));
 					// g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y +
 					// (row * tileSize), tileSize, tileSize);
 				} else if (oppGrid.getTile(pos) == GridTile.MISS) {
 					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
-					ImageIcon miss = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
-					g.drawImage(miss.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), null);
+					g.drawImage(missImage.getImage(), GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize),
+							null);
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize, tileSize);
@@ -199,9 +206,7 @@ public class PlayPanel extends JPanel {
 				} else if (myGrid.getTile(pos) == GridTile.MISS) {
 					g.setColor(new Color(0, 191, 255));
 					g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);
-					
-					ImageIcon miss = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
-					g.drawImage(miss.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), null);
+					g.drawImage(missImage.getImage(), GRID_X + (column * tileSize), GRID_Y + (row * tileSize), null);
 				}
 				g.setColor(new Color(0, 0, 0));
 				g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize, tileSize);

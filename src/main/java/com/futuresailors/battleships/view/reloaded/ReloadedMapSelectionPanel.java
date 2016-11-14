@@ -62,7 +62,6 @@ public class ReloadedMapSelectionPanel extends JPanel{
 	
 	@Override
 	protected void paintComponent(Graphics g) {
-		super.paintComponent(g);
 	    ImageIcon bg = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
 	    g.drawImage(bg.getImage(), 0, 0, null);
 	    
