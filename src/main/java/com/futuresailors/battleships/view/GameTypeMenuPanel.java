@@ -13,6 +13,8 @@ import com.futuresailors.battleships.UIHelper;
  */
 public class GameTypeMenuPanel extends JPanel{
 
+	private static final long serialVersionUID = -3329663548441626093L;
+	
 	private final int WIDTH;
 	private final int HEIGHT;
 

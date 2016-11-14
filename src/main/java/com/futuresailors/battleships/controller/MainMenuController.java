@@ -60,9 +60,11 @@ public class MainMenuController {
 	 * & instantiates the appropriate controller for that game type.
 	 */
 	public void startGameSelection(){
+		@SuppressWarnings("unused")
 		GameTypeMenuController controller = new GameTypeMenuController(window);
 	}
 	public void startMultiplayer(){
+		@SuppressWarnings("unused")
 		MultiPlayerController game = new MultiPlayerController(window);
 	}
 	/**

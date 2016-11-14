@@ -25,6 +25,7 @@ public class GameTypeMenuController{
 		window.getContentPane().removeAll();
 		JPanel GameTypePanel = new GameTypeMenuPanel(UIHelper.getWidth(), UIHelper.getHeight());
 		GameTypePanel.setVisible(true);
+		@SuppressWarnings("unused")
 		GameTypeMenuListener menuListener = new GameTypeMenuListener(GameTypePanel, this);
 		window.add(GameTypePanel);
 		window.repaint();
@@ -36,7 +37,7 @@ public class GameTypeMenuController{
 	}
 
 	public void startClassicMode() {
+		@SuppressWarnings("unused")
 		GameTypeController controller = new SinglePlayerController(window);
-		
 	}
 }

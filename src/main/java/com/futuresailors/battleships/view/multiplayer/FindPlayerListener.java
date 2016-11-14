@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.futuresailors.battleships.controller.MainMenuController;
 import com.futuresailors.battleships.controller.MultiPlayerController;
 
 public class FindPlayerListener implements ActionListener{

@@ -110,7 +110,8 @@ public class MultiPlayerController implements GameTypeController {
 			}
 		}));
 	}
-	
+
+	@SuppressWarnings("unused")
 	private void displayPlaceShipsPanel(){
 		createShips();
 		if(server != null){
@@ -124,7 +125,6 @@ public class MultiPlayerController implements GameTypeController {
 		PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myShips);
 		window.add(panel);
 		window.repaint();
-		@SuppressWarnings("unused")
 		GameListener listener = new GameListener(panel, this);
 		PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 	}

@@ -1,7 +1,6 @@
 package com.futuresailors.battleships.ai;
 
 import java.awt.Point;
-import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 import com.futuresailors.battleships.model.Grid;

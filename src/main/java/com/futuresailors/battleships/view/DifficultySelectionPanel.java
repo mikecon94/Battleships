@@ -13,6 +13,8 @@ import com.futuresailors.battleships.UIHelper;
  */
 public class DifficultySelectionPanel extends JPanel{
 
+	private static final long serialVersionUID = 4773467669120329106L;
+
 	private final int WIDTH;
 	private final int HEIGHT;
 

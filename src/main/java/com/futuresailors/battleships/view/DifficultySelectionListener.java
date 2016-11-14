@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.futuresailors.battleships.controller.GameTypeMenuController;
 import com.futuresailors.battleships.controller.SinglePlayerController;
 /**
  * Listener for selection of difficulty for the single player games
