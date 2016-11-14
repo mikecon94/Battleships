@@ -42,6 +42,8 @@ public class SinglePlayerController implements GameTypeController {
 
 	private boolean gameOver = false;
 	private boolean myTurn = false;
+	
+	private Timer timer;
 
 	public SinglePlayerController(JFrame window) {
 		this.window = window;
@@ -129,6 +131,7 @@ public class SinglePlayerController implements GameTypeController {
 
 	@Override
 	public void returnToMenu() {
+		timer.stop();
 		MainMenuController main = new MainMenuController(window);
 		main.showMenu();
 		// TODO Display a JOptionPane asking if the user is sure they wish to
@@ -161,7 +164,7 @@ public class SinglePlayerController implements GameTypeController {
 		//Don't delay the AIs move on their first go (ie. only after they hit something).
 		if(moveNum > 0){
 			//Add an artificial delay to prevent the AI appearing to drop a load of bombs at once if it hits a ship.
-			Timer timer = new Timer(500, new ActionListener() {
+			timer = new Timer(500, new ActionListener() {
 			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
 			    	Point target = opp.takeMove();
