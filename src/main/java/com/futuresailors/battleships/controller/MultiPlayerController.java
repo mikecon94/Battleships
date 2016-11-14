@@ -37,6 +37,9 @@ public class MultiPlayerController implements GameTypeController {
 	//It gets set to true when they have and will therefore not alert the user the connection has been dropped.
 	private boolean connectionClosed = false;
 
+	private boolean oppReady = false;
+	private boolean imReady = false;
+	
 	private Ship[] myShips;
 	private Grid myGrid;
 	
@@ -89,12 +92,19 @@ public class MultiPlayerController implements GameTypeController {
 				//We only want one user connecting.
 				if(connection.getID() == 1){
 					if (object instanceof ConnectionComms) {
-						ConnectionComms request = (ConnectionComms) object;
-						System.out.println("Connection: " + request.text);
-						ConnectionComms response = new ConnectionComms();
-						response.text = "Connected.";
-						connection.sendTCP(response);
-						displayPlaceShipsPanel();
+						ConnectionComms message = (ConnectionComms) object;
+						System.out.println("Message From Client: " + message.text);
+						if(message.text.equals("Connected")){
+							//Reply with the same message so the client knows we have connected.
+							server.sendToTCP(1, message);
+							displayPlaceShipsPanel();	
+						} else if(message.text.equals("Ships placed")){
+							oppReady = true;
+							if(imReady){
+								//Both of us are ready -> move to play panel.
+								System.out.println("Ready to start game");
+							}
+						}
 					}
 				} else {
 					connection.close();
@@ -114,12 +124,6 @@ public class MultiPlayerController implements GameTypeController {
 	@SuppressWarnings("unused")
 	private void displayPlaceShipsPanel(){
 		createShips();
-		if(server != null){
-			ConnectionComms response = new ConnectionComms();
-			System.out.println("Server is sending a message.");
-			response.text = "Server sent this message.";
-			server.sendToTCP(1, response);
-		}
 		
 		window.getContentPane().removeAll();
 		PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, myShips);
@@ -133,7 +137,7 @@ public class MultiPlayerController implements GameTypeController {
 		server = new Server();
 		kryo = server.getKryo();
 		kryo.register(ConnectionComms.class);
-
+		kryo.register(Grid.class);
 		server.start();
 	
 		//These port numbers were chosen as the 16/09/2013 is when we joined Capgemini.
@@ -145,6 +149,7 @@ public class MultiPlayerController implements GameTypeController {
 		client = new Client();
 		Kryo kryo = client.getKryo();
 		kryo.register(ConnectionComms.class);
+		kryo.register(Grid.class);
 		ConnectionComms request = new ConnectionComms();
 
 		client.start();
@@ -161,11 +166,17 @@ public class MultiPlayerController implements GameTypeController {
 		client.addListener(new ThreadedListener(new Listener() {
 			public void received(Connection connection, Object object) {
 				if (object instanceof ConnectionComms) {
-					ConnectionComms response = (ConnectionComms) object;
-					System.out.println("Response: " + response.text);
-					displayPlaceShipsPanel();
-				} else {
-					System.out.println("Some packet received: " + object);
+					ConnectionComms message = (ConnectionComms) object;
+					System.out.println("Message From Server: " + message.text);
+					if(message.text.equals("Connected")){
+						displayPlaceShipsPanel();
+					} else if(message.text.equals("Ships placed")){
+						oppReady = true;
+						if(imReady){
+							//Both of us are ready -> move to play panel.
+							System.out.println("Ready to start game");
+						}
+					}
 				}
 			}
 			
@@ -177,25 +188,9 @@ public class MultiPlayerController implements GameTypeController {
 				}
 			}
 		}));
-		
-		
-//		new Thread() {
-//			public void run() {
-//				int count = 0;
-//				while (true) {
-					request.text = "Display PlaceShips";
-					client.sendTCP(request);
-//					try {
-//						Thread.sleep(500);
-//						Thread.yield();
-//					} catch (InterruptedException e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
-//					count++;
-//				}
-//			}
-//		}.start();
+			
+		request.text = "Connected";
+		client.sendTCP(request);
 	}
 
 	@Override
@@ -223,6 +218,22 @@ public class MultiPlayerController implements GameTypeController {
 
 	@Override
 	public void startGame() {
+		//Check the user hasn't already clicked once.
+		//TODO Update the panel with a message so the user knows they are waiting for the opponent.
+		if(imReady == true){
+			ConnectionComms readyMessage = new ConnectionComms();
+			readyMessage.text = "Ships placed";
+			if(server != null){
+				server.sendToTCP(1, readyMessage);
+			} else if(client != null){
+				client.sendTCP(readyMessage);
+			}
+			
+			//In this case the opposition has already told us that their ships are placed.
+			if(oppReady){
+				System.out.println("Ready To Start Game.");
+			}
+		}
 	}
 	
 	private void createShips() {
