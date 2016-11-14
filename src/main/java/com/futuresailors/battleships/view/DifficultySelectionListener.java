@@ -45,15 +45,11 @@ public class DifficultySelectionListener implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Easy".equals(e.getActionCommand())){
-			System.out.println("Start Game Clicked.");
 			controller.selectEasyMode();
 		} else if("Moderate".equals(e.getActionCommand())){
-			System.out.println("Reloaded Mode Clicked");
 			controller.selectModerateMode();
 		} else if("Hard".equals(e.getActionCommand())){
-			System.out.println("Reloaded Mode Clicked");
 			controller.selectHardMode();
 		}
 	}
-
 }

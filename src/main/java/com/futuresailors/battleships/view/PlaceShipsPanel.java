@@ -35,12 +35,17 @@ public class PlaceShipsPanel extends JPanel {
 	private Grid grid;
 	private int currentShip = 0;
 	private Ship[] ships;
+	
+	private final ImageIcon backgroundImage;
 		
 	public PlaceShipsPanel(int width, int height, Grid grid, Ship[] ships){
 		this.WIDTH = width;
 		this.HEIGHT = height;
 		this.grid = grid;
 		this.ships = ships;
+		
+	    backgroundImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+		
 		grid.getRows();
 		createPanel();
 	}
@@ -53,6 +58,8 @@ public class PlaceShipsPanel extends JPanel {
 	public PlaceShipsPanel(){
 		this.WIDTH = UIHelper.getWidth();
 		this.HEIGHT = UIHelper.getHeight();
+	    backgroundImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+
 		createPanel();
 	}
 	
@@ -79,8 +86,7 @@ public class PlaceShipsPanel extends JPanel {
 		
 	@Override
 	protected void paintComponent(Graphics g) {
-	    ImageIcon gridImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
-        g.drawImage(gridImage.getImage(), 0, 0, this);;
+        g.drawImage(backgroundImage.getImage(), 0, 0, this);;
 		g.setFont(new Font("Garamond", Font.BOLD, 50));
 		g.setColor(new Color(255, 17, 0));
 	    g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
