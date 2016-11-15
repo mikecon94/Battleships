@@ -53,10 +53,13 @@
         <module name="LeftCurly">
             <property name="maxLineLength" value="100"/>
         </module>
-        <module name="RightCurly"/>
+        <module name="RightCurly">
+            <property name="severity" value="warning"/>
+        </module>
         <module name="RightCurly">
             <property name="option" value="alone"/>
             <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT"/>
+            <property name="severity" value="warning"/>
         </module>
         <module name="WhitespaceAround">
             <property name="allowEmptyConstructors" value="true"/>
@@ -96,19 +99,18 @@
              value="Type name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="MemberName">
-            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <property name="format" value="^[a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
              value="Member name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="ParameterName">
-            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <property name="format" value="^[a-zA-Z0-9]*$"/>
             <message key="name.invalidPattern"
              value="Parameter name ''{0}'' must match pattern ''{1}''."/>
         </module>
         <module name="LocalVariableName">
-            <property name="ignoreFinal" value="true"/>
             <property name="tokens" value="VARIABLE_DEF"/>
-            <property name="format" value="^[a-z][a-z0-9][a-zA-Z0-9]*$"/>
+            <property name="format" value="^[a-z0-9][a-zA-Z0-9]*$"/>
             <property name="allowOneCharVarInForLoop" value="true"/>
             <message key="name.invalidPattern"
              value="Local variable name ''{0}'' must match pattern ''{1}''."/>

@@ -1,18 +1,17 @@
 package com.futuresailors.battleships.ai;
 
-import java.awt.Point;
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
 
+import java.awt.Point;
+import java.util.concurrent.ThreadLocalRandom;
+
 //This is a copy of moderate that needs modifying
 
 /**
- * Advanced implementation of the AI. This will randomly hit tiles but once it
- * finds a hit it will keep hitting adjacent tiles until that ship is wiped out.
- * It also places it's ships randomly.
+ * Advanced implementation of the AI. This will randomly hit tiles but once it finds a hit it will
+ * keep hitting adjacent tiles until that ship is wiped out. It also places it's ships randomly.
  * 
  * @author Michael Conroy
  */
@@ -23,10 +22,9 @@ public class AdvancedAI implements AI {
     private Ship[] ships;
 
     /**
-     * @param myGrid
-     *            - The AIs grid where it will place it's ships.
-     * @param oppGrid
-     * @param ships
+     * @param myGrid - The AIs grid where it will place it's ships.
+     * @param oppGrid - The AIs enemies grid where it will drop bombs.
+     * @param ships - The AIs ships it needs to place.
      */
     public AdvancedAI(final Grid myGrid, Grid oppGrid, Ship[] ships) {
         this.myGrid = myGrid;

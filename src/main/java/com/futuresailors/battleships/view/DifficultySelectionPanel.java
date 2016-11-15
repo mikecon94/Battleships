@@ -1,12 +1,12 @@
 package com.futuresailors.battleships.view;
 
+import com.futuresailors.battleships.UIHelper;
+
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import com.futuresailors.battleships.UIHelper;
 
 /**
  * Panel for selection of difficulty for the single player games.
