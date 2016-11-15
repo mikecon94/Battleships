@@ -23,12 +23,12 @@ public class AdvancedAI implements AI {
 
 	public void placeShips() {
 		//Randomly places ships like the Simple AI.
-		Point pos = new Point(0,0);
+		Point pos = new Point(0, 0);
 		for(Ship ship : ships){
 			do {
 				pos.x = ThreadLocalRandom.current().nextInt(0, myGrid.getColumns());
 				pos.y = ThreadLocalRandom.current().nextInt(0, myGrid.getRows());
-			} while (myGrid.checkValidPlace(pos, ship) == false);
+			} while (!myGrid.checkValidPlace(pos, ship));
 			ship.placeShip(pos);
 			myGrid.placeShip(pos, ship);
 		}
