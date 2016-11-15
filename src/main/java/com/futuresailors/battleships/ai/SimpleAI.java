@@ -25,7 +25,6 @@ public class SimpleAI implements AI {
 		this.ships = ships;
 	}
 	
-	@Override
 	public void placeShips() {
 		Point pos = new Point(0,0);
 		for(Ship ship : ships){
@@ -41,7 +40,6 @@ public class SimpleAI implements AI {
 		}
 	}
 	
-	@Override
 	public Point takeMove(){
 		Point target;
 		do {

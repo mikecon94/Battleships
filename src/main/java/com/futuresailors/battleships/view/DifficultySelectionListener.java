@@ -41,7 +41,6 @@ public class DifficultySelectionListener implements ActionListener{
 	 * Detects which button has been clicked and performs the appropriate
 	 * action.
 	 */
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Easy".equals(e.getActionCommand())){
 			controller.selectEasyMode();

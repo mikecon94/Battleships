@@ -21,7 +21,6 @@ public class AdvancedAI implements AI {
 		this.ships = ships;
 	}
 
-	@Override
 	public void placeShips() {
 		//Randomly places ships like the Simple AI.
 		Point pos = new Point(0,0);
@@ -35,7 +34,6 @@ public class AdvancedAI implements AI {
 		}
 	}
 	
-	@Override
 	public Point takeMove(){
 		Point target = new Point(0,0);
 		target.x = ThreadLocalRandom.current().nextInt(0, myGrid.getColumns());

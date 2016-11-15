@@ -110,7 +110,6 @@ public class MultiPlayerController implements GameTypeController {
 					connection.close();
 				}
 			}
-			
 			public void disconnected(Connection connection){
 				if(connection.getID() == 1 && connectionClosed == false){
 					JOptionPane.showMessageDialog(null, "The connection to the opposition has been lost.",
@@ -193,7 +192,6 @@ public class MultiPlayerController implements GameTypeController {
 		client.sendTCP(request);
 	}
 
-	@Override
 	public void returnToMenu() {
 		connectionClosed = true;
 		if (server != null) {
@@ -208,15 +206,12 @@ public class MultiPlayerController implements GameTypeController {
 		main.showMenu();
 	}
 
-	@Override
 	public void mouseClicked(Point pos) {
 	}
 
-	@Override
 	public void mouseMoved(Point pos) {
 	}
 
-	@Override
 	public void startGame() {
 		//Check the user hasn't already clicked once.
 		//TODO Update the panel with a message so the user knows they are waiting for the opponent.

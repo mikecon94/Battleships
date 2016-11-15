@@ -30,7 +30,6 @@ public class FindPlayerListener implements ActionListener{
 		}
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent e) {
 		if("Start Server".equals(e.getActionCommand())){
 			controller.startServer();

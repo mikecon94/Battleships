@@ -42,12 +42,10 @@ public class RulesController implements Controller {
 	/**
 	 * Not used on the RulesController.
 	 */
-	@Override
 	public void mouseClicked(Point pos) {}
 
 	/**
 	 * Not used on the RulesController.
 	 */
-	@Override
 	public void mouseMoved(Point pos) {}
 }

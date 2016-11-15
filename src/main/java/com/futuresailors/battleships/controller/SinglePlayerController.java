@@ -129,7 +129,6 @@ public class SinglePlayerController implements GameTypeController {
 		GameListener listener = new GameListener(panel, this);
 	}
 
-	@Override
 	public void returnToMenu() {
 		timer.stop();
 		MainMenuController main = new MainMenuController(window);
@@ -138,7 +137,6 @@ public class SinglePlayerController implements GameTypeController {
 		// return to the menu.
 	}
 
-	@Override
 	public void mouseClicked(Point pos) {
 		if (!gameOver) {
 			// Hover the tile if it is the users turn and the mouse is over the
@@ -160,12 +158,11 @@ public class SinglePlayerController implements GameTypeController {
 		}
 	}
 
-	private void opponentMove(int moveNum){
+	private void opponentMove(final int moveNum){
 		//Don't delay the AIs move on their first go (ie. only after they hit something).
 		if(moveNum > 0){
 			//Add an artificial delay to prevent the AI appearing to drop a load of bombs at once if it hits a ship.
 			timer = new Timer(500, new ActionListener() {
-			    @Override
 			    public void actionPerformed(ActionEvent arg0) {
 			    	Point target = opp.takeMove();
 					System.out.println("Opp Move: " + target);
@@ -213,7 +210,6 @@ public class SinglePlayerController implements GameTypeController {
 		}
 	}
 
-	@Override
 	public void mouseMoved(Point pos) {
 		// Hover the tile if it is the users turn and the mouse is over the AIs
 		// grid.

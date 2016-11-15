@@ -25,7 +25,6 @@ public class ModerateAI implements AI {
 		this.ships = ships;
 	}
 
-	@Override
 	public void placeShips() {
 		//Randomly places ships like the Simple AI.
 		Point pos = new Point(0,0);
@@ -42,7 +41,6 @@ public class ModerateAI implements AI {
 		}
 	}
 
-	@Override
 	public Point takeMove() {
 		Point target = checkForTarget();
 		if(target.x == -1){

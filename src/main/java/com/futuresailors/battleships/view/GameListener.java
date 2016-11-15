@@ -27,47 +27,31 @@ public class GameListener {
 	private void addListeners(){
 		//0 is the Start Game Button.
 		panel.getComponent(0).addMouseListener(new MouseListener(){
-			@Override
 			public void mouseReleased(MouseEvent e) {
 				//Check which button was clicked:
 				//0 = Start Game
 				controller.returnToMenu();
 			}
-			@Override
 			public void mouseClicked(MouseEvent e) {}
-			@Override
 			public void mouseEntered(MouseEvent e) {}
-			@Override
 			public void mouseExited(MouseEvent e) {}
-			@Override
 			public void mousePressed(MouseEvent e) {}
 		});
 		
 		panel.addMouseListener(new MouseListener(){
-			@Override
 			public void mouseReleased(MouseEvent e) {
 				controller.mouseClicked(new Point(e.getX(), e.getY()));
-			}
-			
-			@Override
+			}			
 			public void mouseClicked(MouseEvent e) {}
-
-			@Override
 			public void mouseEntered(MouseEvent e) {}
-
-			@Override
 			public void mouseExited(MouseEvent e) {}
-			@Override
 			public void mousePressed(MouseEvent e) {}
-
 		});
 		
 		panel.addMouseMotionListener(new MouseMotionListener(){
-			@Override
 			public void mouseMoved(MouseEvent e) {
 				controller.mouseMoved(new Point(e.getX(), e.getY()));
 			}
-			@Override
 			public void mouseDragged(MouseEvent e) {
 			}
 		});
