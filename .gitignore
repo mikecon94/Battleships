@@ -58,6 +58,8 @@ local.properties
 .settings/
 .loadpath
 /src/main/resources/rebel.xml
+eclipse-formatter.xml
+
 # External tool builders
 .externalToolBuilders/
  
