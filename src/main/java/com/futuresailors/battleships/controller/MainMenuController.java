@@ -1,12 +1,12 @@
 package com.futuresailors.battleships.controller;
 
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.MainMenuListener;
 import com.futuresailors.battleships.view.MainMenuPanel;
+
+import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  * The Main/First Game Controller which creates & sets up the JFrame Window. It then creates the

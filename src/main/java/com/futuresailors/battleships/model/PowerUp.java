@@ -1,7 +1,7 @@
 package com.futuresailors.battleships.model;
 
 /**
- * This Interface defines the structure of PowerUps in the game
+ * This Interface defines the structure of PowerUps in the game.
  * 
  * @author Joe Baldwin
  */

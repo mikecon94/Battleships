@@ -1,14 +1,14 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.Point;
-
-import javax.swing.JFrame;
-
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlaceShipsPanel;
+
+import java.awt.Point;
+
+import javax.swing.JFrame;
 
 /**
  * This controller adds a PlaceShipsPanel to the window and is used to allow users to choose the

@@ -1,5 +1,7 @@
 package com.futuresailors.battleships.view;
 
+import com.futuresailors.battleships.UIHelper;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -13,8 +15,6 @@ import javax.swing.JEditorPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.border.LineBorder;
-
-import com.futuresailors.battleships.UIHelper;
 
 /**
  * A JPanel that displays the rules to the users.

@@ -1,5 +1,10 @@
 package com.futuresailors.battleships.view;
 
+import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
+import com.futuresailors.battleships.model.Ship;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -10,11 +15,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.model.Grid;
-import com.futuresailors.battleships.model.GridTile;
-import com.futuresailors.battleships.model.Ship;
 
 /**
  * This is the panel where the main game will be played. The controllers for each game mode will
@@ -43,14 +43,14 @@ public class PlayPanel extends JPanel {
     // Opponent Grid - Right
     private Grid oppGrid;
     // Client Ships - Left
-    private Ship ships[];
+    private Ship[] ships;
     private JButton menuBut;
 
     private final ImageIcon backgroundImage;
     private final ImageIcon hitImage;
     private final ImageIcon missImage;
 
-    public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship ships[]) {
+    public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship[] ships) {
         this.WIDTH = width;
         this.HEIGHT = height;
         this.myGrid = grid1;

@@ -1,13 +1,5 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.util.concurrent.ThreadLocalRandom;
-
-import javax.swing.JFrame;
-import javax.swing.Timer;
-
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.ai.AI;
 import com.futuresailors.battleships.ai.AdvancedAI;
@@ -16,10 +8,18 @@ import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
-import com.futuresailors.battleships.view.DifficultySelectionPanel;
 import com.futuresailors.battleships.view.DifficultySelectionListener;
+import com.futuresailors.battleships.view.DifficultySelectionPanel;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlayPanel;
+
+import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.concurrent.ThreadLocalRandom;
+
+import javax.swing.JFrame;
+import javax.swing.Timer;
 
 /**
  * Controller for the main game in single player mode. This creates the ships for the opponent
@@ -118,7 +118,7 @@ public class SinglePlayerController implements GameTypeController {
     }
 
     /**
-     * Creates the single player panel
+     * Creates the single player panel.
      */
     private void addGamePanel() {
         window.getContentPane().removeAll();

@@ -1,19 +1,5 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.Point;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
-
-import javax.swing.JFrame;
-import javax.swing.JOptionPane;
-
-import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryonet.Client;
-import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.kryonet.Listener.ThreadedListener;
-import com.esotericsoftware.kryonet.Server;
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.Ship;
@@ -23,6 +9,21 @@ import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.multiplayer.FindPlayerListener;
 import com.futuresailors.battleships.view.multiplayer.HostClientPanel;
 import com.futuresailors.battleships.view.multiplayer.WaitingNetworkPanel;
+
+import com.esotericsoftware.kryo.Kryo;
+import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
+import com.esotericsoftware.kryonet.Listener.ThreadedListener;
+import com.esotericsoftware.kryonet.Server;
+
+import java.awt.Point;
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class MultiPlayerController implements GameTypeController {
 

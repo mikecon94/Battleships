@@ -1,11 +1,11 @@
 package com.futuresailors.battleships.ai;
 
-import java.awt.Point;
-import java.util.concurrent.ThreadLocalRandom;
-
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
+
+import java.awt.Point;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * This implementation of the AI Interface is the medium difficulty. It randomly places it's ships
@@ -114,8 +114,8 @@ public class ModerateAI implements AI {
                 // Reset the direction once it's gone round.
                 direction = 0;
             }
-        } while (direction != startDirection); // When we get back to start direction we have check
-                                               // all the surrounding tiles.
+            // When we get back to start direction we have checked all the surrounding tiles.
+        } while (direction != startDirection);
 
         return new Point(-1, -1);
     }
@@ -131,22 +131,22 @@ public class ModerateAI implements AI {
     private Point chooseDirection(int direction, Point centre) {
         Point target = new Point(-1, -1);
         switch (direction) {
-        // 0 - UP
-        case 0:
-            target.setLocation(centre.x, centre.y - 1);
-            break;
-        // 1 - RIGHT
-        case 1:
-            target.setLocation(centre.x + 1, centre.y);
-            break;
-        // 2 - DOWN
-        case 2:
-            target.setLocation(centre.x, centre.y + 1);
-            break;
-        // 3 - LEFT
-        case 3:
-            target.setLocation(centre.x - 1, centre.y);
-            break;
+            // 0 - UP
+            case 0:
+                target.setLocation(centre.x, centre.y - 1);
+                break;
+            // 1 - RIGHT
+            case 1:
+                target.setLocation(centre.x + 1, centre.y);
+                break;
+            // 2 - DOWN
+            case 2:
+                target.setLocation(centre.x, centre.y + 1);
+                break;
+            // 3 - LEFT
+            case 3:
+                target.setLocation(centre.x - 1, centre.y);
+                break;
         }
         return target;
     }

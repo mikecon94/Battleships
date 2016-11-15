@@ -1,5 +1,7 @@
 package com.futuresailors.battleships.view.multiplayer;
 
+import com.futuresailors.battleships.UIHelper;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -8,8 +10,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-
-import com.futuresailors.battleships.UIHelper;
 
 public class WaitingNetworkPanel extends JPanel {
 

@@ -1,12 +1,12 @@
 package com.futuresailors.battleships.controller;
 
-import java.awt.Point;
-
-import javax.swing.JFrame;
-
 import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.RulesPanel;
+
+import java.awt.Point;
+
+import javax.swing.JFrame;
 
 /**
  * Displays the rules to the user from the rules.html resource.

@@ -1,13 +1,13 @@
 package com.futuresailors.battleships.view;
 
+import com.futuresailors.battleships.controller.MainMenuController;
+
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import com.futuresailors.battleships.controller.MainMenuController;
 
 /**
  * Acts as the listener for the Main Menu.

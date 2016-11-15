@@ -1,5 +1,10 @@
 package com.futuresailors.battleships.view;
 
+import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.model.Grid;
+import com.futuresailors.battleships.model.GridTile;
+import com.futuresailors.battleships.model.Ship;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -9,11 +14,6 @@ import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-
-import com.futuresailors.battleships.UIHelper;
-import com.futuresailors.battleships.model.Grid;
-import com.futuresailors.battleships.model.GridTile;
-import com.futuresailors.battleships.model.Ship;
 
 /**
  * The panel that displays the grid and loops through the ships for that game type. Allowing the

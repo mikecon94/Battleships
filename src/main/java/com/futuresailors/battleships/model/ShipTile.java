@@ -19,14 +19,14 @@ public class ShipTile {
     }
 
     /**
-     * @return Returns Tiles position as a Point
+     * @return Returns Tiles position as a Point.
      */
     public Point getPosition() {
         return position;
     }
 
     /**
-     * Allows the position of the tile on the grid to be set
+     * Allows the position of the tile on the grid to be set.
      * 
      * @param position - Tiles position as a point
      */
@@ -34,16 +34,10 @@ public class ShipTile {
         this.position = position;
     }
 
-    /**
-     * @return If Tile has been hit as a boolean
-     */
-    public boolean isHit() {
+    public boolean getHit() {
         return hit;
     }
 
-    /**
-     * Sets the tile as hit
-     */
     public void setHit() {
         this.hit = true;
     }

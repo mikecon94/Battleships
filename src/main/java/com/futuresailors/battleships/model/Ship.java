@@ -17,7 +17,7 @@ public class Ship {
     // Whether the ship has been sunk
     private boolean sunk = false;
     // Tiles the ship occupies
-    private ShipTile tiles[];
+    private ShipTile[] tiles;
     private String imagePath;
     // If the ship has been placed on the board already
     private boolean placed = false;
@@ -36,7 +36,7 @@ public class Ship {
     }
 
     /**
-     * Checks if the opponent scored a hit on a ships tile
+     * Checks if the opponent scored a hit on a ships tile.
      * 
      * @param location - A Point object for the tile location that was hit
      * @return Whether the player has scored a hit as a boolean
@@ -52,7 +52,7 @@ public class Ship {
     }
 
     /**
-     * Checks if any of the tiles have been hit and if they have all been hit returns true
+     * Checks if any of the tiles have been hit and if they have all been hit returns true.
      * 
      * @return Whether ship is sunk as boolean
      */
@@ -60,7 +60,7 @@ public class Ship {
         // Loops through each tile
         for (ShipTile tile : tiles) {
             // If a tile is not hit
-            if (tile.isHit() != true) {
+            if (tile.getHit() != true) {
                 return false;
             }
         }
@@ -70,28 +70,28 @@ public class Ship {
     }
 
     /**
-     * Allows the ship to be marked sunk
+     * Allows the ship to be marked sunk.
      */
     public void sink() {
         sunk = true;
     }
 
     /**
-     * @return If ship is sunk as boolean
+     * @return If ship is sunk as boolean.
      */
     public boolean isSunk() {
         return sunk;
     }
 
     /**
-     * @return If ship is placed as boolean
+     * @return If ship is placed as boolean.
      */
     public boolean getPlaced() {
         return placed;
     }
 
     /**
-     * Initialises the tiles array based on the top left hand tile
+     * Initialises the tiles array based on the top left hand tile.
      * 
      * @param pos - A Point representing the top left hand tile of the ship
      */
@@ -122,44 +122,26 @@ public class Ship {
         height = tempWidth;
     }
 
-    /**
-     * @return Location as Point
-     */
     public Point getPos() {
         return pos;
     }
 
-    /**
-     * @return X as int
-     */
     public int getX() {
         return (int) pos.getX();
     }
 
-    /**
-     * @return Y as int
-     */
     public int getY() {
         return (int) pos.getY();
     }
 
-    /**
-     * @return Width as int
-     */
     public int getWidth() {
         return width;
     }
 
-    /**
-     * @return Height as int
-     */
     public int getHeight() {
         return height;
     }
 
-    /**
-     * @return imagePath as String
-     */
     public String getImagePath() {
         return imagePath;
     }

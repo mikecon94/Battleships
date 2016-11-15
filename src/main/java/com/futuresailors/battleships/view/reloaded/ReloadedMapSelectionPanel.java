@@ -1,15 +1,15 @@
 package com.futuresailors.battleships.view.reloaded;
 
+import com.futuresailors.battleships.UIHelper;
+
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import com.futuresailors.battleships.UIHelper;
-
 /**
- * This JPanel displays available maps in reloaded mode
+ * This JPanel displays available maps in reloaded mode.
  * 
  * @author Joe Baldwin
  */
