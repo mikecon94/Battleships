@@ -90,6 +90,7 @@ public class SinglePlayerController implements GameTypeController {
         if (myTurn == false) {
             opponentMove(0);
         }
+        panel.setMyTurn(myTurn);
     }
 
     @SuppressWarnings("unused")
@@ -150,10 +151,12 @@ public class SinglePlayerController implements GameTypeController {
                     && aiGrid.getTile(gridPos) != GridTile.HIT) {
                 System.out.println("My Move: " + gridPos);
                 if (aiGrid.dropBomb(gridPos)) {
+                    panel.setMyTurn(myTurn);
                     checkGameOver();
                     panel.repaint();
                 } else {
                     myTurn = false;
+                    panel.setMyTurn(myTurn);
                     aiGrid.clearHoverTiles();
                     panel.repaint();
                     opponentMove(0);
@@ -163,6 +166,8 @@ public class SinglePlayerController implements GameTypeController {
     }
 
     private void opponentMove(final int moveNum) {
+        panel.setMyTurn(myTurn);
+        panel.repaint();
         // Don't delay the AIs move on their first go (ie. only after they hit something).
         if (moveNum > 0) {
             // Add an artificial delay to prevent the AI appearing to drop a load of bombs at once
@@ -175,11 +180,13 @@ public class SinglePlayerController implements GameTypeController {
                     System.out.println("Opp Move: " + target);
                     if (myGrid.dropBomb(target)) {
                         checkGameOver();
+                        panel.setMyTurn(myTurn);
                         panel.repaint();
                         opponentMove(moveNum + 1);
                     } else {
-                        panel.repaint();
                         myTurn = true;
+                        panel.setMyTurn(myTurn);
+                        panel.repaint();
                     }
                 }
             });
@@ -189,12 +196,14 @@ public class SinglePlayerController implements GameTypeController {
             Point target = opp.takeMove();
             System.out.println("Opp Move: " + target);
             if (myGrid.dropBomb(target)) {
+                panel.setMyTurn(myTurn);
                 checkGameOver();
                 panel.repaint();
                 opponentMove(moveNum + 1);
             } else {
-                panel.repaint();
                 myTurn = true;
+                panel.setMyTurn(myTurn);
+                panel.repaint();
             }
         }
     }

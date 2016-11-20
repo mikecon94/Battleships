@@ -44,7 +44,10 @@ public class PlayPanel extends JPanel {
     private Grid oppGrid;
     // Client Ships - Left
     private Ship[] ships;
+    //Menu Button
     private JButton menuBut;
+    //To display the turn graphically
+    private boolean myTurn;
 
     private final ImageIcon backgroundImage;
     private final ImageIcon hitImage;
@@ -99,7 +102,16 @@ public class PlayPanel extends JPanel {
         g.setFont(new Font("Garamond", Font.BOLD, 50));
         g.setColor(new Color(255, 17, 0));
         g.drawChars("Classic Game".toCharArray(), 0, 12, (WIDTH / 2) - 120, 50);
-
+        //Draw outline on my turn
+        if (myTurn == false) {
+            g.setColor(new Color(255, 17, 0));
+            g.fillRect(GRID_X - 10,GRID_Y - 10,GRID_WIDTH + 20,GRID_HEIGHT + 20);
+        } else {
+            g.setColor(new Color(0, 174, 255));
+            g.fillRect(GRID_2_X - 10,GRID_2_Y - 10, GRID_WIDTH + 20, GRID_HEIGHT + 20);
+        }
+        
+        
         g.setColor(new Color(255, 255, 255));
         g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawMyGrid(g);
@@ -130,6 +142,8 @@ public class PlayPanel extends JPanel {
             }
         }
     }
+    
+
 
     private void drawShips(Graphics g) {
         for (Ship ship : ships) {
@@ -238,5 +252,13 @@ public class PlayPanel extends JPanel {
                         tileSize);
             }
         }
+    }
+
+    public boolean isMyTurn() {
+        return myTurn;
+    }
+
+    public void setMyTurn(boolean myTurn) {
+        this.myTurn = myTurn;
     }
 }
