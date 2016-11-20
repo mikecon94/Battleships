@@ -169,8 +169,8 @@ public class SinglePlayerController implements GameTypeController {
         if (moveNum > 0) {
             // Add an artificial delay to prevent the AI appearing to drop a load of bombs at once
             // if it hits a ship.
-            //TODO Update this so it is initialised only once instead of every time it's the 
-            //opponents move.
+            // TODO Update this so it is initialised only once instead of every time it's the
+            // opponents move.
             timer = new Timer(500, new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
                     Point target = opp.takeMove();
@@ -212,13 +212,11 @@ public class SinglePlayerController implements GameTypeController {
                 panel.showWinner(myTurn);
                 returnToMenu();
             }
-        } else {
-            if (myGrid.checkGameOver()) {
-                System.out.println("Game Over: AI Wins.");
-                gameOver = true;
-                panel.showWinner(myTurn);
-                returnToMenu();
-            }
+        } else if (myGrid.checkGameOver()) {
+            System.out.println("Game Over: AI Wins.");
+            gameOver = true;
+            panel.showWinner(myTurn);
+            returnToMenu();
         }
     }
 

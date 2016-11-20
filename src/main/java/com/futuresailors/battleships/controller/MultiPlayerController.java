@@ -126,7 +126,7 @@ public class MultiPlayerController implements GameTypeController {
                             playPanel.setMyGrid(myGrid);
                             playPanel.repaint();
                             checkGameOver();
-                        } else if (started) { 
+                        } else if (started) {
                             // Initialises the opponents grid.
                             // May change this into a wrapper object containing the grid, ships and
                             // Whether the turn is over.
@@ -267,7 +267,8 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     public void mouseClicked(Point pos) {
-        if (started && !gameOver && myTurn && playPanel.overGridSpace(pos.x, pos.y)) {
+        if (started && gridsInitialised && !gameOver && myTurn
+                && playPanel.overGridSpace(pos.x, pos.y)) {
 
             Point gridPos = new Point(playPanel.getTileXUnderMouse(pos.x),
                     playPanel.getTileYUnderMouse(pos.y));
@@ -281,7 +282,7 @@ public class MultiPlayerController implements GameTypeController {
                     } else if (client != null) {
                         client.sendTCP(oppGrid);
                     }
-
+                    checkGameOver();
                     playPanel.repaint();
                 } else {
                     myTurn = false;
@@ -371,13 +372,11 @@ public class MultiPlayerController implements GameTypeController {
                 playPanel.showWinner(myTurn);
                 returnToMenu();
             }
-        } else {
-            if (myGrid.checkGameOver()) {
-                System.out.println("Game Over: Opponent Wins.");
-                gameOver = true;
-                playPanel.showWinner(myTurn);
-                returnToMenu();
-            }
+        } else if (myGrid.checkGameOver()) {
+            System.out.println("Game Over: Opponent Wins.");
+            gameOver = true;
+            playPanel.showWinner(myTurn);
+            returnToMenu();
         }
     }
 
