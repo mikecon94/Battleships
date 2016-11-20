@@ -130,7 +130,9 @@ public class SinglePlayerController implements GameTypeController {
     }
 
     public void returnToMenu() {
-        timer.stop();
+        if (timer != null && timer.isRunning()) {
+            timer.stop();
+        }
         MainMenuController main = new MainMenuController(window);
         main.showMenu();
         // TODO Display a JOptionPane asking if the user is sure they wish to
@@ -165,6 +167,8 @@ public class SinglePlayerController implements GameTypeController {
         if (moveNum > 0) {
             // Add an artificial delay to prevent the AI appearing to drop a load of bombs at once
             // if it hits a ship.
+            //TODO Update this so it is initialised only once instead of every time it's the 
+            //opponents move.
             timer = new Timer(500, new ActionListener() {
                 public void actionPerformed(ActionEvent arg0) {
                     Point target = opp.takeMove();
