@@ -100,7 +100,8 @@ public class MainMenuController {
         window.setResizable(false);
         // End the program on close.
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        ImageIcon img = new ImageIcon("/images/background.jpg");
+        ImageIcon img = new ImageIcon(
+                MainMenuController.class.getResource("/images/background.jpg"));
         window.setIconImage(img.getImage());
         window.setVisible(true);
     }
