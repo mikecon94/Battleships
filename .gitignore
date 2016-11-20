@@ -71,3 +71,5 @@ eclipse-formatter.xml
  
 # PDT-specific
 .buildpath
+
+.checkstyle
