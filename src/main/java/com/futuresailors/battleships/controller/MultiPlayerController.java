@@ -33,7 +33,7 @@ public class MultiPlayerController implements GameTypeController {
     private JFrame window;
     private HostClientPanel connectPanel;
     private PlayPanel playPanel;
-    
+
     private Server server;
     private Client client;
     private Kryo kryo;
@@ -46,7 +46,8 @@ public class MultiPlayerController implements GameTypeController {
     private boolean oppReady = false;
     private boolean imReady = false;
     private boolean started = false;
-    
+    private boolean gameOver = false;
+
     private boolean myTurn = false;
 
     private Ship[] myShips;
@@ -96,7 +97,6 @@ public class MultiPlayerController implements GameTypeController {
                     "Unable to start server", JOptionPane.INFORMATION_MESSAGE);
         }
 
-        // When someone connects change the panel to the place ships screen.
         server.addListener(new ThreadedListener(new Listener() {
             public void received(Connection connection, Object object) {
                 // We only want one user connecting.
@@ -106,6 +106,7 @@ public class MultiPlayerController implements GameTypeController {
                         if (message.connected) {
                             // Reply with the same message so the client knows we have connected.
                             server.sendToTCP(1, message);
+                            // When someone connects change the panel to the place ships screen.
                             displayPlaceShipsPanel();
                         } else if (message.shipsPlaced) {
                             oppReady = true;
@@ -202,8 +203,8 @@ public class MultiPlayerController implements GameTypeController {
                         }
                     }
                 } else if (started && object instanceof Grid) {
-                    //May change this into a wrapper object containing the grid, ships and
-                    //Whether the turn is over.
+                    // May change this into a wrapper object containing the grid, ships and
+                    // Whether the turn is over.
                     oppGrid = (Grid) object;
                     playPanel.setOppGrid(oppGrid);
                     System.out.println("Client has received opps grid.");
@@ -242,6 +243,14 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     public void mouseMoved(Point pos) {
+        if (started && myTurn && !gameOver && playPanel.overGridSpace(pos.x, pos.y)) {
+            oppGrid.hoverBomb(new Point(playPanel.getTileXUnderMouse(pos.x),
+                    playPanel.getTileYUnderMouse(pos.y)));
+        } else {
+            oppGrid.clearHoverTiles();
+        }
+
+        playPanel.repaint();
     }
 
     public void startGame() {
