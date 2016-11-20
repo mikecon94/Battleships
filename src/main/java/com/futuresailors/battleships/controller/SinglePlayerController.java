@@ -119,7 +119,7 @@ public class SinglePlayerController implements GameTypeController {
     }
 
     /**
-     * Creates the single player panel.
+     * Creates the game panel.
      */
     private void addGamePanel() {
         window.getContentPane().removeAll();

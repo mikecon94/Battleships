@@ -167,6 +167,11 @@ public class PlayPanel extends JPanel {
                     "Loser", JOptionPane.INFORMATION_MESSAGE);
         }
     }
+    
+    public void setOppGrid(Grid grid) {
+        oppGrid = grid;
+        repaint();
+    }
 
     private void drawOppGrid(Graphics g) {
         for (int row = 0; row < oppGrid.getRows(); row++) {
