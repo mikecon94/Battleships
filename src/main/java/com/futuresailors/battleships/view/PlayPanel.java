@@ -153,7 +153,12 @@ public class PlayPanel extends JPanel {
                     "Loser", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-    
+
+    public void setMyGrid(Grid grid) {
+        myGrid = grid;
+        repaint();
+    }
+
     public void setOppGrid(Grid grid) {
         oppGrid = grid;
         repaint();
@@ -176,8 +181,8 @@ public class PlayPanel extends JPanel {
                 } else if (oppGrid.getTile(pos) == GridTile.SHIP) {
                     // TODO Remove before final game.
                     // g.setColor(new Color(66, 134, 244));
-                    // g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y +
-                    // (row * tileSize), tileSize, tileSize);
+                    // g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize),
+                    //          tileSize, tileSize);
                 } else if (oppGrid.getTile(pos) == GridTile.HIT) {
                     g.setColor(new Color(222, 21, 21));
                     g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize),
