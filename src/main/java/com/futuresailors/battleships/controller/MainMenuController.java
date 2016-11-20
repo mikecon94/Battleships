@@ -83,6 +83,7 @@ public class MainMenuController {
      */
     public void exit() {
         window.dispose();
+        System.exit(0);
     }
 
     /**
