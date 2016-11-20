@@ -87,7 +87,6 @@ public class Grid {
      * over.
      * 
      * @param pos - The top left position to represent the ship.
-     * @param ship - The ship currently being placed.
      */
     public void hoverBomb(Point pos) {
         // Clears any tiles that are currently being hovered over.
