@@ -53,7 +53,7 @@ public class GameTypeMenuPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        ImageIcon bg = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+        ImageIcon bg = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         g.drawImage(bg.getImage(), 0, 0, null);
 
         // Draw the title.

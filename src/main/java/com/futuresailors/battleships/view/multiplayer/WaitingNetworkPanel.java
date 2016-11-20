@@ -43,7 +43,7 @@ public class WaitingNetworkPanel extends JPanel {
 
     @Override
     protected void paintComponent(Graphics g) {
-        ImageIcon gridImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+        ImageIcon gridImage = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         g.drawImage(gridImage.getImage(), 0, 0, this);
         ;
         g.setFont(new Font("Garamond", Font.BOLD, 50));

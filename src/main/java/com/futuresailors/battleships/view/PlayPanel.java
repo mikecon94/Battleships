@@ -62,7 +62,7 @@ public class PlayPanel extends JPanel {
 
         // Will be configurable at a later date.
         tileSize = 550 / myGrid.getColumns();
-        backgroundImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+        backgroundImage = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         hitImage = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
         missImage = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
         myGrid.getRows();

@@ -305,13 +305,15 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     public void mouseMoved(Point pos) {
-        if (started && myTurn && !gameOver && playPanel.overGridSpace(pos.x, pos.y)) {
-            oppGrid.hoverBomb(new Point(playPanel.getTileXUnderMouse(pos.x),
-                    playPanel.getTileYUnderMouse(pos.y)));
-            playPanel.repaint();
-        } else {
-            oppGrid.clearHoverTiles();
-            playPanel.repaint();
+        if (started) {
+            if (myTurn && !gameOver && playPanel.overGridSpace(pos.x, pos.y)) {
+                oppGrid.hoverBomb(new Point(playPanel.getTileXUnderMouse(pos.x),
+                        playPanel.getTileYUnderMouse(pos.y)));
+                playPanel.repaint();
+            } else {
+                oppGrid.clearHoverTiles();
+                playPanel.repaint();
+            }
         }
     }
 

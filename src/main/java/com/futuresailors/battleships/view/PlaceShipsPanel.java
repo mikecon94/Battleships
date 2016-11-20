@@ -45,7 +45,7 @@ public class PlaceShipsPanel extends JPanel {
         this.grid = grid;
         this.ships = ships;
 
-        backgroundImage = UIHelper.resizeImage("/images/Background1.jpg", WIDTH, HEIGHT);
+        backgroundImage = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
 
         grid.getRows();
         createPanel();
