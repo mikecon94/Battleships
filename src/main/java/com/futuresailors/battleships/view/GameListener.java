@@ -71,6 +71,7 @@ public class GameListener {
             }
 
             public void mouseDragged(MouseEvent event) {
+                controller.mouseMoved(new Point(event.getX(), event.getY()));
             }
         });
     }
