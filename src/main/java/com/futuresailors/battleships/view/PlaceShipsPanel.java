@@ -139,7 +139,6 @@ public class PlaceShipsPanel extends JPanel {
             // Place the ship in the centre of the current ship space
             g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)),
                     80 + (235 - (shipImage.getIconHeight() / 2)), this);
-
             // Draw the rotate button.
             ImageIcon rotateImage = UIHelper.resizeImage("/images/rotate.png", 70, 70);
             g.drawImage(rotateImage.getImage(), 915, 550, this);
@@ -147,8 +146,8 @@ public class PlaceShipsPanel extends JPanel {
             grid.clearHoverTiles();
             g.setFont(new Font("Garamond", Font.PLAIN, 30));
             g.drawChars("All Ships Placed".toCharArray(), 0, 16, 850, 120);
-            repaint();
-            g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 790, 250);
+            g.setFont(new Font("Garamond", Font.PLAIN, 25));
+            g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 800, 250);
         }
     }
 
