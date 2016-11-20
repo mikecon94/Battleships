@@ -116,6 +116,9 @@ public class MultiPlayerController implements GameTypeController {
                                 System.out.println("Ready to start game");
                                 begin();
                             }
+                        } else if (started && !gameOver) {
+                            myTurn = !message.myTurn;
+                            playPanel.setMyTurn(myTurn);
                         }
                     } else if (object instanceof Grid) {
                         if (started && gridsInitialised) {
@@ -123,7 +126,7 @@ public class MultiPlayerController implements GameTypeController {
                             playPanel.setMyGrid(myGrid);
                             playPanel.repaint();
                             checkGameOver();
-                        } else if (started) {
+                        } else if (started) { 
                             // Initialises the opponents grid.
                             // May change this into a wrapper object containing the grid, ships and
                             // Whether the turn is over.
@@ -207,12 +210,15 @@ public class MultiPlayerController implements GameTypeController {
                         displayPlaceShipsPanel();
                     } else if (message.shipsPlaced) {
                         oppReady = true;
-                        myTurn = !message.serversTurn;
+                        myTurn = !message.myTurn;
                         if (imReady) {
                             // Both of us are ready -> move to play panel.
                             System.out.println("Ready to start game");
                             begin();
                         }
+                    } else if (started && !gameOver) {
+                        myTurn = !message.myTurn;
+                        playPanel.setMyTurn(myTurn);
                     }
                 } else if (object instanceof Grid) {
                     if (started && gridsInitialised) {
@@ -270,8 +276,6 @@ public class MultiPlayerController implements GameTypeController {
                     && oppGrid.getTile(gridPos) != GridTile.HIT) {
                 System.out.println("My Move: " + gridPos);
                 if (oppGrid.dropBomb(gridPos)) {
-                    checkGameOver();
-
                     if (server != null) {
                         server.sendToTCP(1, oppGrid);
                     } else if (client != null) {
@@ -283,12 +287,17 @@ public class MultiPlayerController implements GameTypeController {
                     myTurn = false;
                     playPanel.setMyTurn(myTurn);
                     oppGrid.clearHoverTiles();
+                    ConnectionComms setTurn = new ConnectionComms();
+                    setTurn.myTurn = myTurn;
                     if (server != null) {
                         server.sendToTCP(1, oppGrid);
+                        server.sendToTCP(1, setTurn);
                     } else if (client != null) {
                         client.sendTCP(oppGrid);
+                        client.sendTCP(setTurn);
                     }
                     playPanel.repaint();
+                    checkGameOver();
                 }
             }
         }
@@ -317,7 +326,7 @@ public class MultiPlayerController implements GameTypeController {
                 if (server != null) {
                     myTurn = ThreadLocalRandom.current().nextBoolean();
                 }
-                readyMessage.serversTurn = myTurn;
+                readyMessage.myTurn = myTurn;
                 server.sendToTCP(1, readyMessage);
             } else if (client != null) {
                 client.sendTCP(readyMessage);
