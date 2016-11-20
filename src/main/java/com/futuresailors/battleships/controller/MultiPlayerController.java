@@ -47,6 +47,7 @@ public class MultiPlayerController implements GameTypeController {
     private boolean imReady = false;
     private boolean started = false;
     private boolean gameOver = false;
+    private boolean gridsInitialised = false;
 
     private boolean myTurn = false;
 
@@ -117,10 +118,20 @@ public class MultiPlayerController implements GameTypeController {
                             }
                         }
                     } else if (object instanceof Grid) {
-                        oppGrid = (Grid) object;
-                        playPanel.setOppGrid(oppGrid);
-                        System.out.println("Server received opps grid.");
-                        playPanel.repaint();
+                        if (started && gridsInitialised) {
+                            myGrid = (Grid) object;
+                            playPanel.setMyGrid(myGrid);
+                            playPanel.repaint();
+                            checkGameOver();
+                        } else if (started) {
+                            // Initialises the opponents grid.
+                            // May change this into a wrapper object containing the grid, ships and
+                            // Whether the turn is over.
+                            oppGrid = (Grid) object;
+                            playPanel.setOppGrid(oppGrid);
+                            gridsInitialised = true;
+                            System.out.println("Client has received opps grid.");
+                        }
                     }
                 } else {
                     connection.close();
@@ -135,6 +146,7 @@ public class MultiPlayerController implements GameTypeController {
                     returnToMenu();
                 }
             }
+
         }));
     }
 
@@ -202,12 +214,21 @@ public class MultiPlayerController implements GameTypeController {
                             begin();
                         }
                     }
-                } else if (started && object instanceof Grid) {
-                    // May change this into a wrapper object containing the grid, ships and
-                    // Whether the turn is over.
-                    oppGrid = (Grid) object;
-                    playPanel.setOppGrid(oppGrid);
-                    System.out.println("Client has received opps grid.");
+                } else if (object instanceof Grid) {
+                    if (started && gridsInitialised) {
+                        myGrid = (Grid) object;
+                        playPanel.setMyGrid(myGrid);
+                        playPanel.repaint();
+                        checkGameOver();
+                    } else if (started) {
+                        // Initialises the opponents grid.
+                        // May change this into a wrapper object containing the grid, ships and
+                        // Whether the turn is over.
+                        oppGrid = (Grid) object;
+                        playPanel.setOppGrid(oppGrid);
+                        gridsInitialised = true;
+                        System.out.println("Client has received opps grid.");
+                    }
                 }
             }
 
@@ -240,17 +261,47 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     public void mouseClicked(Point pos) {
+        if (started && !gameOver && myTurn && playPanel.overGridSpace(pos.x, pos.y)) {
+
+            Point gridPos = new Point(playPanel.getTileXUnderMouse(pos.x),
+                    playPanel.getTileYUnderMouse(pos.y));
+
+            if (oppGrid.getTile(gridPos) != GridTile.MISS
+                    && oppGrid.getTile(gridPos) != GridTile.HIT) {
+                System.out.println("My Move: " + gridPos);
+                if (oppGrid.dropBomb(gridPos)) {
+                    checkGameOver();
+
+                    if (server != null) {
+                        server.sendToTCP(1, oppGrid);
+                    } else if (client != null) {
+                        client.sendTCP(oppGrid);
+                    }
+
+                    playPanel.repaint();
+                } else {
+                    myTurn = false;
+                    oppGrid.clearHoverTiles();
+                    if (server != null) {
+                        server.sendToTCP(1, oppGrid);
+                    } else if (client != null) {
+                        client.sendTCP(oppGrid);
+                    }
+                    playPanel.repaint();
+                }
+            }
+        }
     }
 
     public void mouseMoved(Point pos) {
         if (started && myTurn && !gameOver && playPanel.overGridSpace(pos.x, pos.y)) {
             oppGrid.hoverBomb(new Point(playPanel.getTileXUnderMouse(pos.x),
                     playPanel.getTileYUnderMouse(pos.y)));
+            playPanel.repaint();
         } else {
             oppGrid.clearHoverTiles();
+            playPanel.repaint();
         }
-
-        playPanel.repaint();
     }
 
     public void startGame() {
@@ -299,6 +350,24 @@ public class MultiPlayerController implements GameTypeController {
         window.repaint();
         @SuppressWarnings("unused")
         GameListener listener = new GameListener(playPanel, this);
+    }
+
+    private void checkGameOver() {
+        if (myTurn) {
+            if (oppGrid.checkGameOver()) {
+                System.out.println("Game Over: Player Wins.");
+                gameOver = true;
+                playPanel.showWinner(myTurn);
+                returnToMenu();
+            }
+        } else {
+            if (myGrid.checkGameOver()) {
+                System.out.println("Game Over: Opponent Wins.");
+                gameOver = true;
+                playPanel.showWinner(myTurn);
+                returnToMenu();
+            }
+        }
     }
 
     private void createShips() {
