@@ -103,12 +103,11 @@ public class MultiPlayerController implements GameTypeController {
                 if (connection.getID() == 1) {
                     if (object instanceof ConnectionComms) {
                         ConnectionComms message = (ConnectionComms) object;
-                        System.out.println("Message From Client: " + message.text);
-                        if (message.text.equals("Connected")) {
+                        if (message.connected) {
                             // Reply with the same message so the client knows we have connected.
                             server.sendToTCP(1, message);
                             displayPlaceShipsPanel();
-                        } else if (message.text.equals("Ships placed")) {
+                        } else if (message.shipsPlaced) {
                             oppReady = true;
                             if (imReady) {
                                 // Both of us are ready -> move to play panel.
@@ -191,10 +190,9 @@ public class MultiPlayerController implements GameTypeController {
             public void received(Connection connection, Object object) {
                 if (object instanceof ConnectionComms) {
                     ConnectionComms message = (ConnectionComms) object;
-                    System.out.println("Message From Server: " + message.text);
-                    if (message.text.equals("Connected")) {
+                    if (message.connected) {
                         displayPlaceShipsPanel();
-                    } else if (message.text.equals("Ships placed")) {
+                    } else if (message.shipsPlaced) {
                         oppReady = true;
                         myTurn = !message.serversTurn;
                         if (imReady) {
@@ -203,7 +201,7 @@ public class MultiPlayerController implements GameTypeController {
                             begin();
                         }
                     }
-                } else if (object instanceof Grid) {
+                } else if (started && object instanceof Grid) {
                     //May change this into a wrapper object containing the grid, ships and
                     //Whether the turn is over.
                     oppGrid = (Grid) object;
@@ -222,7 +220,7 @@ public class MultiPlayerController implements GameTypeController {
             }
         }));
 
-        request.text = "Connected";
+        request.connected = true;
         client.sendTCP(request);
     }
 
@@ -252,7 +250,7 @@ public class MultiPlayerController implements GameTypeController {
         if (imReady != true) {
             imReady = true;
             ConnectionComms readyMessage = new ConnectionComms();
-            readyMessage.text = "Ships placed";
+            readyMessage.shipsPlaced = true;
             if (server != null) {
                 // Server chooses the first player.
                 if (server != null) {
