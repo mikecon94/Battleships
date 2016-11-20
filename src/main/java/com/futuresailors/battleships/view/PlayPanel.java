@@ -102,6 +102,7 @@ public class PlayPanel extends JPanel {
         g.setFont(new Font("Garamond", Font.BOLD, 50));
         g.setColor(new Color(255, 17, 0));
         g.drawChars("Classic Game".toCharArray(), 0, 12, (WIDTH / 2) - 120, 50);
+        
         //Draw outline on my turn
         if (myTurn == false) {
             g.setColor(new Color(255, 17, 0));
@@ -110,7 +111,6 @@ public class PlayPanel extends JPanel {
             g.setColor(new Color(0, 174, 255));
             g.fillRect(GRID_2_X - 10,GRID_2_Y - 10, GRID_WIDTH + 20, GRID_HEIGHT + 20);
         }
-        
         
         g.setColor(new Color(255, 255, 255));
         g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
@@ -143,8 +143,6 @@ public class PlayPanel extends JPanel {
         }
     }
     
-
-
     private void drawShips(Graphics g) {
         for (Ship ship : ships) {
             if (ship.getPlaced()) {
@@ -253,11 +251,7 @@ public class PlayPanel extends JPanel {
             }
         }
     }
-
-    public boolean isMyTurn() {
-        return myTurn;
-    }
-
+    
     public void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;
     }

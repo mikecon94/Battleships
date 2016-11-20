@@ -281,6 +281,7 @@ public class MultiPlayerController implements GameTypeController {
                     playPanel.repaint();
                 } else {
                     myTurn = false;
+                    playPanel.setMyTurn(myTurn);
                     oppGrid.clearHoverTiles();
                     if (server != null) {
                         server.sendToTCP(1, oppGrid);
@@ -332,6 +333,7 @@ public class MultiPlayerController implements GameTypeController {
 
     private void begin() {
         addGamePanel();
+        playPanel.setMyTurn(myTurn);
         started = true;
         if (server != null) {
             server.sendToTCP(1, myGrid);
