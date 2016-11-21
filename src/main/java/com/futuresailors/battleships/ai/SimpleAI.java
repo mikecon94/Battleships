@@ -24,7 +24,7 @@ public class SimpleAI implements AI {
         this.oppGrid = oppGrid;
         this.ships = ships;
     }
-
+    
     public void placeShips() {
         Point pos = new Point(0, 0);
         for (Ship ship : ships) {

@@ -10,7 +10,14 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
+import java.io.File;
+import java.io.IOException;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -44,14 +51,19 @@ public class PlayPanel extends JPanel {
     private Grid oppGrid;
     // Client Ships - Left
     private Ship[] ships;
-    //Menu Button
+    // Menu Button
     private JButton menuBut;
-    //To display the turn graphically
+    // To display the turn graphically
     private boolean myTurn;
 
     private final ImageIcon backgroundImage;
     private final ImageIcon hitImage;
     private final ImageIcon missImage;
+
+    private final File missAudio = new File(
+            PlayPanel.class.getResource("/audio/Miss.wav").getFile());
+    private AudioInputStream audioInputStream;
+    private Clip clip;
 
     public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship[] ships) {
         this.WIDTH = width;
@@ -102,16 +114,16 @@ public class PlayPanel extends JPanel {
         g.setFont(new Font("Garamond", Font.BOLD, 50));
         g.setColor(new Color(255, 17, 0));
         g.drawChars("Classic Game".toCharArray(), 0, 12, (WIDTH / 2) - 120, 50);
-        
-        //Draw outline on my turn
+
+        // Draw outline on my turn
         if (myTurn == false) {
             g.setColor(new Color(255, 17, 0));
-            g.fillRect(GRID_X - 10,GRID_Y - 10,GRID_WIDTH + 20,GRID_HEIGHT + 20);
+            g.fillRect(GRID_X - 10, GRID_Y - 10, GRID_WIDTH + 20, GRID_HEIGHT + 20);
         } else {
             g.setColor(new Color(0, 174, 255));
-            g.fillRect(GRID_2_X - 10,GRID_2_Y - 10, GRID_WIDTH + 20, GRID_HEIGHT + 20);
+            g.fillRect(GRID_2_X - 10, GRID_2_Y - 10, GRID_WIDTH + 20, GRID_HEIGHT + 20);
         }
-        
+
         g.setColor(new Color(255, 255, 255));
         g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
         drawMyGrid(g);
@@ -142,7 +154,7 @@ public class PlayPanel extends JPanel {
             }
         }
     }
-    
+
     private void drawShips(Graphics g) {
         for (Ship ship : ships) {
             if (ship.getPlaced()) {
@@ -194,7 +206,7 @@ public class PlayPanel extends JPanel {
                     // TODO Remove before final game.
                     // g.setColor(new Color(66, 134, 244));
                     // g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize),
-                    //          tileSize, tileSize);
+                    // tileSize, tileSize);
                 } else if (oppGrid.getTile(pos) == GridTile.HIT) {
                     g.setColor(new Color(222, 21, 21));
                     g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize),
@@ -251,8 +263,29 @@ public class PlayPanel extends JPanel {
             }
         }
     }
-    
+
     public void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;
+    }
+
+    public void playHitSound() {
+
+    }
+
+    public void playMissSound() {
+        try {
+            audioInputStream = AudioSystem.getAudioInputStream(missAudio);
+            clip = AudioSystem.getClip();
+            clip.open(audioInputStream);
+            clip.start();
+            clip.start();
+
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }
     }
 }
