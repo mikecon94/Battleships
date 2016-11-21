@@ -16,6 +16,7 @@ import java.io.IOException;
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
+import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.ImageIcon;
@@ -277,9 +278,10 @@ public class PlayPanel extends JPanel {
             audioInputStream = AudioSystem.getAudioInputStream(missAudio);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
+            FloatControl gainControl = (FloatControl) clip
+                    .getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-30.0f);
             clip.start();
-            clip.start();
-
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
