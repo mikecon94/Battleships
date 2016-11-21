@@ -2,6 +2,8 @@ package com.futuresailors.battleships.view;
 
 import com.futuresailors.battleships.UIHelper;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
@@ -35,6 +37,12 @@ public class DifficultySelectionPanel extends JPanel {
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);
+        
+        JButton backBut = new JButton("Main Menu");
+        backBut.setSize(100, 50);
+        backBut.setLocation(10, 10);
+        backBut.setLayout(null);
+        add(backBut);
 
         JButton easy = new JButton("Easy");
         easy.setSize(150, 75);
@@ -60,6 +68,10 @@ public class DifficultySelectionPanel extends JPanel {
         ImageIcon bg = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         g.drawImage(bg.getImage(), 0, 0, null);
 
+        g.setFont(new Font("Garamond", Font.BOLD, 50));
+        g.setColor(new Color(255, 17, 0));
+        g.drawChars("Select an AI Level".toCharArray(), 0, 18, (WIDTH / 2) - 180, 50);
+        
         // Draw the title.
         // ImageIcon title = UIHelper.resizeImage("/images/Title.png", 1100,
         // 150);

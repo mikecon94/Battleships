@@ -33,11 +33,17 @@ public class GameTypeMenuController {
 
     public void startReloadedMode() {
         System.out.println("Reloaded");
-
     }
 
     public void startClassicMode() {
         @SuppressWarnings("unused")
         GameTypeController controller = new SinglePlayerController(window);
+    }
+    
+    public void returnToMenu() {
+        MainMenuController main = new MainMenuController(window);
+        main.showMenu();
+        // TODO Display a JOptionPane asking if the user is sure they wish to
+        // return to the menu.
     }
 }

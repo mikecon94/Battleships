@@ -49,6 +49,8 @@ public class DifficultySelectionListener implements ActionListener {
             controller.selectModerateMode();
         } else if ("Hard".equals(event.getActionCommand())) {
             controller.selectHardMode();
+        } else if ("Main Menu".equals(event.getActionCommand())) {
+            controller.returnToMenu();
         }
     }
 }

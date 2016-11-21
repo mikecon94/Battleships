@@ -49,6 +49,8 @@ public class GameTypeMenuListener implements ActionListener {
         } else if ("Reloaded".equals(event.getActionCommand())) {
             System.out.println("Reloaded Mode Clicked");
             controller.startReloadedMode();
+        } else if ("Main Menu".equals(event.getActionCommand())) {
+            controller.returnToMenu();
         }
     }
 }

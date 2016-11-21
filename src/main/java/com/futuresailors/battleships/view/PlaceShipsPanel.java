@@ -88,7 +88,6 @@ public class PlaceShipsPanel extends JPanel {
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(backgroundImage.getImage(), 0, 0, this);
-        ;
         g.setFont(new Font("Garamond", Font.BOLD, 50));
         g.setColor(new Color(255, 17, 0));
         g.drawChars("Place your ships.".toCharArray(), 0, 16, (WIDTH / 2) - 120, 50);
