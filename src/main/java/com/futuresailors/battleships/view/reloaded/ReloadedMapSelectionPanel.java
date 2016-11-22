@@ -2,6 +2,8 @@ package com.futuresailors.battleships.view.reloaded;
 
 import com.futuresailors.battleships.UIHelper;
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 
 import javax.swing.ImageIcon;
@@ -34,6 +36,12 @@ public class ReloadedMapSelectionPanel extends JPanel {
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);
+        
+        JButton backBut = new JButton("Main Menu");
+        backBut.setSize(100, 50);
+        backBut.setLocation(10, 10);
+        backBut.setLayout(null);
+        add(backBut);
 
         // Each button should either be an image of the map or have on above it
         JButton classicMap = new JButton("Classic Map");
@@ -66,5 +74,9 @@ public class ReloadedMapSelectionPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         ImageIcon bg = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         g.drawImage(bg.getImage(), 0, 0, null);
+        
+        g.setFont(new Font("Garamond", Font.BOLD, 50));
+        g.setColor(new Color(255, 17, 0));
+        g.drawChars("Choose A Map".toCharArray(), 0, 12, (WIDTH / 2) - 180, 50);
     }
 }

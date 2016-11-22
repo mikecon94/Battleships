@@ -14,14 +14,13 @@ public class GameTypeMenuController {
     public GameTypeMenuController(JFrame window) {
         this.window = window;
         start();
-        System.out.println("Created window");
     }
 
     public void start() {
         showMenu();
     }
 
-    public void showMenu() {
+    private void showMenu() {
         window.getContentPane().removeAll();
         JPanel gameTypePanel = new GameTypeMenuPanel(UIHelper.getWidth(), UIHelper.getHeight());
         gameTypePanel.setVisible(true);
@@ -32,7 +31,8 @@ public class GameTypeMenuController {
     }
 
     public void startReloadedMode() {
-        System.out.println("Reloaded");
+        @SuppressWarnings("unused")
+        ReloadedMapSelectionController controller = new ReloadedMapSelectionController(window);
     }
 
     public void startClassicMode() {
