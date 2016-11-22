@@ -130,10 +130,10 @@ public class MultiPlayerController implements GameTypeController {
                             // Initialises the opponents grid.
                             // May change this into a wrapper object containing the grid, ships and
                             // Whether the turn is over.
+                            gridsInitialised = true;
                             oppGrid = (Grid) object;
                             playPanel.setOppGrid(oppGrid);
-                            gridsInitialised = true;
-                            System.out.println("Client has received opps grid.");
+                            System.out.println("Server has received opps grid.");
                         }
                     }
                 } else {
@@ -230,9 +230,9 @@ public class MultiPlayerController implements GameTypeController {
                         // Initialises the opponents grid.
                         // May change this into a wrapper object containing the grid, ships and
                         // Whether the turn is over.
+                        gridsInitialised = true;
                         oppGrid = (Grid) object;
                         playPanel.setOppGrid(oppGrid);
-                        gridsInitialised = true;
                         System.out.println("Client has received opps grid.");
                     }
                 }
