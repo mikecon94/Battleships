@@ -10,8 +10,8 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.Toolkit;
-import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
@@ -61,8 +61,7 @@ public class PlayPanel extends JPanel {
     private final ImageIcon hitImage;
     private final ImageIcon missImage;
 
-    private final File missAudio = new File(
-            PlayPanel.class.getResource("/audio/Miss.wav").getFile());
+    private final URL missAudioPath = getClass().getResource("/audio/Miss.wav");
     private AudioInputStream audioInputStream;
     private Clip clip;
 
@@ -275,18 +274,20 @@ public class PlayPanel extends JPanel {
 
     public void playMissSound() {
         try {
-            audioInputStream = AudioSystem.getAudioInputStream(missAudio);
+            audioInputStream = AudioSystem.getAudioInputStream(missAudioPath);
             clip = AudioSystem.getClip();
             clip.open(audioInputStream);
             FloatControl gainControl = (FloatControl) clip
                     .getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-30.0f);
+            clip.stop();
             clip.start();
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (LineUnavailableException e) {
+            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
