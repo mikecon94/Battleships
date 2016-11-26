@@ -38,11 +38,11 @@ public class ReloadedMapSelectionListener implements ActionListener {
      * Detects which button has been clicked and performs the appropriate action.
      */
     public void actionPerformed(ActionEvent event) {
-        if ("Small".equals(event.getActionCommand())) {
+        if ("<html>Small<br/><center>8x8</html>".equals(event.getActionCommand())) {
             controller.startSmallGame();
-        } else if ("Medium".equals(event.getActionCommand())) {
+        } else if ("<html>Medium<br/><center>10x10</html>".equals(event.getActionCommand())) {
             controller.startMediumGame();
-        } else if ("Large".equals(event.getActionCommand())) {
+        } else if ("<html>Large<br/><center>13x13</html>".equals(event.getActionCommand())) {
             controller.startLargeGame();
         } else if ("Main Menu".equals(event.getActionCommand())) {
             controller.returnToMenu();
