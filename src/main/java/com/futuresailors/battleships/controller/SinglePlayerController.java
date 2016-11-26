@@ -44,6 +44,21 @@ public class SinglePlayerController implements GameTypeController {
 
     private Timer timer;
 
+    public SinglePlayerController(JFrame window) {
+        this.window = window;
+        myGrid = new Grid(10);
+        aiGrid = new Grid(10);
+        // Initialises the ships and defines what ships will be used in this game.
+        createShips();
+        window.getContentPane().removeAll();
+        DifficultySelectionPanel diffPanel = new DifficultySelectionPanel(UIHelper.getWidth(),
+                UIHelper.getHeight());
+        window.add(diffPanel);
+        window.repaint();
+        @SuppressWarnings("unused")
+        DifficultySelectionListener diffListener = new DifficultySelectionListener(diffPanel, this);
+    }
+    
     public SinglePlayerController(JFrame window, int gridSize) {
         this.window = window;
         myGrid = new Grid(gridSize);
