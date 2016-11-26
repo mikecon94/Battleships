@@ -43,9 +43,9 @@ public class ReloadedMapSelectionController {
         if (map == "s") {
             System.out.println("Small");
             ReloadedModeController small = new ReloadedModeController(window,5);
-        } else if (map == "m"){
+        } else if (map == "m") {
             ReloadedModeController medium = new ReloadedModeController(window,10);
-        } else if (map == "l"){
+        } else if (map == "l") {
             ReloadedModeController large = new ReloadedModeController(window,15);
         }
     }
