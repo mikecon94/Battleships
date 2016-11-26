@@ -44,11 +44,6 @@ public class ReloadedMapSelectionPanel extends JPanel {
         add(backBut);
 
         // Each button should either be an image of the map or have on above it
-        JButton classicMap = new JButton("Classic Map");
-        classicMap.setSize(150, 75);
-        classicMap.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.85)));
-        add(classicMap);
-
         JButton small = new JButton("Small");
         small.setSize(150, 75);
         small.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.70)));
@@ -63,11 +58,6 @@ public class ReloadedMapSelectionPanel extends JPanel {
         large.setSize(150, 75);
         large.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.40)));
         add(large);
-
-        JButton map1 = new JButton("Map 1");
-        map1.setSize(150, 75);
-        map1.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.25)));
-        add(map1);
     }
 
     @Override

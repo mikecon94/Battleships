@@ -116,7 +116,7 @@ public class PlaceShipsPanel extends JPanel {
         }
     }
 
-    public boolean rotateWasClicked(Point pos) {
+    public boolean checkRotateClicked(Point pos) {
         if (pos.x >= 915 && pos.x <= 985 && pos.y >= 550 && pos.y <= 620) {
             return true;
         }
@@ -132,9 +132,12 @@ public class PlaceShipsPanel extends JPanel {
         if (currentShip != ships.length) {
             g.setFont(new Font("Garamond", Font.PLAIN, 30));
             g.drawChars("Current Ship:".toCharArray(), 0, 13, 850, 120);
-            ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(),
-                    (int) (ships[currentShip].getWidth() * tileSize * 1.2),
-                    (int) (ships[currentShip].getHeight() * tileSize * 1.2));
+            int shipWidth = (int) (ships[currentShip].getWidth() * tileSize * 1.2);
+            int shipHeight = (int) (ships[currentShip].getHeight() * tileSize * 1.2);
+            shipWidth = shipWidth > 345 ? 345 : shipWidth;
+            shipHeight = shipHeight > 370 ? 370 : shipHeight;
+            ImageIcon shipImage = UIHelper.resizeImage(ships[currentShip].getImagePath(), shipWidth,
+                    shipHeight);
             // Place the ship in the centre of the current ship space
             g.drawImage(shipImage.getImage(), 775 + (175 - (shipImage.getIconWidth() / 2)),
                     80 + (235 - (shipImage.getIconHeight() / 2)), this);

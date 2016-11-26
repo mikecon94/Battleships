@@ -72,7 +72,7 @@ public class PlaceShipsController implements Controller {
                     allShipsPlaced = true;
                 }
                 panel.updateCurrentShip(currentShip);
-            } else if (panel.rotateWasClicked(pos)) {
+            } else if (panel.checkRotateClicked(pos)) {
                 ships[currentShip].rotateShip();
                 panel.repaint();
             }

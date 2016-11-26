@@ -44,5 +44,4 @@ public class ReloadedMapSelectionController {
     public void startLargeGame() {
         ReloadedModeController large = new ReloadedModeController(window, 13);
     }
-
 }
