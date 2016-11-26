@@ -27,7 +27,7 @@ public class ReloadedMapSelectionController {
         mapSelectPanel.setVisible(true);
         @SuppressWarnings("unused")
         ReloadedMapSelectionListener menuListener = 
-        new ReloadedMapSelectionListener(mapSelectPanel, this);
+            new ReloadedMapSelectionListener(mapSelectPanel, this);
         window.add(mapSelectPanel);
         window.repaint();
     }
