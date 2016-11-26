@@ -71,10 +71,5 @@ public class DifficultySelectionPanel extends JPanel {
         g.setFont(new Font("Garamond", Font.BOLD, 50));
         g.setColor(new Color(255, 17, 0));
         g.drawChars("Select Difficulty".toCharArray(), 0, 17, (WIDTH / 2) - 170, 50);
-        
-        // Draw the title.
-        // ImageIcon title = UIHelper.resizeImage("/images/Title.png", 1100,
-        // 150);
-        // g.drawImage(title.getImage(), (WIDTH / 2) - 550, 10, null);
     }
 }

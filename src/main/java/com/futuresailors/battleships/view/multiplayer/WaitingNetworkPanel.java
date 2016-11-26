@@ -11,6 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * This panel is displayed to the user after they have started the server. It is a holding screen
+ * so the user knows they need to wait for the connection.
+ * @author Michael Conroy
+ */
 public class WaitingNetworkPanel extends JPanel {
 
     private static final long serialVersionUID = -161318141413754470L;

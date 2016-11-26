@@ -28,6 +28,12 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import com.esotericsoftware.kryonet.Server;
 
+/**
+ * This controller sets up the server and client connection to allow networked multiplayer
+ * to take place. Upon connection it will then begin the game and allow 2 players to play against 
+ * each other.
+ * @author Michael Conroy
+ */
 public class MultiPlayerController implements GameTypeController {
 
     private JFrame window;
