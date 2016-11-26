@@ -39,11 +39,11 @@ public class ReloadedMapSelectionListener implements ActionListener {
      */
     public void actionPerformed(ActionEvent event) {
         if ("Small".equals(event.getActionCommand())) {
-            controller.chooseMap("s");
+            controller.startSmallGame();
         } else if ("Medium".equals(event.getActionCommand())) {
-            controller.chooseMap("m");
+            controller.startMediumGame();
         } else if ("Large".equals(event.getActionCommand())) {
-            controller.chooseMap("l");
+            controller.startLargeGame();
         } else if ("Main Menu".equals(event.getActionCommand())) {
             controller.returnToMenu();
         }
