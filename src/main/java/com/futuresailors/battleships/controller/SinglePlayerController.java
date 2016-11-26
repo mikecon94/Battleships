@@ -44,11 +44,10 @@ public class SinglePlayerController implements GameTypeController {
 
     private Timer timer;
 
-    public SinglePlayerController(JFrame window) {
+    public SinglePlayerController(JFrame window, int gridSize) {
         this.window = window;
-        // TODO Make 10 a configurable for different Grid sizes
-        myGrid = new Grid(10);
-        aiGrid = new Grid(10);
+        myGrid = new Grid(gridSize);
+        aiGrid = new Grid(gridSize);
         // Initialises the ships and defines what ships will be used in this game.
         createShips();
         window.getContentPane().removeAll();

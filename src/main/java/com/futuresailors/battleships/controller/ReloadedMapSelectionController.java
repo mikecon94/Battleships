@@ -1,6 +1,7 @@
 package com.futuresailors.battleships.controller;
 
 import com.futuresailors.battleships.UIHelper;
+import com.futuresailors.battleships.view.reloaded.ReloadedMapSelectionListener;
 import com.futuresailors.battleships.view.reloaded.ReloadedMapSelectionPanel;
 
 import javax.swing.JFrame;
@@ -24,8 +25,8 @@ public class ReloadedMapSelectionController {
         JPanel mapSelectPanel = new ReloadedMapSelectionPanel(UIHelper.getWidth(),
             UIHelper.getHeight());
         mapSelectPanel.setVisible(true);
-        //@SuppressWarnings("unused")
-        //GameTypeMenuListener menuListener = new GameTypeMenuListener(gameTypePanel, this);
+        @SuppressWarnings("unused")
+        ReloadedMapSelectionListener menuListener = new ReloadedMapSelectionListener(mapSelectPanel, this);
         window.add(mapSelectPanel);
         window.repaint();
     }
@@ -38,8 +39,13 @@ public class ReloadedMapSelectionController {
     }
     
     public void chooseMap(String map) {
-        if (map == "1") {
-            //Map map1 = new Map1();
+        if (map == "s") {
+            System.out.println("Small");
+            ReloadedModeController small = new ReloadedModeController(window,5);
+        } else if (map == "m"){
+            ReloadedModeController medium = new ReloadedModeController(window,10);
+        } else if (map == "l"){
+            ReloadedModeController large = new ReloadedModeController(window,15);
         }
     }
 

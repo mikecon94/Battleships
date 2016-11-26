@@ -49,25 +49,25 @@ public class ReloadedMapSelectionPanel extends JPanel {
         classicMap.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.85)));
         add(classicMap);
 
+        JButton small = new JButton("Small");
+        small.setSize(150, 75);
+        small.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.70)));
+        add(small);
+
+        JButton medium = new JButton("Medium");
+        medium.setSize(150, 75);
+        medium.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.55)));
+        add(medium);
+
+        JButton large = new JButton("Large");
+        large.setSize(150, 75);
+        large.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.40)));
+        add(large);
+
         JButton map1 = new JButton("Map 1");
         map1.setSize(150, 75);
-        map1.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.70)));
+        map1.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.25)));
         add(map1);
-
-        JButton map2 = new JButton("Map 2");
-        map2.setSize(150, 75);
-        map2.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.55)));
-        add(map2);
-
-        JButton map3 = new JButton("Map 3");
-        map3.setSize(150, 75);
-        map3.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.40)));
-        add(map3);
-
-        JButton custom = new JButton("Custom Size");
-        custom.setSize(150, 75);
-        custom.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.25)));
-        add(custom);
     }
 
     @Override

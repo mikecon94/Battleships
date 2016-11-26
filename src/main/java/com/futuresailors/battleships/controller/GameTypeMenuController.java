@@ -37,7 +37,7 @@ public class GameTypeMenuController {
 
     public void startClassicMode() {
         @SuppressWarnings("unused")
-        GameTypeController controller = new SinglePlayerController(window);
+        GameTypeController controller = new SinglePlayerController(window, 10);
     }
     
     public void returnToMenu() {
