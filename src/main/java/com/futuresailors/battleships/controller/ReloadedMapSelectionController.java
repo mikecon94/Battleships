@@ -26,7 +26,8 @@ public class ReloadedMapSelectionController {
             UIHelper.getHeight());
         mapSelectPanel.setVisible(true);
         @SuppressWarnings("unused")
-        ReloadedMapSelectionListener menuListener = new ReloadedMapSelectionListener(mapSelectPanel, this);
+        ReloadedMapSelectionListener menuListener = 
+        new ReloadedMapSelectionListener(mapSelectPanel, this);
         window.add(mapSelectPanel);
         window.repaint();
     }
