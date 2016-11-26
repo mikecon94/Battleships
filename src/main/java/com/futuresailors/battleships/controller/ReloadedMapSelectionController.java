@@ -42,11 +42,11 @@ public class ReloadedMapSelectionController {
     public void chooseMap(String map) {
         if (map == "s") {
             System.out.println("Small");
-            ReloadedModeController small = new ReloadedModeController(window,5);
+            ReloadedModeController small = new ReloadedModeController(window,8);
         } else if (map == "m") {
             ReloadedModeController medium = new ReloadedModeController(window,10);
         } else if (map == "l") {
-            ReloadedModeController large = new ReloadedModeController(window,15);
+            ReloadedModeController large = new ReloadedModeController(window,13);
         }
     }
 
