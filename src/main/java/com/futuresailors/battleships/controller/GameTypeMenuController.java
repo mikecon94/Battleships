@@ -6,7 +6,11 @@ import com.futuresailors.battleships.view.GameTypeMenuPanel;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/**
+ * Controller to choose game type
+ * 
+ * @author Joe Baldwin
+ */
 public class GameTypeMenuController {
 
     private JFrame window;

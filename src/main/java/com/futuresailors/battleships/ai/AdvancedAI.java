@@ -7,7 +7,6 @@ import com.futuresailors.battleships.model.Ship;
 import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
-//This is a copy of moderate that needs modifying
 
 /**
  * This is the implementation of the Hard difficulty. When placing it's ship it will try to place

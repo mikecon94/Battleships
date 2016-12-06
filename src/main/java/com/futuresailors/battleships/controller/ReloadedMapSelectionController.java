@@ -6,7 +6,11 @@ import com.futuresailors.battleships.view.reloaded.ReloadedMapSelectionPanel;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-
+/**
+ * Controller for reloaded map selection
+ * 
+ * @author Joe Baldwin
+ */
 public class ReloadedMapSelectionController {
 
     private JFrame window;
