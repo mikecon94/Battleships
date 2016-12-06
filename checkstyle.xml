@@ -58,7 +58,7 @@
         </module>
         <module name="RightCurly">
             <property name="option" value="alone"/>
-            <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, LITERAL_DO, STATIC_INIT, INSTANCE_INIT"/>
+            <property name="tokens" value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT, INSTANCE_INIT"/>
             <property name="severity" value="warning"/>
         </module>
         <module name="WhitespaceAround">
