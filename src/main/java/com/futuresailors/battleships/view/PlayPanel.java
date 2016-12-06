@@ -62,8 +62,11 @@ public class PlayPanel extends JPanel {
     private final ImageIcon missImage;
 
     private final URL missAudioPath = getClass().getResource("/audio/Miss.wav");
-    private AudioInputStream audioInputStream;
-    private Clip clip;
+    private final URL hitAudioPath = getClass().getResource("/audio/Boom1.wav");
+    private AudioInputStream missAudioStream;
+    private AudioInputStream hitAudioStream;
+    private Clip hitClip;
+    private Clip missClip;
 
     public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship[] ships) {
         this.WIDTH = width;
@@ -78,7 +81,31 @@ public class PlayPanel extends JPanel {
         hitImage = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
         missImage = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);
         myGrid.getRows();
+        setupAudio();
         createPanel();
+    }
+    
+    private void setupAudio() {
+        try {
+            missAudioStream = AudioSystem.getAudioInputStream(missAudioPath);
+            hitAudioStream = AudioSystem.getAudioInputStream(hitAudioPath);
+            missClip = AudioSystem.getClip();
+            missClip.open(missAudioStream);
+            hitClip = AudioSystem.getClip();
+            hitClip.open(hitAudioStream);
+            FloatControl gainControl = (FloatControl) missClip
+                    .getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-30.0f);
+            gainControl = (FloatControl) hitClip
+                    .getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl.setValue(-30.0f);
+        } catch (UnsupportedAudioFileException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (LineUnavailableException e) {
+            e.printStackTrace();
+        }        
     }
 
     public int getTileXUnderMouse(int x) {
@@ -269,26 +296,14 @@ public class PlayPanel extends JPanel {
     }
 
     public void playHitSound() {
-
+        hitClip.stop();
+        hitClip.setFramePosition(0);
+        hitClip.start();
     }
 
     public void playMissSound() {
-        try {
-            audioInputStream = AudioSystem.getAudioInputStream(missAudioPath);
-            clip = AudioSystem.getClip();
-            clip.open(audioInputStream);
-            FloatControl gainControl = (FloatControl) clip
-                    .getControl(FloatControl.Type.MASTER_GAIN);
-            gainControl.setValue(-30.0f);
-            clip.stop();
-            clip.start();
-        } catch (UnsupportedAudioFileException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (LineUnavailableException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        missClip.stop();
+        missClip.setFramePosition(0);
+        missClip.start();
     }
 }
