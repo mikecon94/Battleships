@@ -34,7 +34,7 @@ public class SimpleAI implements AI {
                 if (ThreadLocalRandom.current().nextInt(0, 2) == 1) {
                     ship.rotateShip();
                 }
-            } while (myGrid.checkValidPlace(pos, ship) == false);
+            } while (!myGrid.checkValidPlace(pos, ship));
             ship.placeShip(pos);
             myGrid.placeShip(pos, ship);
         }

@@ -84,7 +84,7 @@ public class PlayPanel extends JPanel {
         setupAudio();
         createPanel();
     }
-    
+
     private void setupAudio() {
         try {
             missAudioStream = AudioSystem.getAudioInputStream(missAudioPath);
@@ -96,8 +96,7 @@ public class PlayPanel extends JPanel {
             FloatControl gainControl = (FloatControl) missClip
                     .getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-30.0f);
-            gainControl = (FloatControl) hitClip
-                    .getControl(FloatControl.Type.MASTER_GAIN);
+            gainControl = (FloatControl) hitClip.getControl(FloatControl.Type.MASTER_GAIN);
             gainControl.setValue(-30.0f);
         } catch (UnsupportedAudioFileException e) {
             e.printStackTrace();
@@ -105,7 +104,7 @@ public class PlayPanel extends JPanel {
             e.printStackTrace();
         } catch (LineUnavailableException e) {
             e.printStackTrace();
-        }        
+        }
     }
 
     public int getTileXUnderMouse(int x) {
