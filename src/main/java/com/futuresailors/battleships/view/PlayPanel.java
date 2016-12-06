@@ -36,8 +36,8 @@ public class PlayPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-    private final int GRID_WIDTH = 550;
-    private final int GRID_HEIGHT = 550;
+    private final int GRID_WIDTH = 520;
+    private final int GRID_HEIGHT = 520;
     // My Grid
     private final int GRID_X = 100;
     private final int GRID_Y = 80;
@@ -76,7 +76,7 @@ public class PlayPanel extends JPanel {
         this.ships = ships;
 
         // Will be configurable at a later date.
-        tileSize = 550 / myGrid.getColumns();
+        tileSize = 520 / myGrid.getColumns();
         backgroundImage = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         hitImage = UIHelper.resizeImage("/images/Hit.png", tileSize, tileSize);
         missImage = UIHelper.resizeImage("/images/Missed.png", tileSize, tileSize);

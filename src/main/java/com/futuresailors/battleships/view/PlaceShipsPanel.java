@@ -27,8 +27,8 @@ public class PlaceShipsPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-    private final int GRID_WIDTH = 550;
-    private final int GRID_HEIGHT = 550;
+    private final int GRID_WIDTH = 520;
+    private final int GRID_HEIGHT = 520;
     private final int GRID_X = 100;
     private final int GRID_Y = 80;
     private int tileSize;
@@ -81,7 +81,7 @@ public class PlaceShipsPanel extends JPanel {
         backBut.setLayout(null);
         add(backBut);
         // Will be configurable at a later date.
-        tileSize = 550 / grid.getColumns();
+        tileSize = 520 / grid.getColumns();
         System.out.println("PlaceShipsPanel Created.");
     }
 
