@@ -58,7 +58,7 @@ public class Ship {
      * 
      * @return Whether ship is sunk as boolean
      */
-    public void updateSunk() {
+    private void updateSunk() {
         // Loops through each tile
         for (ShipTile tile : tiles) {
             // If a tile is not hit
