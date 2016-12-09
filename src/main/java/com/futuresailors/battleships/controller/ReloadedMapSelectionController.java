@@ -52,18 +52,18 @@ public class ReloadedMapSelectionController {
         @SuppressWarnings("unused")
         ReloadedModeController large = new ReloadedModeController(window, 13);
     }
-    
+
     public void startMap1() {
         ReloadedModeController map1 = new ReloadedModeController(window, 10);
         map1.startCircleMap();
     }
-    
-    public void startMap2(){
+
+    public void startMap2() {
         ReloadedModeController map2 = new ReloadedModeController(window, 13);
         map2.startDreadnoughtMap();
     }
-    
-    public void startMap3(){
+
+    public void startMap3() {
         ReloadedModeController map3 = new ReloadedModeController(window, 13);
         map3.startCorvetteMap();
     }
