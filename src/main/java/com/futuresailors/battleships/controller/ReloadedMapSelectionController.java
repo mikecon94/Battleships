@@ -59,10 +59,12 @@ public class ReloadedMapSelectionController {
     }
     
     public void startMap2(){
-        //Init the reloaded controller
+        ReloadedModeController map2 = new ReloadedModeController(window, 13);
+        map2.startDreadnoughtMap();
     }
     
     public void startMap3(){
-        //Init the reloaded controller
+        ReloadedModeController map3 = new ReloadedModeController(window, 13);
+        map3.startCorvetteMap();
     }
 }
