@@ -1,6 +1,13 @@
 package com.futuresailors.battleships;
 
 import java.awt.Image;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -68,5 +75,14 @@ public class UIHelper {
     public static ImageIcon resizeImage(String imagePath, int width, int height) {
         ImageIcon bg = new ImageIcon(UIHelper.class.getResource(imagePath));
         return new ImageIcon(bg.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
+    }
+
+    public static String readFile(String filePath) {
+        try {
+            return new String(Files.readAllBytes(Paths.get(filePath)));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
