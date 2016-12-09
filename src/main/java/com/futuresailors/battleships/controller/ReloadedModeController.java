@@ -12,4 +12,11 @@ public class ReloadedModeController extends SinglePlayerController {
         super.startCircleMap();
     }
 
+    public void startDreadnoughtMap() {
+        super.startDreadnoughtMap();
+    }
+
+    public void startCorvetteMap() {
+        super.startCorvetteMap();
+    }
 }

@@ -181,9 +181,13 @@ public class Grid {
     }
 
     public void createCircleGrid() {
+        drawLand("/maps/circle.map");
+    }
+
+    private void drawLand(String path) {
         try {
-            String mapString = UIHelper.readFile(
-                    Paths.get(getClass().getResource("/maps/circle.map").toURI()).toString());
+            String mapString = UIHelper
+                    .readFile(Paths.get(getClass().getResource(path).toURI()).toString());
 
             int currentChar = 0;
             for (int y = 0; y < grid.length; y++) {
@@ -205,6 +209,14 @@ public class Grid {
             System.out.println("Failed to make custom grid. Defaulting to empty.");
             createNewGrid();
         }
+    }
+
+    public void createDreadnoughtGrid() {
+        drawLand("/maps/dreadnought.map");
+    }
+    
+    public void createCorvetteGrid() {
+        drawLand("/maps/corvette.map");
     }
 
     /**
