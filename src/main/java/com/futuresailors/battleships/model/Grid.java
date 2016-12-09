@@ -5,6 +5,7 @@ import com.futuresailors.battleships.UIHelper;
 import java.awt.Point;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * Represents a grid that ships can be placed on.
@@ -185,36 +186,31 @@ public class Grid {
     }
 
     private void drawLand(String path) {
-        try {
-            String mapString = UIHelper
-                    .readFile(Paths.get(getClass().getResource(path).toURI()).toString());
+        // String mapString = UIHelper
+        // .readFile(Paths.get(getClass().getResource(path).toURI()).toString());
 
-            int currentChar = 0;
-            for (int y = 0; y < grid.length; y++) {
-                for (int x = 0; x < grid[y].length; x++) {
-                    while (mapString.charAt(currentChar) == '\n'
-                            || mapString.charAt(currentChar) == (char) 10
-                            || mapString.charAt(currentChar) == (char) 13) {
-                        currentChar++;
-                    }
-                    if (mapString.charAt(currentChar) == 'L') {
-                        grid[y][x] = GridTile.LAND;
-                    }
+        Scanner s = new Scanner(getClass().getResourceAsStream(path)).useDelimiter("\\A");
+        String mapString = s.next();
+        int currentChar = 0;
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[y].length; x++) {
+                while (mapString.charAt(currentChar) == '\n'
+                        || mapString.charAt(currentChar) == (char) 10
+                        || mapString.charAt(currentChar) == (char) 13) {
                     currentChar++;
                 }
+                if (mapString.charAt(currentChar) == 'L') {
+                    grid[y][x] = GridTile.LAND;
+                }
+                currentChar++;
             }
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            System.out.println("Failed to make custom grid. Defaulting to empty.");
-            createNewGrid();
         }
     }
 
     public void createDreadnoughtGrid() {
         drawLand("/maps/dreadnought.map");
     }
-    
+
     public void createCorvetteGrid() {
         drawLand("/maps/corvette.map");
     }
