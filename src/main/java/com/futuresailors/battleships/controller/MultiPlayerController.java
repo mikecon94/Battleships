@@ -280,7 +280,8 @@ public class MultiPlayerController implements GameTypeController {
                     playPanel.getTileYUnderMouse(pos.y));
 
             if (oppGrid.getTile(gridPos) != GridTile.MISS
-                    && oppGrid.getTile(gridPos) != GridTile.HIT) {
+                    && oppGrid.getTile(gridPos) != GridTile.HIT
+                    && oppGrid.getTile(gridPos) != GridTile.LAND) {
                 System.out.println("My Move: " + gridPos);
                 if (oppGrid.dropBomb(gridPos)) {
                     if (server != null) {

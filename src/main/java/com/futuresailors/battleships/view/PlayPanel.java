@@ -248,6 +248,10 @@ public class PlayPanel extends JPanel {
                             tileSize, tileSize);
                     g.drawImage(missImage.getImage(), GRID_2_X + (column * tileSize),
                             GRID_2_Y + (row * tileSize), null);
+                } else if (oppGrid.getTile(pos) == GridTile.LAND) {
+                    g.setColor(new Color(43, 179, 124));
+                    g.fillRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize),
+                            tileSize, tileSize);
                 }
                 g.setColor(new Color(0, 0, 0));
                 g.drawRect(GRID_2_X + (column * tileSize), GRID_2_Y + (row * tileSize), tileSize,
@@ -282,6 +286,10 @@ public class PlayPanel extends JPanel {
                             tileSize);
                     g.drawImage(missImage.getImage(), GRID_X + (column * tileSize),
                             GRID_Y + (row * tileSize), null);
+                } else if (myGrid.getTile(pos) == GridTile.LAND) {
+                    g.setColor(new Color(43, 179, 124));
+                    g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize,
+                            tileSize);
                 }
                 g.setColor(new Color(0, 0, 0));
                 g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize,

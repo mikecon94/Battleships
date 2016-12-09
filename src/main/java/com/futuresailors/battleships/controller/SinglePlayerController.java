@@ -162,7 +162,8 @@ public class SinglePlayerController implements GameTypeController {
                     panel.getTileYUnderMouse(pos.y));
             if (myTurn && panel.overGridSpace(pos.x, pos.y)
                     && aiGrid.getTile(gridPos) != GridTile.MISS
-                    && aiGrid.getTile(gridPos) != GridTile.HIT) {
+                    && aiGrid.getTile(gridPos) != GridTile.HIT
+                    && aiGrid.getTile(gridPos) != GridTile.LAND) {
                 System.out.println("My Move: " + gridPos);
                 if (aiGrid.dropBomb(gridPos)) {
                     panel.playHitSound();

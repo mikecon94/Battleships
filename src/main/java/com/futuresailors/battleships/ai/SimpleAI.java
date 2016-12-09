@@ -47,7 +47,8 @@ public class SimpleAI implements AI {
             int y = ThreadLocalRandom.current().nextInt(0, oppGrid.getRows());
             target = new Point(x, y);
         } while (oppGrid.getTile(target) == GridTile.MISS
-                || oppGrid.getTile(target) == GridTile.HIT);
+                || oppGrid.getTile(target) == GridTile.HIT
+                || oppGrid.getTile(target) == GridTile.LAND);
         return target;
     }
 }

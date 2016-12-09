@@ -125,6 +125,7 @@ public class Grid {
                 grid[y][x] = GridTile.EMPTY;
             }
         }
+        grid[5][5] = GridTile.LAND;
     }
 
     /**
@@ -167,7 +168,8 @@ public class Grid {
         // and check that there is nothing blocking a placement.
         for (int yIndex = 0; yIndex < ship.getHeight(); yIndex++) {
             for (int xIndex = 0; xIndex < ship.getWidth(); xIndex++) {
-                if (grid[pos.y + yIndex][pos.x + xIndex] == GridTile.SHIP) {
+                if (grid[pos.y + yIndex][pos.x + xIndex] == GridTile.SHIP
+                        || grid[pos.y + yIndex][pos.x + xIndex] == GridTile.LAND) {
                     return false;
                 }
             }

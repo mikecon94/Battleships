@@ -51,7 +51,8 @@ public class ModerateAI implements AI {
                 int y = ThreadLocalRandom.current().nextInt(0, oppGrid.getRows());
                 target = new Point(x, y);
             } while (oppGrid.getTile(target) == GridTile.MISS
-                    || oppGrid.getTile(target) == GridTile.HIT);
+                    || oppGrid.getTile(target) == GridTile.HIT
+                    || oppGrid.getTile(target) == GridTile.LAND);
             return target;
         } else {
             return target;
@@ -103,7 +104,8 @@ public class ModerateAI implements AI {
                     && potentialTarget.y >= 0 && potentialTarget.y < oppGrid.getRows()) {
                 // Check the tile hasn't already been bombed.
                 if (oppGrid.getTile(potentialTarget) != GridTile.HIT
-                        && oppGrid.getTile(potentialTarget) != GridTile.MISS) {
+                        && oppGrid.getTile(potentialTarget) != GridTile.MISS
+                        && oppGrid.getTile(potentialTarget) != GridTile.LAND) {
                     // Return this tile as it is next to a tile that has been hit.
                     return potentialTarget;
                 }

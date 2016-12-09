@@ -177,7 +177,11 @@ public class PlaceShipsPanel extends JPanel {
                     g.setColor(new Color(50, 205, 50));
                     g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize,
                             tileSize);
-                }
+                }  else if (grid.getTile(pos) == GridTile.LAND) {
+                    g.setColor(new Color(43, 179, 124));
+                    g.fillRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize,
+                            tileSize);
+                } 
                 g.setColor(new Color(0, 0, 0));
                 g.drawRect(GRID_X + (column * tileSize), GRID_Y + (row * tileSize), tileSize,
                         tileSize);
