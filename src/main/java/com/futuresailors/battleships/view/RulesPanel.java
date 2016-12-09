@@ -91,8 +91,8 @@ public class RulesPanel extends JPanel {
     protected void paintComponent(Graphics g) {
         ImageIcon bg = UIHelper.resizeImage("/images/background.jpg", WIDTH, HEIGHT);
         g.drawImage(bg.getImage(), 0, 0, null);
-        g.setFont(new Font("Garamond", Font.PLAIN, 40));
-        g.setColor(new Color(255, 255, 255));
-        g.drawChars("Rules".toCharArray(), 0, 5, (WIDTH / 2) - 50, 50);
+        g.setFont(new Font("Garamond", Font.BOLD, 50));
+        g.setColor(new Color(255, 17, 0));
+        g.drawChars("Rules".toCharArray(), 0, 5,  (WIDTH / 2) - 75, 50);
     }
 }
