@@ -58,12 +58,12 @@ public class ReloadedMapSelectionController {
         map1.startCircleMap();
     }
     
-    public void startMap2(){
+    public void startMap2() {
         ReloadedModeController map2 = new ReloadedModeController(window, 13);
         map2.startDreadnoughtMap();
     }
     
-    public void startMap3(){
+    public void startMap3() {
         ReloadedModeController map3 = new ReloadedModeController(window, 13);
         map3.startCorvetteMap();
     }
