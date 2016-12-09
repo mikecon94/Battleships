@@ -3,8 +3,6 @@ package com.futuresailors.battleships.model;
 import com.futuresailors.battleships.UIHelper;
 
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
 
@@ -186,7 +184,6 @@ public class Grid {
         try {
             String mapString = UIHelper.readFile(
                     Paths.get(getClass().getResource("/maps/circle.map").toURI()).toString());
-            System.out.println(mapString);
 
             int currentChar = 0;
             for (int y = 0; y < grid.length; y++) {
@@ -196,8 +193,6 @@ public class Grid {
                             || mapString.charAt(currentChar) == (char) 13) {
                         currentChar++;
                     }
-                    System.out.println(
-                            x + ", " + y + " Char: " + (int) mapString.charAt(currentChar));
                     if (mapString.charAt(currentChar) == 'L') {
                         grid[y][x] = GridTile.LAND;
                     }

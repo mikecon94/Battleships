@@ -45,6 +45,8 @@ public class Ship {
         for (ShipTile tile : tiles) {
             if (tile.getPosition() == location) {
                 tile.setHit();
+                //Check if Ship is sunk and update status if so.
+                updateSunk();
                 return true;
             }
         }
@@ -56,23 +58,15 @@ public class Ship {
      * 
      * @return Whether ship is sunk as boolean
      */
-    public boolean checkIfSunk() {
+    private void updateSunk() {
         // Loops through each tile
         for (ShipTile tile : tiles) {
             // If a tile is not hit
             if (tile.getHit() != true) {
-                return false;
-            }
+                return;
+            } 
         }
         // Sets ship to sunk
-        sink();
-        return true;
-    }
-
-    /**
-     * Allows the ship to be marked sunk.
-     */
-    public void sink() {
         sunk = true;
     }
 
