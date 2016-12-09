@@ -39,14 +39,30 @@ public class ReloadedMapSelectionController {
     }
 
     public void startSmallGame() {
+        @SuppressWarnings("unused")
         ReloadedModeController small = new ReloadedModeController(window, 8);
     }
 
     public void startMediumGame() {
+        @SuppressWarnings("unused")
         ReloadedModeController medium = new ReloadedModeController(window, 10);
     }
 
     public void startLargeGame() {
+        @SuppressWarnings("unused")
         ReloadedModeController large = new ReloadedModeController(window, 13);
+    }
+    
+    public void startMap1() {
+        ReloadedModeController map1 = new ReloadedModeController(window,10);
+        map1.createCircleGrid();
+    }
+    
+    public void startMap2(){
+        //Init the reloaded controller
+    }
+    
+    public void startMap3(){
+        //Init the reloaded controller
     }
 }

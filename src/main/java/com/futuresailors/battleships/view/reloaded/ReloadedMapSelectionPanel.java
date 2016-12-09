@@ -43,21 +43,37 @@ public class ReloadedMapSelectionPanel extends JPanel {
         backBut.setLayout(null);
         add(backBut);
 
-        // Each button should either be an image of the map or have on above it
+        //Classic Map
         JButton small = new JButton("<html>Small<br/><center>8x8</html>");
         small.setSize(150, 75);
-        small.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.65)));
+        small.setLocation((WIDTH / 2) - 200, (int) (HEIGHT - (HEIGHT * 0.65)));
         add(small);
 
         JButton medium = new JButton("<html>Medium<br/><center>10x10</html>");
         medium.setSize(150, 75);
-        medium.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.50)));
+        medium.setLocation((WIDTH / 2) - 200, (int) (HEIGHT - (HEIGHT * 0.50)));
         add(medium);
 
         JButton large = new JButton("<html>Large<br/><center>13x13</html>");
         large.setSize(150, 75);
-        large.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.35)));
+        large.setLocation((WIDTH / 2) - 200, (int) (HEIGHT - (HEIGHT * 0.35)));
         add(large);
+        
+        //Custom Maps
+        JButton map1 = new JButton("<html>Map 1<br/><center>10x10</html>");
+        map1.setSize(150, 75);
+        map1.setLocation((WIDTH / 2) - 0, (int) (HEIGHT - (HEIGHT * 0.65)));
+        add(map1);
+
+        JButton map2 = new JButton("<html>Map 2<br/><center>XxX</html>");
+        map2.setSize(150, 75);
+        map2.setLocation((WIDTH / 2) - 0, (int) (HEIGHT - (HEIGHT * 0.50)));
+        add(map2);
+
+        JButton map3 = new JButton("<html>Map 3<br/><center>XxX</html>");
+        map3.setSize(150, 75);
+        map3.setLocation((WIDTH / 2) - 0, (int) (HEIGHT - (HEIGHT * 0.35)));
+        add(map3);
     }
 
     @Override
