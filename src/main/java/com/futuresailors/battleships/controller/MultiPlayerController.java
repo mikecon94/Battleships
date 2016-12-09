@@ -325,7 +325,6 @@ public class MultiPlayerController implements GameTypeController {
 
     public void startGame() {
         // Check the user hasn't already clicked once.
-        // TODO Update the panel with a message so the user knows they are waiting for the opponent.
         if (imReady != true) {
             imReady = true;
             ConnectionComms readyMessage = new ConnectionComms();
