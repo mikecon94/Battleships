@@ -3,10 +3,9 @@ package com.futuresailors.battleships.model;
 import com.futuresailors.battleships.UIHelper;
 
 import java.awt.Point;
-import java.io.BufferedReader;
-import java.io.StringReader;
 import java.net.URISyntaxException;
 import java.nio.file.Paths;
+import java.util.Scanner;
 
 /**
  * Represents a grid that ships can be placed on.
@@ -183,33 +182,37 @@ public class Grid {
     }
 
     public void createCircleGrid() {
-        try {
-            String mapString = UIHelper.readFile(
-                    Paths.get(getClass().getResource("/maps/circle.map").toURI()).toString());
-            System.out.println(mapString);
+        drawLand("/maps/circle.map");
+    }
 
-            int currentChar = 0;
-            for (int y = 0; y < grid.length; y++) {
-                for (int x = 0; x < grid[y].length; x++) {
-                    while (mapString.charAt(currentChar) == '\n'
-                            || mapString.charAt(currentChar) == (char) 10
-                            || mapString.charAt(currentChar) == (char) 13) {
-                        currentChar++;
-                    }
-                    System.out.println(
-                            x + ", " + y + " Char: " + (int) mapString.charAt(currentChar));
-                    if (mapString.charAt(currentChar) == 'L') {
-                        grid[y][x] = GridTile.LAND;
-                    }
+    private void drawLand(String path) {
+        // String mapString = UIHelper
+        // .readFile(Paths.get(getClass().getResource(path).toURI()).toString());
+
+        Scanner s = new Scanner(getClass().getResourceAsStream(path)).useDelimiter("\\A");
+        String mapString = s.next();
+        int currentChar = 0;
+        for (int y = 0; y < grid.length; y++) {
+            for (int x = 0; x < grid[y].length; x++) {
+                while (mapString.charAt(currentChar) == '\n'
+                        || mapString.charAt(currentChar) == (char) 10
+                        || mapString.charAt(currentChar) == (char) 13) {
                     currentChar++;
                 }
+                if (mapString.charAt(currentChar) == 'L') {
+                    grid[y][x] = GridTile.LAND;
+                }
+                currentChar++;
             }
-
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-            System.out.println("Failed to make custom grid. Defaulting to empty.");
-            createNewGrid();
         }
+    }
+
+    public void createDreadnoughtGrid() {
+        drawLand("/maps/dreadnought.map");
+    }
+
+    public void createCorvetteGrid() {
+        drawLand("/maps/corvette.map");
     }
 
     /**

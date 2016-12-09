@@ -249,6 +249,16 @@ public class SinglePlayerController implements GameTypeController {
         aiGrid.createCircleGrid();
     }
 
+    public void startDreadnoughtMap() {
+        myGrid.createDreadnoughtGrid();
+        aiGrid.createDreadnoughtGrid();
+    }
+
+    public void startCorvetteMap() {
+        myGrid.createCorvetteGrid();
+        aiGrid.createCorvetteGrid();
+    }
+
     public void mouseMoved(Point pos) {
         // Hover the tile if it is the users turn and the mouse is over the AIs
         // grid.
