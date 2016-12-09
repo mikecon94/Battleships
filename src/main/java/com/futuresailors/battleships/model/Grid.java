@@ -1,9 +1,12 @@
 package com.futuresailors.battleships.model;
 
+import com.futuresailors.battleships.UIHelper;
+
 import java.awt.Point;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.StringReader;
+import java.net.URISyntaxException;
+import java.nio.file.Paths;
 
 /**
  * Represents a grid that ships can be placed on.
@@ -180,9 +183,33 @@ public class Grid {
     }
 
     public void createCircleGrid() {
-        String mapFile = new Scanner(getClass().getResource("/audio/Miss.wav").getFile())
-                .useDelimiter("\\Z").next();
-        System.out.println("mapFile");
+        try {
+            String mapString = UIHelper.readFile(
+                    Paths.get(getClass().getResource("/maps/circle.map").toURI()).toString());
+            System.out.println(mapString);
+
+            int currentChar = 0;
+            for (int y = 0; y < grid.length; y++) {
+                for (int x = 0; x < grid[y].length; x++) {
+                    while (mapString.charAt(currentChar) == '\n'
+                            || mapString.charAt(currentChar) == (char) 10
+                            || mapString.charAt(currentChar) == (char) 13) {
+                        currentChar++;
+                    }
+                    System.out.println(
+                            x + ", " + y + " Char: " + (int) mapString.charAt(currentChar));
+                    if (mapString.charAt(currentChar) == 'L') {
+                        grid[y][x] = GridTile.LAND;
+                    }
+                    currentChar++;
+                }
+            }
+
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+            System.out.println("Failed to make custom grid. Defaulting to empty.");
+            createNewGrid();
+        }
     }
 
     /**
