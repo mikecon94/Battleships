@@ -1,6 +1,9 @@
 package com.futuresailors.battleships.model;
 
 import java.awt.Point;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 /**
  * Represents a grid that ships can be placed on.
@@ -125,7 +128,6 @@ public class Grid {
                 grid[y][x] = GridTile.EMPTY;
             }
         }
-        grid[5][5] = GridTile.LAND;
     }
 
     /**
@@ -175,6 +177,12 @@ public class Grid {
             }
         }
         return true;
+    }
+
+    public void createCircleGrid() {
+        String mapFile = new Scanner(getClass().getResource("/audio/Miss.wav").getFile())
+                .useDelimiter("\\Z").next();
+        System.out.println("mapFile");
     }
 
     /**
