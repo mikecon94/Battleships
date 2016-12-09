@@ -54,8 +54,8 @@ public class ReloadedMapSelectionController {
     }
     
     public void startMap1() {
-        ReloadedModeController map1 = new ReloadedModeController(window,10);
-        map1.createCircleGrid();
+        ReloadedModeController map1 = new ReloadedModeController(window, 10);
+        map1.startCircleMap();
     }
     
     public void startMap2(){

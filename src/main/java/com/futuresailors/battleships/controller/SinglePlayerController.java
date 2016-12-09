@@ -23,7 +23,7 @@ import javax.swing.Timer;
 
 /**
  * Controller for the main game in single player mode. This creates the ships for the opponent
- * ,creates the opponents grid and initialises the AI chosen by the player.
+ * creates the opponents grid and initialises the AI chosen by the player.
  * 
  * @author Michael Conroy, Joe Baldwin
  */
@@ -58,7 +58,7 @@ public class SinglePlayerController implements GameTypeController {
         @SuppressWarnings("unused")
         DifficultySelectionListener diffListener = new DifficultySelectionListener(diffPanel, this);
     }
-    
+
     public SinglePlayerController(JFrame window, int gridSize) {
         this.window = window;
         myGrid = new Grid(gridSize);
@@ -235,6 +235,11 @@ public class SinglePlayerController implements GameTypeController {
             panel.showWinner(myTurn);
             returnToMenu();
         }
+    }
+
+    public void startCircleMap() {
+        myGrid.createCircleGrid();
+        aiGrid.createCircleGrid();
     }
 
     public void mouseMoved(Point pos) {
