@@ -184,10 +184,15 @@ public class PlayPanel extends JPanel {
     private void drawShips(Graphics g) {
         for (Ship ship : ships) {
             if (ship.getPlaced()) {
-                ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(),
-                        ship.getWidth() * tileSize - 8, ship.getHeight() * tileSize - 8);
-                g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize) + 4,
-                        GRID_Y + (ship.getY() * tileSize) + 4, this);
+                if (ship.isSunk() == true) {
+                    g.setColor(new Color(255, 165, 0));
+                    g.fillRect(GRID_X, GRID_Y, GRID_WIDTH, GRID_HEIGHT);
+                } else {
+                    ImageIcon shipImage = UIHelper.resizeImage(ship.getImagePath(),
+                            ship.getWidth() * tileSize - 8, ship.getHeight() * tileSize - 8);
+                    g.drawImage(shipImage.getImage(), GRID_X + (ship.getX() * tileSize) + 4,
+                            GRID_Y + (ship.getY() * tileSize) + 4, this);
+                }
             }
         }
     }

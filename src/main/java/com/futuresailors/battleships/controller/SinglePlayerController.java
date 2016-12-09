@@ -8,6 +8,7 @@ import com.futuresailors.battleships.ai.SimpleAI;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
+import com.futuresailors.battleships.model.ShipTile;
 import com.futuresailors.battleships.view.DifficultySelectionListener;
 import com.futuresailors.battleships.view.DifficultySelectionPanel;
 import com.futuresailors.battleships.view.GameListener;
@@ -166,9 +167,15 @@ public class SinglePlayerController implements GameTypeController {
                     && aiGrid.getTile(gridPos) != GridTile.LAND) {
                 System.out.println("My Move: " + gridPos);
                 if (aiGrid.dropBomb(gridPos)) {
+                    for (int i = 0; i < aiShips.length; i++) {
+                        System.out.println("before");
+                        aiShips[i].hit(gridPos);
+                        
+                    }
                     panel.playHitSound();
                     checkGameOver();
                     panel.repaint();
+
                 } else {
                     panel.playMissSound();
                     myTurn = false;

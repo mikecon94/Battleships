@@ -6,5 +6,5 @@ package com.futuresailors.battleships.model;
  * @author Michael Conroy
  */
 public enum GridTile {
-    SHIP, EMPTY, HIT, MISS, HOVER, HOVERSHIP, LAND
+    SHIP, EMPTY, HIT, MISS, HOVER, HOVERSHIP, LAND, SUNK
 }
