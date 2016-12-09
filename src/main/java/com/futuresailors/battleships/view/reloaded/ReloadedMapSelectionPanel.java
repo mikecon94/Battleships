@@ -60,17 +60,17 @@ public class ReloadedMapSelectionPanel extends JPanel {
         add(large);
         
         //Custom Maps
-        JButton map1 = new JButton("<html>Map 1<br/><center>10x10</html>");
+        JButton map1 = new JButton("<html>Maelstrom<br/><center>10x10</html>");
         map1.setSize(150, 75);
         map1.setLocation((WIDTH / 2) - 0, (int) (HEIGHT - (HEIGHT * 0.65)));
         add(map1);
 
-        JButton map2 = new JButton("<html>Map 2<br/><center>XxX</html>");
+        JButton map2 = new JButton("<html>Dreadnought<br/><center>XxX</html>");
         map2.setSize(150, 75);
         map2.setLocation((WIDTH / 2) - 0, (int) (HEIGHT - (HEIGHT * 0.50)));
         add(map2);
 
-        JButton map3 = new JButton("<html>Map 3<br/><center>XxX</html>");
+        JButton map3 = new JButton("<html>Corvette<br/><center>XxX</html>");
         map3.setSize(150, 75);
         map3.setLocation((WIDTH / 2) - 0, (int) (HEIGHT - (HEIGHT * 0.35)));
         add(map3);
