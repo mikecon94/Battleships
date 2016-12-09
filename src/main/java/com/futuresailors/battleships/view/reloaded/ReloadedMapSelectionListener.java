@@ -48,9 +48,9 @@ public class ReloadedMapSelectionListener implements ActionListener {
             controller.returnToMenu();
         } else if ("<html>Maelstrom<br/><center>10x10</html>".equals(event.getActionCommand())) {
             controller.startMap1();
-        } else if ("<html>Dreadnought<br/><center>XxX</html>".equals(event.getActionCommand())) {
+        } else if ("<html>Dreadnought<br/><center>13x13</html>".equals(event.getActionCommand())) {
             controller.startMap2();
-        } else if ("<html>Corvette<br/><center>XxX</html>".equals(event.getActionCommand())) {
+        } else if ("<html>Corvette<br/><center>13x13</html>".equals(event.getActionCommand())) {
             controller.startMap3();
         }
     }
