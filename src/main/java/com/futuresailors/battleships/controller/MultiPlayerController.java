@@ -29,9 +29,10 @@ import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import com.esotericsoftware.kryonet.Server;
 
 /**
- * This controller sets up the server and client connection to allow networked multiplayer
- * to take place. Upon connection it will then begin the game and allow 2 players to play against 
- * each other.
+ * This controller sets up the server and client connection to allow networked multiplayer to take
+ * place. Upon connection it will then begin the game and allow 2 players to play against each
+ * other.
+ * 
  * @author Michael Conroy
  */
 public class MultiPlayerController implements GameTypeController {
@@ -200,7 +201,14 @@ public class MultiPlayerController implements GameTypeController {
         client.start();
 
         try {
-            client.connect(5000, connectPanel.getConnectIP(), 16913, 16914);
+            // discoverHost(udpPort, Timeout)
+            InetAddress ip = client.discoverHost(16914, 500);
+            if (ip != null) {
+                System.out.println(ip);
+                client.connect(5000, ip, 16913, 16914);
+            } else {
+                //Move onto starting the server.
+            }
             // If successful take them to the placeships panel.
         } catch (IOException e) {
             System.out.println("Unable to connect to host: " + e);
