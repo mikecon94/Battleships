@@ -32,7 +32,6 @@ public class PlaceShipsPanel extends JPanel {
     private final int GRID_X = 135;
     private final int GRID_Y = 80;
     private int tileSize;
-
     private Grid grid;
     private int currentShip = 0;
     private Ship[] ships;

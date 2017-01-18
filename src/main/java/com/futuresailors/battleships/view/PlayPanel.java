@@ -42,7 +42,7 @@ public class PlayPanel extends JPanel {
     private final int GRID_X = 135;
     private final int GRID_Y = 80;
     // Opponents Grid
-    private final int GRID_2_X = 710;
+    private final int GRID_2_X = 695;
     private final int GRID_2_Y = 80;
     // All tiles are square.
     private int tileSize;
