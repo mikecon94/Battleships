@@ -11,17 +11,14 @@ import com.futuresailors.battleships.multiplayer.ConnectionComms;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.PlayPanel;
+import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentListener;
 import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentPanel;
-import com.futuresailors.battleships.view.multiplayer.FindPlayerListener;
 
 import java.awt.Point;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-
-import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryonet.Server;
 
 /**
  * This controller sets up the server and client connection to allow networked multiplayer to take
@@ -238,7 +235,7 @@ public class MultiPlayerController implements GameTypeController {
         window.add(connectPanel);
         window.repaint();
         @SuppressWarnings("unused")
-        FindPlayerListener listener = new FindPlayerListener(connectPanel, this);
+        AwaitingOpponentListener listener = new AwaitingOpponentListener(connectPanel, this);
     }
 
     private void addGamePanel() {

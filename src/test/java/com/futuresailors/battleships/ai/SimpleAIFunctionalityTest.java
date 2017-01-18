@@ -26,21 +26,21 @@ public class SimpleAIFunctionalityTest extends TestCase{
         ships[2] = new Ship(3, 1, "/images/ships/Horizontal/3.png");
         ships[3] = new Ship(3, 1, "/images/ships/Horizontal/5.png");
         ships[4] = new Ship(2, 1, "/images/ships/Horizontal/5.png");
-        ai = new SimpleAI(player2, player1, ships);
+        ai = new SimpleAI(player1, player2, ships);
     }
     
     @Test
     public void testRandomMove(){
         ai.placeShips();
         Point pos1 = ai.takeMove();
+        player2.dropBomb(pos1);
         Point pos2 = ai.takeMove();
+        player2.dropBomb(pos2);
         assert(pos1.x != pos2.x && pos1.y != pos2.y);
     }
     //Not sure how to test this.
     @Test
     public void testPlaceShips(){
         ai.placeShips();
- 
     }
-
 }
