@@ -31,11 +31,7 @@ public class FindPlayerListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
-        if ("Start Server".equals(event.getActionCommand())) {
-            controller.startServer();
-        } else if ("Connect".equals(event.getActionCommand())) {
-            controller.connect();
-        } else if ("Main Menu".equals(event.getActionCommand())) {
+        if ("Main Menu".equals(event.getActionCommand())) {
             controller.returnToMenu();
         }
     }

@@ -4,28 +4,23 @@ import com.futuresailors.battleships.UIHelper;
 import com.futuresailors.battleships.model.Grid;
 import com.futuresailors.battleships.model.GridTile;
 import com.futuresailors.battleships.model.Ship;
+import com.futuresailors.battleships.multiplayer.BattleshipsClient;
+import com.futuresailors.battleships.multiplayer.BattleshipsConnection;
+import com.futuresailors.battleships.multiplayer.BattleshipsServer;
 import com.futuresailors.battleships.multiplayer.ConnectionComms;
 import com.futuresailors.battleships.view.GameListener;
 import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.PlayPanel;
+import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentPanel;
 import com.futuresailors.battleships.view.multiplayer.FindPlayerListener;
-import com.futuresailors.battleships.view.multiplayer.HostClientPanel;
-import com.futuresailors.battleships.view.multiplayer.WaitingNetworkPanel;
 
 import java.awt.Point;
-import java.io.IOException;
-import java.net.InetAddress;
-import java.net.UnknownHostException;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 import com.esotericsoftware.kryo.Kryo;
-import com.esotericsoftware.kryonet.Client;
-import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import com.esotericsoftware.kryonet.Server;
 
 /**
@@ -38,12 +33,12 @@ import com.esotericsoftware.kryonet.Server;
 public class MultiPlayerController implements GameTypeController {
 
     private JFrame window;
-    private HostClientPanel connectPanel;
+    private AwaitingOpponentPanel connectPanel;
     private PlayPanel playPanel;
 
-    private Server server;
-    private Client client;
-    private Kryo kryo;
+    private BattleshipsConnection multiplayer;
+
+    private boolean imClient;
 
     // This is used to determine whether the user purposefully dropped the connection or not.
     // It gets set to true when they have and will therefore not alert the user the connection has
@@ -62,219 +57,82 @@ public class MultiPlayerController implements GameTypeController {
     private Grid myGrid;
     private Grid oppGrid = new Grid();
 
+    // TODO Add the reloaded mode to Multiplayer.
+
     public MultiPlayerController(JFrame window) {
         this.window = window;
         myGrid = new Grid(10);
         addPanel();
-    }
 
-    private void addPanel() {
-        window.getContentPane().removeAll();
-        connectPanel = new HostClientPanel(UIHelper.getWidth(), UIHelper.getHeight());
-        window.add(connectPanel);
-        window.repaint();
-        @SuppressWarnings("unused")
-        FindPlayerListener listener = new FindPlayerListener(connectPanel, this);
+        // Start client and discoverHost for server
+        startClient();
+        if (((BattleshipsClient) multiplayer).attemptConnection()) {
+            // We are now connected to the server.
+            imClient = true;
+        } else {
+            // Start the server
+            // Wait for connection.
+            imClient = false;
+            startServer();
+        }
     }
 
     public void startServer() {
-        // TODO When start server button is clicked the next option panel should
-        // appear asking whether classic game or reloaded with map size/shape
-        // etc.
+        multiplayer = new BattleshipsServer(this);
+    }
 
-        try {
-            // Begin the server.
-            initialiseServer();
-            // Grab the machines hostname to display it to the user.
-            InetAddress inet = InetAddress.getLocalHost();
-            WaitingNetworkPanel panel = new WaitingNetworkPanel(inet.getHostAddress(),
-                    UIHelper.getWidth(), UIHelper.getHeight());
+    private void startClient() {
+        multiplayer = new BattleshipsClient(this);
+    }
 
-            // We don't want this to run if the server can't start.
-            window.getContentPane().removeAll();
-            @SuppressWarnings("unused")
-            GameListener listener = new GameListener(panel, this);
-            window.add(panel);
-            window.repaint();
-        } catch (UnknownHostException e) {
-            System.out.println("Unable to get Local Address");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("Unable to start server.");
-            JOptionPane.showMessageDialog(null, "Are you already running a server on port 16913?",
-                    "Unable to start server", JOptionPane.INFORMATION_MESSAGE);
+    public void messageReceived(Object object) {
+        if (object instanceof ConnectionComms) {
+            ConnectionComms message = (ConnectionComms) object;
+            if (message.connected) {
+                // Server needs to respond with the same object for confirmation
+                // of connection
+                if (!imClient) {
+                    multiplayer.sendMessage(message);
+                }
+                displayPlaceShipsPanel();
+            } else if (message.shipsPlaced) {
+                // The opponents ships are placed.
+                oppReady = true;
+                // Server decides who goes first.
+                if (imClient) {
+                    myTurn = !message.myTurn;
+                }
+                if (imReady) {
+                    // Both of us are ready -> move to play panel.
+                    System.out.println("Ready to start the game");
+                    begin();
+                }
+            } else if (started && !gameOver) {
+                myTurn = !message.myTurn;
+                playPanel.setMyTurn(myTurn);
+            }
+        } else if (object instanceof Grid) {
+            if (started && gridsInitialised) {
+                myGrid = (Grid) object;
+                playPanel.setMyGrid(myGrid);
+                playPanel.repaint();
+                checkGameOver();
+            } else if (started) {
+                // Initialises the opponents grid.
+                // May change this into a wrapper object containing the grid, ships and
+                // Whether the turn is over.
+                gridsInitialised = true;
+                oppGrid = (Grid) object;
+                playPanel.setOppGrid(oppGrid);
+                System.out.println("Client has received opps grid.");
+            }
         }
-
-        server.addListener(new ThreadedListener(new Listener() {
-            public void received(Connection connection, Object object) {
-                // We only want one user connecting.
-                if (connection.getID() == 1) {
-                    if (object instanceof ConnectionComms) {
-                        ConnectionComms message = (ConnectionComms) object;
-                        if (message.connected) {
-                            // Reply with the same message so the client knows we have connected.
-                            server.sendToTCP(1, message);
-                            // When someone connects change the panel to the place ships screen.
-                            displayPlaceShipsPanel();
-                        } else if (message.shipsPlaced) {
-                            oppReady = true;
-                            if (imReady) {
-                                // Both of us are ready -> move to play panel.
-                                System.out.println("Ready to start game");
-                                begin();
-                            }
-                        } else if (started && !gameOver) {
-                            myTurn = !message.myTurn;
-                            playPanel.setMyTurn(myTurn);
-                        }
-                    } else if (object instanceof Grid) {
-                        if (started && gridsInitialised) {
-                            myGrid = (Grid) object;
-                            playPanel.setMyGrid(myGrid);
-                            playPanel.repaint();
-                            checkGameOver();
-                        } else if (started) {
-                            // Initialises the opponents grid.
-                            // May change this into a wrapper object containing the grid, ships and
-                            // Whether the turn is over.
-                            gridsInitialised = true;
-                            oppGrid = (Grid) object;
-                            playPanel.setOppGrid(oppGrid);
-                            System.out.println("Server has received opps grid.");
-                        }
-                    }
-                } else {
-                    connection.close();
-                }
-            }
-
-            public void disconnected(Connection connection) {
-                if (connection.getID() == 1 && connectionClosed == false) {
-                    JOptionPane.showMessageDialog(null,
-                            "The connection to the opposition has been lost.",
-                            "Opponent Disconnected", JOptionPane.INFORMATION_MESSAGE);
-                    returnToMenu();
-                }
-            }
-
-        }));
-    }
-
-    @SuppressWarnings("unused")
-    private void displayPlaceShipsPanel() {
-        createShips();
-
-        window.getContentPane().removeAll();
-        PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(),
-                myGrid, myShips);
-        window.add(panel);
-        window.repaint();
-        GameListener listener = new GameListener(panel, this);
-        PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
-    }
-
-    private void initialiseServer() throws IOException {
-        server = new Server();
-        kryo = server.getKryo();
-        kryo.register(ConnectionComms.class);
-        kryo.register(Grid.class);
-        kryo.register(GridTile[][].class);
-        kryo.register(GridTile[].class);
-        kryo.register(GridTile.class);
-        server.start();
-
-        // These port numbers were chosen as the 16/09/2013 is when we joined Capgemini.
-        server.bind(16913, 16914);
-        System.out.println("Server started and listening on ports 16913 & 16914");
-    }
-
-    public void connect() {
-        client = new Client();
-        Kryo kryo = client.getKryo();
-        kryo.register(ConnectionComms.class);
-        kryo.register(Grid.class);
-        kryo.register(GridTile[][].class);
-        kryo.register(GridTile[].class);
-        kryo.register(GridTile.class);
-        ConnectionComms request = new ConnectionComms();
-
-        client.start();
-
-        try {
-            // discoverHost(udpPort, Timeout)
-            InetAddress ip = client.discoverHost(16914, 500);
-            if (ip != null) {
-                System.out.println(ip);
-                client.connect(5000, ip, 16913, 16914);
-            } else {
-                //Move onto starting the server.
-            }
-            // If successful take them to the placeships panel.
-        } catch (IOException e) {
-            System.out.println("Unable to connect to host: " + e);
-            JOptionPane.showMessageDialog(null, "Are you sure the IP Address is correct?",
-                    "Unable to connect to server", JOptionPane.INFORMATION_MESSAGE);
-        }
-
-        client.addListener(new ThreadedListener(new Listener() {
-            public void received(Connection connection, Object object) {
-                if (object instanceof ConnectionComms) {
-                    ConnectionComms message = (ConnectionComms) object;
-                    if (message.connected) {
-                        displayPlaceShipsPanel();
-                    } else if (message.shipsPlaced) {
-                        oppReady = true;
-                        myTurn = !message.myTurn;
-                        if (imReady) {
-                            // Both of us are ready -> move to play panel.
-                            System.out.println("Ready to start game");
-                            begin();
-                        }
-                    } else if (started && !gameOver) {
-                        myTurn = !message.myTurn;
-                        playPanel.setMyTurn(myTurn);
-                    }
-                } else if (object instanceof Grid) {
-                    if (started && gridsInitialised) {
-                        myGrid = (Grid) object;
-                        playPanel.setMyGrid(myGrid);
-                        playPanel.repaint();
-                        checkGameOver();
-                    } else if (started) {
-                        // Initialises the opponents grid.
-                        // May change this into a wrapper object containing the grid, ships and
-                        // Whether the turn is over.
-                        gridsInitialised = true;
-                        oppGrid = (Grid) object;
-                        playPanel.setOppGrid(oppGrid);
-                        System.out.println("Client has received opps grid.");
-                    }
-                }
-            }
-
-            public void disconnected(Connection connection) {
-                if (connection.getID() == 1 && connectionClosed == false) {
-                    JOptionPane.showMessageDialog(null,
-                            "The connection to the opposition has been lost.",
-                            "Opponent Disconnected", JOptionPane.INFORMATION_MESSAGE);
-                    returnToMenu();
-                }
-            }
-        }));
-
-        request.connected = true;
-        client.sendTCP(request);
     }
 
     public void returnToMenu() {
         connectionClosed = true;
-        if (server != null) {
-            server.close();
-        }
 
-        if (client != null) {
-            client.close();
-        }
+        multiplayer.close();
 
         MainMenuController main = new MainMenuController(window);
         main.showMenu();
@@ -292,11 +150,7 @@ public class MultiPlayerController implements GameTypeController {
                     && oppGrid.getTile(gridPos) != GridTile.LAND) {
                 System.out.println("My Move: " + gridPos);
                 if (oppGrid.dropBomb(gridPos)) {
-                    if (server != null) {
-                        server.sendToTCP(1, oppGrid);
-                    } else if (client != null) {
-                        client.sendTCP(oppGrid);
-                    }
+                    multiplayer.sendMessage(oppGrid);
                     checkGameOver();
                     playPanel.repaint();
                 } else {
@@ -305,18 +159,57 @@ public class MultiPlayerController implements GameTypeController {
                     oppGrid.clearHoverTiles();
                     ConnectionComms setTurn = new ConnectionComms();
                     setTurn.myTurn = myTurn;
-                    if (server != null) {
-                        server.sendToTCP(1, oppGrid);
-                        server.sendToTCP(1, setTurn);
-                    } else if (client != null) {
-                        client.sendTCP(oppGrid);
-                        client.sendTCP(setTurn);
-                    }
+                    multiplayer.sendMessage(oppGrid);
+                    multiplayer.sendMessage(setTurn);
+
                     playPanel.repaint();
                     checkGameOver();
                 }
             }
         }
+    }
+
+    public void startGame() {
+        // Check the user hasn't already clicked once.
+        if (imReady != true) {
+            imReady = true;
+            ConnectionComms readyMessage = new ConnectionComms();
+            readyMessage.shipsPlaced = true;
+            if (imClient) {
+                multiplayer.sendMessage(readyMessage);
+            } else {
+                // Server chooses the first player.
+                myTurn = ThreadLocalRandom.current().nextBoolean();
+                readyMessage.myTurn = myTurn;
+                multiplayer.sendMessage(readyMessage);
+            }
+
+            // In this case the opposition has already told us that their ships are placed.
+            if (oppReady) {
+                System.out.println("Ready To Start Game.");
+                begin();
+            }
+        }
+    }
+
+    public void oppDisconnected() {
+        if (!connectionClosed) {
+            JOptionPane.showMessageDialog(null, "The connection to the opposition has been lost.",
+                    "Opponent Disconnected", JOptionPane.INFORMATION_MESSAGE);
+            returnToMenu();
+        }
+    }
+
+    public void displayPlaceShipsPanel() {
+        createShips();
+
+        window.getContentPane().removeAll();
+        PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(),
+                myGrid, myShips);
+        window.add(panel);
+        window.repaint();
+        GameListener listener = new GameListener(panel, this);
+        PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
     }
 
     public void mouseMoved(Point pos) {
@@ -332,42 +225,20 @@ public class MultiPlayerController implements GameTypeController {
         }
     }
 
-    public void startGame() {
-        // Check the user hasn't already clicked once.
-        if (imReady != true) {
-            imReady = true;
-            ConnectionComms readyMessage = new ConnectionComms();
-            readyMessage.shipsPlaced = true;
-            if (server != null) {
-                // Server chooses the first player.
-                if (server != null) {
-                    myTurn = ThreadLocalRandom.current().nextBoolean();
-                }
-                readyMessage.myTurn = myTurn;
-                server.sendToTCP(1, readyMessage);
-            } else if (client != null) {
-                client.sendTCP(readyMessage);
-            }
-
-            // In this case the opposition has already told us that their ships are placed.
-            if (oppReady) {
-                System.out.println("Ready To Start Game.");
-                begin();
-            }
-        }
-    }
-
     private void begin() {
         addGamePanel();
         playPanel.setMyTurn(myTurn);
         started = true;
-        if (server != null) {
-            server.sendToTCP(1, myGrid);
-            System.out.println("Server: Sent Grid.");
-        } else if (client != null) {
-            client.sendTCP(myGrid);
-            System.out.println("Client: Sent Grid.");
-        }
+        multiplayer.sendMessage(myGrid);
+    }
+
+    private void addPanel() {
+        window.getContentPane().removeAll();
+        connectPanel = new AwaitingOpponentPanel(UIHelper.getWidth(), UIHelper.getHeight());
+        window.add(connectPanel);
+        window.repaint();
+        @SuppressWarnings("unused")
+        FindPlayerListener listener = new FindPlayerListener(connectPanel, this);
     }
 
     private void addGamePanel() {
