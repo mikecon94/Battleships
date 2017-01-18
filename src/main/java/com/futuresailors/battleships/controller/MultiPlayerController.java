@@ -62,16 +62,20 @@ public class MultiPlayerController implements GameTypeController {
         addPanel();
 
         // Start client and discoverHost for server
-        startClient();
-        if (((BattleshipsClient) multiplayer).attemptConnection()) {
-            // We are now connected to the server.
-            imClient = true;
-        } else {
-            // Start the server
-            // Wait for connection.
-            imClient = false;
-            startServer();
-        }
+        new Thread() {
+            public void run() {
+                startClient();
+                if (((BattleshipsClient) multiplayer).attemptConnection()) {
+                    // We are now connected to the server.
+                    imClient = true;
+                } else {
+                    // Start the server
+                    // Wait for connection.
+                    imClient = false;
+                    startServer();
+                }
+            }
+        }.start();
     }
 
     public void startServer() {

@@ -38,6 +38,7 @@ public class SimpleAIFunctionalityTest extends TestCase{
         player2.dropBomb(pos2);
         assert(pos1.x != pos2.x && pos1.y != pos2.y);
     }
+    
     //Not sure how to test this.
     @Test
     public void testPlaceShips(){
