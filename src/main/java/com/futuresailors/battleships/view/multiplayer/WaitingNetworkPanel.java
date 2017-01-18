@@ -58,6 +58,5 @@ public class WaitingNetworkPanel extends JPanel {
         g.setFont(new Font("Garamond", Font.PLAIN, 30));
         g.drawChars("Waiting for a connection".toCharArray(), 0, 24, (WIDTH / 2) - 145,
                 HEIGHT / 2 - 40);
-        g.drawChars(hostname.toCharArray(), 0, hostname.length(), (WIDTH / 2) - 145, HEIGHT / 2);
     }
 }

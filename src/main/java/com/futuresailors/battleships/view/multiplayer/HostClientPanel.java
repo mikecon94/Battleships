@@ -25,10 +25,6 @@ public class HostClientPanel extends JPanel {
         createPanel();
     }
 
-    public String getConnectIP() {
-        return ipField.getText();
-    }
-
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);
@@ -44,20 +40,12 @@ public class HostClientPanel extends JPanel {
 
         JButton connectBut = new JButton("Connect");
         connectBut.setSize(150, 75);
-        connectBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.30)));
+        connectBut.setLocation((WIDTH / 2) - 75, (int) (HEIGHT - (HEIGHT * 0.40)));
         connectBut.setLayout(null);
-
-        ipField = new JTextField("IP Address");
-        ipField.setSize(400, 30);
-        ipField.setLocation((WIDTH / 2) - 200, (int) (HEIGHT - (HEIGHT * 0.40)));
-        ipField.setHorizontalAlignment(JTextField.CENTER);
-        ipField.setFont(new Font("Garamond", Font.PLAIN, 30));
-        ipField.setLayout(null);
 
         add(backBut);
         add(serverBut);
         add(connectBut);
-        add(ipField);
     }
 
     @Override
