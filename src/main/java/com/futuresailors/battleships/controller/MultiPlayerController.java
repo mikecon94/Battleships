@@ -68,7 +68,7 @@ public class MultiPlayerController implements GameTypeController {
         multiplayer = new BattleshipsClient(this);
 
         final SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
-            
+
             @Override
             protected Boolean doInBackground() throws Exception {
                 boolean isConnected = ((BattleshipsClient) multiplayer).attemptConnection();
@@ -224,16 +224,14 @@ public class MultiPlayerController implements GameTypeController {
     public void displayPlaceShipsPanel() {
         createShips();
 
-        PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(),
-                myGrid, myShips);
+        // PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(),
+        // myGrid, myShips);
 
-        window.getContentPane().removeAll();
-        window.add(panel);
-        window.repaint();
-
-
-        GameListener listener = new GameListener(panel, this);
         PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
+
+        // window.getContentPane().removeAll();
+        // window.add(panel);
+        // window.repaint();
     }
 
     public void mouseMoved(Point pos) {
