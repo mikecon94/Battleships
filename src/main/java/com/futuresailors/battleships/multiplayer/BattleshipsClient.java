@@ -71,7 +71,6 @@ public class BattleshipsClient implements BattleshipsConnection {
                     Thread.sleep(500);
                     System.out.println("Still Connected: " + client.isConnected());
                     if (client.isConnected()) {
-                        
                         return true;
                     }
                 }
@@ -81,6 +80,7 @@ public class BattleshipsClient implements BattleshipsConnection {
         } catch (InterruptedException e) {
             System.out.println("Problem whilst sleeping thread: " + e);
         }
+        
         return false;
     }
 

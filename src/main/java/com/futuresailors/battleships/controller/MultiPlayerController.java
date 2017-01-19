@@ -15,10 +15,12 @@ import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentListener;
 import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentPanel;
 
 import java.awt.Point;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ThreadLocalRandom;
 
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingWorker;
 
 /**
  * This controller sets up the server and client connection to allow networked multiplayer to take
@@ -35,7 +37,8 @@ public class MultiPlayerController implements GameTypeController {
 
     private BattleshipsConnection multiplayer;
 
-    private boolean imClient;
+    // We first start the client to search for servers.
+    private boolean imClient = true;
 
     // This is used to determine whether the user purposefully dropped the connection or not.
     // It gets set to true when they have and will therefore not alert the user the connection has
@@ -54,7 +57,7 @@ public class MultiPlayerController implements GameTypeController {
     private Grid myGrid;
     private Grid oppGrid = new Grid();
 
-    // TODO Add the reloaded mode to Multiplayer.
+    // TODO Add the Reloaded mode to Multiplayer.
 
     public MultiPlayerController(JFrame window) {
         this.window = window;
@@ -62,28 +65,45 @@ public class MultiPlayerController implements GameTypeController {
         addPanel();
 
         // Start client and discoverHost for server
-        new Thread() {
-            public void run() {
-                startClient();
-                if (((BattleshipsClient) multiplayer).attemptConnection()) {
-                    // We are now connected to the server.
-                    imClient = true;
-                } else {
-                    // Start the server
-                    // Wait for connection.
-                    imClient = false;
-                    startServer();
+        multiplayer = new BattleshipsClient(this);
+
+        final SwingWorker<Boolean, Void> worker = new SwingWorker<Boolean, Void>() {
+            
+            @Override
+            protected Boolean doInBackground() throws Exception {
+                boolean isConnected = ((BattleshipsClient) multiplayer).attemptConnection();
+                // publish(isConnected);
+                return isConnected;
+            }
+
+            @Override
+            protected void done() {
+                try {
+                    setConnection(this.get().booleanValue());
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                } catch (ExecutionException e) {
+                    e.printStackTrace();
                 }
             }
-        }.start();
+        };
+
+        worker.execute();
     }
 
-    public void startServer() {
-        multiplayer = new BattleshipsServer(this);
-    }
-
-    private void startClient() {
-        multiplayer = new BattleshipsClient(this);
+    // We need to wait for the attemptConnection method to finish running before we continue.
+    // This method allows the method to call back to this object for the Main thread to continue
+    // processing.
+    public void setConnection(boolean connection) {
+        if (connection) {
+            // We are now connected to the server.
+            imClient = true;
+        } else {
+            // Start the server
+            // Wait for connection.
+            imClient = false;
+            multiplayer = new BattleshipsServer(this);
+        }
     }
 
     public void messageReceived(Object object) {
@@ -204,11 +224,14 @@ public class MultiPlayerController implements GameTypeController {
     public void displayPlaceShipsPanel() {
         createShips();
 
-        window.getContentPane().removeAll();
         PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(),
                 myGrid, myShips);
+
+        window.getContentPane().removeAll();
         window.add(panel);
         window.repaint();
+
+
         GameListener listener = new GameListener(panel, this);
         PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
     }

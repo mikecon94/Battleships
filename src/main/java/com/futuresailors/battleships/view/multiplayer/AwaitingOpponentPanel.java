@@ -42,6 +42,6 @@ public class AwaitingOpponentPanel extends JPanel {
         g.setFont(new Font("Garamond", Font.BOLD, 50));
         g.setColor(new Color(255, 17, 0));
         g.drawChars("Multiplayer".toCharArray(), 0, 11, (WIDTH / 2) - 120, 50);
-        g.drawChars("Awaiting For Opponent".toCharArray(), 0, 21, (WIDTH / 2) - 230, 300);
+        g.drawChars("Searching For Opponent".toCharArray(), 0, 22, (WIDTH / 2) - 250, 300);
     }
 }
