@@ -259,10 +259,10 @@ public class MultiPlayerController implements GameTypeController {
     private void addPanel() {
         window.getContentPane().removeAll();
         connectPanel = new AwaitingOpponentPanel(UIHelper.getWidth(), UIHelper.getHeight());
-        window.add(connectPanel);
-        window.repaint();
         @SuppressWarnings("unused")
         AwaitingOpponentListener listener = new AwaitingOpponentListener(connectPanel, this);
+        window.add(connectPanel);
+        window.repaint();
     }
 
     private void addGamePanel() {

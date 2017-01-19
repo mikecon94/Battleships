@@ -52,11 +52,7 @@ public class BattleshipsClient implements BattleshipsConnection {
     }
 
     public boolean attemptConnection() {
-
-        System.out.println("Discovering Hosts: " + System.currentTimeMillis());
         List<InetAddress> servers = client.discoverHosts(16914, 500);
-        System.out.println("Hosts Found: " + System.currentTimeMillis());
-
         try {
             if (servers.size() > 0) {
                 // Attempt to connect to all servers available on the network.
@@ -68,7 +64,7 @@ public class BattleshipsClient implements BattleshipsConnection {
                     client.sendTCP(request);
                     // If the server is already connected to a client it will drop this request
                     // So we check we are still connected and if so proceed.
-                    Thread.sleep(500);
+                    Thread.sleep(100);
                     System.out.println("Still Connected: " + client.isConnected());
                     if (client.isConnected()) {
                         return true;
