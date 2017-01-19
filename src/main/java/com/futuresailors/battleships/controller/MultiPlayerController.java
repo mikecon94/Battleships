@@ -9,7 +9,6 @@ import com.futuresailors.battleships.multiplayer.BattleshipsConnection;
 import com.futuresailors.battleships.multiplayer.BattleshipsServer;
 import com.futuresailors.battleships.multiplayer.ConnectionComms;
 import com.futuresailors.battleships.view.GameListener;
-import com.futuresailors.battleships.view.PlaceShipsPanel;
 import com.futuresailors.battleships.view.PlayPanel;
 import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentListener;
 import com.futuresailors.battleships.view.multiplayer.AwaitingOpponentPanel;
@@ -63,7 +62,10 @@ public class MultiPlayerController implements GameTypeController {
         this.window = window;
         myGrid = new Grid(10);
         addPanel();
+        initialiseConnection();
+    }
 
+    private void initialiseConnection() {
         // Start client and discoverHost for server
         multiplayer = new BattleshipsClient(this);
 
@@ -92,8 +94,8 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     // We need to wait for the attemptConnection method to finish running before we continue.
-    // This method allows the method to call back to this object for the Main thread to continue
-    // processing.
+    // This method allows the attemptConnection to call back to this object for the Main thread to
+    // continue processing.
     public void setConnection(boolean connection) {
         if (connection) {
             // We are now connected to the server.
@@ -145,7 +147,12 @@ public class MultiPlayerController implements GameTypeController {
                 gridsInitialised = true;
                 oppGrid = (Grid) object;
                 playPanel.setOppGrid(oppGrid);
-                System.out.println("Client has received opps grid.");
+                System.out.println("Received opps grid.");
+
+                // Client responds with their grid
+                if (imClient) {
+                    multiplayer.sendMessage(myGrid);
+                }
             }
         }
     }
@@ -160,7 +167,7 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     public void mouseClicked(Point pos) {
-        if (started && gridsInitialised && !gameOver && myTurn
+        if (started && !gameOver && myTurn && gridsInitialised
                 && playPanel.overGridSpace(pos.x, pos.y)) {
 
             Point gridPos = new Point(playPanel.getTileXUnderMouse(pos.x),
@@ -182,7 +189,6 @@ public class MultiPlayerController implements GameTypeController {
                     setTurn.myTurn = myTurn;
                     multiplayer.sendMessage(oppGrid);
                     multiplayer.sendMessage(setTurn);
-
                     playPanel.repaint();
                     checkGameOver();
                 }
@@ -192,20 +198,20 @@ public class MultiPlayerController implements GameTypeController {
 
     public void startGame() {
         // Check the user hasn't already clicked once.
-        if (imReady != true) {
+        if (!imReady) {
             imReady = true;
+
             ConnectionComms readyMessage = new ConnectionComms();
             readyMessage.shipsPlaced = true;
-            if (imClient) {
-                multiplayer.sendMessage(readyMessage);
-            } else {
-                // Server chooses the first player.
+            // The server decides who goes first randomly.
+            if (!imClient) {
                 myTurn = ThreadLocalRandom.current().nextBoolean();
                 readyMessage.myTurn = myTurn;
-                multiplayer.sendMessage(readyMessage);
             }
+            multiplayer.sendMessage(readyMessage);
 
             // In this case the opposition has already told us that their ships are placed.
+            // So we know we can begin playing.
             if (oppReady) {
                 System.out.println("Ready To Start Game.");
                 begin();
@@ -227,6 +233,7 @@ public class MultiPlayerController implements GameTypeController {
         // PlaceShipsPanel panel = new PlaceShipsPanel(UIHelper.getWidth(), UIHelper.getHeight(),
         // myGrid, myShips);
 
+        @SuppressWarnings("unused")
         PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
 
         // window.getContentPane().removeAll();
@@ -248,10 +255,15 @@ public class MultiPlayerController implements GameTypeController {
     }
 
     private void begin() {
+        System.out.println("Client: " + imClient + " Beginning game.");
         addGamePanel();
         playPanel.setMyTurn(myTurn);
         started = true;
-        multiplayer.sendMessage(myGrid);
+        // Server will send the grid first.
+        if (!imClient) {
+            System.out.println("Server is sending grid.");
+            multiplayer.sendMessage(myGrid);
+        }
     }
 
     private void addPanel() {

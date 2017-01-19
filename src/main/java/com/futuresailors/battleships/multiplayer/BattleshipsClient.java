@@ -39,14 +39,11 @@ public class BattleshipsClient implements BattleshipsConnection {
     private void addListener() {
         client.addListener(new ThreadedListener(new Listener() {
             public void received(Connection connection, Object object) {
-                // TODO Check whether connection is ID 1.
                 controller.messageReceived(object);
             }
 
             public void disconnected(Connection connection) {
-                if (connection.getID() == 1) {
-                    controller.oppDisconnected();
-                }
+                controller.oppDisconnected();
             }
         }));
     }
@@ -64,7 +61,7 @@ public class BattleshipsClient implements BattleshipsConnection {
                     client.sendTCP(request);
                     // If the server is already connected to a client it will drop this request
                     // So we check we are still connected and if so proceed.
-                    Thread.sleep(100);
+                    Thread.sleep(50);
                     System.out.println("Still Connected: " + client.isConnected());
                     if (client.isConnected()) {
                         return true;
@@ -76,7 +73,7 @@ public class BattleshipsClient implements BattleshipsConnection {
         } catch (InterruptedException e) {
             System.out.println("Problem whilst sleeping thread: " + e);
         }
-        
+
         return false;
     }
 
@@ -86,6 +83,5 @@ public class BattleshipsClient implements BattleshipsConnection {
 
     public void sendMessage(Object object) {
         client.sendTCP(object);
-        System.out.println("Client: Sent Grid.");
     }
 }

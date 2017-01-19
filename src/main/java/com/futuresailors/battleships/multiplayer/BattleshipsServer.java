@@ -31,6 +31,8 @@ public class BattleshipsServer implements BattleshipsConnection {
         kryo.register(GridTile[][].class);
         kryo.register(GridTile[].class);
         kryo.register(GridTile.class);
+        
+        addListener();
         server.start();
 
         // These port numbers were chosen as the 16/09/2013 is when we joined Capgemini.
@@ -39,12 +41,11 @@ public class BattleshipsServer implements BattleshipsConnection {
             System.out.println("Server started and listening on ports 16913 & 16914");
         } catch (IOException e) {
             System.out.println("Unable to start server.");
-            // Check this works.
             JOptionPane.showMessageDialog(null, "Are you already running a server on port 16913?",
                     "Unable to start server", JOptionPane.INFORMATION_MESSAGE);
             controller.returnToMenu();
         }
-        addListener();
+
     }
 
     private void addListener() {
@@ -72,6 +73,5 @@ public class BattleshipsServer implements BattleshipsConnection {
 
     public void sendMessage(Object object) {
         server.sendToTCP(1, object);
-        System.out.println("Server: Sent Grid.");
     }
 }
