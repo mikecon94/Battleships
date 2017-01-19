@@ -36,7 +36,7 @@ public class SimpleAIFunctionalityTest extends TestCase{
         player2.dropBomb(pos1);
         Point pos2 = ai.takeMove();
         player2.dropBomb(pos2);
-        assert(pos1.x != pos2.x && pos1.y != pos2.y);
+        assert(!pos1.equals(pos2));
     }
     
     //Not sure how to test this.
