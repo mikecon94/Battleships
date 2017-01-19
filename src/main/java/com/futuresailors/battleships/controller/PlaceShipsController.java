@@ -65,7 +65,8 @@ public class PlaceShipsController implements Controller {
         if (!allShipsPlaced) {
             Point newPos = new Point(panel.getTileXUnderMouse(pos.x),
                     panel.getTileYUnderMouse(pos.y));
-            if (grid.checkValidPlace(newPos, ships[currentShip])) {
+            if (panel.overGridSpace(pos.x, pos.y)
+                    && grid.checkValidPlace(newPos, ships[currentShip])) {
                 grid.placeShip(newPos, ships[currentShip]);
                 currentShip++;
                 if (currentShip == ships.length) {
