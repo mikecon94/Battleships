@@ -9,12 +9,12 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class FindPlayerListener implements ActionListener {
+public class AwaitingOpponentListener implements ActionListener {
 
     private MultiPlayerController controller;
     private JPanel panel;
 
-    public FindPlayerListener(JPanel panel, MultiPlayerController controller) {
+    public AwaitingOpponentListener(JPanel panel, MultiPlayerController controller) {
         this.controller = controller;
         this.panel = panel;
         addListeners();
@@ -31,11 +31,7 @@ public class FindPlayerListener implements ActionListener {
     }
 
     public void actionPerformed(ActionEvent event) {
-        if ("Start Server".equals(event.getActionCommand())) {
-            controller.startServer();
-        } else if ("Connect".equals(event.getActionCommand())) {
-            controller.connect();
-        } else if ("Main Menu".equals(event.getActionCommand())) {
+        if ("Main Menu".equals(event.getActionCommand())) {
             controller.returnToMenu();
         }
     }

@@ -18,7 +18,12 @@ public class GameListener {
 
     private Controller controller;
     private JPanel panel;
-
+    
+    /**
+     * The constructor for the GameListener.
+     * @param panel - The panel the listener is associated with.
+     * @param controller - The controller for the panel.
+     */
     public GameListener(JPanel panel, Controller controller) {
         this.controller = controller;
         this.panel = panel;

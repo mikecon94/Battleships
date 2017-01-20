@@ -21,19 +21,30 @@ public class DifficultySelectionPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-
+    
+    /**
+     * Creates the panel.
+     * @param width - Width of the window
+     * @param height - Height of the window
+     */
     public DifficultySelectionPanel(int width, int height) {
         this.WIDTH = width;
         this.HEIGHT = height;
         createPanel();
     }
-
+    
+    /**
+     * Creates the panel using the default height and width.
+     */
     public DifficultySelectionPanel() {
         this.WIDTH = UIHelper.getWidth();
         this.HEIGHT = UIHelper.getHeight();
         createPanel();
     }
-
+    
+    /**
+     * Creates the panel including buttons.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);

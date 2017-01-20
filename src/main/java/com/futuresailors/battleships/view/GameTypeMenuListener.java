@@ -18,7 +18,10 @@ public class GameTypeMenuListener implements ActionListener {
 
     private GameTypeMenuController controller;
     private JPanel panel;
-
+    
+    /**
+     * Constructor for GameTypeMenuListener.
+     */
     public GameTypeMenuListener(JPanel panel, GameTypeMenuController controller) {
         this.controller = controller;
         this.panel = panel;

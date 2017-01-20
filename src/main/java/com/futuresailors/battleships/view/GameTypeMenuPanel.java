@@ -21,19 +21,30 @@ public class GameTypeMenuPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-
+    
+    /**
+     * Constructor for the GameTypeMenuPanel with a custom width and height.
+     * @param width - Width of the panel.
+     * @param height - Height of the panel.
+     */
     public GameTypeMenuPanel(int width, int height) {
         this.WIDTH = width;
         this.HEIGHT = height;
         createPanel();
     }
-
+    
+    /**
+     * Constructor for the GameTypeMenuPanel with the default width and height.
+     */
     public GameTypeMenuPanel() {
         this.WIDTH = UIHelper.getWidth();
         this.HEIGHT = UIHelper.getHeight();
         createPanel();
     }
-
+    
+    /**
+     * Creates the panel, inits the buttons and ui.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);
