@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
- * The Main/First Game Controller which creates & sets up the JFrame Window. It then creates the
+ * The Main/First Game Controller which creates and sets up the JFrame Window. It then creates the
  * MainMenuPanel object and adds it to the window. A MainMenuListener is then added to this panel
  * which alerts this controller when a button is clicked via appropriate methods.
  * 

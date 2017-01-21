@@ -35,6 +35,7 @@ public class PlaceShipsController implements Controller {
      * @param ships - The ships that need to be placed.
      * @param controller - The parent controller of this controller which it will return to once
      *            complete.
+     * @param window - The JFrame that the placeshipspanel should be drawn on.
      */
     public PlaceShipsController(Grid grid, Ship[] ships, GameTypeController controller,
             JFrame window) {
