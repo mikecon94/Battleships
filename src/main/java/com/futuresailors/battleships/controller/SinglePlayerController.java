@@ -44,7 +44,11 @@ public class SinglePlayerController implements GameTypeController {
     private boolean myTurn = false;
 
     private Timer timer;
-
+    
+    /**
+     * Controller.
+     * @param   window  JFrame window of the single player.
+     */
     public SinglePlayerController(JFrame window) {
         this.window = window;
         myGrid = new Grid(10);
@@ -60,6 +64,11 @@ public class SinglePlayerController implements GameTypeController {
         DifficultySelectionListener diffListener = new DifficultySelectionListener(diffPanel, this);
     }
     
+    /**
+     * Controller.
+     * @param   window      JFrame window of the single player.
+     * @param   gridSize    size of the single player grid.
+     */
     public SinglePlayerController(JFrame window, int gridSize) {
         this.window = window;
         myGrid = new Grid(gridSize);
@@ -95,7 +104,10 @@ public class SinglePlayerController implements GameTypeController {
         aiShips[3] = new Ship(3, 1, "/images/ships/Horizontal/5.png");
         aiShips[4] = new Ship(2, 1, "/images/ships/Horizontal/5.png");
     }
-
+    
+    /**
+     * Starts the game.
+     */
     public void startGame() {
         myGrid.clearHoverTiles();
         aiGrid.clearHoverTiles();
@@ -107,19 +119,28 @@ public class SinglePlayerController implements GameTypeController {
         }
         panel.setMyTurn(myTurn);
     }
-
+    
+    /**
+     * Sets hard mode and creates a hard ai.
+     */
     @SuppressWarnings("unused")
     public void selectHardMode() {
         opp = new AdvancedAI(aiGrid, myGrid, aiShips);
         PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
     }
-
+    
+    /**
+     * Sets moderate mode and creates a moderate ai.
+     */
     @SuppressWarnings("unused")
     public void selectModerateMode() {
         opp = new ModerateAI(aiGrid, myGrid, aiShips);
         PlaceShipsController placeShips = new PlaceShipsController(myGrid, myShips, this, window);
     }
-
+    
+    /**
+     * Sets easy mode and creates a easy ai.
+     */
     @SuppressWarnings("unused")
     public void selectEasyMode() {
         opp = new SimpleAI(aiGrid, myGrid, aiShips);
@@ -144,7 +165,10 @@ public class SinglePlayerController implements GameTypeController {
         @SuppressWarnings("unused")
         GameListener listener = new GameListener(panel, this);
     }
-
+    
+    /**
+     * Allows a player to return to the main menu.
+     */
     public void returnToMenu() {
         if (timer != null && timer.isRunning()) {
             timer.stop();
@@ -154,7 +178,10 @@ public class SinglePlayerController implements GameTypeController {
         // TODO Display a JOptionPane asking if the user is sure they wish to
         // return to the menu.
     }
-
+    
+    /**
+     * Handles mouse clicks.
+     */
     public void mouseClicked(Point pos) {
         if (!gameOver) {
             // Hover the tile if it is the users turn and the mouse is over the
@@ -187,7 +214,11 @@ public class SinglePlayerController implements GameTypeController {
             }
         }
     }
-
+    
+    /**
+     * Handles opponent moves.
+     * @param   moveNum     moveNum of the AI.
+     */
     private void opponentMove(final int moveNum) {
         // Don't delay the AIs move on their first go (ie. only after they hit something).
         if (moveNum > 0) {
@@ -227,7 +258,10 @@ public class SinglePlayerController implements GameTypeController {
             }
         }
     }
-
+    
+    /**
+     * Sets if the game is over.
+     */
     private void checkGameOver() {
         if (myTurn) {
             if (aiGrid.checkGameOver()) {
@@ -243,22 +277,34 @@ public class SinglePlayerController implements GameTypeController {
             returnToMenu();
         }
     }
-
+    
+    /**
+     * Starts circle map.
+     */
     public void startCircleMap() {
         myGrid.createCircleGrid();
         aiGrid.createCircleGrid();
     }
-
+    
+    /**
+     * Starts the dreadnought map.
+     */
     public void startDreadnoughtMap() {
         myGrid.createDreadnoughtGrid();
         aiGrid.createDreadnoughtGrid();
     }
-
+    
+    /**
+     * Starts a corvette map.
+     */
     public void startCorvetteMap() {
         myGrid.createCorvetteGrid();
         aiGrid.createCorvetteGrid();
     }
-
+    
+    /**
+     * Handles mouse moves.
+     */
     public void mouseMoved(Point pos) {
         // Hover the tile if it is the users turn and the mouse is over the AIs
         // grid.

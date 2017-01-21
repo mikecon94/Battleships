@@ -19,11 +19,18 @@ public class MainMenuController {
 
     private final String TITLE = "Battleships";
     private JFrame window;
-
+    
+    /**
+     * Constructor.
+     */
     public MainMenuController() {
         window = new JFrame(TITLE);
     }
-
+    
+    /**
+     * Constructor.
+     * @param   window  JFrame window of the main menu.
+     */
     public MainMenuController(JFrame window) {
         this.window = window;
     }

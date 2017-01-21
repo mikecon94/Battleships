@@ -57,14 +57,21 @@ public class MultiPlayerController implements GameTypeController {
     private Grid oppGrid = new Grid();
 
     // TODO Add the Reloaded mode to Multiplayer.
-
+    
+    /**
+     * Constructor.
+     * @param   window  JFrame of the window.
+     */
     public MultiPlayerController(JFrame window) {
         this.window = window;
         myGrid = new Grid(10);
         addPanel();
         initialiseConnection();
     }
-
+    
+    /**
+     * Initalises the connection between client and server.
+     */
     private void initialiseConnection() {
         // Start client and discoverHost for server
         multiplayer = new BattleshipsClient(this);
@@ -96,6 +103,11 @@ public class MultiPlayerController implements GameTypeController {
     // We need to wait for the attemptConnection method to finish running before we continue.
     // This method allows the attemptConnection to call back to this object for the Main thread to
     // continue processing.
+    
+    /**
+     * Sets the connection up.
+     * @param   connection  boolean as whether the connection is done.
+     */
     public void setConnection(boolean connection) {
         if (connection) {
             // We are now connected to the server.
@@ -107,7 +119,11 @@ public class MultiPlayerController implements GameTypeController {
             multiplayer = new BattleshipsServer(this);
         }
     }
-
+    
+    /**
+     * Handles any messages recieved.
+     * @param   object  The message from the server.
+     */
     public void messageReceived(Object object) {
         if (object instanceof ConnectionComms) {
             ConnectionComms message = (ConnectionComms) object;
@@ -156,7 +172,10 @@ public class MultiPlayerController implements GameTypeController {
             }
         }
     }
-
+    
+    /**
+     * Return to the menu.
+     */
     public void returnToMenu() {
         connectionClosed = true;
 
@@ -165,7 +184,11 @@ public class MultiPlayerController implements GameTypeController {
         MainMenuController main = new MainMenuController(window);
         main.showMenu();
     }
-
+    
+    /**
+     * Handles mouse clicks.
+     * @param   pos     Point of the click.
+     */
     public void mouseClicked(Point pos) {
         if (started && !gameOver && myTurn && gridsInitialised
                 && playPanel.overGridSpace(pos.x, pos.y)) {
@@ -195,7 +218,10 @@ public class MultiPlayerController implements GameTypeController {
             }
         }
     }
-
+    
+    /**
+     * Initalises the game.
+     */
     public void startGame() {
         // Check the user hasn't already clicked once.
         if (!imReady) {
@@ -218,7 +244,10 @@ public class MultiPlayerController implements GameTypeController {
             }
         }
     }
-
+    
+    /**
+     * Handles disconnection.
+     */
     public void oppDisconnected() {
         if (!connectionClosed) {
             JOptionPane.showMessageDialog(null, "The connection to the opposition has been lost.",
@@ -226,7 +255,10 @@ public class MultiPlayerController implements GameTypeController {
             returnToMenu();
         }
     }
-
+    
+    /**
+     * Displays the place ships panel.
+     */
     public void displayPlaceShipsPanel() {
         createShips();
 
@@ -240,7 +272,11 @@ public class MultiPlayerController implements GameTypeController {
         // window.add(panel);
         // window.repaint();
     }
-
+    
+    /**
+     * Handles mouse movement.
+     * @param   pos     New point of the mouse.
+     */
     public void mouseMoved(Point pos) {
         if (started) {
             if (myTurn && !gameOver && playPanel.overGridSpace(pos.x, pos.y)) {
@@ -253,7 +289,10 @@ public class MultiPlayerController implements GameTypeController {
             }
         }
     }
-
+    
+    /**
+     * Begins the game.
+     */
     private void begin() {
         System.out.println("Client: " + imClient + " Beginning game.");
         addGamePanel();
@@ -265,7 +304,10 @@ public class MultiPlayerController implements GameTypeController {
             multiplayer.sendMessage(myGrid);
         }
     }
-
+    
+    /**
+     * Adds the awaiting opponent panel to game.
+     */
     private void addPanel() {
         window.getContentPane().removeAll();
         connectPanel = new AwaitingOpponentPanel(UIHelper.getWidth(), UIHelper.getHeight());
@@ -274,7 +316,10 @@ public class MultiPlayerController implements GameTypeController {
         window.add(connectPanel);
         window.repaint();
     }
-
+    
+    /**
+     * Adds the main game panel.
+     */
     private void addGamePanel() {
         window.getContentPane().removeAll();
         playPanel = new PlayPanel(UIHelper.getWidth(), UIHelper.getHeight(), myGrid, oppGrid,
@@ -284,7 +329,10 @@ public class MultiPlayerController implements GameTypeController {
         @SuppressWarnings("unused")
         GameListener listener = new GameListener(playPanel, this);
     }
-
+    
+    /**
+     * Checks if the game is over.
+     */
     private void checkGameOver() {
         if (myTurn) {
             if (oppGrid.checkGameOver()) {
@@ -300,7 +348,10 @@ public class MultiPlayerController implements GameTypeController {
             returnToMenu();
         }
     }
-
+    
+    /**
+     * Creates the ships.
+     */
     private void createShips() {
         myShips = new Ship[5];
         myShips[0] = new Ship(5, 1, "/images/ships/Horizontal/1.png");
