@@ -42,6 +42,15 @@ public class SimpleAIFunctionalityTest extends TestCase{
     //Not sure how to test this.
     @Test
     public void testPlaceShips(){
+        
         ai.placeShips();
+        System.out.println(ships[0].getPos());
+        System.out.println(ships[0].getPos());
+        System.out.println(ships[2].getPos());
+        System.out.println(ships[3].getPos());
+        System.out.println(ships[4].getPos());
+        
+        assert(ships[0].getPos().equals(ships[1].getPos()));
+        
     }
 }
