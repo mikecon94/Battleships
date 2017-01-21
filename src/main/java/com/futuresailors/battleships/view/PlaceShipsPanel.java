@@ -37,7 +37,14 @@ public class PlaceShipsPanel extends JPanel {
     private Ship[] ships;
 
     private final ImageIcon backgroundImage;
-
+    
+    /**
+     * Constructor for the PlaceShipsPanel.
+     * @param   width   The width of the Panel.
+     * @param   height  The height of the Panel.
+     * @param   grid    The grid the ships will be placed on.
+     * @param   ships   The array of Ships to be placed on the grid.
+     */
     public PlaceShipsPanel(int width, int height, Grid grid, Ship[] ships) {
         this.WIDTH = width;
         this.HEIGHT = height;
@@ -49,12 +56,19 @@ public class PlaceShipsPanel extends JPanel {
         grid.getRows();
         createPanel();
     }
-
+    
+    /**
+     * Changes the current ship that is being placed.
+     * @param   newShip  The array position of the new ship.
+     */
     public void updateCurrentShip(int newShip) {
         currentShip = newShip;
         repaint();
     }
-
+    
+    /**
+     * Constructor for the Panel with no params.
+     */
     public PlaceShipsPanel() {
         this.WIDTH = UIHelper.getWidth();
         this.HEIGHT = UIHelper.getHeight();
@@ -62,15 +76,28 @@ public class PlaceShipsPanel extends JPanel {
 
         createPanel();
     }
-
+    
+    /**
+     * Calculates the X of the tile under the mouse.
+     * @param   x   Int of the X from the mouse.
+     * @return  Integer of the X of the tile.
+     */
     public int getTileXUnderMouse(int x) {
         return (x - GRID_X) / tileSize;
     }
-
+    
+    /**
+     * Calculates the Y of the tile under the mouse.
+     * @param   y   Int of the Y from the mouse.
+     * @return  Integer of the Y of the tile.
+     */
     public int getTileYUnderMouse(int y) {
         return (y - GRID_Y) / tileSize;
     }
-
+    
+    /**
+     * Creates the panel and its components.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);
@@ -83,7 +110,10 @@ public class PlaceShipsPanel extends JPanel {
         tileSize = 520 / grid.getColumns();
         System.out.println("PlaceShipsPanel Created.");
     }
-
+    
+    /**
+     * Draws Graphics onto the panel.
+     */
     @Override
     protected void paintComponent(Graphics g) {
         g.drawImage(backgroundImage.getImage(), 0, 0, this);
@@ -103,7 +133,11 @@ public class PlaceShipsPanel extends JPanel {
 
         Toolkit.getDefaultToolkit().sync();
     }
-
+    
+    /**
+     * Draws the ships on the Panel.
+     * @param   g   The Graphics object for this Panel.
+     */
     private void drawShips(Graphics g) {
         for (Ship ship : ships) {
             if (ship.getPlaced()) {
@@ -114,14 +148,23 @@ public class PlaceShipsPanel extends JPanel {
             }
         }
     }
-
+    
+    /**
+     * Checks if the rotate button has been clicked.
+     * @param   pos   Point object representing the click location.
+     * @return  Boolean.
+     */
     public boolean checkRotateClicked(Point pos) {
         if (pos.x >= 915 && pos.x <= 985 && pos.y >= 550 && pos.y <= 620) {
             return true;
         }
         return false;
     }
-
+    
+    /**
+     * Draws the section of the panel that displays the current ship.
+     * @param   g   Graphics Object of this panel.
+     */
     private void drawCurrentShipSpace(Graphics g) {
         g.setColor(new Color(255, 255, 255));
         g.fillRect(775, 80, 350, 550);
@@ -151,14 +194,24 @@ public class PlaceShipsPanel extends JPanel {
             g.drawChars("Click anywhere to proceed.".toCharArray(), 0, 26, 800, 250);
         }
     }
-
+    
+    /**
+     * Calculates if a given x and y are over a valid gridspace.
+     * @param   x   The X value to be checked.
+     * @param   y   The Y value to be checked.
+     * @return  boolean
+     */
     public boolean overGridSpace(int x, int y) {
         if (x > GRID_X && x < GRID_X + GRID_WIDTH && y < GRID_Y + GRID_HEIGHT && y > GRID_Y) {
             return true;
         }
         return false;
     }
-
+    
+    /**
+     * Calculates the X of the tile under the mouse.
+     * @param   g   Graphics Object of the Panel.
+     */
     private void drawGrid(Graphics g) {
         for (int row = 0; row < grid.getRows(); row++) {
             for (int column = 0; column < grid.getColumns(); column++) {
