@@ -18,7 +18,13 @@ public class SimpleAI implements AI {
     private Grid myGrid;
     private Grid oppGrid;
     private Ship[] ships;
-
+    
+    /**
+     * Constructor for the Simple AI.
+     * @param   myGrid      player grid.
+     * @param   oppGrid     AI Grid.
+     * @param   ships       Array of ships.
+     */
     public SimpleAI(Grid myGrid, Grid oppGrid, Ship[] ships) {
         this.myGrid = myGrid;
         this.oppGrid = oppGrid;

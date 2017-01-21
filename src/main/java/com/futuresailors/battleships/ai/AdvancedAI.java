@@ -33,7 +33,10 @@ public class AdvancedAI implements AI {
         this.ships = ships;
         targetEvenSquares = (ThreadLocalRandom.current().nextInt(0, 2) == 1) ? true : false;
     }
-
+    
+    /**
+     * Hard AI Places its ships.
+     */
     public void placeShips() {
         // Randomly places ships like the Simple AI.
         Point pos = new Point(0, 0);
@@ -108,7 +111,10 @@ public class AdvancedAI implements AI {
         }
         return false;
     }
-
+    
+    /**
+     * Hard AI takes its move.
+     */
     public Point takeMove() {
         Point target = checkForTarget();
         if (target.x == -1) {

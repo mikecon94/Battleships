@@ -72,7 +72,11 @@ public class UIHelper {
         ImageIcon bg = new ImageIcon(UIHelper.class.getResource(imagePath));
         return new ImageIcon(bg.getImage().getScaledInstance(width, height, Image.SCALE_DEFAULT));
     }
-
+    
+    /**
+     * Reads a file into the program.
+     * @param   filePath    path of the file.
+     */
     public static String readFile(String filePath) {
         try {
             return new String(Files.readAllBytes(Paths.get(filePath)));

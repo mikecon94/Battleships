@@ -18,13 +18,22 @@ public class ModerateAI implements AI {
     private Grid myGrid;
     private Grid oppGrid;
     private Ship[] ships;
-
+    
+    /**
+     * Constructor for the Moderate AI.
+     * @param   myGrid      player grid.
+     * @param   oppGrid     AI Grid.
+     * @param   ships       Array of ships.
+     */
     public ModerateAI(Grid myGrid, Grid oppGrid, Ship[] ships) {
         this.myGrid = myGrid;
         this.oppGrid = oppGrid;
         this.ships = ships;
     }
-
+    
+    /**
+     * Moderate AI places its ships.
+     */
     public void placeShips() {
         // Randomly places ships like the Simple AI.
         Point pos = new Point(0, 0);
@@ -40,7 +49,10 @@ public class ModerateAI implements AI {
             myGrid.placeShip(pos, ship);
         }
     }
-
+    
+    /**
+     * Moderate AI takes its move.
+     */
     public Point takeMove() {
         Point target = checkForTarget();
         if (target.x == -1) {
