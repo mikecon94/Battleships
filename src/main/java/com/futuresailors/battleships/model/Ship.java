@@ -24,7 +24,12 @@ public class Ship {
     // Ship location represented as a Point
     Point pos;
 
-    // Constructor
+    /**
+     * Constructor.
+     * @param   width       width of the ship.
+     * @param   height      height of the ship.
+     * @param   imagePath   path to the image of the ship.
+     */
     public Ship(int width, int height, String imagePath) {
         this.width = width;
         this.height = height;
@@ -38,8 +43,8 @@ public class Ship {
     /**
      * Checks if the opponent scored a hit on a ships tile.
      * 
-     * @param location - A Point object for the tile location that was hit
-     * @return Whether the player has scored a hit as a boolean
+     * @param   location    A Point object for the tile location that was hit
+     * @return  Whether the player has scored a hit as a boolean
      */
     public boolean hit(Point location) {
         for (ShipTile tile : tiles) {
@@ -87,7 +92,7 @@ public class Ship {
     /**
      * Initialises the tiles array based on the top left hand tile.
      * 
-     * @param pos - A Point representing the top left hand tile of the ship
+     * @param   pos     A Point representing the top left hand tile of the ship
      */
     public void placeShip(Point pos) {
         int index = 0;
@@ -115,27 +120,51 @@ public class Ship {
         width = height;
         height = tempWidth;
     }
-
+    
+    /**
+     * Getter.
+     * @return the ships position as a point.
+     */
     public Point getPos() {
         return pos;
     }
-
+    
+    /**
+     * Getter.
+     * @return the ships x position as a int.
+     */
     public int getX() {
         return (int) pos.getX();
     }
 
+    /**
+     * Getter.
+     * @return the ships y position as a int.
+     */
     public int getY() {
         return (int) pos.getY();
     }
-
+    
+    /**
+     * Getter.
+     * @return the ships width as int.
+     */
     public int getWidth() {
         return width;
     }
-
+    
+    /**
+     * Getter.
+     * @return the ships height as a int.
+     */
     public int getHeight() {
         return height;
-    }
-
+    }  
+    
+    /**
+     * Getter.
+     * @return the ships image path.
+     */
     public String getImagePath() {
         return imagePath;
     }

@@ -13,7 +13,11 @@ public class ShipTile {
 
     private Point position;
     private boolean hit = false;
-
+    
+    /**
+     * Constructor.
+     * @param   position    Point of the ship tiles position.
+     */
     public ShipTile(Point position) {
         this.position = position;
     }
@@ -33,11 +37,18 @@ public class ShipTile {
     public void setPostion(Point position) {
         this.position = position;
     }
-
+    
+    /**
+     * Getter.
+     * @return the ship tile has been hit or not.
+     */
     public boolean getHit() {
         return hit;
     }
-
+    
+    /**
+     * Setter.
+     */
     public void setHit() {
         this.hit = true;
     }

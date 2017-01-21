@@ -16,13 +16,20 @@ public class Grid {
 
     private GridTile[][] grid;
     private int gridSize = 10;
-
+    
+    /**
+     * Grid constructor using preset size.
+     */
     public Grid() {
         // Create new 2D array for the grid using standard sizes.
         grid = new GridTile[gridSize][gridSize];
         createNewGrid();
     }
-
+    
+    /**
+     * Grid constructor to specified size.
+     * @param   size    Size of the grid to construct.
+     */
     public Grid(int size) {
         // Create grid with given sizes.
         // Use default if size is less than 5 or greater than 30.
@@ -34,7 +41,12 @@ public class Grid {
         }
         createNewGrid();
     }
-
+    
+    /**
+     * Drops a bomb on a grid tile.
+     * @param   target  A point representing the location to bomb.
+     * @return  Boolean if it was hit or miss.
+     */
     public boolean dropBomb(Point target) {
         if (grid[target.y][target.x] == GridTile.SHIP
                 || grid[target.y][target.x] == GridTile.HOVERSHIP) {
@@ -49,8 +61,8 @@ public class Grid {
     /**
      * Returns the value of what is in the given tile.
      * 
-     * @param pos - The tile that should be returned.
-     * @return A char that is the value in the requested tile.
+     * @param   pos     The tile that should be returned.
+     * @return  A char that is the value in the requested tile.
      */
     public GridTile getTile(Point pos) {
         return grid[pos.y][pos.x];
@@ -71,8 +83,8 @@ public class Grid {
      * Sets a collection of tiles to 'H' which the view then knows to render as a tile being hovered
      * over.
      * 
-     * @param pos - The top left position to represent the ship.
-     * @param ship - The ship currently being placed.
+     * @param   pos   The top left position to represent the ship.
+     * @param   ship  The ship currently being placed.
      */
     public void hoverShip(Point pos, Ship ship) {
         // Clears any tiles that are currently being hovered over.
@@ -91,7 +103,7 @@ public class Grid {
      * Sets a collection of tiles to 'H' which the view then knows to render as a tile being hovered
      * over.
      * 
-     * @param pos - The top left position to represent the ship.
+     * @param   pos   The top left position to represent the ship.
      */
     public void hoverBomb(Point pos) {
         // Clears any tiles that are currently being hovered over.
@@ -157,8 +169,8 @@ public class Grid {
      * Takes a ship and a top left position. Then checks whether it is a valid place for the ship to
      * be placed. ie. it isn't off the grid and there isn't already a ship there.
      * 
-     * @param pos - Top left position to place the ship.
-     * @param ship - The ship being placed.
+     * @param   pos     Top left position to place the ship.
+     * @param   ship    The ship being placed.
      * @return True if the ship can be legally placed there. False if not.
      */
     public boolean checkValidPlace(Point pos, Ship ship) {
@@ -180,11 +192,18 @@ public class Grid {
         }
         return true;
     }
-
+    
+    /**
+     * Creates a circle grid.
+     */
     public void createCircleGrid() {
         drawLand("/maps/circle.map");
     }
-
+    
+    /**
+     * Draws land on the grid.
+     * @param   path    path to the map file.
+     */
     private void drawLand(String path) {
         // String mapString = UIHelper
         // .readFile(Paths.get(getClass().getResource(path).toURI()).toString());
@@ -206,11 +225,17 @@ public class Grid {
             }
         }
     }
-
+    
+    /**
+     * Creates a dreadnought map.
+     */
     public void createDreadnoughtGrid() {
         drawLand("/maps/dreadnought.map");
     }
-
+    
+    /**
+     * Creates a corvette map.
+     */
     public void createCorvetteGrid() {
         drawLand("/maps/corvette.map");
     }
@@ -219,8 +244,8 @@ public class Grid {
      * Drops the ship onto the grid and marks the tiles it has been placed as S. Also updates the
      * ships object itself so it knows it has been placed.
      * 
-     * @param pos - Top left position of the position to place the ship.
-     * @param ship - The ship being placed.
+     * @param   pos     Top left position of the position to place the ship.
+     * @param   ship    The ship being placed.
      */
     public void placeShip(Point pos, Ship ship) {
         for (int yIndex = 0; yIndex < ship.getHeight(); yIndex++) {
