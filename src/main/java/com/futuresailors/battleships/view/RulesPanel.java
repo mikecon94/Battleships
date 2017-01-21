@@ -27,19 +27,30 @@ public class RulesPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-
+    
+    /**
+     * Constructor.
+     * @param   width   Width of the panel.
+     * @param   height  Height of the panel.
+     */
     public RulesPanel(int width, int height) {
         this.WIDTH = width;
         this.HEIGHT = height;
         createPanel();
     }
-
+    
+    /**
+     * Constructor.
+     */
     public RulesPanel() {
         this.WIDTH = UIHelper.getWidth();
         this.HEIGHT = UIHelper.getHeight();
         createPanel();
     }
-
+    
+    /**
+     * Creates the panel and its components.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);

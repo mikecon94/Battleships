@@ -67,7 +67,15 @@ public class PlayPanel extends JPanel {
     private AudioInputStream hitAudioStream;
     private Clip hitClip;
     private Clip missClip;
-
+    
+    /**
+     * Constructor for the PlayPanel.
+     * @param   width   The width of the Panel.
+     * @param   height  The height of the Panel.
+     * @param   grid1   The Players Grid.
+     * @param   grid2   The opponents grid.
+     * @param   ships   The array of Ships to be placed on the grid1.
+     */
     public PlayPanel(int width, int height, Grid grid1, Grid grid2, Ship[] ships) {
         this.WIDTH = width;
         this.HEIGHT = height;
@@ -84,7 +92,10 @@ public class PlayPanel extends JPanel {
         setupAudio();
         createPanel();
     }
-
+    
+    /**
+     * Sets Up the audio for the bombs and misses.
+     */
     private void setupAudio() {
         try {
             missAudioStream = AudioSystem.getAudioInputStream(missAudioPath);
@@ -106,11 +117,22 @@ public class PlayPanel extends JPanel {
             e.printStackTrace();
         }
     }
-
+    
+    /**
+     * Gets the X value for the tile under the mouse.
+     * @param   x   The X value from the mouse.
+     * @return  The X of the Tile under the mouse on the opponents grid.
+     */
     public int getTileXUnderMouse(int x) {
         return (x - GRID_2_X) / tileSize;
     }
-
+    
+    /**
+     * Checks if a mouse is over a grid space.
+     * @param   x   The x of the mouse.
+     * @param   y   The y of the mouse.
+     * @return  Boolean.
+     */
     public boolean overGridSpace(int x, int y) {
         if (x > GRID_2_X && x < GRID_2_X + GRID_WIDTH && y < GRID_2_Y + GRID_HEIGHT
                 && y > GRID_2_Y) {
@@ -118,11 +140,19 @@ public class PlayPanel extends JPanel {
         }
         return false;
     }
-
+    
+    /**
+     * Gets the Y value for the tile under the mouse.
+     * @param   y   The Y value from the mouse.
+     * @return  The Y of the Tile under the mouse on the opponents grid.
+     */
     public int getTileYUnderMouse(int y) {
         return (y - GRID_2_Y) / tileSize;
     }
-
+    
+    /**
+     * Creates the Panel and its components.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);
@@ -169,7 +199,14 @@ public class PlayPanel extends JPanel {
 
         Toolkit.getDefaultToolkit().sync();
     }
-
+    
+    /**
+     * Draws the bombs on the grid.
+     * @param   grid    The grid the bomb is dropped on.
+     * @param   startX  The start of the X of the ship
+     * @param   startY  The start of the Y of the ship.
+     * @param   g       The graphics object of the Panel.
+     */
     private void drawBombs(Grid grid, int startX, int startY, Graphics g) {
         for (int row = 0; row < grid.getRows(); row++) {
             for (int column = 0; column < grid.getColumns(); column++) {
@@ -180,7 +217,11 @@ public class PlayPanel extends JPanel {
             }
         }
     }
-
+    
+    /**
+     * Draws the ships on the players panel.
+     * @param   g   The graphics object of the panel..
+     */
     private void drawShips(Graphics g) {
         for (Ship ship : ships) {
             if (ship.getPlaced()) {
@@ -197,6 +238,10 @@ public class PlayPanel extends JPanel {
         }
     }
 
+    /**
+     * Creates a popup to say if you won or not.
+     * @param   won     A boolean to say if the player won.
+     */
     public void showWinner(boolean won) {
         repaint();
         if (won) {
@@ -208,17 +253,29 @@ public class PlayPanel extends JPanel {
                     "Loser", JOptionPane.INFORMATION_MESSAGE);
         }
     }
-
+    
+    /**
+     * Sets the Players grid.
+     * @param   grid   The Players grid.
+     */
     public void setMyGrid(Grid grid) {
         myGrid = grid;
         repaint();
     }
-
+    
+    /**
+     * Sets the Opponents grid.
+     * @param   grid   The Opponents grid.
+     */
     public void setOppGrid(Grid grid) {
         oppGrid = grid;
         repaint();
     }
-
+    
+    /**
+     * Draws the Opponents grid.
+     * @param   g   The Graphics Object.
+     */
     private void drawOppGrid(Graphics g) {
         for (int row = 0; row < oppGrid.getRows(); row++) {
             for (int column = 0; column < oppGrid.getColumns(); column++) {
@@ -264,7 +321,11 @@ public class PlayPanel extends JPanel {
             }
         }
     }
-
+    
+    /**
+     * Draws the Players grid.
+     * @param   g   The Graphics Object.
+     */
     private void drawMyGrid(Graphics g) {
         for (int row = 0; row < myGrid.getRows(); row++) {
             for (int column = 0; column < myGrid.getColumns(); column++) {
@@ -302,17 +363,27 @@ public class PlayPanel extends JPanel {
             }
         }
     }
-
+    
+    /**
+     * Sets the turn as yours.
+     * @param   myturn   Boolean of whether its your turn.
+     */
     public void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;
     }
-
+    
+    /**
+     * Plays the hit sound.
+     */
     public void playHitSound() {
         hitClip.stop();
         hitClip.setFramePosition(0);
         hitClip.start();
     }
-
+    
+    /**
+     * Plays the miss sound.
+     */
     public void playMissSound() {
         missClip.stop();
         missClip.setFramePosition(0);
