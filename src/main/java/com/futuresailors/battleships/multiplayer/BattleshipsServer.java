@@ -14,12 +14,22 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Listener.ThreadedListener;
 import com.esotericsoftware.kryonet.Server;
 
+/**
+ * Server for Battleships Multiplayer.
+ * @author Mike Conroy.
+ */
+
 public class BattleshipsServer implements BattleshipsConnection {
 
     private Server server;
     private Kryo kryo;
     private MultiPlayerController controller;
-
+    
+    /**
+     * The constructor for Battleships Server.
+     * @param   controller  The MultiplayerController object.
+     */
+    
     public BattleshipsServer(MultiPlayerController controller) {
 
         this.controller = controller;
@@ -47,7 +57,10 @@ public class BattleshipsServer implements BattleshipsConnection {
         }
 
     }
-
+    
+    /**
+     * Listens for the connections.
+     */
     private void addListener() {
         server.addListener(new ThreadedListener(new Listener() {
             public void received(Connection connection, Object object) {
@@ -66,11 +79,17 @@ public class BattleshipsServer implements BattleshipsConnection {
             }
         }));
     }
-
+    
+    /**
+     * Closes a connection.
+     */
     public void close() {
         server.close();
     }
-
+    
+    /**
+     * Sends a message.
+     */
     public void sendMessage(Object object) {
         server.sendToTCP(1, object);
     }

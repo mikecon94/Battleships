@@ -1,5 +1,10 @@
 package com.futuresailors.battleships.multiplayer;
 
+/**
+ * Connection Communication Object.
+ * @author Mike Conroy.
+ */
+
 public class ConnectionComms {
     public boolean connected;
     public boolean shipsPlaced;
