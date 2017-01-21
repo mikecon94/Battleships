@@ -366,7 +366,7 @@ public class PlayPanel extends JPanel {
     
     /**
      * Sets the turn as yours.
-     * @param   myturn   Boolean of whether its your turn.
+     * @param   myTurn   Boolean of whether its your turn.
      */
     public void setMyTurn(boolean myTurn) {
         this.myTurn = myTurn;

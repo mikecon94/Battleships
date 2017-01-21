@@ -63,7 +63,7 @@ public class MainMenuController {
     }
 
     /**
-     * Starts the Single Player Game type. It replaces the window panel & instantiates the
+     * Starts the Single Player Game type. It replaces the window panel and instantiates the
      * appropriate controller for that game type.
      */
     public void startGameSelection() {

@@ -1,0 +1,8 @@
+com.futuresailors.battleships
+com.futuresailors.battleships.ai
+com.futuresailors.battleships.controller
+com.futuresailors.battleships.model
+com.futuresailors.battleships.multiplayer
+com.futuresailors.battleships.view
+com.futuresailors.battleships.view.multiplayer
+com.futuresailors.battleships.view.reloaded

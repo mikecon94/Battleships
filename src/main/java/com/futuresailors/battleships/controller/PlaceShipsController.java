@@ -31,7 +31,10 @@ public class PlaceShipsController implements Controller {
     /**
      * Creates the panel, adds it to the window and adds the listener.
      * 
-     * @param window - The JFrame to add the panel to.
+     * @param grid - The player's grid.
+     * @param ships - The ships that need to be placed.
+     * @param controller - The parent controller of this controller which it will return to once
+     *            complete.
      */
     public PlaceShipsController(Grid grid, Ship[] ships, GameTypeController controller,
             JFrame window) {

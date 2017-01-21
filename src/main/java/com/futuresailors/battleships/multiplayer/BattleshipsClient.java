@@ -62,6 +62,8 @@ public class BattleshipsClient implements BattleshipsConnection {
     
     /**
      * Attempts to make a connection on the ports.
+     * 
+     * @return Boolean - True if it finds a server and connects otherwise false.
      */
     public boolean attemptConnection() {
         List<InetAddress> servers = client.discoverHosts(16914, 500);

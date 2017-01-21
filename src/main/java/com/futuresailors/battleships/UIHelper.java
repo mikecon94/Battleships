@@ -10,7 +10,7 @@ import javax.swing.JButton;
 
 /**
  * A helper class with some static methods which will be used by some of the View objects. We also
- * store the height & the width the window should be here to allow the JFrame & Panels to grab
+ * store the height and the width the window should be here to allow the JFrame and Panels to grab
  * instead of passing each time.
  * 
  * @author Michael Conroy
@@ -60,7 +60,7 @@ public class UIHelper {
 
     // Helper method for resizing a given Image. Used on the background and for buttons.
     /**
-     * Resizes a given image to a given width & height. Used for the background, icons and button
+     * Resizes a given image to a given width and height. Used for the background, icons and button
      * images etc.
      * 
      * @param imagePath - The path to the image that needs resizing.
@@ -76,6 +76,7 @@ public class UIHelper {
     /**
      * Reads a file into the program.
      * @param   filePath    path of the file.
+     * @return String - The contents of the file.
      */
     public static String readFile(String filePath) {
         try {
