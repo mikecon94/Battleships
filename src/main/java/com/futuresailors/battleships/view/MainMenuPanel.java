@@ -18,19 +18,30 @@ public class MainMenuPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-
+    
+    /**
+     * The Constructor for this panel with a specified width and height.
+     * @param   width       The width of the panel.
+     * @param   height      The height of the panel.  
+     */
     public MainMenuPanel(int width, int height) {
         this.WIDTH = width;
         this.HEIGHT = height;
         createPanel();
     }
-
+    
+    /**
+     * The Constructor for this listener with the standard width and height.
+     */
     public MainMenuPanel() {
         this.WIDTH = UIHelper.getWidth();
         this.HEIGHT = UIHelper.getHeight();
         createPanel();
     }
-
+    
+    /**
+     * Creates the Panel and its components.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);

@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 /**
  * Panel for selection of difficulty for the single player games.
- * 
  * @author Joe Baldwin
  */
 public class DifficultySelectionPanel extends JPanel {
@@ -23,9 +22,9 @@ public class DifficultySelectionPanel extends JPanel {
     private final int HEIGHT;
     
     /**
-     * Creates the panel.
-     * @param width - Width of the window
-     * @param height - Height of the window
+     * The Constructor for this panel with a specified width and height.
+     * @param   width       The width of the panel.
+     * @param   height      The height of the panel.  
      */
     public DifficultySelectionPanel(int width, int height) {
         this.WIDTH = width;

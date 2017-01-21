@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 /**
  * This adds the appropriate listeners to the panels.
- * 
  * @author Michael Conroy
  */
 public class GameListener {
@@ -21,15 +20,18 @@ public class GameListener {
     
     /**
      * The constructor for the GameListener.
-     * @param panel - The panel the listener is associated with.
-     * @param controller - The controller for the panel.
+     * @param   panel         The panel the listener is associated with.
+     * @param   controller    The controller for the panel.
      */
     public GameListener(JPanel panel, Controller controller) {
         this.controller = controller;
         this.panel = panel;
         addListeners();
     }
-
+    
+    /**
+     * This sets up the listeners for the main game.
+     */
     private void addListeners() {
         // 0 is the Start Game Button.
         panel.getComponent(0).addMouseListener(new MouseListener() {

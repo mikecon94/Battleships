@@ -11,14 +11,18 @@ import javax.swing.JPanel;
 
 /**
  * Listener for selection of difficulty for the single player games.
- * 
  * @author Joe Baldwin
  */
 public class DifficultySelectionListener implements ActionListener {
 
     private SinglePlayerController controller;
     private JPanel panel;
-
+    
+    /**
+     * The Constructor for this listener.
+     * @param   controller  An instance of the SinglePlayerController.
+     * @param   panel       The Panel this listener will applied to.  
+     */
     public DifficultySelectionListener(JPanel panel, SinglePlayerController controller) {
         this.controller = controller;
         this.panel = panel;

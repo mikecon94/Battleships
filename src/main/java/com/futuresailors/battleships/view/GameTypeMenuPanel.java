@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 /**
  * Panel for selection of your game type.
- * 
  * @author Joe Baldwin
  */
 public class GameTypeMenuPanel extends JPanel {
@@ -24,8 +23,8 @@ public class GameTypeMenuPanel extends JPanel {
     
     /**
      * Constructor for the GameTypeMenuPanel with a custom width and height.
-     * @param width - Width of the panel.
-     * @param height - Height of the panel.
+     * @param   width     Width of the panel.
+     * @param   height    Height of the panel.
      */
     public GameTypeMenuPanel(int width, int height) {
         this.WIDTH = width;

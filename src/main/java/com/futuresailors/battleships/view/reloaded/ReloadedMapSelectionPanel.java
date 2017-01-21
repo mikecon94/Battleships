@@ -12,7 +12,6 @@ import javax.swing.JPanel;
 
 /**
  * This JPanel displays available maps in reloaded mode.
- * 
  * @author Joe Baldwin
  */
 @SuppressWarnings("serial")
@@ -20,19 +19,30 @@ public class ReloadedMapSelectionPanel extends JPanel {
 
     private final int WIDTH;
     private final int HEIGHT;
-
+    
+    /**
+     * The Constructor for this panel with a specified width and height.
+     * @param   width       The width of the panel.
+     * @param   height      The height of the panel.  
+     */
     public ReloadedMapSelectionPanel(int width, int height) {
         this.WIDTH = width;
         this.HEIGHT = height;
         createPanel();
     }
-
+    
+    /**
+     * The Constructor for this listener with the standard width and height.
+     */
     public ReloadedMapSelectionPanel() {
         this.WIDTH = UIHelper.getWidth();
         this.HEIGHT = UIHelper.getHeight();
         createPanel();
     }
-
+    
+    /**
+     * Creates the Panel and its components.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);

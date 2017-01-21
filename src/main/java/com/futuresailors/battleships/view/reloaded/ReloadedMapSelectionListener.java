@@ -8,12 +8,21 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+/**
+ * This is the listener for the Reloaded Mode Map Selection Panel.
+ * @author Joe Baldwin
+ */
 
 public class ReloadedMapSelectionListener implements ActionListener {
     
     private ReloadedMapSelectionController controller;
     private JPanel panel;
-
+    
+    /**
+     * The Constructor for this listener.
+     * @param   controller  The Reloaded Map Selection Controller.
+     * @param   panel       The Panel this listener will applied to.  
+     */
     public ReloadedMapSelectionListener(JPanel panel, ReloadedMapSelectionController controller) {
         this.controller = controller;
         this.panel = panel;
@@ -22,7 +31,7 @@ public class ReloadedMapSelectionListener implements ActionListener {
 
     /**
      * Loops round all the components on the main menu panel and adds this listener to all of the
-     * buttons.
+     * JButtons.
      */
     private void addListeners() {
         Component[] comps = panel.getComponents();
@@ -36,6 +45,7 @@ public class ReloadedMapSelectionListener implements ActionListener {
 
     /**
      * Detects which button has been clicked and performs the appropriate action.
+     * @param   event   An instance of ActionEvent.
      */
     public void actionPerformed(ActionEvent event) {
         if ("<html>Small<br/><center>8x8</html>".equals(event.getActionCommand())) {

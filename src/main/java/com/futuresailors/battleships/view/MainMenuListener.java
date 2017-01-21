@@ -18,7 +18,12 @@ public class MainMenuListener implements ActionListener {
 
     private MainMenuController controller;
     private JPanel panel;
-
+    
+    /**
+     * The Constructor for this listener.
+     * @param   controller  The MainMenuController.
+     * @param   panel       The Panel this listener will applied to.  
+     */
     public MainMenuListener(JPanel panel, MainMenuController controller) {
         this.controller = controller;
         this.panel = panel;

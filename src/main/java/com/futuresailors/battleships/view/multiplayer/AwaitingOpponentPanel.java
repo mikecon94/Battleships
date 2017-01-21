@@ -11,20 +11,31 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+/**
+ * This is the listener for the Awaiting Opponent Panel.
+ * @author Mike Conroy, Georgie Lyme
+ */
 public class AwaitingOpponentPanel extends JPanel {
 
     private static final long serialVersionUID = -161318141413754470L;
 
     private final int WIDTH;
     private final int HEIGHT;
-    JTextField ipField;
-
+    
+    /**
+     * The Constructor for this panel with a specified width and height.
+     * @param   width       The width of the panel.
+     * @param   height      The height of the panel.  
+     */
     public AwaitingOpponentPanel(int width, int height) {
         this.WIDTH = width;
         this.HEIGHT = height;
         createPanel();
     }
-
+    
+    /**
+     * Creates the Panel and its components.
+     */
     private void createPanel() {
         setLayout(null);
         setSize(WIDTH, HEIGHT);

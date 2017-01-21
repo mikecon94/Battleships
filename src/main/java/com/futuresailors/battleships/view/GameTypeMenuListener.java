@@ -11,7 +11,6 @@ import javax.swing.JPanel;
 
 /**
  * Listener for selection of your game type.
- * 
  * @author Joe Baldwin
  */
 public class GameTypeMenuListener implements ActionListener {
@@ -20,7 +19,9 @@ public class GameTypeMenuListener implements ActionListener {
     private JPanel panel;
     
     /**
-     * Constructor for GameTypeMenuListener.
+     * The Constructor for this listener.
+     * @param   controller  An instance of GameTypeMenuController.
+     * @param   panel       The JPanel this listener will applied to.  
      */
     public GameTypeMenuListener(JPanel panel, GameTypeMenuController controller) {
         this.controller = controller;
