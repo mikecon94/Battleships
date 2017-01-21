@@ -31,8 +31,16 @@ public class ShipFunctionalityTest extends TestCase {
 
     //TODO Update this test so it hits each tile of the ship instead of calling sink.
 //    @Test
-//    public void testShipSinking() {
-//        ship.sink();
-//        assert (ship.isSunk() == true);
-//    }
+    public void testShipSinking() {
+      Point p = new Point(1, 1);
+      Grid g = new Grid(10);
+      g.placeShip(pos, ship);
+      for(int i=1;i<ship.getHeight()+1;i++){
+          Point target = new Point(1,i);
+          g.dropBomb(target);
+          System.out.println(g.getTile(target));
+      }
+      System.out.println(g.getTile(p));
+      //assert (ship.isSunk() == true);
+    }
 }

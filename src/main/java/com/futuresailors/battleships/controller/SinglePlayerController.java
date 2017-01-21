@@ -59,7 +59,7 @@ public class SinglePlayerController implements GameTypeController {
         @SuppressWarnings("unused")
         DifficultySelectionListener diffListener = new DifficultySelectionListener(diffPanel, this);
     }
-
+    
     public SinglePlayerController(JFrame window, int gridSize) {
         this.window = window;
         myGrid = new Grid(gridSize);
