@@ -1,10 +1,6 @@
 package com.futuresailors.battleships.model;
 
-import com.futuresailors.battleships.UIHelper;
-
 import java.awt.Point;
-import java.net.URISyntaxException;
-import java.nio.file.Paths;
 import java.util.Scanner;
 
 /**
@@ -210,6 +206,7 @@ public class Grid {
 
         Scanner s = new Scanner(getClass().getResourceAsStream(path)).useDelimiter("\\A");
         String mapString = s.next();
+        s.close();
         int currentChar = 0;
         for (int y = 0; y < grid.length; y++) {
             for (int x = 0; x < grid[y].length; x++) {

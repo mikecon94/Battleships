@@ -201,10 +201,12 @@ public class MultiPlayerController implements GameTypeController {
                     && oppGrid.getTile(gridPos) != GridTile.LAND) {
                 System.out.println("My Move: " + gridPos);
                 if (oppGrid.dropBomb(gridPos)) {
+                    playPanel.playHitSound();
                     multiplayer.sendMessage(oppGrid);
                     checkGameOver();
                     playPanel.repaint();
                 } else {
+                    playPanel.playMissSound();
                     myTurn = false;
                     playPanel.setMyTurn(myTurn);
                     oppGrid.clearHoverTiles();
