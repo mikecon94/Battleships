@@ -5,3 +5,6 @@ Dev Build Status:
 
 Master Build Status:
 [![Build Status](https://travis-ci.com/mikecon94/Battleships.svg?token=URCpSRpUHHY37BWhZ9ky&branch=master)](https://travis-ci.com/mikecon94/Battleships)
+
+
+Javadoc: https://mikecon94.github.io/Battleships/
