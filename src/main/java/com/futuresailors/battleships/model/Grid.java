@@ -64,6 +64,11 @@ public class Grid {
         return grid[pos.y][pos.x];
     }
 
+    /**
+     * Checks if any ships still exist on the grid. If not then the game is over (true).
+     * 
+     * @return True if the game is over.
+     */
     public boolean checkGameOver() {
         for (int y = 0; y < grid.length; y++) {
             for (int x = 0; x < grid[y].length; x++) {

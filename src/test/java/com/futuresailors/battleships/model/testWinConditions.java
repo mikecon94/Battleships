@@ -4,12 +4,10 @@ import com.futuresailors.battleships.ai.SimpleAI;
 
 import java.awt.Point;
 
-import org.junit.Test;
 import junit.framework.TestCase;
 
 public class testWinConditions extends TestCase {
     
-    private Grid p1 = new Grid(10);
     //AI
     private Grid player1 = new Grid(10);
     private Grid player2 = new Grid(10);
